@@ -1,0 +1,5 @@
+node_modules/
+automation/test-results/
+automation/playwright-report/
+.env
+*.env.local

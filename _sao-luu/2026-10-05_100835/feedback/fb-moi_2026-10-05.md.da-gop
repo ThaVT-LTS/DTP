@@ -1,0 +1,190 @@
+# Bản ghi FB mới — 05/10/2026
+
+11 bản ghi từ chat ngày 05/10/2026: 2 bản về chia sheet, 9 bản về cách viết file `SGS-DTP_TestCase1` (v1.3). Chưa sửa TC nào theo các bản ghi này.
+
+Đánh số: chạy `python ap_dung_cap_nhat.py --danh-so <số tiếp theo của feedback/log.md> --ap`. Script đổi mọi `FB-???[…]` thành số thật, theo thứ tự của bảng dưới, ở file này và ở các dòng changelog, rồi gộp bảng và bản ghi vào `feedback/log.md`. Làm tay thì thay từng `FB-???[…]` theo đúng thứ tự đó.
+
+Số liệu ở trường "Phạm vi ảnh hưởng" được đếm bằng script trên `SGS-DTP_TestCase1_v1.3.xlsx` (Login 52, Scopes 129, Users 62, Profile 13 — tổng 256 TC), trừ chỗ ghi khác.
+
+## Dòng cho bảng tra nhanh
+
+| FB | Tiêu đề | Loại | Trạng thái | Tái phát |
+|---|---|---|---|---|
+| FB-029 | Chia sheet theo màn hình, vai trò nằm trong sheet | L2-rule | Đã vào rule (chờ duyệt) | 0 |
+| FB-030 | Gộp, tách sheet theo màn hình, không theo module của UC list | L2-rule | Đã vào rule (chờ duyệt) | 0 |
+| FB-031 | Viết TC bằng tiếng Anh; ít nhất tên nút giữ nguyên tiếng Anh | L2-rule | Đã duyệt | 0 |
+| FB-032 | Trạng thái rỗng đặt trước, theo vòng đời dữ liệu rỗng → tạo → có dữ liệu | L2-rule | Đã duyệt | 0 |
+| FB-033 | Trạng thái rỗng phải tả đủ icon, chữ, nút | L3-checklist | Đã duyệt | 0 |
+| FB-034 | Không viết lửng lơ ở Expected và Step; không biết thì đưa vào Q&A | L2-rule | Đã duyệt | 0 |
+| FB-035 | Pre-condition đăng nhập ghi bằng vai trò: "Đăng nhập với acc Customer Admin" | L4-mẫu | Đã duyệt | 0 |
+| FB-036 | Nhiều mục thì mỗi mục một dòng, không nối bằng " · " | L4-mẫu | Đã duyệt | 0 |
+| FB-037 | Giá trị tính toán phải nói lấy từ đâu; TC phải dễ sửa khi Figma, UC đổi | L2-rule | Bị bác | 0 |
+| FB-038 | Gửi bản xem trước danh sách tính năng trước khi cập nhật file TC | L2-rule | Đã duyệt | 0 |
+| FB-039 | TC gọi API chỉ viết khi tester được gọi API, và để ở sheet API riêng | L2-rule | Đã duyệt | 0 |
+
+## Bản ghi
+
+## FB-029 · Chia sheet theo màn hình, vai trò nằm trong sheet
+- Ngày: 2026-10-05
+- Nguồn: chat 05/10 · "tài liệu UC ntn, thì gợi ý giúp tôi, nên theo bố cục các sheet ntn" · "VD: tôi đang có 2 role chính: Customer và SGS trong đó lại có Customer Admin và SGS Admin" · "Tạo Scope từ phía Customer chẳng hạn (ko pải Customer admin...) thì vẫn ở trong 1 sheet: Customer và nó có nhiều phần như Scope còn bên dưới là Certification ..." · "Hay mỗi sheet là 1 Scope  và 1 Certification  > hãy đánh giá và gợi ý cho t tham khảo" · "hãy cho tôi bản docs để t cập nhập vào Rule + Skill trên máy tính này: trên Readme"
+- Loại: L2-rule
+- Địa chỉ: rules/tc-authoring.md#24 · rules/tc-authoring.md#27 · skills/tc-authoring/SKILL.md#đầu-ra · skills/tc-authoring/SKILL.md#bước-4 · skills/tc-authoring/SKILL.md#bước-5 · scripts/tc_check.py
+- Tiêu chí kiểm: không sheet nào đặt theo vai trò; Pre-condition của mọi TC mở đầu bằng dòng đăng nhập theo rule 14 ("Logged in as <role>" hoặc "Not logged in" ở file tiếng Anh); khác biệt giữa các vai trò nằm ở nhóm Phân quyền; TC "làm ở vai trò A, kiểm ở vai trò B" nằm ở sheet của hành động
+- Phạm vi ảnh hưởng: quét SGS-DTP_TestCase1_v1.3.xlsx bằng script ngày 05/10 — 18/256 TC có Pre-condition không ghi vai trò: Login TC_038, 039, 041, 050; Scopes TC_022, 023, 024, 026, 027, 049, 051, 052, 069, 070, 071, 090, 091, 092
+- Liên quan: FB-010 (rule 3 gốc) · FB-035 (cách ghi vai trò bằng chữ, rule 14)
+- Đã sửa: chưa sửa sản phẩm; rule 24, 27 và skill v0.3 theo tài liệu cập nhật gộp ngày 05/10
+- Cách kiểm: lọc cột Pre-condition, dòng nào cũng mở đầu bằng "Logged in as" hoặc "Not logged in" (file tiếng Việt: "Đăng nhập với acc", "Chưa đăng nhập")
+- Gate: mức 1 · đề xuất nâng mức 3: tc_check.py báo Pre-condition không mở đầu bằng dòng đăng nhập của rule 14
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+
+## FB-030 · Gộp, tách sheet theo màn hình, không theo module của UC list
+- Ngày: 2026-10-05
+- Nguồn: chat 05/10 · "vậy có nên chia đủ 21 bộ UC này thành 21 sheets ko, hay là nên làm thế nào: Giả dụ như 07 và 08 cùng là evidence nhưng chia thành Assisted mode và common > nên tách ra hay gộp lại..." · "hãy cho tôi bản docs để t cập nhập vào Rule + Skill trên máy tính này: trên Readme"
+- Loại: L2-rule
+- Địa chỉ: rules/tc-authoring.md#3 · rules/tc-authoring.md#25 · rules/tc-authoring.md#26 · rules/tc-authoring.md#28 · skills/tc-authoring/SKILL.md#bước-1 · references/templates.md#4
+- Tiêu chí kiểm: Cover có bảng UC → sheet; mỗi UC của baseline đúng một dòng (tên sheet · Chờ · Kiểm ở); không sheet nào được tạo chỉ vì có một module; cột UC dùng ID của baseline hiện hành
+- Phạm vi ảnh hưởng: SGS DTP UC List v4 — 105 UC, 21 module → 16 sheet viết được ngay (75 UC), 26 UC chờ, 4 UC kiểm ở nơi hiện ra (đếm bằng script ngày 05/10; chi tiết ở projects/sgs-dtp/tests/design/bo-cuc-sheet_uc-v4.md). SGS-DTP_TestCase1.xlsx: 175/181 TC ghi UC theo ID nguồn v2.1 (UC-SCP-001…), 6 TC còn lại ghi [NGOÀI UC]; trong sheet Scopes có 13 TC trỏ UC mà v4 đã dời sang Workspace (UC-SCP-006 → WSP-01: 11, UC-EVD-003 → WSP-02: 1, UC-SCP-007 → WSP-04/05: 1); 6 TC trỏ UC không còn ở P1 (UC-RDN-004: 4 và UC-AUTH-003: 1 đã sang P2; UC-ACC-009: 1 không có trong v4)
+- Liên quan: FB-010 (rule 3 gốc)
+- Đã sửa: chưa sửa sản phẩm; rule 3, 25, 26, 28 và skill v0.3 theo tài liệu cập nhật gộp ngày 05/10
+- Cách kiểm: số dòng của bảng UC → sheet ở Cover bằng số UC của baseline, không UC nào xuất hiện hai lần
+- Gate: mức 1 · đề xuất nâng mức 3: tc_check.py đối chiếu bảng UC → sheet với UC list
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+
+## FB-031 · Viết TC bằng tiếng Anh; ít nhất tên nút giữ nguyên tiếng Anh
+- Ngày: 2026-10-05
+- Nguồn: chat 05/10 · "Chúng ta hướng đến viết TCs bằng 100% tiếng Anh, nếu không thì các btn cần viết nguyên tên tiếng Anh, vd: "Create Scope" ..."
+- Loại: L2-rule
+- Địa chỉ: rules/tc-authoring.md#16 · rules/tc-authoring.md#7 · rules/tc-authoring.md#14 · rules/common.md#6 · skills/tc-authoring/SKILL.md#bước-5 · skills/tc-authoring/SKILL.md#chế-độ-phụ--chuyển-bộ-tc-sang-ngôn-ngữ-khác · references/format.md · scripts/tc_check.py · projects/_template/profile.md · projects/sgs-dtp/profile.md
+- Tiêu chí kiểm: mọi sheet, mọi cột của file TC SGS DTP viết tiếng Anh, trừ cột Open question và sheet Cần xác nhận viết tiếng Việt; mọi tên nút, nhãn, thông báo trùng nguyên văn Figma, kể cả chữ hoa chữ thường
+- Phạm vi ảnh hưởng: 256/256 TC đang viết bằng tiếng Việt. Sheet Users, Profile còn nhiều thao tác tả bằng tiếng Việt vì chưa có Figma (vd "Mở form mời người dùng"). Lưu ý: Figma ghi "Create scope" (chữ s thường), không phải "Create Scope". Đếm thêm trên bản v1.3: Classification I ghi hai thứ tiếng (14 nhãn, vd "Đăng nhập - Login"); Classification III tiếng Việt (67 nhãn, vd "Thành công" 48 TC, "Hiển thị" 33 TC); Function Name có phần tiếng Việt (vd "AUTH-L0001_Đăng nhập"); Test_Report 116/154 ô chữ có tiếng Việt; Cover 7/53 ô
+- Xung đột: `common.md` rule 6 ghi "Phần phân tích viết tiếng Việt"; `tc-authoring.md` rule 16 chỉ yêu cầu nhãn theo ngôn ngữ của hệ thống. Hai lựa chọn: (1) chuyển cả bộ sang tiếng Anh ngay ở bản tới, dùng chế độ chuyển ngôn ngữ của skill — một lần sửa lớn, sau đó thống nhất; (2) giữ tiếng Việt, chỉ bắt buộc nhãn giao diện đúng nguyên văn tiếng Anh, chuyển tiếng Anh sau — ít việc bây giờ, nhưng sẽ phải dịch lại về sau
+- Đã sửa: chưa sửa sản phẩm; câu rule đã duyệt ngày 05/10, chép vào rule, skill bằng tài liệu cập nhật gộp
+- Cách kiểm: lọc các ô Step, Expected có tên nút; mỗi tên nút trùng nguyên văn một nhãn trong Figma. Tìm chữ có dấu tiếng Việt ở mọi sheet, trừ cột Open question và sheet Cần xác nhận → 0 kết quả
+- Gate: mức 1 · đề xuất nâng mức 3: tc_check.py cảnh báo ô có chữ tiếng Việt ngoài cột Open question và sheet Cần xác nhận; đối chiếu tên nút với danh sách nhãn Figma nếu có danh sách đó
+- Trạng thái: Đã duyệt
+- Tái phát: 0
+- Cập nhật: 2026-10-05 · Hanna chốt bằng câu hỏi chọn đáp án trong chat. Câu "Chuyển TC sang tiếng Anh khi nào?" chọn "Ngay ở bản tới". Câu "phần nào trong file TC đổi sang tiếng Anh?" chọn "Cả file, trừ câu hỏi": mọi sheet, mọi cột viết tiếng Anh, riêng cột Open question và sheet Cần xác nhận vẫn tiếng Việt; rule, FB, phân tích và chat vẫn tiếng Việt. Câu "Dòng đăng nhập ở Pre-condition ghi bằng tiếng Anh thế nào?" chọn "Logged in as <role>" (ghi ở FB-035). Đây là lựa chọn (1) ở mục Xung đột. Đáp án do AI soạn, Hanna chọn. Trạng thái chuyển từ Chưa rõ phạm vi sang Mới. [Đề xuất của AI, chờ duyệt] ghi ngôn ngữ file TC ở profile.md của từng dự án thay vì ghi cứng trong rule, vì dự án Quản lý tài liệu chưa chốt ngôn ngữ giao diện (Q-02); bảng từ cố định Việt → Anh cho nhóm kiểm ở cột Classification III.
+- Cập nhật: 2026-10-05 · Hanna duyệt câu rule đề xuất (mục 1–4 trong chat 05/10), nguyên văn: "tốt". Trạng thái chuyển sang Đã duyệt. Câu rule chép vào rule, skill bằng tài liệu cập nhật gộp; chưa sửa sản phẩm.
+
+## FB-032 · Trạng thái rỗng đặt trước, theo vòng đời dữ liệu rỗng → tạo → có dữ liệu
+- Ngày: 2026-10-05
+- Nguồn: chat 05/10 · "Phần Trạng thái rỗng - Empty: vì theo logic từ chưa có gì > tạo xong thì mới hiện data và trong Figma cũng từ rỗng > có data => ưu tiên trạng thái rỗng này trước nhé > Sắp xếp lại đúng logic"
+- Loại: L2-rule
+- Địa chỉ: rules/tc-authoring.md#4 · skills/tc-authoring/SKILL.md#bước-5
+- Tiêu chí kiểm: ở mỗi màn danh sách, nhóm Trạng thái rỗng đứng ngay sau Điều hướng, trước nhóm tạo mới và mọi nhóm cần có dữ liệu (bảng, tìm kiếm, phân trang)
+- Phạm vi ảnh hưởng: Scopes — nhóm Trạng thái rỗng (TC_052) đang đứng sau Phân trang (TC_048–051). Users chưa có TC trạng thái rỗng. Login không có danh sách
+- Liên quan: rule 4 hiện chỉ nói thứ tự khu vực theo mắt đọc; góp ý này thêm thứ tự theo vòng đời dữ liệu
+- Đã sửa: chưa sửa sản phẩm; câu rule đã duyệt ngày 05/10, chép vào rule, skill bằng tài liệu cập nhật gộp
+- Cách kiểm: mở từng sheet có danh sách, TC trạng thái rỗng nằm trước TC tạo mới đầu tiên
+- Gate: mức 1
+- Trạng thái: Đã duyệt
+- Tái phát: 0
+- Cập nhật: 2026-10-05 · Hanna duyệt câu rule đề xuất (mục 5 trong chat 05/10), nguyên văn: "tốt". Trạng thái chuyển sang Đã duyệt. Câu rule chép vào rule, skill bằng tài liệu cập nhật gộp; chưa sửa sản phẩm.
+
+## FB-033 · Trạng thái rỗng phải tả đủ icon, chữ, nút
+- Ngày: 2026-10-05
+- Nguồn: chat 05/10 · "Với trạng thái rỗng thì sẽ ntn, cũng nêu rõ VD: có hình icon, có text ntn cũng nêu ra nhé"
+- Loại: L3-checklist
+- Địa chỉ: skills/tc-authoring/references/patterns.md (pattern Bảng) · references/coverage-checklist.md
+- Tiêu chí kiểm: TC trạng thái rỗng ghi đủ, mỗi phần một dòng: icon; tiêu đề nguyên văn; mô tả nguyên văn; nút và nhãn nút; các phần vẫn hiện như tiêu đề trang, ô tìm kiếm, hàng tiêu đề bảng — ghi thẳng ra, không trỏ sang TC khác
+- Phạm vi ảnh hưởng: Scopes TC_052 (bản v1.3 còn ghi "giống TC_006", "giống TC_038"); Scopes TC_035 (tìm không có kết quả, chữ đang lấy từ prototype)
+- Đã sửa: chưa sửa sản phẩm; câu rule đã duyệt ngày 05/10, chép vào rule, skill bằng tài liệu cập nhật gộp
+- Cách kiểm: đối chiếu TC_052 với frame Scopes / Empty, đủ icon, tiêu đề "Create your first scope", mô tả, nút "Create scope"
+- Gate: mức 2 · mục bắt buộc trong checklist của pattern Bảng
+- Trạng thái: Đã duyệt
+- Tái phát: 0
+- Cập nhật: 2026-10-05 · Hanna duyệt câu rule đề xuất (mục 6 trong chat 05/10), nguyên văn: "tốt". Trạng thái chuyển sang Đã duyệt. Câu rule chép vào rule, skill bằng tài liệu cập nhật gộp; chưa sửa sản phẩm.
+
+## FB-034 · Không viết lửng lơ ở Expected và Step; không biết thì đưa vào Q&A
+- Ngày: 2026-10-05
+- Nguồn: chat 05/10 · "Bỏ hết các thông tin lửng lơ: {{scope.new_sys}} (system)," · "cả Step cũng vậy > nếu ko bit thì QnA," · "còn nếu muốn nói Mở xem chi tiết dự án với step:1. Click vào 1 dự án , 2. Quan sát dự án"
+- Loại: L2-rule
+- Địa chỉ: rules/tc-authoring.md#12 · rules/tc-authoring.md#13 · skills/tc-authoring/SKILL.md#bước-5
+- Tiêu chí kiểm: Expected ghi đúng chữ, giá trị, định dạng sẽ thấy; không có chú thích trong ngoặc sau khoá, không ghi "ở cả hai màn" mà không nêu tên màn, không trỏ sang TC khác. Step là thao tác cụ thể (Click <tên phần tử>, nhập <giá trị>, quan sát <khu vực>). Chưa biết thì để trống và ghi câu hỏi
+- Phạm vi ảnh hưởng: Scopes TC_027 (ví dụ Hanna chỉ ra: "Ở cả hai màn, trường Contains của khối Overview có {{scope.new_sys}} (system)"); Scopes TC_052 (trỏ TC_006, TC_038); khoảng 90 TC có Step chỉ ghi "Mở …" mà không nói bấm vào đâu (Login 6, Scopes 41, Users 38, Profile 5 — có lẫn vài bước mở URL, cần lọc tay)
+- Đã sửa: chưa sửa sản phẩm; câu rule đã duyệt ngày 05/10, chép vào rule, skill bằng tài liệu cập nhật gộp
+- Cách kiểm: tìm trong Expected chuỗi "}} (", "Ở cả hai", "giống TC_" → 0 kết quả; đọc lại Step của các TC trên
+- Gate: mức 1 · nâng mức 3 được cho phần tìm chuỗi
+- Trạng thái: Đã duyệt
+- Tái phát: 0
+- Cập nhật: 2026-10-05 · Hanna duyệt câu rule đề xuất (mục 7 trong chat 05/10), nguyên văn: "tốt". Trạng thái chuyển sang Đã duyệt. Câu rule chép vào rule, skill bằng tài liệu cập nhật gộp; chưa sửa sản phẩm.
+
+## FB-035 · Pre-condition đăng nhập ghi bằng vai trò: "Đăng nhập với acc Customer Admin"
+- Ngày: 2026-10-05
+- Nguồn: chat 05/10 · "Nếu đăng nhập thì ghi: Đăng nhập với acc Customer Admin"
+- Loại: L4-mẫu
+- Địa chỉ: rules/tc-authoring.md#14 · rules/tc-authoring.md#22 · rules/tc-authoring.md#24 (bản cập nhật v0.3, chờ duyệt) · skills/tc-authoring/SKILL.md (mô tả, đầu-ra, bước-5, bước-7) · references/templates.md#1 · references/format.md#4 · scripts/tc_check.py
+- Tiêu chí kiểm: dòng đăng nhập trong Pre-condition ghi tên vai trò bằng chữ, theo ngôn ngữ của file TC: tiếng Anh "Logged in as <role>" (vd "Logged in as Customer Admin"), không cần đăng nhập thì "Not logged in"; tiếng Việt "Đăng nhập với acc <vai trò>", "Chưa đăng nhập"; dữ liệu ghi thẳng giá trị cụ thể, nhãn ghi nguyên văn, không ô nào ở Pre-condition, Step, Expected còn dạng {{...}}; rule và skill tc-authoring không còn khoá, sheet `_Data`, `_Labels`
+- Phạm vi ảnh hưởng: 199 TC có Pre-condition dùng khoá {{user.…}} (Login 10, Scopes 115, Users 62, Profile 12); 175 TC dùng khoá dữ liệu khác như {{scope.org}}, {{email.new}}; gộp lại 248/256 TC, 422 ô ở Pre-condition, Step, Expected còn dạng {{…}} (đếm bằng script trên bản v1.3). Rule và skill: rules/tc-authoring.md rule 14, 22 và rule 24 bản v0.3; SKILL.md 4 chỗ; templates.md §1–§3; format.md §4; tc_check.py 6 chỗ
+- Xung đột: rule 14 yêu cầu dữ liệu và nhãn viết dạng khoá {{...}}; rule 24 (đang chờ duyệt) ghi vai trò bằng khoá {{user.…}}. Hai lựa chọn: (1) vai trò viết bằng chữ, khoá chỉ dùng cho dữ liệu như email, tên scope — dễ đọc, lọc theo chữ "Customer Admin" vẫn ra danh sách chạy của từng vai trò; (2) bỏ hẳn khoá, ghi giá trị mẫu cụ thể — dễ đọc nhất, nhưng dữ liệu đổi thì phải sửa nhiều chỗ
+- Đã sửa: chưa sửa sản phẩm; rule 14, 22, 24 và skill v0.3 theo tài liệu cập nhật gộp ngày 05/10
+- Cách kiểm: tìm "{{" ở Pre-condition, Step, Expected của mọi sheet TC → 0 kết quả; tìm "{{", "_Data", "_Labels" trong rules/tc-authoring.md và skills/tc-authoring → chỉ còn ở dòng changelog v0.3; file TC tiếng Anh: Pre-condition dòng nào cũng mở đầu bằng "Logged in as" hoặc "Not logged in"
+- Gate: mức 1 · đề xuất nâng mức 3 khi viết lại TC: tc_check.py báo ô TC còn "{{"
+- Trạng thái: Đã duyệt
+- Tái phát: 0
+- Cập nhật: 2026-10-05 · Hanna chọn cách của mình, nguyên văn: "Cái này có xung đột, do 1 phần tôi lấy rule từ dự án dev làm cho FEEC, đứng trên lập trường code của dev, còn hiện tại đang dùng cho Tester, đứng ở 2 góc nhìn khác nhau nên t có thể dùng cái của tôi cho hợp lý nhé". Xung đột đã có lời giải: file TC viết cho Tester, nên Pre-condition ghi vai trò bằng chữ ("Đăng nhập với acc Customer Admin"). Rule 14 (dữ liệu, nhãn viết dạng khoá {{...}}) đến từ góc nhìn của dev, không áp cho file TC của Tester: khi sửa rule thì ghi bãi bỏ trong changelog, không xoá dòng cũ; rule 24 (chờ duyệt) đổi thành ghi vai trò bằng chữ. Trạng thái chuyển từ Chưa rõ phạm vi sang Mới.
+- Cập nhật: 2026-10-05 · [Cách hiểu của AI, chờ Hanna xác nhận] Dữ liệu khác (tên scope, email…) cũng bỏ khoá, viết bằng chữ dễ đọc; cần giá trị cụ thể thì ghi ví dụ.
+- Cập nhật: 2026-10-05 · Hanna chốt bỏ hẳn, nguyên văn: "tôi cảm thấy toàn bộ các nội dung dưới đây đều ko phù hợp với testing > tôi thấy cần loại bỏ toàn bộ các rule dưới đây". Các nội dung được nhắc: rule 14 (dữ liệu, nhãn viết dạng khoá {{...}}, khai ở `_Data`, `_Labels`); phần khoá trong rule 24 của bản cập nhật v0.3; sheet `_Data`, `_Labels` trong skill và phần kiểm khoá của `tc_check.py`. Thay cho cách làm ở dòng cập nhật thứ nhất: rule 14 không giữ dòng cũ, không ghi bãi bỏ, mà viết lại thành cách viết của Tester (đăng nhập ghi "Đăng nhập với acc <vai trò>", dữ liệu ghi thẳng giá trị cụ thể, nhãn ghi nguyên văn ngay trong ô); rule 22, rule 24 không còn khoá; bỏ `_Data`, `_Labels` và phần kiểm khoá. Dòng cập nhật thứ hai (dữ liệu khác cũng bỏ khoá) không còn là cách hiểu chờ xác nhận, vì rule 14 bỏ hẳn, gồm cả dữ liệu và nhãn. Địa chỉ, Tiêu chí kiểm, Phạm vi ảnh hưởng, Đã sửa, Cách kiểm, Gate sửa theo; Trạng thái chuyển từ Mới sang Đã vào rule (chờ duyệt). Rule, skill sửa trong tài liệu cập nhật gộp ngày 05/10.
+- Cập nhật: 2026-10-05 · File TC SGS DTP chuyển sang tiếng Anh (FB-031, cùng ngày). Ở câu hỏi chọn đáp án "Dòng đăng nhập ở Pre-condition ghi bằng tiếng Anh thế nào?", Hanna chọn "Logged in as <role>"; màn không cần đăng nhập ghi "Not logged in". [Đề xuất của AI, chờ duyệt] rule 14 ghi cả hai dạng: tiếng Anh như trên, tiếng Việt "Đăng nhập với acc <vai trò>", "Chưa đăng nhập" cho dự án viết TC bằng tiếng Việt. Tiêu chí kiểm, Cách kiểm sửa theo.
+- Cập nhật: 2026-10-05 · Hanna duyệt câu rule đề xuất (mục 2 trong chat 05/10), nguyên văn: "tốt". Trạng thái chuyển sang Đã duyệt. Câu rule chép vào rule, skill bằng tài liệu cập nhật gộp; chưa sửa sản phẩm.
+
+## FB-036 · Nhiều mục thì mỗi mục một dòng, không nối bằng " · "
+- Ngày: 2026-10-05
+- Nguồn: chat 05/10 · "Không viết thành 1 dòng: Bảng 3 cột: User · Role · Given mà viết theo format" · "User." · "Role." · "Given."
+- Loại: L4-mẫu
+- Địa chỉ: rules/tc-authoring.md#12 · skills/tc-authoring/references/format.md
+- Tiêu chí kiểm: Expected có từ hai mục trở lên (cột, trường, lựa chọn, nút) thì xuống dòng, mỗi mục một dòng "- <mục>"
+- Phạm vi ảnh hưởng: 16 TC ở Scopes có Expected nối nhiều mục bằng " · " (vd TC_038, TC_041, TC_102). Lưu ý: vài chỗ " · " là chữ thật trên giao diện (vd dòng phụ "Organization scope · <tên công ty>"), những chỗ đó giữ nguyên
+- Đã sửa: chưa sửa sản phẩm; câu rule đã duyệt ngày 05/10, chép vào rule, skill bằng tài liệu cập nhật gộp
+- Cách kiểm: tìm " · " trong Expected, chỉ còn các chỗ là chữ thật trên giao diện
+- Gate: mức 3 · tc_check.py cảnh báo Expected có " · "
+- Trạng thái: Đã duyệt
+- Tái phát: 0
+- Cập nhật: 2026-10-05 · Hanna duyệt câu rule đề xuất (mục 8 trong chat 05/10), nguyên văn: "tốt". Trạng thái chuyển sang Đã duyệt. Câu rule chép vào rule, skill bằng tài liệu cập nhật gộp; chưa sửa sản phẩm.
+
+## FB-037 · Giá trị tính toán phải nói lấy từ đâu; TC phải dễ sửa khi Figma, UC đổi
+- Ngày: 2026-10-05
+- Nguồn: chat 05/10 · "Cần thể hiện số lượng User ở bảng scope lấy thông tin ở đâu, tương tự Evidence coverage lấy ở đâu... Cái này cần thảo luận thêm hiển thị ntn thì hợp logic, dễ nhìn, ngoài ra cái figma hay UC này có thể chưa pải là bản cuối, nên TCs cũng cần thích nghi để sau có thể dễ dàng sửa đổi."
+- Loại: L2-rule
+- Địa chỉ: rules/tc-authoring.md#12 · skills/tc-authoring/SKILL.md#bước-4
+- Tiêu chí kiểm: chưa chốt — cần thảo luận cách ghi nguồn và cách tính của giá trị hiển thị, và cách viết để dễ sửa khi Figma, UC đổi
+- Phạm vi ảnh hưởng: Scopes TC_041–TC_044 (cột Frameworks, Users, Evidence coverage), TC_078 (Coverage ở khối Frameworks), TC_114 (Evidence coverage ở Summary)
+- Liên quan: Q-S-11 (Evidence coverage có trong P1 không), Q-S-12 (cột Users có tính Customer Admin không)
+- Đã sửa: chưa
+- Cách kiểm: chưa có, chờ chốt tiêu chí
+- Gate: chưa có
+- Trạng thái: Bị bác
+- Tái phát: 0
+- Cập nhật: 2026-10-05 · Hanna bỏ qua, nguyên văn: "mình bỏ qua cả phần này nhé, đã có figma và UC là nguồn tài liệu r" (trả lời câu hỏi chọn chỗ ghi cách tính và nguồn của giá trị tính toán). Không sinh rule: giá trị tính toán làm theo rule chung — Expected theo Figma và UC; Figma, UC chưa nói thì để trống và ghi câu hỏi (rule 13). Các câu hỏi về sản phẩm Q-S-11, Q-S-12 vẫn giữ trong file TC. Trạng thái chuyển từ Chưa rõ phạm vi sang Bị bác.
+
+## FB-038 · Gửi bản xem trước danh sách tính năng trước khi cập nhật file TC
+- Ngày: 2026-10-05
+- Nguồn: chat 05/10 · "Ngoài ra chúng ta nên liệt kê các tính năng ở dạng gửi xem trước thay vì mỗi bản lại cần update file TCs nhiều lần"
+- Loại: L2-rule
+- Địa chỉ: skills/tc-authoring/SKILL.md (thêm bước xem trước, trước Bước 6 Dựng file) · CLAUDE.md#cổng-con-người
+- Tiêu chí kiểm: trước khi ghi vào file TC, gửi bản xem trước gồm chức năng → nhóm kiểm → tên case, mỗi dòng đánh dấu Mới / Sửa / Bỏ; chỉ ghi file sau khi người dùng duyệt
+- Phạm vi ảnh hưởng: ngày 05/10 file TC đã ra hai bản liền nhau (v1.2, v1.3)
+- Đã sửa: chưa sửa sản phẩm; câu rule đã duyệt ngày 05/10, chép vào rule, skill bằng tài liệu cập nhật gộp
+- Cách kiểm: lần cập nhật file TC kế tiếp có bản xem trước được duyệt đi trước
+- Gate: mức 1
+- Trạng thái: Đã duyệt
+- Tái phát: 0
+- Cập nhật: 2026-10-05 · Hanna nói rõ thêm, nguyên văn: "cái này là tùy ko pải lúc nào cugnx làm, khi chung ta chưa thống nhất đc rule để còn viết tiếp thì tạm thời ko gửi quá nhiều lần file TCs > phân gửi TCs sau khi đã chốt hoàn chỉnh với nhau thì mới gửi sau > nếu thấy có vấn đề thì cứ gửi luôn cũng dc, tùy b". Tiêu chí kiểm mới: khi rule viết TC chưa chốt thì không gửi file TC nhiều lần; chốt xong rule mới gửi file TC; bản xem trước không bắt buộc; thấy có vấn đề cần Hanna xem ngay thì được gửi sớm. Cách kiểm mới: từ lúc ghi FB này tới khi chốt xong các FB cách viết TC, không có bản file TC nào gửi đi chỉ vì sửa từng chỗ nhỏ.
+- Cập nhật: 2026-10-05 · Hanna duyệt câu rule đề xuất (mục 9 trong chat 05/10), nguyên văn: "tốt". Trạng thái chuyển sang Đã duyệt. Câu rule chép vào rule, skill bằng tài liệu cập nhật gộp; chưa sửa sản phẩm.
+
+## FB-039 · TC gọi API chỉ viết khi tester được gọi API, và để ở sheet API riêng
+- Ngày: 2026-10-05
+- Nguồn: chat 05/10 · "t chưa hiểu cách viết có tên API có mục đích gì, hiện tại chúng ta ko có API cho tester vào check, nếu có thì cần viết ở mục riêng như kiểu test API , security ..." · câu hỏi chọn đáp án "Nhóm Bảo mật (Security) hiện nằm cuối mỗi sheet màn hình … có tách ra mục riêng giống API không?": Hanna chọn "Chỉ tách TC gọi API" (đáp án do AI soạn)
+- Loại: L2-rule
+- Địa chỉ: rules/tc-authoring.md#29 (mới) · rules/tester.md#5 · skills/tc-authoring/SKILL.md#đầu-ra · skills/tc-authoring/references/patterns.md (P5; mục "Bảy chỗ bộ TC thật hay thiếu" #3) · skills/test-design/references/coverage-checklist.md · skills/test-design/references/techniques.md · skills/test-design/references/tc-framework.md · projects/_template/profile.md · projects/sgs-dtp/profile.md · sản phẩm: SGS-DTP_TestCase1 Login!TC_051 · Scopes!TC_119, 120, 123, 126, 127 · Users!TC_054, 055, 056, 058, 059, 060
+- Tiêu chí kiểm: dự án mà profile.md ghi tester không được gọi API thì sheet màn hình không có TC nào cần gọi thẳng API; khi được gọi API thì các TC đó nằm ở sheet `API` riêng; TC bảo mật làm được trên giao diện hoặc trình duyệt (chèn thẻ script, Quay lại sau khi đăng xuất, mở URL của tenant khác, xem mã trang, xem tab Network) vẫn ở cuối sheet màn hình
+- Phạm vi ảnh hưởng: SGS-DTP_TestCase1_v1.3 có 12 TC cần gọi API — 9 TC chỉ gọi API (Login TC_051; Scopes TC_119, 120, 126, 127; Users TC_054, 058, 059, 060), 3 TC có cả bước giao diện và bước gọi API (Scopes TC_123; Users TC_055, 056). Rule, skill: rules/tester.md rule 5 (1 chỗ); tc-authoring patterns.md (2 chỗ: P5, mục "Bảy chỗ" #3); test-design coverage-checklist.md (3 chỗ), techniques.md (6 chỗ), tc-framework.md (5 chỗ). Không thuộc phạm vi: rules/automation.md rule 4 (code Playwright chuẩn bị dữ liệu qua API), dòng "Dịch vụ ngoài lỗi hoặc chậm (API tích hợp…)" của tc-framework.md
+- Liên quan: rule 11 (TVP_ID của TC bỏ đi không dùng lại)
+- Đã sửa: chưa sửa sản phẩm; câu rule đã duyệt ngày 05/10, chép vào rule, skill bằng tài liệu cập nhật gộp
+- Cách kiểm: tìm "API" ở Classification, Test case name, Step, Expected của các sheet màn hình → 0 kết quả, trừ chỗ là chữ trên giao diện; profile.md của dự án có dòng "Tester được gọi API"
+- Gate: mức 1
+- Trạng thái: Đã duyệt
+- Tái phát: 0
+- Cập nhật: 2026-10-05 · Hanna duyệt câu rule đề xuất (mục 10–12 trong chat 05/10: rule 29 mới; tester.md rule 5, patterns.md P5 và 14 chỗ "UI và API" ở skill test-design; dòng "Tester được gọi API" ở profile.md, SGS DTP ghi Không), nguyên văn: "duyệt". Trạng thái chuyển từ Mới sang Đã duyệt. Câu rule chép vào rule, skill bằng tài liệu cập nhật gộp; chưa sửa sản phẩm.
