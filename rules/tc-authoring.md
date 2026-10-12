@@ -1,6 +1,6 @@
 # Rule — Viết test case (tc-authoring)
 
-Phiên bản: v0.6 · Nạp cùng `rules/common.md`, `rules/feedback.md`, `rules/tester.md` khi viết hoặc sửa file test case. Quy trình chi tiết: skill `tc-authoring`.
+Phiên bản: v0.8 · Nạp cùng `rules/common.md`, `rules/feedback.md`, `rules/tester.md` khi viết hoặc sửa file test case. Quy trình chi tiết: skill `tc-authoring`.
 
 Rule này nói về **file test case bàn giao được**: tổ chức, nội dung, và định dạng. Phần kỹ thuật thiết kế (phân vùng tương đương, bảng quyết định, chuyển trạng thái) vẫn ở `rules/tester.md` và skill `test-design`.
 
@@ -124,10 +124,23 @@ Ví dụ trên là file TC tiếng Anh. Mỗi ô ghi một thứ tiếng theo ng
     - trước khi giao, so từng ô bằng script với file người dùng, liệt kê ô AI đã chạm vào.
 35. **Cover: mỗi dòng Record of change dẫn đúng FB của chính phiên bản đó**; dựng bản mới thì giữ đủ các dòng của bản trước (dựng từ file mới nhất, không từ nền cũ). Hồ sơ đi kèm (khung case cha, câu hỏi) ghi đúng số case, số thứ tự của bản mà nó nói tới.
 
+36. **Đọc đủ ba nguồn rồi mới viết.** Trước khi viết TC của một màn: đã mở UC (bản hiện hành, đọc trực tiếp, ghi số bản và ngày), Figma (trang và khung của màn, ghi tên khung) và hệ thống đang chạy (vai trò nào, ngày nào). Thiếu nguồn nào thì ghi ở đầu khung "chưa đọc <nguồn>" và hỏi người dùng link hoặc quyền truy cập; **không viết Expected thay cho nguồn chưa đọc**, và không coi hệ thống là căn cứ duy nhất (rule 1). Ghi tên nguồn đã đọc vào cột Reference của sheet.
+37. **Khi luồng, UC hoặc thiết kế đổi, hoặc đọc ra điều mới, phải rà lại các màn đã làm.** Lập bảng "màn đã làm bị ảnh hưởng" trong khung case cha (hoặc file thiết kế của lượt đó): sheet · case (No., TVP_ID) · điều lệch · cách xử lý. Case của AI thì sửa; case có chữ của người dùng (rule 34) thì không sửa, nêu thành câu hỏi hoặc báo trong chat. Báo người dùng đã rà những sheet nào trước khi giao, kể cả khi không có lệch.
+38. **Tự soát trước khi giao, rồi mới báo xong.** `tc_check.py` chỉ kiểm định dạng; phải soát thêm nội dung theo danh sách dưới đây, quét hết sheet bằng script khi làm được:
+    - Expected có nguồn UC hoặc Figma đã đọc; chỉ có hệ thống thì kèm câu hỏi (rule 1, 13). Không có chữ mơ hồ kiểu "đúng định dạng", "như bình thường" (rule 12).
+    - Mỗi Pre-condition dựng được trên môi trường thật (dữ liệu, số lượng có thật); số tính toán thử lại bằng phép tính trên số thật của Figma, hệ thống (rule 31).
+    - Mỗi câu hỏi nằm ở case mà câu trả lời làm đổi Expected của case đó; là câu hỏi thật có `?` và nguồn đúng (rule 23); không mượn mã Q của sheet khác mà không hỏi "áp chung được không".
+    - Mỗi loại (loại scope, tier, vai trò) một case, không gộp (rule 9); bước và Expected khớp Pre-condition (rule 31).
+    - Case của sheet đã làm bị ảnh hưởng đã xử lý theo rule 37.
+    - Số báo trong chat (số case, số câu hỏi, số lỗi) lấy từ script (`rules/feedback.md` rule 16); hồ sơ đi kèm và Cover khớp file (rule 35).
+39. **Soát chéo: gửi đủ lỗi trong một lần.** Bên soát (vd Opus) quét toàn bộ sheet theo danh sách rule 38 và các loại lỗi đã gặp trước đó, mỗi lỗi thì quét hết case cùng kiểu, rồi mới gửi một file review. Vòng soát lại chỉ báo mục chưa sửa hết và lỗi do bản sửa sinh ra; lỗi có từ bản trước mà vòng trước bỏ sót thì vẫn báo, ghi `sót từ vòng trước` và đếm riêng ở đầu file review. Chi tiết: skill `tc-authoring`, chế độ soát chéo, bước 2b. Hanna 09/10. **Chờ duyệt.**
+
 ## Changelog
 
 | Version | Ngày | Thay đổi | Nguồn |
 |---|---|---|---|
+| v0.8 | 2026-10-09 | Thêm rule 39 (soát chéo gửi đủ lỗi một lần; lỗi sót từ vòng trước đánh dấu, đếm riêng). **Chờ duyệt.** | FB-067 |
+| v0.7 | 2026-10-09 | Thêm rule 36 (đọc đủ UC, Figma, hệ thống rồi mới viết; thiếu nguồn thì ghi và hỏi), rule 37 (rà lại màn đã làm khi luồng, UC, thiết kế đổi; bảng màn bị ảnh hưởng), rule 38 (danh sách tự soát nội dung trước khi giao). Rút từ review sheet Workspaces v1.11. **Chờ duyệt.** | FB-064 |
 | v0.6 | 2026-10-08 | Theo góp ý của Hanna ngày 08/10 trên sheet Frameworks. Rule 13: Expected dựa trên điều chưa kiểm chứng phải kèm câu hỏi; câu hỏi đã có trả lời thì xoá, bỏ tô màu. Rule 19 viết lại: mọi ô chữ của bảng TC xuống dòng, căn giữa dọc, căn trái, kể cả ô neo Classification; `tc_check.py` kiểm. Rule 23: Open question là câu hỏi thật, có dấu `?`, ghi đúng nguồn. Rule 31: hiểu logic của giá trị tính toán trước khi viết; Pre, Step, Expected khớp nhau. Thêm rule 34 (giữ chữ người dùng sửa, dựng từ file của họ) và 35 (Cover dẫn đúng FB, hồ sơ đúng số). **Chờ duyệt.** | FB-054 · FB-055 · FB-056 · FB-057 |
 | v0.5 | 2026-10-07 | Theo góp ý của Hanna ngày 06/10, 07/10 và cách viết ở bản `SGS-DTP_TestCase1_v1.4`. Rule 8: case bấm nút gửi mà không lưu được vào nhóm Không thành công; nhóm Không thành công đứng trước Thành công (ngược câu cũ). Rule 9 viết lại: kết quả kiểm ở nơi hành động trả về, nơi khác trong cùng sheet kiểm ở khu vực của nó, mỗi loại một case (thay câu cũ "hiện ở n nơi thì n case"). Rule 11: được đánh lại số khi chưa có kết quả chạy. Rule 13: kết quả suy ra cũng là chưa có căn cứ. Rule 14: bỏ `{{…}}`; dữ liệu tester nhập ghi cụ thể, dữ liệu có sẵn chưa xác định ghi `[tên]`; mỗi trường một dòng; text nguyên văn trong ngoặc kép. Rule 18: Times New Roman 10 cho mọi ô, kể cả ô trống và kiểu mặc định của cột. Rule 30: mỗi loại đúng một TC, bỏ "mỗi nơi hiển thị một TC". Thêm rule 31 (giá trị tính toán), 32 (dấu nháy đơn đầu ô), 33 (chữ dạng NFC). Tất cả **chờ duyệt**; ba chỗ còn **chờ Hanna chọn**: thứ tự hai nhóm ở rule 8, cách ghi Expected ở rule 31, việc đánh lại số ở rule 11. | FB-042 · FB-043 · FB-044 · FB-045 · FB-046 · FB-047 · FB-048 · FB-049 · FB-016 |
 | v0.4 | 2026-10-06 | Rule 14: Pre-condition không ghi mở màn hình đang test (đó là Step 1); muốn tới màn B qua nhiều thao tác ở màn A thì liệt kê thao tác ở Pre-condition. Thêm rule 30: case kiểm hiển thị sau khi tạo, mỗi loại một TC, đủ mọi thông tin của form. Đề xuất của AI theo góp ý của Hanna — **chờ duyệt** | FB-040, FB-041 |

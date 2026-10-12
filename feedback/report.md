@@ -1,8 +1,8 @@
 # Báo cáo sổ góp ý
 
-Sinh tự động bởi `fb_report.py` — không sửa tay. Nguồn: `feedback/log.md`. Ngày: 2026-10-09.
+Sinh tự động bởi `fb_report.py` — không sửa tay. Nguồn: `feedback/log.md`. Ngày: 2026-10-12.
 
-Tổng: **64** bản ghi · lỗi: **0** · cảnh báo: **10**
+Tổng: **69** bản ghi · lỗi: **0** · cảnh báo: **14**
 
 ## Cần nạp khi bắt đầu task
 
@@ -70,7 +70,12 @@ Tổng: **64** bản ghi · lỗi: **0** · cảnh báo: **10**
 | FB-061 | Luồng tạo workspace đổi sang Scope › Link framework; UC v5.3, đọc trực tiếp bản mới nhất | L6-tri thức | Mới | chưa có |
 | FB-062 | Chốt phạm vi sheet Workspaces: Gắn framework ở Scopes; viết TC như bình thường, câu hỏi vào Open question | L6-tri thức | Đã sửa sản phẩm | chưa có |
 | FB-063 | Làm lại sheet Workspaces theo review của Opus | L6-tri thức | Đã sửa sản phẩm | chưa có |
-| FB-064 | Vì sao vẫn bị comment nhiều: không cập nhật logic màn cũ, không tự soát trước khi giao | L6-tri thức | Mới | chưa có |
+| FB-064 | Vì sao vẫn bị comment nhiều: không cập nhật logic màn cũ, không tự soát trước khi giao | L6-tri thức | Đã vào rule (chờ duyệt) | chưa có |
+| FB-065 | Viết TC cho "07. Evidence – Assisted mode": sheet Assisted workspace | L6-tri thức | Đã sửa sản phẩm | chưa có |
+| FB-066 | Làm lại sheet Assisted workspace theo review của Opus (36 lỗi) | L6-tri thức | Đã sửa sản phẩm | chưa có |
+| FB-067 | Opus soát một lần cho đủ lỗi, không tìm lắt nhắt qua nhiều vòng | L6-tri thức | Đã vào rule (chờ duyệt) | chưa có |
+| FB-068 | Vì sao sửa review v1.13 mà vẫn còn lỗi (26/36) | L6-tri thức | Đã sửa sản phẩm | chưa có |
+| FB-069 | Làm lại sheet Assisted workspace theo review v1.14 (18 mục), quét cùng kiểu lỗi trên cả sheet | L6-tri thức | Đã sửa sản phẩm | chưa có |
 
 ## Chờ người dùng duyệt
 
@@ -101,6 +106,8 @@ Tổng: **64** bản ghi · lỗi: **0** · cảnh báo: **10**
 - FB-057 · Giá trị tính toán (Total to meet): phải hiểu logic trước khi viết, không viết bừa (rules/tc-authoring.md#31 · sản phẩm: Frameworks, nhóm Total to meet (Framework_128 → 133) · `projects/sgs-dtp/tests/design/khung-case-cha_Frameworks.md`)
 - FB-058 · Comment của Hanna chờ lệnh: chỉ làm lại khi Hanna bảo (rules/feedback.md#15)
 - FB-059 · Soát chéo hai model và đưa mọi góp ý vào rule, skill (skills/tc-authoring/SKILL.md#chế-độ-phụ--soát-chéo-giữa-hai-model · skills/tc-authoring/scripts/tc_check.py · rules/tc-authoring.md v0.6 · rules/feedback.md v0.2)
+- FB-064 · Vì sao vẫn bị comment nhiều: không cập nhật logic màn cũ, không tự soát trước khi giao (chưa sửa rule, skill; đề xuất ở câu trả lời của chat (chờ Hanna chọn))
+- FB-067 · Opus soát một lần cho đủ lỗi, không tìm lắt nhắt qua nhiều vòng (`rules/tc-authoring.md` rule 39 · `.claude/skills/tc-authoring/SKILL.md` chế độ soát chéo bước 2b)
 
 ## Thống kê
 
@@ -108,10 +115,10 @@ Tổng: **64** bản ghi · lỗi: **0** · cảnh báo: **10**
 |---|---|
 | Bị bác | 1 |
 | Chưa rõ phạm vi | 4 |
-| Mới | 15 |
+| Mới | 14 |
 | Đã duyệt | 8 |
-| Đã sửa sản phẩm | 9 |
-| Đã vào rule (chờ duyệt) | 27 |
+| Đã sửa sản phẩm | 13 |
+| Đã vào rule (chờ duyệt) | 29 |
 
 | Loại | Số lượng |
 |---|---|
@@ -120,7 +127,7 @@ Tổng: **64** bản ghi · lỗi: **0** · cảnh báo: **10**
 | L3-checklist | 4 |
 | L4-mẫu | 12 |
 | L5-script | 4 |
-| L6-tri thức | 11 |
+| L6-tri thức | 16 |
 
 ## Lỗi
 
@@ -128,13 +135,17 @@ Không có.
 
 ## Cảnh báo
 
-- FB-002 · đứng ở 'Mới' 10 ngày
-- FB-003 · đứng ở 'Mới' 10 ngày
-- FB-004 · đứng ở 'Mới' 10 ngày
-- FB-005 · đứng ở 'Mới' 10 ngày
-- FB-006 · đứng ở 'Mới' 10 ngày
-- FB-007 · đứng ở 'Mới' 10 ngày
-- FB-008 · đứng ở 'Mới' 10 ngày
-- FB-009 · đứng ở 'Mới' 10 ngày
-- FB-018 · đứng ở 'Mới' 8 ngày
+- FB-002 · đứng ở 'Mới' 13 ngày
+- FB-003 · đứng ở 'Mới' 13 ngày
+- FB-004 · đứng ở 'Mới' 13 ngày
+- FB-005 · đứng ở 'Mới' 13 ngày
+- FB-006 · đứng ở 'Mới' 13 ngày
+- FB-007 · đứng ở 'Mới' 13 ngày
+- FB-008 · đứng ở 'Mới' 13 ngày
+- FB-009 · đứng ở 'Mới' 13 ngày
+- FB-018 · đứng ở 'Mới' 11 ngày
+- FB-022 · đứng ở 'Chưa rõ phạm vi' 10 ngày
+- FB-023 · đứng ở 'Mới' 10 ngày
+- FB-024 · đứng ở 'Mới' 10 ngày
+- FB-025 · đứng ở 'Chưa rõ phạm vi' 10 ngày
 - FB-034 · tái phát 1 lần, Gate 'mức 1 · nâng mức 3 được cho phần tìm chuỗi' — nên nâng một mức

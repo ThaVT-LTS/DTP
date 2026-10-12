@@ -69,7 +69,12 @@ Bản ghi `FB-001` là góp ý của người dùng. `FB-002` trở đi là **đ
 | FB-061 | Luồng tạo workspace đổi: không tạo từ màn Workspaces (Customer Admin) nữa mà tạo từ Scope › Link framework › Link and create workspace; UC lên v5.3, đọc trực tiếp bản mới nhất | L6-tri thức | Mới | 0 |
 | FB-062 | Hanna chốt: viết TC như bình thường, câu hỏi chưa rõ ghi Open question; 11 case Gắn framework vẫn ở sheet Scopes; Q-W-03 (mode, tên, chu kỳ) Hanna chưa biết | L6-tri thức | Đã sửa sản phẩm | 0 |
 | FB-063 | Hanna: Sonnet đọc review Opus (review_Workspaces_v1.11.md) là làm lại sheet Workspaces | L6-tri thức | Đã sửa sản phẩm | 0 |
-| FB-064 | Hanna hỏi vì sao Sonnet vẫn bị comment nhiều: không cập nhật logic của màn đã làm khi luồng hoặc nguồn đổi, không tự soát trước khi giao | L6-tri thức | Mới | 0 |
+| FB-064 | Hanna hỏi vì sao Sonnet vẫn bị comment nhiều: không cập nhật logic của màn đã làm khi luồng hoặc nguồn đổi, không tự soát trước khi giao | L6-tri thức | Đã vào rule (chờ duyệt) | 0 |
+| FB-065 | Hanna yêu cầu viết TC cho 07. Evidence – Assisted mode: sheet Assisted workspace (v1.13) | L6-tri thức | Đã sửa sản phẩm | 0 |
+| FB-066 | Hanna bảo đọc lại review Opus và update sheet Assisted workspace: sửa 36 lỗi, ra v1.14 | L6-tri thức | Đã sửa sản phẩm | 0 |
+| FB-067 | Hanna: Opus soát một lần cho đủ lỗi, không tìm lắt nhắt; lỗi mới do Sonnet sửa thì được | L6-tri thức | Đã vào rule (chờ duyệt) | 0 |
+| FB-068 | Hanna hỏi vì sao Sonnet sửa review v1.13 mà vẫn còn lỗi, chỉ đạt 26/36: sửa đúng chỗ review chỉ, không quét cùng kiểu lỗi, không chạy soát nội dung rule 38 | L6-tri thức | Đã sửa sản phẩm | 0 |
+| FB-069 | Hanna bảo làm lại sheet Assisted workspace theo review v1.14 (18 mục): ra v1.15, mỗi kiểu lỗi quét cả sheet | L6-tri thức | Đã sửa sản phẩm | 0 |
 
 ---
 
@@ -961,7 +966,73 @@ Bản ghi `FB-001` là góp ý của người dùng. `FB-002` trở đi là **đ
 - Địa chỉ: chưa sửa rule, skill; đề xuất ở câu trả lời của chat (chờ Hanna chọn)
 - Tiêu chí kiểm: khi luồng, UC hoặc Figma đổi, có bảng "màn đã làm bị ảnh hưởng" và case cũ được cập nhật hoặc nêu câu hỏi trước khi giao; trước khi giao có bước tự soát theo rule 1, 9, 12, 13, 23, 31 và đọc đủ nguồn (UC, Figma, hệ thống)
 - Phạm vi ảnh hưởng: skill `tc-authoring` (thêm bước), `rules/tc-authoring.md`
-- Đã sửa: chưa
+- Đã sửa: `rules/tc-authoring.md` v0.7 (rule 36, 37, 38); skill `tc-authoring` v0.5 (Bước 1b, Bước 6b); README. Nguồn lệnh: Hanna 09/10 16:35 "hãy làm các bước như b trình bày nhé"
 - Cách kiểm: lần giao kế tiếp, review của Opus không còn lỗi thuộc nhóm "chưa đọc đủ nguồn" và "không khớp với sheet cũ"
-- Trạng thái: Mới
+- Trạng thái: Đã vào rule (chờ duyệt)
 - Tái phát: 0
+
+## FB-065 · Viết TC cho "07. Evidence – Assisted mode": sheet Assisted workspace
+- Ngày: 2026-10-09
+- Nguồn: chat Testing 09/10 16:35 · "tiếp theo hãy viết tc cho phần mới: 07. Evidence – Assisted mode"
+- Loại: L6-tri thức
+- Liên quan: FB-060 → FB-064 · rules/tc-authoring.md rule 35, 36, 37, 38 · `khung-case-cha_Workspaces.md`
+- Địa chỉ: `projects/sgs-dtp/exports/SGS-DTP_TestCase1_v1.13_Assisted-workspace.xlsx` (sheet Assisted workspace, 114 TC; sheet Workspaces đổi 2 ô K55, W55)
+- Tiêu chí kiểm: đọc đủ UC v5.3, Figma, hệ thống; mọi TC để trống Expected có câu hỏi; mỗi câu hỏi ở đúng TC; có bảng ba nguồn và bảng màn đã làm bị ảnh hưởng trước khi giao
+- Phạm vi ảnh hưởng: sheet Assisted workspace (mới), sheet Workspaces (1 case Customer Viewer), Cover dòng 1.13
+- Đã sửa: dựng sheet v1.13; Opus review ra 36 lỗi (`review_Assisted-workspace_v1.13.md`), trong đó bản v1.13 giao khi chưa có bản ghi FB này và chưa có hai bảng của rule 36, 37
+- Cách kiểm: `tc_check.py` trên v1.13 → 0 lỗi, 0 cảnh báo; review của Opus
+- Trạng thái: Đã sửa sản phẩm
+- Tái phát: 0
+
+## FB-066 · Làm lại sheet Assisted workspace theo review của Opus (36 lỗi)
+- Ngày: 2026-10-09
+- Nguồn: chat Testing 09/10 17:06 · "đọc lại và update nhé" (sau `review_Assisted-workspace_v1.13.md`)
+- Loại: L6-tri thức
+- Liên quan: FB-063 · FB-064 · FB-065 · rules/tc-authoring.md rule 1, 9, 12, 13, 23, 31, 34, 35, 36, 37, 38
+- Địa chỉ: `projects/sgs-dtp/exports/SGS-DTP_TestCase1_v1.14_Assisted-workspace.xlsx` · `projects/sgs-dtp/tests/design/khung-case-cha_Evidence-Assisted.md` · `projects/sgs-dtp/tests/design/cau-hoi_Assisted-workspace.md`
+- Tiêu chí kiểm: không còn Expected không có nguồn hoặc mâu thuẫn với câu hỏi đang mở; mỗi mã Q-EA là một câu hỏi; số liệu nhóm dùng số có thật; sheet nằm sau Workspaces; cột UC theo thao tác; có bảng ba nguồn và bảng màn đã làm bị ảnh hưởng
+- Phạm vi ảnh hưởng: sheet Assisted workspace (122 TC); sheet Workspaces và các sheet khác không đổi so với v1.13; Cover dòng 1.14
+- Đã sửa: bỏ Expected thiếu nguồn (from Medium, requirement Partial, file lớn hơn 20 MB, evidence của workspace khác); thêm Expected có căn cứ UC cho danh sách Link không có evidence chưa sạch; nhóm 1 Access Control 11 requirement thay nhóm 4 requirement; tách Q-EA-25, 27, 34; gộp Q-EA-16 vào Q-EA-23, Q-EA-38 vào Q-EA-32; thay Q-S-07 mượn bằng Q-EA-38; thêm Q-EA-40 → 48; tách case Archived thành 4 case; thêm case source, bỏ owner, chip khi Blocked, Customer User và Customer Viewer thấy owner; cột UC theo thao tác; sheet đặt sau Workspaces; viết khung case cha và file câu hỏi. Chưa làm: đọc sheet Changes vs Source của UC, case D43, Request certification (ghi ở `docs/VIEC-CON-MO.md`)
+- Cách kiểm: `tc_check.py` trên v1.14 → 0 lỗi, 0 cảnh báo (2 sheet); script đếm lại 122 TC, 31 TC để trống Expected (đều có câu hỏi), 62 TC có Open question, 48 mã Q-EA
+- Trạng thái: Đã sửa sản phẩm
+- Tái phát: 0
+
+## FB-067 · Opus soát một lần cho đủ lỗi, không tìm lắt nhắt qua nhiều vòng
+- Ngày: 2026-10-09
+- Nguồn: chat Testing 09/10 17:28 · "Lần sau Opus cố gắng gửi luôn 1 lần thay vì tìm lắt nhắt, còn nếu bắt buộc vì Sonnet update nên mới phát sinh lỗi mới thì ko sao"
+- Loại: L6-tri thức
+- Liên quan: FB-065 · FB-066 · `review_Assisted-workspace_v1.13.md` · `review_Assisted-workspace_v1.14.md` · skill `tc-authoring` chế độ soát chéo
+- Địa chỉ: `rules/tc-authoring.md` rule 39 · `.claude/skills/tc-authoring/SKILL.md` chế độ soát chéo bước 2b
+- Tiêu chí kiểm: ở vòng soát lại, mục "sót từ vòng trước" bằng 0; mọi mục khác là "chưa sửa hết" hoặc "phát sinh do bản sửa"
+- Phạm vi ảnh hưởng: mọi lượt soát chéo TC (Opus soát, Sonnet sửa) ở mọi sheet
+- Đã sửa: `rules/tc-authoring.md` v0.8 (rule 39); skill `tc-authoring` v0.6 (bước 2b); README; `review_Assisted-workspace_v1.14.md` thêm dòng phân loại: 8 trên 18 mục là sót từ vòng v1.13
+- Cách kiểm: đếm mục "sót từ vòng trước" ở đầu file review của vòng soát lại kế tiếp
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+
+## FB-068 · Vì sao sửa review v1.13 mà vẫn còn lỗi (26/36)
+- Ngày: 2026-10-09
+- Nguồn: chat Testing 09/10 17:30 · "Sonnet check lại lần nữa xem tại sao vẫn bị lỗi, chỉ đạt 26/36 chứ ko pải toàn bộ"
+- Loại: L6-tri thức
+- Liên quan: FB-064 · FB-066 · FB-067 · `review_Assisted-workspace_v1.14.md` · rules/tc-authoring.md rule 38, 39
+- Địa chỉ: chưa sửa rule, skill; nguyên nhân và đề xuất ở câu trả lời của chat (chờ Hanna chọn)
+- Tiêu chí kiểm: sau mỗi lượt sửa theo review, FB ghi bảng "mục review → kiểu lỗi → số case đã quét bằng script → số case còn dính"; lượt soát kế tiếp không có mục "chưa sửa hết"
+- Phạm vi ảnh hưởng: bên sửa (Sonnet) ở mọi lượt sửa theo review; skill `tc-authoring` chế độ soát chéo bước 3
+- Đã sửa: áp dụng ở lượt làm lại v1.15 (FB-069): mỗi kiểu lỗi quét toàn sheet bằng `quet-noi-dung_Assisted-workspace.py`, 0 phát hiện trên 129 case; chưa đưa vào rule, skill. Số thật trong file review: 27 mục đạt, 9 mục chưa đạt (3, 4, 7, 15, 22, 23, 28, 34, 35); con số 26 báo trong chat lượt trước không lấy từ script (`rules/feedback.md` rule 16)
+- Cách kiểm: script quét 20 dòng trên `ea_flat.tsv` tìm lại 5 nhóm lỗi "chưa sửa hết" (104, 115, 011-013, 072, câu hỏi nhiều vế) ra đủ
+- Trạng thái: Đã sửa sản phẩm
+- Tái phát: 0
+
+## FB-069 · Làm lại sheet Assisted workspace theo review v1.14 (18 mục), quét cùng kiểu lỗi trên cả sheet
+- Ngày: 2026-10-09
+- Nguồn: chat Testing 09/10 18:22 · "Làm lại" (sau `review_Assisted-workspace_v1.14.md` và FB-068)
+- Loại: L6-tri thức
+- Liên quan: FB-066 · FB-067 · FB-068 · rules/tc-authoring.md rule 34, 35, 36, 37, 38, 39
+- Địa chỉ: `projects/sgs-dtp/exports/SGS-DTP_TestCase1_v1.15_Assisted-workspace.xlsx` · `projects/sgs-dtp/tests/design/khung-case-cha_Evidence-Assisted.md` · `projects/sgs-dtp/tests/design/cau-hoi_Assisted-workspace.md` · `projects/sgs-dtp/exports/_build/v1.15/`
+- Tiêu chí kiểm: script quét nội dung 0 phát hiện; sheet Workspaces và các sheet khác không đổi ô nào so với v1.14; lượt soát kế tiếp không có mục "chưa sửa hết"
+- Phạm vi ảnh hưởng: sheet Assisted workspace (129 TC); Cover dòng 1.15; hồ sơ đi kèm
+- Đã sửa: mục 1 → 4 (bỏ “from Medium” ở case Medium; Expected Customer Viewer liệt kê điều thấy được; UC case Workspaces sau upload là EVA-03; Q-EA-45 gắn case nhóm 11 requirement); mục 5 (tách Q-EA-3, 6, 8, 20, 21, 28, 31 thành mã riêng, thêm Q-EA-49 → 55); mục 6 (Q-EA-3 bỏ số 6 requirement, Q-EA-52 nêu rõ lệch Q-EA-45); mục 7, 8 (Pre-condition ghi tên Wei Chen, Iris Huang, Linh Tran, Mei Lin; tách case Customer Viewer trong danh sách Owner); mục 9 (Q-EA-31 gắn mọi case gỡ); mục 10 (tách case Customer User có quyền thành 3 case); mục 11, 12 (Q-EA-56 cho ô Owner xám, Q-EA-33 gắn mọi case Owner, Expected “Nobody yet”); mục 13 (Pre-condition, Step case Archived có dữ liệu cụ thể); mục 14 (case evidence chưa gắn có Expected danh sách có dòng evidence, kèm Q-EA-32); mục 15 (bảng đổi mã trong file câu hỏi); mục 16, 18 (khung case cha sửa Q-W-11, hệ thống có workspace nào); mục 17 (mục 6 khung: tự soát bằng script). Thêm theo quét: case tìm theo nhóm, tìm evidence không kết quả, thông báo sau khi gỡ, owner bị gỡ quyền vào scope (D43, Q-EA-57)
+- Cách kiểm: `tc_check.py` trên v1.15 → 0 lỗi, 0 cảnh báo; `quet-noi-dung_Assisted-workspace.py` → 0 phát hiện trên 129 case; 129 TC, 35 TC để trống Expected (đều có câu hỏi), 77 TC có Open question, 57 mã Q-EA (script đếm)
+- Trạng thái: Đã sửa sản phẩm
+- Tái phát: 0
+
