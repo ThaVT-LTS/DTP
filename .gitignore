@@ -3,3 +3,11 @@ automation/test-results/
 automation/playwright-report/
 .env
 *.env.local
+/_sao-luu/
+/_cu/
+/_to_delete/
+/qa-pipeline-web.zip
+.claude/settings.local.json
+__pycache__/
+*.pyc
+~$*
