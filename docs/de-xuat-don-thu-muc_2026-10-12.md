@@ -19,4 +19,5 @@ Nơi lưu trữ đề xuất: `Documents\qa-pipeline-luu-tru\2026-10-12\` (ngoà
 - Form mẫu từ 05/10 (`SGS-DTP_TestCase1.xlsx`, theo `profile.md`) chỉ có ở `Downloads\SGS`, chưa có trong `exports/`.
 - UC List v5.3 (baseline theo Phụ lục bàn giao) chưa có trên máy. Bản mới nhất trên máy là v4 ở `Downloads\SGS`.
 - `git commit` trên máy để lại file khoá trong `.git` vì quyền xoá đang tắt; đã đổi tên thành `.git/stale-*-lock-20261012`. Những lần commit sau cũng sẽ vậy cho tới khi Hanna cho phép xoá trong thư mục này.
+- 7 file `__pycache__` / `.pyc` đã nằm trong repo; `.gitignore` chặn bản mới, bản cũ cần `git rm -r --cached` cùng lúc với mục 3 và 8.
 - Repo đang Public: `docs/BAN-GIAO_2026-10-12.md` (đã commit) có mật khẩu chung của hệ thống demo và mã Figma.

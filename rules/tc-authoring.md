@@ -1,13 +1,13 @@
 # Rule — Viết test case (tc-authoring)
 
-Phiên bản: v0.8 · Nạp cùng `rules/common.md`, `rules/feedback.md`, `rules/tester.md` khi viết hoặc sửa file test case. Quy trình chi tiết: skill `tc-authoring`.
+Phiên bản: v0.9 · Nạp cùng `rules/common.md`, `rules/feedback.md`, `rules/tester.md` khi viết hoặc sửa file test case. Quy trình chi tiết: skill `tc-authoring`.
 
 Rule này nói về **file test case bàn giao được**: tổ chức, nội dung, và định dạng. Phần kỹ thuật thiết kế (phân vùng tương đương, bảng quyết định, chuyển trạng thái) vẫn ở `rules/tester.md` và skill `test-design`.
 
 ## A. Nguồn chân lý
 
-1. Thứ tự ưu tiên khi ba nguồn mâu thuẫn: **tài liệu yêu cầu (UC/SRS) > bản thiết kế đã duyệt (Figma) > hệ thống đang chạy**. Prototype chỉ dùng để biết *màn nào tồn tại, nút nào tồn tại, nhãn đang dùng*; **không bao giờ** lấy hành vi của prototype làm kết quả mong đợi.
-2. Mọi mâu thuẫn giữa ba nguồn phải được ghi thành câu hỏi `Q-<mã màn>-nn`, không tự chọn bên nào đúng.
+1. Thứ tự ưu tiên khi ba nguồn mâu thuẫn: **tài liệu yêu cầu (UC/SRS) > bản thiết kế đã duyệt (Figma) > hệ thống đang chạy**. Prototype chỉ dùng để biết *màn nào tồn tại, nút nào tồn tại, nhãn đang dùng*; **không bao giờ** lấy hành vi của prototype làm kết quả mong đợi. Ngoại lệ: dự án có mục "Quy tắc viết TC của dự án" trong `profile.md` thì theo mục đó (vd SGS DTP: web thể hiện hợp lý thì theo web, FB-070).
+2. Mọi mâu thuẫn giữa ba nguồn phải được ghi thành câu hỏi `Q-<mã màn>-nn`, không tự chọn bên nào đúng, trừ chỗ `profile.md` của dự án đã chốt cách chọn (rule 1).
 
 ## B. Tổ chức file
 
@@ -46,12 +46,12 @@ Ví dụ trên là file TC tiếng Anh. Mỗi ô ghi một thứ tiếng theo ng
 12. Kết quả mong đợi phải **quan sát được**: text nguyên văn, màn hình đích, trạng thái, dữ liệu thay đổi. Cấm "hoạt động bình thường", "hiển thị đúng", "thành công" mà không nói thấy gì; tiếng Anh cũng vậy, vd "works normally", "displays correctly", "as expected".
     - Ghi thẳng trong ô: không trỏ sang TC khác ("giống TC_006"), không ghi "ở cả hai màn" mà không nêu tên từng màn.
     - Từ hai mục trở lên (cột, trường, lựa chọn, nút) thì mỗi mục một dòng `- <mục>`, không nối bằng " · "; chỉ giữ " · " khi đó là chữ thật trên giao diện.
-13. **Chưa có căn cứ thì để trống kết quả mong đợi**, ghi câu hỏi vào cột `Open question`, tô đỏ dòng đó. Tự đặt text chưa ai duyệt sẽ tạo bug giả: tester báo lỗi, dev trả lời "đúng thiết kế", bộ test mất uy tín.
+13. **Chưa có căn cứ thì để trống kết quả mong đợi**, ghi câu hỏi vào cột `Open question`, tô đỏ dòng đó. Tự đặt text chưa ai duyệt sẽ tạo bug giả: tester báo lỗi, dev trả lời "đúng thiết kế", bộ test mất uy tín. Dự án có quy tắc riêng trong `profile.md` (vd SGS DTP: hành vi web hợp lý, text thông báo lỗi theo mẫu của app) thì theo quy tắc đó, không đặt câu hỏi.
     - Kết quả do người viết **suy ra** mà UC, Figma không nêu (vd dữ liệu vừa tạo sẽ có trong một danh sách chọn, tên mới sẽ hiện ở một màn khác) cũng là chưa có căn cứ: không viết thành câu khẳng định. Để trống và hỏi, hoặc bỏ case nếu nơi hiển thị đó đã có case riêng.
     - Expected có nội dung nhưng dựa trên điều **chưa kiểm chứng** (chỉ đọc ở mã nguồn prototype, chưa bấm thử, hoặc khác với hệ thống đang chạy) thì phải kèm câu hỏi tương ứng ở `Open question`; không để case trông như đã kiểm xong.
     - **Câu hỏi đã có trả lời thì xoá câu hỏi**: người dùng đã trả lời, nguồn khác đã nêu, hoặc case khác đã kiểm ra kết quả. Xoá chữ ở `Open question`, bỏ tô màu ô, điền Expected theo câu trả lời. Cột `Open question` chỉ còn câu hỏi chưa có trả lời.
 14. **Viết bằng chữ, cho Tester đọc là chạy được.**
-    - Dòng đăng nhập ở Pre-condition: file TC tiếng Anh ghi `Logged in as <role>`, vd `Logged in as Customer Admin`; màn không cần đăng nhập ghi `Not logged in`. File TC tiếng Việt ghi `Đăng nhập với acc <vai trò>` và `Chưa đăng nhập`.
+    - Dòng đăng nhập ở Pre-condition: file TC tiếng Anh ghi `Logged in as <role>`, vd `Logged in as Customer Admin`; màn không cần đăng nhập ghi `Not logged in`. File TC tiếng Việt ghi `Đăng nhập với acc <vai trò>` và `Chưa đăng nhập`. Dự án có quy tắc riêng trong `profile.md` thì theo đó (SGS DTP: `Login acc <role> (<tên tài khoản demo>) <điều kiện>`, FB-070).
     - **Pre-condition chỉ ghi trạng thái cần có trước khi vào màn hình đang test** (đăng nhập bằng vai trò nào, dữ liệu đã dựng). Không ghi "mở màn hình đang test" vào Pre-condition: việc đó là **Step 1**. Một sheet test một màn hình, nên TC chỉ tập trung vào màn đó. Ví dụ sheet Scopes: Pre-condition `Logged in as Customer Admin`; Step 1 `Open the Scopes screen`.
     - Muốn tới màn B mà phải làm nhiều thao tác dữ liệu ở màn A (tạo dữ liệu, chọn, gắn…) thì Pre-condition mới ghi các thao tác ở màn A, **liệt kê từng thao tác kèm giá trị cụ thể** (vd `On Scopes, create scope: Type Organization, Name abc, What is in scope abc`). Step vẫn bắt đầu bằng mở màn B, rồi các thao tác tiếp theo trên màn B.
     - Dữ liệu ghi ngay trong ô của TC, nhãn giao diện ghi đúng nguyên văn. Không dùng dạng `{{…}}`.
@@ -135,10 +135,13 @@ Ví dụ trên là file TC tiếng Anh. Mỗi ô ghi một thứ tiếng theo ng
     - Số báo trong chat (số case, số câu hỏi, số lỗi) lấy từ script (`rules/feedback.md` rule 16); hồ sơ đi kèm và Cover khớp file (rule 35).
 39. **Soát chéo: gửi đủ lỗi trong một lần.** Bên soát (vd Opus) quét toàn bộ sheet theo danh sách rule 38 và các loại lỗi đã gặp trước đó, mỗi lỗi thì quét hết case cùng kiểu, rồi mới gửi một file review. Vòng soát lại chỉ báo mục chưa sửa hết và lỗi do bản sửa sinh ra; lỗi có từ bản trước mà vòng trước bỏ sót thì vẫn báo, ghi `sót từ vòng trước` và đếm riêng ở đầu file review. Chi tiết: skill `tc-authoring`, chế độ soát chéo, bước 2b. Hanna 09/10. **Chờ duyệt.**
 
+40. **Câu hỏi người dùng đã xoá là đã giải quyết.** Khi viết lại hay soát chéo, không thêm lại câu hỏi đó và không tô đỏ lại dòng đó. Hanna 14/10 (FB-070). **Chờ duyệt.**
+
 ## Changelog
 
 | Version | Ngày | Thay đổi | Nguồn |
 |---|---|---|---|
+| v0.9 | 2026-10-14 | Rule 1, 2, 13, 14: thêm ngoại lệ theo mục "Quy tắc viết TC của dự án" trong `profile.md` (SGS DTP: theo web khi hợp lý, thông báo lỗi theo mẫu app, không đặt câu hỏi). Thêm rule 40 (câu hỏi người dùng đã xoá là đã giải quyết). **Chờ duyệt.** | FB-070 |
 | v0.8 | 2026-10-09 | Thêm rule 39 (soát chéo gửi đủ lỗi một lần; lỗi sót từ vòng trước đánh dấu, đếm riêng). **Chờ duyệt.** | FB-067 |
 | v0.7 | 2026-10-09 | Thêm rule 36 (đọc đủ UC, Figma, hệ thống rồi mới viết; thiếu nguồn thì ghi và hỏi), rule 37 (rà lại màn đã làm khi luồng, UC, thiết kế đổi; bảng màn bị ảnh hưởng), rule 38 (danh sách tự soát nội dung trước khi giao). Rút từ review sheet Workspaces v1.11. **Chờ duyệt.** | FB-064 |
 | v0.6 | 2026-10-08 | Theo góp ý của Hanna ngày 08/10 trên sheet Frameworks. Rule 13: Expected dựa trên điều chưa kiểm chứng phải kèm câu hỏi; câu hỏi đã có trả lời thì xoá, bỏ tô màu. Rule 19 viết lại: mọi ô chữ của bảng TC xuống dòng, căn giữa dọc, căn trái, kể cả ô neo Classification; `tc_check.py` kiểm. Rule 23: Open question là câu hỏi thật, có dấu `?`, ghi đúng nguồn. Rule 31: hiểu logic của giá trị tính toán trước khi viết; Pre, Step, Expected khớp nhau. Thêm rule 34 (giữ chữ người dùng sửa, dựng từ file của họ) và 35 (Cover dẫn đúng FB, hồ sơ đúng số). **Chờ duyệt.** | FB-054 · FB-055 · FB-056 · FB-057 |

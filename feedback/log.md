@@ -75,6 +75,7 @@ Bản ghi `FB-001` là góp ý của người dùng. `FB-002` trở đi là **đ
 | FB-067 | Hanna: Opus soát một lần cho đủ lỗi, không tìm lắt nhắt; lỗi mới do Sonnet sửa thì được | L6-tri thức | Đã vào rule (chờ duyệt) | 0 |
 | FB-068 | Hanna hỏi vì sao Sonnet sửa review v1.13 mà vẫn còn lỗi, chỉ đạt 26/36: sửa đúng chỗ review chỉ, không quét cùng kiểu lỗi, không chạy soát nội dung rule 38 | L6-tri thức | Đã sửa sản phẩm | 0 |
 | FB-069 | Hanna bảo làm lại sheet Assisted workspace theo review v1.14 (18 mục): ra v1.15, mỗi kiểu lỗi quét cả sheet | L6-tri thức | Đã sửa sản phẩm | 0 |
+| FB-070 | Bảy quy tắc viết TC SGS DTP Phase 1 từ bộ nhớ tài khoản web: theo web khi hợp lý, thông báo lỗi theo mẫu app, câu hỏi đã xoá là xong, UC chưa có trên web đánh dấu Phase 2, dòng đăng nhập "Login acc <role> (<tên>)" | L2-rule | Đã vào rule (chờ duyệt) | 0 |
 
 ---
 
@@ -1036,3 +1037,23 @@ Bản ghi `FB-001` là góp ý của người dùng. `FB-002` trở đi là **đ
 - Trạng thái: Đã sửa sản phẩm
 - Tái phát: 0
 
+
+## FB-070 · Bảy quy tắc viết TC SGS DTP Phase 1 (từ bộ nhớ tài khoản web)
+- Ngày: 2026-10-14
+- Nguồn: chat Desktop 14/10 10:09, Hanna dán từ bộ nhớ tài khoản web (project "Hanna Test"). Nguyên văn:
+  - When writing test cases: Steps must state exactly what to click or enter to reach the result being checked in Expected.
+  - When writing test cases: keep Open questions only for conflicts between sources or things that genuinely must be checked; remove questions once answered.
+  - When writing test cases: if the web/prototype already shows a behaviour and it is logical, follow the web without an Open question; if the web has more features than the UC list, follow the web (UC is updated later).
+  - When reviewing test cases: a question the user has deleted means it is resolved — do not re-add it or colour the row red again.
+  - When writing test cases: if the UC has something the web does not have yet, still write the case and mark it Phase 2.
+  - When writing test cases: error messages not yet seen on the web are written following the app's existing message pattern (or behaviour only if it can't be guessed), and updated later if the web differs — no Open question for them.
+  - When writing test cases: Pre-condition login line is written "Login acc <role> <condition>", e.g. "Login acc Customer Admin (Linh Tran) chưa có sự kiện nào" (not "Đăng nhập với acc …;").
+- Loại: L2-rule
+- Liên quan: FB-050 (Expected theo hệ thống) · FB-031, FB-035 (dòng đăng nhập) · rules/tc-authoring.md rule 1, 2, 13, 14, 38
+- Địa chỉ: `projects/sgs-dtp/profile.md` mục "Quy tắc viết TC của dự án" · `rules/tc-authoring.md` v0.9 rule 1, 2, 13, 38, 40
+- Tiêu chí kiểm: TC SGS DTP không còn Open question cho hành vi web đã thể hiện hợp lý hoặc cho text thông báo lỗi; dòng đăng nhập Pre-condition dạng "Login acc <role> (<tên>) …"; soát chéo không thêm lại câu hỏi người dùng đã xoá
+- Phạm vi ảnh hưởng: mọi sheet của file TC SGS DTP (dòng đăng nhập: Scopes, Frameworks, Workspaces, Assisted workspace, Users, Profile, Login); Open question của mọi sheet cần rà theo web
+- Đã sửa: rule chung giữ thứ tự nguồn UC > Figma > hệ thống, thêm ngoại lệ "profile dự án ghi khác"; quy tắc dự án ghi ở profile.md; thêm rule 40 (câu hỏi người dùng đã xoá là đã giải quyết)
+- Ghi chú: quy tắc do Hanna đặt; chỗ đánh dấu Phase 2 (tiền tố "[Phase 2]" ở tên case) là đề xuất của AI, chờ Hanna chọn
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0

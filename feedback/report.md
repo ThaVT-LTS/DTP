@@ -1,8 +1,8 @@
 # Báo cáo sổ góp ý
 
-Sinh tự động bởi `fb_report.py` — không sửa tay. Nguồn: `feedback/log.md`. Ngày: 2026-10-12.
+Sinh tự động bởi `fb_report.py` — không sửa tay. Nguồn: `feedback/log.md`. Ngày: 2026-10-14.
 
-Tổng: **69** bản ghi · lỗi: **0** · cảnh báo: **14**
+Tổng: **70** bản ghi · lỗi: **0** · cảnh báo: **14**
 
 ## Cần nạp khi bắt đầu task
 
@@ -76,6 +76,7 @@ Tổng: **69** bản ghi · lỗi: **0** · cảnh báo: **14**
 | FB-067 | Opus soát một lần cho đủ lỗi, không tìm lắt nhắt qua nhiều vòng | L6-tri thức | Đã vào rule (chờ duyệt) | chưa có |
 | FB-068 | Vì sao sửa review v1.13 mà vẫn còn lỗi (26/36) | L6-tri thức | Đã sửa sản phẩm | chưa có |
 | FB-069 | Làm lại sheet Assisted workspace theo review v1.14 (18 mục), quét cùng kiểu lỗi trên cả sheet | L6-tri thức | Đã sửa sản phẩm | chưa có |
+| FB-070 | Bảy quy tắc viết TC SGS DTP Phase 1 (từ bộ nhớ tài khoản web) | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
 
 ## Chờ người dùng duyệt
 
@@ -108,6 +109,7 @@ Tổng: **69** bản ghi · lỗi: **0** · cảnh báo: **14**
 - FB-059 · Soát chéo hai model và đưa mọi góp ý vào rule, skill (skills/tc-authoring/SKILL.md#chế-độ-phụ--soát-chéo-giữa-hai-model · skills/tc-authoring/scripts/tc_check.py · rules/tc-authoring.md v0.6 · rules/feedback.md v0.2)
 - FB-064 · Vì sao vẫn bị comment nhiều: không cập nhật logic màn cũ, không tự soát trước khi giao (chưa sửa rule, skill; đề xuất ở câu trả lời của chat (chờ Hanna chọn))
 - FB-067 · Opus soát một lần cho đủ lỗi, không tìm lắt nhắt qua nhiều vòng (`rules/tc-authoring.md` rule 39 · `.claude/skills/tc-authoring/SKILL.md` chế độ soát chéo bước 2b)
+- FB-070 · Bảy quy tắc viết TC SGS DTP Phase 1 (từ bộ nhớ tài khoản web) (`projects/sgs-dtp/profile.md` mục "Quy tắc viết TC của dự án" · `rules/tc-authoring.md` v0.9 rule 1, 2, 13, 38, 40)
 
 ## Thống kê
 
@@ -118,12 +120,12 @@ Tổng: **69** bản ghi · lỗi: **0** · cảnh báo: **14**
 | Mới | 14 |
 | Đã duyệt | 8 |
 | Đã sửa sản phẩm | 13 |
-| Đã vào rule (chờ duyệt) | 29 |
+| Đã vào rule (chờ duyệt) | 30 |
 
 | Loại | Số lượng |
 |---|---|
 | L1-sản phẩm | 4 |
-| L2-rule | 29 |
+| L2-rule | 30 |
 | L3-checklist | 4 |
 | L4-mẫu | 12 |
 | L5-script | 4 |
@@ -135,17 +137,17 @@ Không có.
 
 ## Cảnh báo
 
-- FB-002 · đứng ở 'Mới' 13 ngày
-- FB-003 · đứng ở 'Mới' 13 ngày
-- FB-004 · đứng ở 'Mới' 13 ngày
-- FB-005 · đứng ở 'Mới' 13 ngày
-- FB-006 · đứng ở 'Mới' 13 ngày
-- FB-007 · đứng ở 'Mới' 13 ngày
-- FB-008 · đứng ở 'Mới' 13 ngày
-- FB-009 · đứng ở 'Mới' 13 ngày
-- FB-018 · đứng ở 'Mới' 11 ngày
-- FB-022 · đứng ở 'Chưa rõ phạm vi' 10 ngày
-- FB-023 · đứng ở 'Mới' 10 ngày
-- FB-024 · đứng ở 'Mới' 10 ngày
-- FB-025 · đứng ở 'Chưa rõ phạm vi' 10 ngày
+- FB-002 · đứng ở 'Mới' 15 ngày
+- FB-003 · đứng ở 'Mới' 15 ngày
+- FB-004 · đứng ở 'Mới' 15 ngày
+- FB-005 · đứng ở 'Mới' 15 ngày
+- FB-006 · đứng ở 'Mới' 15 ngày
+- FB-007 · đứng ở 'Mới' 15 ngày
+- FB-008 · đứng ở 'Mới' 15 ngày
+- FB-009 · đứng ở 'Mới' 15 ngày
+- FB-018 · đứng ở 'Mới' 13 ngày
+- FB-022 · đứng ở 'Chưa rõ phạm vi' 12 ngày
+- FB-023 · đứng ở 'Mới' 12 ngày
+- FB-024 · đứng ở 'Mới' 12 ngày
+- FB-025 · đứng ở 'Chưa rõ phạm vi' 12 ngày
 - FB-034 · tái phát 1 lần, Gate 'mức 1 · nâng mức 3 được cho phần tìm chuỗi' — nên nâng một mức
