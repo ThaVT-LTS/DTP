@@ -2,7 +2,7 @@
 
 Thư mục này giữ đúng bộ script và số đo đã dùng để dựng bản v1.5 từ bản v1.4 Hanna gửi, để chat khác dựng lại hoặc sửa tiếp được (vd đổi thứ tự nhóm, thêm bớt case) mà không phải viết lại từ đầu. Đây là script riêng cho bản này, chưa phải script của skill; việc đưa thành script chung ghi ở `docs/VIEC-CON-MO.md`.
 
-Mọi script làm thẳng trên XML của file `.xlsx`, không lưu bằng openpyxl (openpyxl làm rơi logo và dropdown). Cần Python có `lxml`; `tc_add_sheet.py` và `tc_palette.py` lấy ở `_cho-duyet/tc-authoring-v0.3/skill/scripts/` (đổi chỗ thì đặt biến môi trường `TC_LIB`).
+Mọi script làm thẳng trên XML của file `.xlsx`, không lưu bằng openpyxl (openpyxl làm rơi logo và dropdown). Cần Python có `lxml`; `tc_add_sheet.py` và `tc_palette.py` lấy ở `.claude/skills/tc-authoring/scripts/` (đổi chỗ thì đặt biến môi trường `TC_LIB`).
 
 ## File
 

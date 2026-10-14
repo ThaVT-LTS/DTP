@@ -2,7 +2,7 @@
 
 Sinh tự động bởi `fb_report.py` — không sửa tay. Nguồn: `feedback/log.md`. Ngày: 2026-10-14.
 
-Tổng: **70** bản ghi · lỗi: **0** · cảnh báo: **14**
+Tổng: **72** bản ghi · lỗi: **0** · cảnh báo: **14**
 
 ## Cần nạp khi bắt đầu task
 
@@ -77,6 +77,8 @@ Tổng: **70** bản ghi · lỗi: **0** · cảnh báo: **14**
 | FB-068 | Vì sao sửa review v1.13 mà vẫn còn lỗi (26/36) | L6-tri thức | Đã sửa sản phẩm | chưa có |
 | FB-069 | Làm lại sheet Assisted workspace theo review v1.14 (18 mục), quét cùng kiểu lỗi trên cả sheet | L6-tri thức | Đã sửa sản phẩm | chưa có |
 | FB-070 | Bảy quy tắc viết TC SGS DTP Phase 1 (từ bộ nhớ tài khoản web) | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
+| FB-071 | Đánh dấu Phase 2 ở cột Remark (V), không ở tên case | L4-mẫu | Đã sửa sản phẩm | chưa có |
+| FB-072 | Gom thư mục, file thừa của qa-pipeline vào một chỗ | L5-script | Đã sửa sản phẩm | chưa có |
 
 ## Chờ người dùng duyệt
 
@@ -119,7 +121,7 @@ Tổng: **70** bản ghi · lỗi: **0** · cảnh báo: **14**
 | Chưa rõ phạm vi | 4 |
 | Mới | 14 |
 | Đã duyệt | 8 |
-| Đã sửa sản phẩm | 13 |
+| Đã sửa sản phẩm | 15 |
 | Đã vào rule (chờ duyệt) | 30 |
 
 | Loại | Số lượng |
@@ -127,8 +129,8 @@ Tổng: **70** bản ghi · lỗi: **0** · cảnh báo: **14**
 | L1-sản phẩm | 4 |
 | L2-rule | 30 |
 | L3-checklist | 4 |
-| L4-mẫu | 12 |
-| L5-script | 4 |
+| L4-mẫu | 13 |
+| L5-script | 5 |
 | L6-tri thức | 16 |
 
 ## Lỗi

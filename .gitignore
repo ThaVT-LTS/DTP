@@ -7,6 +7,8 @@ automation/playwright-report/
 /_cu/
 /_to_delete/
 /qa-pipeline-web.zip
+/scripts/qa-pipeline-web.zip
+/_luu-tru/
 .claude/settings.local.json
 __pycache__/
 *.pyc

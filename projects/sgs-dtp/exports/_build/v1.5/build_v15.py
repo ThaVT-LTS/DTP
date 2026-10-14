@@ -28,10 +28,10 @@ import unicodedata
 from collections import Counter
 from pathlib import Path
 
-# Thư viện làm thẳng trên XML (tc_add_sheet.py, tc_palette.py): mặc định lấy ở _cho-duyet/tc-authoring-v0.3/skill/scripts
+# Thư viện làm thẳng trên XML (tc_add_sheet.py, tc_palette.py): mặc định lấy ở .claude/skills/tc-authoring/scripts
 # của thư mục qa-pipeline; đổi chỗ thì đặt biến môi trường TC_LIB.
 HERE = Path(__file__).resolve().parent
-LIB = os.environ.get("TC_LIB") or str(HERE.parents[4] / "_cho-duyet" / "tc-authoring-v0.3" / "skill" / "scripts")
+LIB = os.environ.get("TC_LIB") or str(HERE.parents[4] / ".claude" / "skills" / "tc-authoring" / "scripts")
 sys.path.insert(0, LIB)
 from lxml import etree  # noqa: E402
 

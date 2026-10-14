@@ -23,7 +23,7 @@ Việc cần làm khi nhận gói này trong một chat:
 """
 
 def main():
-    out = ROOT / "qa-pipeline-web.zip"
+    out = ROOT / "scripts" / "qa-pipeline-web.zip"
     n = 0
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
         z.writestr("qa-pipeline/DOC-TRUOC.md", NOTE.format(date=datetime.date.today().isoformat()))

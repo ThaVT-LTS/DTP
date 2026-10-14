@@ -76,6 +76,8 @@ Bản ghi `FB-001` là góp ý của người dùng. `FB-002` trở đi là **đ
 | FB-068 | Hanna hỏi vì sao Sonnet sửa review v1.13 mà vẫn còn lỗi, chỉ đạt 26/36: sửa đúng chỗ review chỉ, không quét cùng kiểu lỗi, không chạy soát nội dung rule 38 | L6-tri thức | Đã sửa sản phẩm | 0 |
 | FB-069 | Hanna bảo làm lại sheet Assisted workspace theo review v1.14 (18 mục): ra v1.15, mỗi kiểu lỗi quét cả sheet | L6-tri thức | Đã sửa sản phẩm | 0 |
 | FB-070 | Bảy quy tắc viết TC SGS DTP Phase 1 từ bộ nhớ tài khoản web: theo web khi hợp lý, thông báo lỗi theo mẫu app, câu hỏi đã xoá là xong, UC chưa có trên web đánh dấu Phase 2, dòng đăng nhập "Login acc <role> (<tên>)" | L2-rule | Đã vào rule (chờ duyệt) | 0 |
+| FB-071 | Đánh dấu Phase 2 bằng chữ Phase 2 ở cột Remark (V) Round 2, bỏ tiền tố [Phase 2] ở tên case: v0.2, 58 case | L4-mẫu | Đã sửa sản phẩm | 0 |
+| FB-072 | Gom _cu, _sao-luu, _cho-duyet, _to_delete, tài liệu cập nhật, file TC cũ vào _luu-tru; 3 script vào skill; zip vào scripts/ | L5-script | Đã sửa sản phẩm | 0 |
 
 ---
 
@@ -1056,4 +1058,29 @@ Bản ghi `FB-001` là góp ý của người dùng. `FB-002` trở đi là **đ
 - Đã sửa: rule chung giữ thứ tự nguồn UC > Figma > hệ thống, thêm ngoại lệ "profile dự án ghi khác"; quy tắc dự án ghi ở profile.md; thêm rule 40 (câu hỏi người dùng đã xoá là đã giải quyết)
 - Ghi chú: quy tắc do Hanna đặt; chỗ đánh dấu Phase 2 (tiền tố "[Phase 2]" ở tên case) là đề xuất của AI, chờ Hanna chọn
 - Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+
+## FB-071 · Đánh dấu Phase 2 ở cột Remark (V), không ở tên case
+- Ngày: 2026-10-14
+- Nguồn: chat Desktop 14/10 10:19 · "Điền ở Remark cột V" (ảnh chụp file SGS-DTP_TestCase_v0.1_Phase1.xlsx, khoanh cột V Remark của Round 2), trả lời câu hỏi đánh dấu Phase 2 ở đâu (FB-070 quy tắc 5)
+- Loại: L4-mẫu
+- Liên quan: FB-070
+- Địa chỉ: `projects/sgs-dtp/profile.md` mục Quy tắc viết TC, quy tắc 5 · `projects/sgs-dtp/exports/SGS-DTP_TestCase_v0.2_Phase1.xlsx` · `projects/sgs-dtp/exports/_build/v0.2/phase2_to_remark.py`
+- Tiêu chí kiểm: không còn tên case bắt đầu bằng `[Phase 2]`; mọi case đó có `Phase 2` ở cột V; các ô khác không đổi so với v0.1
+- Phạm vi ảnh hưởng: 58 case trên 11 sheet (Scopes 15, Workspace detail 10, Workspaces 9, Settings 6, Customers 5, Gap Analysis 4, Frameworks 2, Marketplace 2, Training Courses 2, Home 2, Certifications 1); Cover dòng 0.2
+- Đã sửa: v0.2 dựng bằng sửa thẳng XML (giữ logo, dropdown, công thức); so từng ô với v0.1: chỉ đổi 58 ô tên, 58 ô V và Cover; LibreOffice tính lại 0 lỗi
+- Trạng thái: Đã sửa sản phẩm
+- Tái phát: 0
+
+## FB-072 · Gom thư mục, file thừa của qa-pipeline vào một chỗ
+- Ngày: 2026-10-14
+- Nguồn: chat Desktop 14/10 10:19 · "ktra những folder hay thông tin file nào thừa thì merge để chung 1 chỗ nhé" (ảnh khoanh `_cho-duyet`, `_cu`, `_sao-luu`, `_to_delete` và các file ở gốc)
+- Loại: L5-script
+- Liên quan: docs/BAN-GIAO_2026-10-12.md Việc 1 · docs/de-xuat-don-thu-muc_2026-10-12.md
+- Địa chỉ: `_luu-tru/` · `.claude/skills/tc-authoring/SKILL.md` v0.7 Bước 6 · `scripts/export_web.py` · `.gitignore` · `README.md` · `CLAUDE.md`
+- Tiêu chí kiểm: gốc thư mục chỉ còn `CLAUDE.md`, `README.md`, `.gitignore` và các thư mục làm việc; không script nào trỏ tới `_cho-duyet`; `export_web.py` chạy được
+- Phạm vi ảnh hưởng: `_cu`, `_sao-luu`, `_cho-duyet`, `_to_delete`, `CAP-NHAT_*`, `ap_dung_cap_nhat.py` → `_luu-tru/`; file TC v1.3–v1.15 và v0.21 → `_luu-tru/sgs-dtp-exports-cu/`; `ea_flat.tsv` → `projects/sgs-dtp/exports/_build/v1.15/`; `qa-pipeline-web.zip` → `scripts/`; UC v2.2_VI → `docs/analysis/`. Không xoá file nào
+- Đã sửa: 3 script `tc_add_sheet.py`, `tc_palette.py`, `tc_restyle.py` chép vào skill; SKILL.md, `build_v15.py`, README, CLAUDE.md, VIEC-CON-MO trỏ chỗ mới; `_luu-tru/` không đưa lên git
+- Ghi chú: `CLAUDE.md`, `README.md`, `.gitignore` phải ở gốc (Claude đọc `CLAUDE.md` ở gốc; git đọc `.gitignore` ở gốc). Còn lại: ghép `--like` và kiểm kiểu ô của `tc_check.py` bản cũ
+- Trạng thái: Đã sửa sản phẩm
 - Tái phát: 0

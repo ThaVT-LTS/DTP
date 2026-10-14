@@ -46,7 +46,7 @@ Thư mục này là bản duy nhất. Thay đổi chỉ có hiệu lực khi đ�
 2. Sửa file rule/skill trong thư mục này, tăng version, thêm dòng changelog trỏ `FB-nnn`.
 3. Nếu thay đổi làm thêm, bỏ hoặc đổi tên một skill, một bước, một cổng hay một lệnh script: cập nhật bảng "Quy trình" và mục "Script" ở file này, và bảng câu lệnh mẫu trong `README.md`.
 4. Chạy `python .claude/skills/feedback-loop/scripts/fb_report.py --log feedback/log.md --repo .` cho tới khi sạch.
-5. Chạy `python scripts/export_web.py` để làm mới `qa-pipeline-web.zip`.
+5. Chạy `python scripts/export_web.py` để làm mới `scripts/qa-pipeline-web.zip`.
 6. Báo người dùng: file nào đã đổi, version mới, FB nào đang chờ duyệt.
 
 ## Khi đổi model hoặc sửa rule/skill

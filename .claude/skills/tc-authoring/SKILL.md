@@ -3,7 +3,7 @@ name: tc-authoring
 description: Viết và cập nhật file test case Excel bàn giao được — một màn hình (tính theo mục menu) một sheet, vai trò nằm trong sheet, bốn cấp Classification I–IV có gộp ô, khu vực theo thứ tự mắt đọc, mỗi TC truy vết tới một UC, vai trò, dữ liệu và nhãn ghi bằng chữ ngay trong ô, dòng chưa có căn cứ thì để trống và tô đỏ. Gồm thư viện 12 pattern cho các thao tác cơ bản (tạo, sửa, xoá, di chuyển, upload, xem trước, tìm kiếm, lọc, phân trang, chọn hàng loạt, bảng, kiểm chéo vai trò), quy ước cột và định dạng (Times New Roman 10, căn trái, quy tắc gộp ô), script dựng file xlsx và script kiểm tra. Dùng skill này khi người dùng muốn viết test case cho một màn hình hay một luồng, chuyển bộ TC sang ngôn ngữ khác, rà soát bộ TC cũ, hoặc hỏi "viết TC cho màn này".
 ---
 
-# Viết test case (v0.6)
+# Viết test case (v0.7)
 
 Tuân thủ `rules/common.md`, `rules/feedback.md`, `rules/tester.md` và `rules/tc-authoring.md` ở mọi bước.
 
@@ -92,7 +92,7 @@ python scripts/tc_build_xlsx.py --data tc_login.tsv --sheet Login --out TestCase
 
 Script tự: gộp ô bốn cột Classification theo quy tắc, đặt phông Times New Roman 10, căn trái, tô đỏ dòng còn câu hỏi mở, dựng khối thông tin đầu sheet và hàng tiêu đề hai tầng.
 
-Thêm sheet vào file mẫu bằng `tc_add_sheet.py` (đang ở `_cho-duyet/tc-authoring-v0.3/skill/scripts/`): script này **chưa đặt căn lề** cho ô Classification của sheet mới. Sau khi dựng phải đặt xuống dòng, căn giữa dọc, căn trái cho ô neo ở cột B–E (`rules/tc-authoring.md` rule 19), rồi chạy Bước 7. Người dùng đã gửi lại file tự sửa thì dựng từ file đó (rule 34).
+Thêm sheet vào file mẫu bằng `tc_add_sheet.py` (ở `scripts/` của skill này, cùng `tc_palette.py`, `tc_restyle.py`): script này **chưa đặt căn lề** cho ô Classification của sheet mới. Sau khi dựng phải đặt xuống dòng, căn giữa dọc, căn trái cho ô neo ở cột B–E (`rules/tc-authoring.md` rule 19), rồi chạy Bước 7. Người dùng đã gửi lại file tự sửa thì dựng từ file đó (rule 34).
 
 Rule viết TC còn đang bàn với người dùng thì chưa gửi file TC; chốt xong mới gửi một lần. Bản xem trước (chức năng → nhóm kiểm → tên case, đánh dấu Mới / Sửa / Bỏ) là tuỳ chọn. Thấy vấn đề cần người dùng xem ngay thì gửi sớm.
 
@@ -146,6 +146,7 @@ Dùng khi có một hệ thống cũ đã có bộ TC chạy thật. Bộ TC đ�
 
 | Version | Ngày | Thay đổi | Nguồn |
 |---|---|---|---|
+| v0.7 | 2026-10-14 | `tc_add_sheet.py`, `tc_palette.py`, `tc_restyle.py` chép từ `_cho-duyet/tc-authoring-v0.3/` vào `scripts/` của skill; Bước 6 trỏ chỗ mới. `tc_check.py`, `tc_build_xlsx.py` giữ bản của skill (bản `_cho-duyet` là nhánh khác: `--like`, kiểm kiểu ô, kiểm Test_Report — chưa ghép). | FB-072 |
 | v0.6 | 2026-10-09 | Chế độ soát chéo: thêm bước 2b — bên soát gửi đủ lỗi trong một lần; vòng sau chỉ báo mục chưa sửa hết và lỗi do bản sửa sinh ra, lỗi sót từ vòng trước phải đánh dấu và đếm (rule 39). **Chờ duyệt.** | FB-067 |
 | v0.5 | 2026-10-09 | Thêm Bước 1b (đọc đủ ba nguồn, bảng màn đã làm bị ảnh hưởng) và Bước 6b (tự soát nội dung trước khi giao) theo `rules/tc-authoring.md` v0.7 rule 36–38. **Chờ duyệt.** | FB-064 |
 | v0.4 | 2026-10-08 | Bước 6: `tc_add_sheet.py` chưa đặt căn lề ô Classification, phải đặt sau khi dựng; dựng từ file người dùng đã sửa. Bước 7: `tc_check.py` kiểm thêm căn lề và xuống dòng của ô chữ trong bảng TC (bỏ qua ô trong cụm gộp không phải ô neo), ô `Open question` có chữ mà không tô hoặc tô mà hết câu hỏi (lỗi), phần không phải câu hỏi (cảnh báo). Thêm chế độ phụ "soát chéo giữa hai model". `references/format.md` §3 cột W, §4: căn lề và mẫu câu hỏi theo rule 19, 23. **Chờ duyệt.** | FB-054 · FB-055 · FB-056 · FB-059 |

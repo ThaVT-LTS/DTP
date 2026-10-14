@@ -89,7 +89,7 @@ Cập nhật gần nhất: 2026-10-07 (mục cuối file). Bản đầu: 2026-10
 - Xoá dòng TC cuối cùng của một khu vực làm Test_Report ra `#REF!` (bản Hanna sửa: 54 ô). Mỗi lần nhận file về phải dựng lại Test_Report.
 - Bản v1.5 AI mới kiểm bằng LibreOffice và ở mức XML, chưa mở bằng Excel thật.
 - `tc_check.py` bản 05/10: v1.5 ra 0 lỗi, 10 cảnh báo; bản Hanna sửa ra 2 lỗi (17 ô sai phông, Scope_104 thiếu UC). Bản trong tài liệu cập nhật 07/10 báo thêm 3 lỗi `{{…}}` ở Login, Users, Profile và ô có chữ dạng tổ hợp.
-- `_cho-duyet/tc-authoring-v0.3/`: không chép cả thư mục `skill/` vào `.claude` nữa (xem `DOC-TRUOC.md` ở đó).
+- `_cho-duyet/tc-authoring-v0.3/` đã vào `_luu-tru/` (14/10); 3 script còn dùng đã chép vào skill. Còn lại: ghép `--like`, kiểm kiểu ô, kiểm Test_Report của `tc_check.py` bản cũ vào bản của skill (FB-072).
 
 **Đề xuất của AI, chưa làm, chờ Hanna quyết**
 - Đưa hai script ở `exports/_build/v1.5/` thành script chung của skill `tc-authoring`: `compare_edit.py` (so file Hanna sửa với bản gốc) và phần dựng lại sheet từ bảng phẳng ở mức XML trong `build_v15.py`.
