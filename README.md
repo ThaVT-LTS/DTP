@@ -27,6 +27,7 @@ Claude đọc `CLAUDE.md` (quy tắc), `.claude/rules/` (rule theo thư mục), 
 
 ## Thành phần
 - `rules/`, `.claude/skills/{ba-analysis,test-design,tc-authoring,feedback-loop}`, `feedback/`: nguyên bộ **ai-ecosystem v0.3** (01/10/2026). Mô tả đầy đủ: `docs/README-ai-ecosystem-v0.3.md`.
+- Cập nhật 15/10/2026 (FB-074 → FB-082, chờ duyệt): `rules/tc-authoring.md` v0.10 và `tc-authoring` v0.8 — gộp bản tổng hợp 15/10 của phiên chat vào rule có sẵn (tổng vẫn 40 rule): thứ tự 5 nguồn, Open question tinh gọn, dòng `Login acc`, Step `button [Tên]`, Priority Critical, `[Phase 2]`/`[OUT]`, độ phủ UC theo wave, cổng `tc_fix_xlsx.py` + `tc_check.py --creator`. Script `tc_fix_xlsx.py`, `tc_rows.py` chờ file kèm theo.
 - Cập nhật 09/10/2026 (FB-067, chờ duyệt): `tc-authoring` v0.6 và `rules/tc-authoring.md` v0.8 — chế độ soát chéo thêm bước 2b: bên soát gửi đủ lỗi trong một lần; lỗi sót từ vòng trước đánh dấu và đếm riêng (rule 39).
 - Cập nhật 09/10/2026 (FB-064, chờ duyệt): `tc-authoring` v0.5 và `rules/tc-authoring.md` v0.7 — thêm Bước 1b (đọc đủ UC, Figma, hệ thống; rà màn đã làm khi luồng đổi) và Bước 6b (tự soát nội dung trước khi giao); rule 36–38.
 - Cập nhật 05/10/2026: `tc-authoring` v0.3, `common.md` v0.4, `tester.md` v0.3, `test-design` v0.2 — viết TC bằng chữ cho Tester, ngôn ngữ file TC theo `profile.md`, TC gọi API ở sheet riêng, chia sheet theo màn hình, bảng màu theo file mẫu. Tóm tắt ở dòng "Cập nhật 2026-10-05" đầu `docs/README-ai-ecosystem-v0.3.md`.

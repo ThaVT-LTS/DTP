@@ -78,6 +78,16 @@ Bản ghi `FB-001` là góp ý của người dùng. `FB-002` trở đi là **đ
 | FB-070 | Bảy quy tắc viết TC SGS DTP Phase 1 từ bộ nhớ tài khoản web: theo web khi hợp lý, thông báo lỗi theo mẫu app, câu hỏi đã xoá là xong, UC chưa có trên web đánh dấu Phase 2, dòng đăng nhập "Login acc <role> (<tên>)" | L2-rule | Đã vào rule (chờ duyệt) | 0 |
 | FB-071 | Đánh dấu Phase 2 bằng chữ Phase 2 ở cột Remark (V) Round 2, bỏ tiền tố [Phase 2] ở tên case: v0.2, 58 case | L4-mẫu | Đã sửa sản phẩm | 0 |
 | FB-072 | Gom _cu, _sao-luu, _cho-duyet, _to_delete, tài liệu cập nhật, file TC cũ vào _luu-tru; 3 script vào skill; zip vào scripts/ | L5-script | Đã sửa sản phẩm | 0 |
+| FB-073 | Soát toàn bộ file TC v0.1 Phase 1 theo 3 wave và UC v5.4; trả bản có comment và sheet Nhận xét Opus, không sửa case (81 mục) | L1-sản phẩm | Mới | 0 |
+| FB-074 | Creator ghi Claude thay vì Hanna | L2-rule | Đã vào rule (chờ duyệt) | 0 |
+| FB-075 | File giao còn `{{…}}` | L2-rule | Đã vào rule (chờ duyệt) | 0 |
+| FB-076 | Ô trống, ô gộp hiện Arial; phông phải đúng ở mức XML | L5-script | Đã vào rule (chờ duyệt) | 0 |
+| FB-077 | Dòng đăng nhập `Login acc <vai trò> <điều kiện>`, không `;` | L2-rule | Đã vào rule (chờ duyệt) | 0 |
+| FB-078 | Quá nhiều câu hỏi; câu đã xoá bị tô lại; thứ tự 5 nguồn; Expected đề xuất tô vàng; Đề xuất mặc định | L2-rule | Đã vào rule (chờ duyệt) | 0 |
+| FB-079 | Chữ báo lỗi chưa thấy trên web ghi theo mẫu của app | L2-rule | Đã vào rule (chờ duyệt) | 0 |
+| FB-080 | Step chưa rõ bấm vào đâu | L2-rule | Đã vào rule (chờ duyệt) | 0 |
+| FB-081 | UC có mà web chưa có: `[Phase 2]`, `[Ngoài Phase 1]`; độ phủ UC theo wave; `[OUT]`; mã TC không đánh lại | L2-rule | Đã vào rule (chờ duyệt) | 0 |
+| FB-082 | So sánh v0.22 và v0.2_Phase1: chèn đúng nhóm, Test_Report theo nhóm, một số phiên bản, Priority Critical, một bộ rule duy nhất | L2-rule | Đã vào rule (chờ duyệt) | 0 |
 
 ---
 
@@ -1083,4 +1093,118 @@ Bản ghi `FB-001` là góp ý của người dùng. `FB-002` trở đi là **đ
 - Đã sửa: 3 script `tc_add_sheet.py`, `tc_palette.py`, `tc_restyle.py` chép vào skill; SKILL.md, `build_v15.py`, README, CLAUDE.md, VIEC-CON-MO trỏ chỗ mới; `_luu-tru/` không đưa lên git
 - Ghi chú: `CLAUDE.md`, `README.md`, `.gitignore` phải ở gốc (Claude đọc `CLAUDE.md` ở gốc; git đọc `.gitignore` ở gốc). Còn lại: ghép `--like` và kiểm kiểu ô của `tc_check.py` bản cũ
 - Trạng thái: Đã sửa sản phẩm
+- Tái phát: 0
+
+## FB-073 · Soát toàn bộ file TC v0.1 Phase 1 theo 3 wave, trả bản có nhận xét (không sửa)
+- Ngày: 2026-10-15
+- Nguồn: chat 15/10 09:48, Hanna gửi `SGS-DTP_TestCase_v0.1_Phase1.xlsx`. Nguyên văn: "* Wave 1 (Onboarding, setup, Evidence): AUTH, ACC, USR/ROL, FWK, SCP, WSP, EVA, EVC, cùng PRF-01, NTF-02, NTF-03. * Wave 2 (Bulk upload, NirmatAI, Certification, Training): BLK, INT, CFG, CRT, TRN, cùng NTF-04. * Wave 3 (Consulting, Gap Analysis, Cockpit, Audit, Retention): SRQ, GAP, CKP, AUD, RET, cùng MKT (Marketplace) và NTF-01. VẬY HÃY KIỂM TRA thật kỹ các phần > nhận xét nó còn thiếu hay cần update những điểm nào case nào nhé > sau đó trả lại cho t bản bạn đã nhận xét chứ ko đc update luôn nhé"
+- Loại: L1-sản phẩm
+- Liên quan: FB-070 · FB-071 · rules/feedback.md rule 15 · rules/tc-authoring.md rule 37, 38, 39 · docs/change/uc-v5.3-vs-v5.4.md
+- Địa chỉ: `projects/sgs-dtp/tests/design/review_TestCase_v0.1_Phase1.md` · `projects/sgs-dtp/exports/SGS-DTP_TestCase_v0.1_Phase1_nhan-xet-Opus.xlsx` · `projects/sgs-dtp/exports/_build/review-v0.1/`
+- Tiêu chí kiểm: bản nhận xét không đổi ô nào của file gốc; mỗi UC v5.4 của 3 wave có dòng độ phủ; mỗi loại lỗi quét hết case cùng kiểu
+- Phạm vi ảnh hưởng: 22 sheet TC, 1.226 case; 81 mục nhận xét (CHẶN 2, QUAN TRỌNG 47, NHỎ 32); 891 case có comment; 14 UC P1 chưa có case
+- Đã sửa: chưa sửa case nào (chờ Hanna bảo sửa). Đã giao bản có comment và sheet "Nhận xét Opus"
+- Cách kiểm: script so từng ô với file gốc → 0 ô khác; 66 dropdown và logo giữ nguyên; LibreOffice mở được, đọc được 907 comment
+- Ghi chú: khi sửa thì dựng từ v0.2 (FB-071), không từ v0.1
+- Trạng thái: Mới
+- Tái phát: 0
+
+## FB-074 · Creator ghi Claude thay vì Hanna
+- Ngày: 2026-10-15
+- Nguồn: `HUONG-DAN_cap-nhat-rule-skill_2026-10-15.md` (phiên chat của Hanna, project Hanna Test), mục 6, rule 36; đính kèm trong chat Desktop 15/10 15:04
+- Loại: L2-rule
+- Liên quan: FB-070 · FB-071 · FB-073
+- Địa chỉ: rules/tc-authoring.md rule 6 · tc_add_sheet.py `--creator` bắt buộc
+- Tiêu chí kiểm: rule mới nằm trong rule có sẵn, không thêm số (Hanna 15/10: "gọn lại số rule"); `tc_check.py` bắt được lỗi khi có script
+- Phạm vi ảnh hưởng: mọi file TC SGS DTP từ lượt viết sau; không sửa file TC trong lượt này
+- Đã sửa: rule 36 (gộp vào rule 6); `rules/tc-authoring.md` v0.10, skill `tc-authoring` v0.8
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-075 · File giao còn `{{…}}`
+- Ngày: 2026-10-15
+- Nguồn: `HUONG-DAN_cap-nhat-rule-skill_2026-10-15.md` (phiên chat của Hanna, project Hanna Test), mục 6, rule 37; đính kèm trong chat Desktop 15/10 15:04
+- Loại: L2-rule
+- Liên quan: FB-070 · FB-071 · FB-073
+- Địa chỉ: rules/tc-authoring.md rule 14
+- Tiêu chí kiểm: rule mới nằm trong rule có sẵn, không thêm số (Hanna 15/10: "gọn lại số rule"); `tc_check.py` bắt được lỗi khi có script
+- Phạm vi ảnh hưởng: mọi file TC SGS DTP từ lượt viết sau; không sửa file TC trong lượt này
+- Đã sửa: rule 37 (gộp vào rule 14); `rules/tc-authoring.md` v0.10, skill `tc-authoring` v0.8
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-076 · Ô trống, ô gộp hiện Arial; phông phải đúng ở mức XML
+- Ngày: 2026-10-15
+- Nguồn: `HUONG-DAN_cap-nhat-rule-skill_2026-10-15.md` (phiên chat của Hanna, project Hanna Test), mục 6, rule 38, 39; đính kèm trong chat Desktop 15/10 15:04
+- Loại: L5-script
+- Liên quan: FB-070 · FB-071 · FB-073
+- Địa chỉ: rules/tc-authoring.md rule 18, 38 · tc_fix_xlsx.py (chờ file)
+- Tiêu chí kiểm: rule mới nằm trong rule có sẵn, không thêm số (Hanna 15/10: "gọn lại số rule"); `tc_check.py` bắt được lỗi khi có script
+- Phạm vi ảnh hưởng: mọi file TC SGS DTP từ lượt viết sau; không sửa file TC trong lượt này
+- Đã sửa: rule 38, 39 (gộp vào rule 18, 38); `rules/tc-authoring.md` v0.10, skill `tc-authoring` v0.8
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-077 · Dòng đăng nhập `Login acc <vai trò> <điều kiện>`, không `;`
+- Ngày: 2026-10-15
+- Nguồn: `HUONG-DAN_cap-nhat-rule-skill_2026-10-15.md` (phiên chat của Hanna, project Hanna Test), mục 6, rule 40; đính kèm trong chat Desktop 15/10 15:04
+- Loại: L2-rule
+- Liên quan: FB-070 · FB-071 · FB-073
+- Địa chỉ: rules/tc-authoring.md rule 14, 24
+- Tiêu chí kiểm: rule mới nằm trong rule có sẵn, không thêm số (Hanna 15/10: "gọn lại số rule"); `tc_check.py` bắt được lỗi khi có script
+- Phạm vi ảnh hưởng: mọi file TC SGS DTP từ lượt viết sau; không sửa file TC trong lượt này
+- Đã sửa: rule 40 (gộp vào rule 14, 24); `rules/tc-authoring.md` v0.10, skill `tc-authoring` v0.8
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-078 · Quá nhiều câu hỏi; câu đã xoá bị tô lại; thứ tự 5 nguồn; Expected đề xuất tô vàng; Đề xuất mặc định
+- Ngày: 2026-10-15
+- Nguồn: `HUONG-DAN_cap-nhat-rule-skill_2026-10-15.md` (phiên chat của Hanna, project Hanna Test), mục 6, rule 41, 42, 48, 51, 52; đính kèm trong chat Desktop 15/10 15:04
+- Loại: L2-rule
+- Liên quan: FB-070 · FB-071 · FB-073
+- Địa chỉ: rules/tc-authoring.md rule 1, 2, 13, 23, 36
+- Tiêu chí kiểm: rule mới nằm trong rule có sẵn, không thêm số (Hanna 15/10: "gọn lại số rule"); `tc_check.py` bắt được lỗi khi có script
+- Phạm vi ảnh hưởng: mọi file TC SGS DTP từ lượt viết sau; không sửa file TC trong lượt này
+- Đã sửa: rule 41, 42, 48, 51, 52 (gộp vào rule 1, 2, 13, 23, 36); `rules/tc-authoring.md` v0.10, skill `tc-authoring` v0.8
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-079 · Chữ báo lỗi chưa thấy trên web ghi theo mẫu của app
+- Ngày: 2026-10-15
+- Nguồn: `HUONG-DAN_cap-nhat-rule-skill_2026-10-15.md` (phiên chat của Hanna, project Hanna Test), mục 6, rule 43; đính kèm trong chat Desktop 15/10 15:04
+- Loại: L2-rule
+- Liên quan: FB-070 · FB-071 · FB-073
+- Địa chỉ: rules/tc-authoring.md rule 13
+- Tiêu chí kiểm: rule mới nằm trong rule có sẵn, không thêm số (Hanna 15/10: "gọn lại số rule"); `tc_check.py` bắt được lỗi khi có script
+- Phạm vi ảnh hưởng: mọi file TC SGS DTP từ lượt viết sau; không sửa file TC trong lượt này
+- Đã sửa: rule 43 (gộp vào rule 13); `rules/tc-authoring.md` v0.10, skill `tc-authoring` v0.8
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-080 · Step chưa rõ bấm vào đâu
+- Ngày: 2026-10-15
+- Nguồn: `HUONG-DAN_cap-nhat-rule-skill_2026-10-15.md` (phiên chat của Hanna, project Hanna Test), mục 6, rule 44; đính kèm trong chat Desktop 15/10 15:04
+- Loại: L2-rule
+- Liên quan: FB-070 · FB-071 · FB-073
+- Địa chỉ: rules/tc-authoring.md rule 14
+- Tiêu chí kiểm: rule mới nằm trong rule có sẵn, không thêm số (Hanna 15/10: "gọn lại số rule"); `tc_check.py` bắt được lỗi khi có script
+- Phạm vi ảnh hưởng: mọi file TC SGS DTP từ lượt viết sau; không sửa file TC trong lượt này
+- Đã sửa: rule 44 (gộp vào rule 14); `rules/tc-authoring.md` v0.10, skill `tc-authoring` v0.8
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-081 · UC có mà web chưa có: `[Phase 2]`, `[Ngoài Phase 1]`; độ phủ UC theo wave; `[OUT]`; mã TC không đánh lại
+- Ngày: 2026-10-15
+- Nguồn: `HUONG-DAN_cap-nhat-rule-skill_2026-10-15.md` (phiên chat của Hanna, project Hanna Test), mục 6, rule 46, 47, 49, 50; đính kèm trong chat Desktop 15/10 15:04
+- Loại: L2-rule
+- Liên quan: FB-070 · FB-071 · FB-073
+- Địa chỉ: rules/tc-authoring.md rule 10, 11, 40 · SKILL.md Bước 0 · profile.md wave
+- Tiêu chí kiểm: rule mới nằm trong rule có sẵn, không thêm số (Hanna 15/10: "gọn lại số rule"); `tc_check.py` bắt được lỗi khi có script
+- Phạm vi ảnh hưởng: mọi file TC SGS DTP từ lượt viết sau; không sửa file TC trong lượt này
+- Đã sửa: rule 46, 47, 49, 50 (gộp vào rule 10, 11, 40); `rules/tc-authoring.md` v0.10, skill `tc-authoring` v0.8
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-082 · So sánh v0.22 và v0.2_Phase1: chèn đúng nhóm, Test_Report theo nhóm, một số phiên bản, Priority Critical, một bộ rule duy nhất
+- Ngày: 2026-10-15
+- Nguồn: `HUONG-DAN_cap-nhat-rule-skill_2026-10-15.md` (phiên chat của Hanna, project Hanna Test), mục 6, rule 45, 53, 54, 55, 56; đính kèm trong chat Desktop 15/10 15:04
+- Loại: L2-rule
+- Liên quan: FB-070 · FB-071 · FB-073
+- Địa chỉ: rules/tc-authoring.md rule 8, 15, 24, 35 · CLAUDE.md · tc_rows.py (chờ file)
+- Tiêu chí kiểm: rule mới nằm trong rule có sẵn, không thêm số (Hanna 15/10: "gọn lại số rule"); `tc_check.py` bắt được lỗi khi có script
+- Phạm vi ảnh hưởng: mọi file TC SGS DTP từ lượt viết sau; không sửa file TC trong lượt này
+- Đã sửa: rule 45, 53, 54, 55, 56 (gộp vào rule 8, 15, 24, 35, CLAUDE.md); `rules/tc-authoring.md` v0.10, skill `tc-authoring` v0.8
+- Trạng thái: Đã vào rule (chờ duyệt)
 - Tái phát: 0

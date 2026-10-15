@@ -8,17 +8,23 @@
 - File TC hiện tại (14/10/2026): `exports/SGS-DTP_TestCase_v0.2_Phase1.xlsx` (dấu Phase 2 ở cột V, FB-071), dựng từ `exports/SGS-DTP_TestCase_v0.1_Phase1.xlsx` — bản tài khoản web dựng (23 sheet, theo UC v5.3), chép từ Downloads\SGS ngày 14/10; bản trước của nhánh đó và nhánh `SGS-DTP_TestCase1_v1.x` (tới v1.15) đã vào `_luu-tru/sgs-dtp-exports-cu/`, không dựng tiếp. Kế hoạch test và báo cáo phần thiếu TC: `tests/plan/`. UC baseline: `docs/source/00 Use case list/SGS DTP Use Case List v5.3.xlsx`
 - Hanna mở và sửa file TC bằng ONLYOFFICE (thấy trên ảnh chụp ngày 07/10)
 - Môi trường test / URL: chưa có
-- Nguồn thiết kế: Figma "SGS DTP DS" (figma.com/design/KM5Oc1DaB78FXOMimDyB0U/SGS-DTP-DS); tài liệu yêu cầu: SGS DTP Use Case List v4 (02/10/2026)
-## Quy tắc viết TC của dự án (ghi đè rule chung, FB-070, 14/10/2026)
-Hanna đặt cho SGS DTP Phase 1. Chỗ trái với `rules/tc-authoring.md` thì theo mục này.
-1. Step ghi rõ bấm gì, nhập gì để đi tới kết quả được kiểm ở Expected.
-2. Open question chỉ giữ khi các nguồn mâu thuẫn nhau hoặc thật sự cần kiểm tra; có trả lời thì xoá.
-3. Web/prototype đã thể hiện hành vi và hợp lý thì theo web, không đặt Open question. Web có nhiều tính năng hơn danh sách UC thì theo web (UC cập nhật sau). (Ghi đè rule 1, 2, 13 của rule chung.)
-4. Khi soát: câu hỏi người dùng đã xoá là đã giải quyết, không thêm lại, không tô đỏ lại dòng.
-5. UC có mà web chưa có: vẫn viết case, đánh dấu Phase 2 bằng chữ `Phase 2` ở cột **V (Remark của Round 2)**; tên case không mang tiền tố `[Phase 2]` (Hanna 14/10, FB-071).
-6. Thông báo lỗi chưa thấy trên web: viết theo mẫu thông báo sẵn có của app (không đoán được thì chỉ mô tả hành vi), cập nhật sau nếu web khác; không đặt Open question cho phần này.
-7. Dòng đăng nhập ở Pre-condition: `Login acc <role> (<tên tài khoản demo>) <điều kiện>`, vd `Login acc Customer Admin (Linh Tran) chưa có sự kiện nào`; không viết "Đăng nhập với acc …;". Thay quyết định `Logged in as <role>` ngày 05/10.
-   Tài khoản demo đang dùng: Customer Admin = Linh Tran (ABC Trading); Customer User = Wei Chen; Customer Viewer = Iris Huang; SGS Admin = Minh Nguyen (SGS Taiwan); Customer Admin tổ chức khác = Chen Wei-Ting (Formosa Chips) hoặc Quang Le (Saigon Foods).
+- Nguồn thiết kế: Figma DTP-P1 (file key `jluZdAkgifmZndi5hD12tt`; trước đây "SGS DTP DS" `KM5Oc1DaB78FXOMimDyB0U`); tài liệu yêu cầu: SGS DTP Use Case List v5.4 (13/10/2026)
+## Quy ước riêng của dự án (15/10/2026)
+Bảy quy tắc ngày 14/10 (FB-070) đã thành rule chung ở `rules/tc-authoring.md` v0.10 (rule 1, 13, 14, 40); mục này chỉ còn quy ước riêng của SGS DTP.
+- Người viết (ô Creator, tác giả file): **Hanna**.
+- Tài khoản demo (đổi bằng menu Demo, mật khẩu chung của hệ thống demo; reset dữ liệu trước khi chạy test): Customer Admin = Linh Tran (ABC Trading Co., Ltd.); Customer User = Wei Chen; Customer Viewer = Iris Huang; SGS Admin = Minh Nguyen (SGS Taiwan); Customer Admin tổ chức khác = Chen Wei-Ting (Formosa Chips Inc.) hoặc Quang Le (Saigon Foods JSC).
+- Tên tier hiện kèm tiếng Trung: `Medium · 中`.
+- Mở bằng URL scope hoặc workspace không có quyền hay không tồn tại: hiện `This scope doesn’t exist` / `This workspace doesn’t exist`, dòng dưới `It may have been removed, or it belongs to an organisation you can’t see.`
+- Mô hình consultant (v5.4, D56): đồng nghiệp cùng công ty là Customer User; consultant do khách hàng thuê là guest trong Customer Portal; consultant do SGS giới thiệu dùng Consultant Portal. Giao diện chỉ ghi "Consultant".
+- SGS Admin chỉ xem thông tin cơ bản của yêu cầu tư vấn, không duyệt hay từ chối (D57).
+- "Documents" đổi thành "Evidence Library" (D70).
+- Giới hạn upload: 20 file mỗi lần, mỗi file 100 MB (D63).
+- Wave của Phase 1 (phân chia 14/10):
+  - **Wave 1** (onboarding, setup, evidence): AUTH, ACC, USR, ROL, FWK, SCP, WSP, EVA, EVC, PRF-01, NTF-02, NTF-03.
+  - **Wave 2** (Bulk, NirmatAI, Certification, Training): BLK, INT, CFG, CRT, TRN, NTF-04.
+  - **Wave 3** (Consulting, Gap Analysis, Cockpit, Audit, Retention): SRQ, GAP, CKP, AUD, RET, MKT, NTF-01.
+- Nguồn hiện hành (15/10): UC List v5.4 (13/10); Open Questions Final Confirmation (13/10); Change Management (13/10); Figma DTP-P1 (file key `jluZdAkgifmZndi5hD12tt`); web demo `sgs-dtp-ds-demo-prototype.vercel.app`.
+- Đánh dấu Phase 2: theo rule 40 (tiền tố `[Phase 2]` ở tên case). Cách ghi `Phase 2` ở cột V (FB-071) chỉ áp cho file `v0.2_Phase1`; **chờ Hanna xác nhận** bỏ cách này.
 
 ## Quyết định đã chốt của dự án
 - 2026-10-05 · Hanna · File TC viết tiếng Anh, trừ cột Open question và sheet Cần xác nhận viết tiếng Việt; dòng đăng nhập ở Pre-condition ghi `Logged in as <role>` (thay bằng mục Quy tắc 7 ngày 14/10, FB-070), màn không cần đăng nhập ghi `Not logged in` (FB-031, FB-035)

@@ -25,7 +25,7 @@ Code Playwright: mỗi dự án một thư mục `automation/<dự-án>/` (sao t
 | 2 Check design | `design-check` | Điểm lệch thành câu hỏi |
 | 3 Baseline + test basis | `ba-analysis` bước 4–5 | Cổng 2: checklist "Sẵn sàng bàn giao" + review phiên mới |
 | 4 Thiết kế test | `test-design` | Cổng 3: `rtm_check.py` sạch + agent `coverage-reviewer` |
-| 5 File TC Excel | `tc-authoring` | `tc_check.py` sạch |
+| 5 File TC Excel | `tc-authoring` | `tc_fix_xlsx.py` và `tc_check.py` cùng 0 lỗi |
 | 6 Chạy manual | `manual-run` | Con người xác nhận mọi kết quả Fail |
 | 7 Automation | `write-e2e-spec` | Con người quyết khi màn hình trái với test basis |
 | Mọi nhận xét | `feedback-loop` | Chỉ người dùng chuyển FB sang `Đã duyệt` |
@@ -37,11 +37,12 @@ AI không tự duyệt. Phải dừng lại hỏi ở: câu CHẶN; baseline và
     python .claude/skills/feedback-loop/scripts/fb_report.py --log feedback/log.md --repo .        # đầu mỗi task
     python .claude/skills/ba-analysis/scripts/extract_uc_list.py <file.xlsx> <out.md> --summary summary.json
     python .claude/skills/test-design/scripts/rtm_check.py --basis projects/<p>/docs/test-basis/<tên>.md projects/<p>/tests/design/*.md --cases projects/<p>/tests/cases/*.md --out projects/<p>/tests/rtm.md
-    python .claude/skills/tc-authoring/scripts/tc_check.py projects/<p>/exports/<file>.xlsx
+    python .claude/skills/tc-authoring/scripts/tc_fix_xlsx.py projects/<p>/exports/<file>.xlsx --fix --creator <người viết>   # chờ file script
+    python .claude/skills/tc-authoring/scripts/tc_check.py projects/<p>/exports/<file>.xlsx --creator <người viết> [--uc <file UC>]
 Trong rule và skill, đường dẫn `skills/…` nghĩa là `.claude/skills/…`.
 
 ## Khi sửa hoặc thêm rule, skill (ở bất kỳ chat nào)
-Thư mục này là bản duy nhất. Thay đổi chỉ có hiệu lực khi đã ghi vào đây; không giữ rule mới trong chat.
+Thư mục này (repo `ThaVT-LTS/DTP` trên GitHub) là **một bộ rule duy nhất**: rule, skill, script chỉ sửa ở đây rồi đẩy lên GitHub; phiên chat và Claude Code đều đọc từ GitHub, không giữ bản rule riêng ở từng nơi. Thay đổi chỉ có hiệu lực khi đã ghi vào đây.
 1. Ghi bản ghi `FB-nnn` trong `feedback/log.md` (nguyên văn yêu cầu của người dùng).
 2. Sửa file rule/skill trong thư mục này, tăng version, thêm dòng changelog trỏ `FB-nnn`.
 3. Nếu thay đổi làm thêm, bỏ hoặc đổi tên một skill, một bước, một cổng hay một lệnh script: cập nhật bảng "Quy trình" và mục "Script" ở file này, và bảng câu lệnh mẫu trong `README.md`.

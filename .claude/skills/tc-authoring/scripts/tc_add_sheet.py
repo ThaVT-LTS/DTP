@@ -892,7 +892,7 @@ def main() -> int:
     ap.add_argument("--out", required=True)
     ap.add_argument("--function", default=None)
     ap.add_argument("--screen", default=None)
-    ap.add_argument("--creator", default=None)
+    ap.add_argument("--creator", required=True, help="người chịu trách nhiệm (rule 6), vd Hanna; không có mặc định")
     ap.add_argument("--created", default=None)
     ap.add_argument("--source", default=None)
     ap.add_argument("--report", default=None, help="tên sheet báo cáo cần dựng lại (vd Test_Report)")

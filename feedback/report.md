@@ -1,8 +1,8 @@
 # Báo cáo sổ góp ý
 
-Sinh tự động bởi `fb_report.py` — không sửa tay. Nguồn: `feedback/log.md`. Ngày: 2026-10-14.
+Sinh tự động bởi `fb_report.py` — không sửa tay. Nguồn: `feedback/log.md`. Ngày: 2026-10-15.
 
-Tổng: **72** bản ghi · lỗi: **0** · cảnh báo: **14**
+Tổng: **82** bản ghi · lỗi: **0** · cảnh báo: **17**
 
 ## Cần nạp khi bắt đầu task
 
@@ -79,6 +79,16 @@ Tổng: **72** bản ghi · lỗi: **0** · cảnh báo: **14**
 | FB-070 | Bảy quy tắc viết TC SGS DTP Phase 1 (từ bộ nhớ tài khoản web) | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
 | FB-071 | Đánh dấu Phase 2 ở cột Remark (V), không ở tên case | L4-mẫu | Đã sửa sản phẩm | chưa có |
 | FB-072 | Gom thư mục, file thừa của qa-pipeline vào một chỗ | L5-script | Đã sửa sản phẩm | chưa có |
+| FB-073 | Soát toàn bộ file TC v0.1 Phase 1 theo 3 wave, trả bản có nhận xét (không sửa) | L1-sản phẩm | Mới | chưa có |
+| FB-074 | Creator ghi Claude thay vì Hanna | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
+| FB-075 | File giao còn `{{…}}` | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
+| FB-076 | Ô trống, ô gộp hiện Arial; phông phải đúng ở mức XML | L5-script | Đã vào rule (chờ duyệt) | chưa có |
+| FB-077 | Dòng đăng nhập `Login acc <vai trò> <điều kiện>`, không `;` | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
+| FB-078 | Quá nhiều câu hỏi; câu đã xoá bị tô lại; thứ tự 5 nguồn; Expected đề xuất tô vàng; Đề xuất mặc định | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
+| FB-079 | Chữ báo lỗi chưa thấy trên web ghi theo mẫu của app | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
+| FB-080 | Step chưa rõ bấm vào đâu | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
+| FB-081 | UC có mà web chưa có: `[Phase 2]`, `[Ngoài Phase 1]`; độ phủ UC theo wave; `[OUT]`; mã TC không đánh lại | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
+| FB-082 | So sánh v0.22 và v0.2_Phase1: chèn đúng nhóm, Test_Report theo nhóm, một số phiên bản, Priority Critical, một bộ rule duy nhất | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
 
 ## Chờ người dùng duyệt
 
@@ -112,6 +122,15 @@ Tổng: **72** bản ghi · lỗi: **0** · cảnh báo: **14**
 - FB-064 · Vì sao vẫn bị comment nhiều: không cập nhật logic màn cũ, không tự soát trước khi giao (chưa sửa rule, skill; đề xuất ở câu trả lời của chat (chờ Hanna chọn))
 - FB-067 · Opus soát một lần cho đủ lỗi, không tìm lắt nhắt qua nhiều vòng (`rules/tc-authoring.md` rule 39 · `.claude/skills/tc-authoring/SKILL.md` chế độ soát chéo bước 2b)
 - FB-070 · Bảy quy tắc viết TC SGS DTP Phase 1 (từ bộ nhớ tài khoản web) (`projects/sgs-dtp/profile.md` mục "Quy tắc viết TC của dự án" · `rules/tc-authoring.md` v0.9 rule 1, 2, 13, 38, 40)
+- FB-074 · Creator ghi Claude thay vì Hanna (rules/tc-authoring.md rule 6 · tc_add_sheet.py `--creator` bắt buộc)
+- FB-075 · File giao còn `{{…}}` (rules/tc-authoring.md rule 14)
+- FB-076 · Ô trống, ô gộp hiện Arial; phông phải đúng ở mức XML (rules/tc-authoring.md rule 18, 38 · tc_fix_xlsx.py (chờ file))
+- FB-077 · Dòng đăng nhập `Login acc <vai trò> <điều kiện>`, không `;` (rules/tc-authoring.md rule 14, 24)
+- FB-078 · Quá nhiều câu hỏi; câu đã xoá bị tô lại; thứ tự 5 nguồn; Expected đề xuất tô vàng; Đề xuất mặc định (rules/tc-authoring.md rule 1, 2, 13, 23, 36)
+- FB-079 · Chữ báo lỗi chưa thấy trên web ghi theo mẫu của app (rules/tc-authoring.md rule 13)
+- FB-080 · Step chưa rõ bấm vào đâu (rules/tc-authoring.md rule 14)
+- FB-081 · UC có mà web chưa có: `[Phase 2]`, `[Ngoài Phase 1]`; độ phủ UC theo wave; `[OUT]`; mã TC không đánh lại (rules/tc-authoring.md rule 10, 11, 40 · SKILL.md Bước 0 · profile.md wave)
+- FB-082 · So sánh v0.22 và v0.2_Phase1: chèn đúng nhóm, Test_Report theo nhóm, một số phiên bản, Priority Critical, một bộ rule duy nhất (rules/tc-authoring.md rule 8, 15, 24, 35 · CLAUDE.md · tc_rows.py (chờ file))
 
 ## Thống kê
 
@@ -119,18 +138,18 @@ Tổng: **72** bản ghi · lỗi: **0** · cảnh báo: **14**
 |---|---|
 | Bị bác | 1 |
 | Chưa rõ phạm vi | 4 |
-| Mới | 14 |
+| Mới | 15 |
 | Đã duyệt | 8 |
 | Đã sửa sản phẩm | 15 |
-| Đã vào rule (chờ duyệt) | 30 |
+| Đã vào rule (chờ duyệt) | 39 |
 
 | Loại | Số lượng |
 |---|---|
-| L1-sản phẩm | 4 |
-| L2-rule | 30 |
+| L1-sản phẩm | 5 |
+| L2-rule | 38 |
 | L3-checklist | 4 |
 | L4-mẫu | 13 |
-| L5-script | 5 |
+| L5-script | 6 |
 | L6-tri thức | 16 |
 
 ## Lỗi
@@ -139,17 +158,20 @@ Không có.
 
 ## Cảnh báo
 
-- FB-002 · đứng ở 'Mới' 15 ngày
-- FB-003 · đứng ở 'Mới' 15 ngày
-- FB-004 · đứng ở 'Mới' 15 ngày
-- FB-005 · đứng ở 'Mới' 15 ngày
-- FB-006 · đứng ở 'Mới' 15 ngày
-- FB-007 · đứng ở 'Mới' 15 ngày
-- FB-008 · đứng ở 'Mới' 15 ngày
-- FB-009 · đứng ở 'Mới' 15 ngày
-- FB-018 · đứng ở 'Mới' 13 ngày
-- FB-022 · đứng ở 'Chưa rõ phạm vi' 12 ngày
-- FB-023 · đứng ở 'Mới' 12 ngày
-- FB-024 · đứng ở 'Mới' 12 ngày
-- FB-025 · đứng ở 'Chưa rõ phạm vi' 12 ngày
+- FB-002 · đứng ở 'Mới' 16 ngày
+- FB-003 · đứng ở 'Mới' 16 ngày
+- FB-004 · đứng ở 'Mới' 16 ngày
+- FB-005 · đứng ở 'Mới' 16 ngày
+- FB-006 · đứng ở 'Mới' 16 ngày
+- FB-007 · đứng ở 'Mới' 16 ngày
+- FB-008 · đứng ở 'Mới' 16 ngày
+- FB-009 · đứng ở 'Mới' 16 ngày
+- FB-018 · đứng ở 'Mới' 14 ngày
+- FB-022 · đứng ở 'Chưa rõ phạm vi' 13 ngày
+- FB-023 · đứng ở 'Mới' 13 ngày
+- FB-024 · đứng ở 'Mới' 13 ngày
+- FB-025 · đứng ở 'Chưa rõ phạm vi' 13 ngày
 - FB-034 · tái phát 1 lần, Gate 'mức 1 · nâng mức 3 được cho phần tìm chuỗi' — nên nâng một mức
+- FB-048 · đứng ở 'Chưa rõ phạm vi' 8 ngày
+- FB-050 · đứng ở 'Mới' 8 ngày
+- FB-051 · đứng ở 'Chưa rõ phạm vi' 8 ngày
