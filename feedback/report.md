@@ -1,8 +1,8 @@
 # Báo cáo sổ góp ý
 
-Sinh tự động bởi `fb_report.py` — không sửa tay. Nguồn: `feedback/log.md`. Ngày: 2026-10-15.
+Sinh tự động bởi `fb_report.py` — không sửa tay. Nguồn: `feedback\log.md`. Ngày: 2026-10-20.
 
-Tổng: **82** bản ghi · lỗi: **0** · cảnh báo: **17**
+Tổng: **98** bản ghi · lỗi: **0** · cảnh báo: **19**
 
 ## Cần nạp khi bắt đầu task
 
@@ -89,6 +89,22 @@ Tổng: **82** bản ghi · lỗi: **0** · cảnh báo: **17**
 | FB-080 | Step chưa rõ bấm vào đâu | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
 | FB-081 | UC có mà web chưa có: `[Phase 2]`, `[Ngoài Phase 1]`; độ phủ UC theo wave; `[OUT]`; mã TC không đánh lại | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
 | FB-082 | So sánh v0.22 và v0.2_Phase1: chèn đúng nhóm, Test_Report theo nhóm, một số phiên bản, Priority Critical, một bộ rule duy nhất | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
+| FB-083 | Case `[OUT]` phải xoá khỏi file TC, không giữ lại | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
+| FB-084 | Câu hỏi Cần xác nhận đã đóng thì xoá khỏi sheet; câu trả lời đưa vào Expected | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
+| FB-085 | Không thêm sheet mới vào file TC; báo cáo, rà soát, bug để ở file riêng | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
+| FB-086 | Mã TC đồng nhất với cột No. | L2-rule | Chưa rõ phạm vi | chưa có |
+| FB-087 | Bộ case abnormal cho ô nhập: biên độ dài, vượt 1 ký tự, sai định dạng nhiều dạng, dữ liệu đặc biệt — viết rõ cách tạo chuỗi | L3-checklist | Đã vào rule (chờ duyệt) | chưa có |
+| FB-088 | Hộp thoại nhiều bước: nhóm case theo từng bước (tab) | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
+| FB-089 | Pre-condition ngắn gọn, đánh số: môi trường → tài khoản → điều kiện dữ liệu | L4-mẫu | Đã vào rule (chờ duyệt) | chưa có |
+| FB-090 | Remark "Thực tế" tách dòng, có tên và số liệu thật; nêu đúng vấn đề | L4-mẫu | Đã vào rule (chờ duyệt) | chưa có |
+| FB-091 | Kết quả Fail phải có file bằng chứng kèm ảnh, dạng như E2E | L4-mẫu | Đã vào rule (chờ duyệt) | chưa có |
+| FB-092 | Bug gộp theo nguyên nhân; bug phát hiện khi test tự do thì thêm cả case | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
+| FB-093 | Kết quả: Failed khi lệch cả thiết kế; Pending cho UC chưa Done theo Plan, giữ case không bỏ | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
+| FB-094 | Sheet E2E: mỗi bước có ảnh Figma màn thao tác, ảnh Figma kết quả mong đợi và ảnh thực tế | L4-mẫu | Đã vào rule (chờ duyệt) | chưa có |
+| FB-095 | Quyết định của dev / dự án đè Figma thì TC theo quyết định đó | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
+| FB-096 | Chỉ chạy test trên localhost; luôn nêu rõ môi trường, nhánh, commit, ngày | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
+| FB-097 | Rà soát TC theo Figma, UC và web: từng case Xoá / Sửa / Lệch web / Wave sau / OK, chỉ wave đang làm, chưa sửa khi chưa có lệnh | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
+| FB-098 | Lệch giữa quy ước dự án và web hiện tại cần người dùng chốt (404 scope; Documents / Evidence Library) | L6-tri thức | Chưa rõ phạm vi | chưa có |
 
 ## Chờ người dùng duyệt
 
@@ -131,26 +147,40 @@ Tổng: **82** bản ghi · lỗi: **0** · cảnh báo: **17**
 - FB-080 · Step chưa rõ bấm vào đâu (rules/tc-authoring.md rule 14)
 - FB-081 · UC có mà web chưa có: `[Phase 2]`, `[Ngoài Phase 1]`; độ phủ UC theo wave; `[OUT]`; mã TC không đánh lại (rules/tc-authoring.md rule 10, 11, 40 · SKILL.md Bước 0 · profile.md wave)
 - FB-082 · So sánh v0.22 và v0.2_Phase1: chèn đúng nhóm, Test_Report theo nhóm, một số phiên bản, Priority Critical, một bộ rule duy nhất (rules/tc-authoring.md rule 8, 15, 24, 35 · CLAUDE.md · tc_rows.py (chờ file))
+- FB-083 · Case `[OUT]` phải xoá khỏi file TC, không giữ lại (rules/tc-authoring.md rule 10, 40)
+- FB-084 · Câu hỏi Cần xác nhận đã đóng thì xoá khỏi sheet; câu trả lời đưa vào Expected (rules/tc-authoring.md rule 13)
+- FB-085 · Không thêm sheet mới vào file TC; báo cáo, rà soát, bug để ở file riêng (rules/tc-authoring.md rule 3)
+- FB-087 · Bộ case abnormal cho ô nhập: biên độ dài, vượt 1 ký tự, sai định dạng nhiều dạng, dữ liệu đặc biệt — viết rõ cách tạo chuỗi (rules/tc-authoring.md rule 15)
+- FB-088 · Hộp thoại nhiều bước: nhóm case theo từng bước (tab) (rules/tc-authoring.md rule 7)
+- FB-089 · Pre-condition ngắn gọn, đánh số: môi trường → tài khoản → điều kiện dữ liệu (rules/tc-authoring.md rule 14 · skills/e2e-flow/SKILL.md)
+- FB-090 · Remark "Thực tế" tách dòng, có tên và số liệu thật; nêu đúng vấn đề (rules/automation.md rule 20 · skills/manual-run/SKILL.md bước 4)
+- FB-091 · Kết quả Fail phải có file bằng chứng kèm ảnh, dạng như E2E (skills/bug-evidence/SKILL.md · rules/automation.md rule 21)
+- FB-092 · Bug gộp theo nguyên nhân; bug phát hiện khi test tự do thì thêm cả case (rules/automation.md rule 21)
+- FB-093 · Kết quả: Failed khi lệch cả thiết kế; Pending cho UC chưa Done theo Plan, giữ case không bỏ (rules/automation.md rule 19)
+- FB-094 · Sheet E2E: mỗi bước có ảnh Figma màn thao tác, ảnh Figma kết quả mong đợi và ảnh thực tế (skills/e2e-flow/SKILL.md)
+- FB-095 · Quyết định của dev / dự án đè Figma thì TC theo quyết định đó (rules/tc-authoring.md rule 1)
+- FB-096 · Chỉ chạy test trên localhost; luôn nêu rõ môi trường, nhánh, commit, ngày (rules/automation.md rule 22 · projects/sgs-dtp/profile.md)
+- FB-097 · Rà soát TC theo Figma, UC và web: từng case Xoá / Sửa / Lệch web / Wave sau / OK, chỉ wave đang làm, chưa sửa khi chưa có lệnh (skills/tc-review/SKILL.md (mới) · rules/feedback.md rule 15)
 
 ## Thống kê
 
 | Trạng thái | Số lượng |
 |---|---|
 | Bị bác | 1 |
-| Chưa rõ phạm vi | 4 |
+| Chưa rõ phạm vi | 6 |
 | Mới | 15 |
 | Đã duyệt | 8 |
 | Đã sửa sản phẩm | 15 |
-| Đã vào rule (chờ duyệt) | 39 |
+| Đã vào rule (chờ duyệt) | 53 |
 
 | Loại | Số lượng |
 |---|---|
 | L1-sản phẩm | 5 |
-| L2-rule | 38 |
-| L3-checklist | 4 |
-| L4-mẫu | 13 |
+| L2-rule | 48 |
+| L3-checklist | 5 |
+| L4-mẫu | 17 |
 | L5-script | 6 |
-| L6-tri thức | 16 |
+| L6-tri thức | 17 |
 
 ## Lỗi
 
@@ -158,20 +188,22 @@ Không có.
 
 ## Cảnh báo
 
-- FB-002 · đứng ở 'Mới' 16 ngày
-- FB-003 · đứng ở 'Mới' 16 ngày
-- FB-004 · đứng ở 'Mới' 16 ngày
-- FB-005 · đứng ở 'Mới' 16 ngày
-- FB-006 · đứng ở 'Mới' 16 ngày
-- FB-007 · đứng ở 'Mới' 16 ngày
-- FB-008 · đứng ở 'Mới' 16 ngày
-- FB-009 · đứng ở 'Mới' 16 ngày
-- FB-018 · đứng ở 'Mới' 14 ngày
-- FB-022 · đứng ở 'Chưa rõ phạm vi' 13 ngày
-- FB-023 · đứng ở 'Mới' 13 ngày
-- FB-024 · đứng ở 'Mới' 13 ngày
-- FB-025 · đứng ở 'Chưa rõ phạm vi' 13 ngày
+- FB-002 · đứng ở 'Mới' 21 ngày
+- FB-003 · đứng ở 'Mới' 21 ngày
+- FB-004 · đứng ở 'Mới' 21 ngày
+- FB-005 · đứng ở 'Mới' 21 ngày
+- FB-006 · đứng ở 'Mới' 21 ngày
+- FB-007 · đứng ở 'Mới' 21 ngày
+- FB-008 · đứng ở 'Mới' 21 ngày
+- FB-009 · đứng ở 'Mới' 21 ngày
+- FB-018 · đứng ở 'Mới' 19 ngày
+- FB-022 · đứng ở 'Chưa rõ phạm vi' 18 ngày
+- FB-023 · đứng ở 'Mới' 18 ngày
+- FB-024 · đứng ở 'Mới' 18 ngày
+- FB-025 · đứng ở 'Chưa rõ phạm vi' 18 ngày
 - FB-034 · tái phát 1 lần, Gate 'mức 1 · nâng mức 3 được cho phần tìm chuỗi' — nên nâng một mức
-- FB-048 · đứng ở 'Chưa rõ phạm vi' 8 ngày
-- FB-050 · đứng ở 'Mới' 8 ngày
-- FB-051 · đứng ở 'Chưa rõ phạm vi' 8 ngày
+- FB-048 · đứng ở 'Chưa rõ phạm vi' 13 ngày
+- FB-050 · đứng ở 'Mới' 13 ngày
+- FB-051 · đứng ở 'Chưa rõ phạm vi' 13 ngày
+- FB-060 · đứng ở 'Mới' 11 ngày
+- FB-061 · đứng ở 'Mới' 11 ngày
