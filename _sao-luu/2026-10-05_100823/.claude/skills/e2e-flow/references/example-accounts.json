@@ -1,0 +1,77 @@
+{
+  "_sources": {
+    "seed": "Có sẵn (seed)",
+    "onboard": "Tạo trước khi chạy bằng UI: SGS Admin tạo khách hàng Hsinchu AI Labs + mời, rồi kích hoạt (các bước như E2E1_001)",
+    "db": "Tạo trước qua DB (màn Users phía Customer chưa có nên không tạo bằng UI được)"
+  },
+  "E2E1_001": [
+    { "role": "SGS Admin", "persona": "Lin Mei (SGS Taiwan)", "portal": "ops", "email": "lin.mei@example.com", "source": "seed" },
+    { "role": "Customer Admin", "persona": "張雅婷 (người được mời)", "portal": "customer", "email": "yt.chang+{run}@hsinchu-ai.com", "source": "Tạo trong luồng: SGS Admin mời ở bước 3, kích hoạt ở bước 7. Mỗi lần chạy dùng email mới." }
+  ],
+  "E2E1_002": [
+    { "role": "SGS Admin", "persona": "Lin Mei (SGS Taiwan)", "portal": "ops", "email": "lin.mei@example.com", "source": "seed — chỉ dùng để tạo khách hàng tiền đề" },
+    { "role": "Customer Admin", "persona": "張雅婷", "portal": "customer", "email": "yt.chang+{run}@hsinchu-ai.com", "source": "onboard" },
+    { "role": "Customer User", "persona": "Kevin Wu (người được mời)", "portal": "customer", "email": "kevin.wu+{run}@hsinchu-ai.com", "source": "Lời mời tạo trước qua DB (màn Users phía Customer chưa có); kích hoạt ở bước 4" }
+  ],
+  "E2E1_003": [
+    { "role": "SGS Admin", "persona": "Lin Mei (SGS Taiwan)", "portal": "ops", "email": "lin.mei@example.com", "source": "seed" },
+    { "role": "Customer Admin", "persona": "張雅婷", "portal": "customer", "email": "yt.chang+{run}@hsinchu-ai.com", "source": "onboard" }
+  ],
+  "E2E1_004": [
+    { "role": "Customer Admin", "persona": "張雅婷 → dùng Kevin Lin", "portal": "customer", "email": "kevin.lin@example.com", "source": "seed — dùng thay 張雅婷 vì workspace chỉ có dữ liệu cho tổ chức Development organisation" }
+  ],
+  "E2E1_005": [
+    { "role": "Customer Admin", "persona": "張雅婷 → dùng Kevin Lin", "portal": "customer", "email": "kevin.lin@example.com", "source": "seed — dùng thay 張雅婷 (tổ chức Development organisation)" },
+    { "role": "Customer User", "persona": "Kevin Wu → dùng Jason Chen", "portal": "customer", "email": "jason.chen@example.com", "source": "seed — dùng thay Kevin Wu" },
+    { "role": "Customer Viewer", "persona": "Iris Huang → dùng Peggy Lai", "portal": "customer", "email": "peggy.lai@example.com", "source": "seed — dùng thay Iris Huang" }
+  ],
+  "E2E1_006": [
+    { "role": "Customer User", "persona": "Kevin Wu → dùng Jason Chen", "portal": "customer", "email": "jason.chen@example.com", "source": "seed — dùng thay Kevin Wu" },
+    { "role": "Customer Admin", "persona": "張雅婷 → dùng Kevin Lin", "portal": "customer", "email": "kevin.lin@example.com", "source": "seed — dùng thay 張雅婷 (tổ chức Development organisation)" }
+  ],
+  "E2E1_007": [
+    { "role": "Customer Admin", "persona": "張雅婷 → dùng Kevin Lin", "portal": "customer", "email": "kevin.lin@example.com", "source": "seed — dùng thay 張雅婷 (tổ chức Development organisation)" },
+    { "role": "Customer User", "persona": "Kevin Wu → dùng Jason Chen", "portal": "customer", "email": "jason.chen@example.com", "source": "seed — dùng thay Kevin Wu" }
+  ],
+  "E2E1_008": [
+    { "role": "Customer Admin", "persona": "張雅婷 → dùng Kevin Lin", "portal": "customer", "email": "kevin.lin@example.com", "source": "seed — dùng thay 張雅婷 (tổ chức Development organisation)" }
+  ],
+  "E2E1_009": [
+    { "role": "SGS Admin", "persona": "Lin Mei (SGS Taiwan)", "portal": "ops", "email": "lin.mei@example.com", "source": "seed" },
+    { "role": "Customer Admin", "persona": "張雅婷 — Hsinchu AI Labs", "portal": "customer", "email": "yt.chang+{run}@hsinchu-ai.com", "source": "onboard" },
+    { "role": "Customer Admin", "persona": "Kevin Lin — tổ chức khác", "portal": "customer", "email": "kevin.lin@example.com", "source": "seed — local không có Formosa Payments Ltd.; dùng tổ chức Development organisation của Kevin Lin" },
+    { "role": "Customer User", "persona": "Kevin Wu — Hsinchu AI Labs", "portal": "customer", "email": "kevin.wu+{run}@hsinchu-ai.com", "source": "db" },
+    { "role": "Customer Viewer", "persona": "Iris Huang — Hsinchu AI Labs", "portal": "customer", "email": "iris.huang+{run}@hsinchu-ai.com", "source": "db" },
+    { "role": "SGS Admin", "persona": "SGS Admin affiliate khác (SGS Hong Kong)", "portal": "ops", "email": "hk.admin+{run}@example.com", "source": "Tạo trước qua DB cùng affiliate SGS Hong Kong (chưa có màn tạo affiliate / SGS user)" }
+  ],
+  "E2E1_010": [
+    { "role": "SGS Admin", "persona": "Lin Mei (SGS Taiwan)", "portal": "ops", "email": "lin.mei@example.com", "source": "seed — chỉ dùng để tạo khách hàng tiền đề" },
+    { "role": "Customer Admin", "persona": "張雅婷", "portal": "customer", "email": "yt.chang+{run}@hsinchu-ai.com", "source": "onboard" },
+    { "role": "Customer Viewer", "persona": "Iris Huang (người được mời)", "portal": "customer", "email": "iris.huang+{run}@hsinchu-ai.com", "source": "Lời mời tạo trước qua DB, ngày mời lùi 8 ngày để hết hạn (màn Users phía Customer chưa có)" },
+    { "role": "Customer User", "persona": "Tom Lai (người được mời, bị thu hồi)", "portal": "customer", "email": "tom.lai+{run}@hsinchu-ai.com", "source": "Lời mời + thu hồi tạo qua DB (màn Users phía Customer chưa có)" }
+  ],
+  "E2E1_011": [
+    { "role": "Customer Admin", "persona": "張雅婷", "portal": "customer", "email": "yt.chang+{run}@hsinchu-ai.com", "source": "Tạo trước qua DB trong tổ chức Development organisation (để không đổi ngôn ngữ của tài khoản seed)" },
+    { "role": "Customer User", "persona": "Kevin Wu", "portal": "customer", "email": "kevin.wu+{run}@hsinchu-ai.com", "source": "db" },
+    { "role": "Customer Viewer", "persona": "Iris Huang", "portal": "customer", "email": "iris.huang+{run}@hsinchu-ai.com", "source": "db" }
+  ],
+  "E2E1_012": [
+    { "role": "SGS Admin", "persona": "Lin Mei (SGS Taiwan)", "portal": "ops", "email": "lin.mei@example.com", "source": "seed" },
+    { "role": "Customer Admin", "persona": "張雅婷", "portal": "customer", "email": "yt.chang+{run}@hsinchu-ai.com", "source": "onboard" }
+  ],
+  "E2E1_013": [
+    { "role": "SGS Admin", "persona": "Lin Mei (SGS Taiwan)", "portal": "ops", "email": "lin.mei@example.com", "source": "seed" },
+    { "role": "Customer Admin", "persona": "張雅婷", "portal": "customer", "email": "yt.chang+{run}@hsinchu-ai.com", "source": "onboard" }
+  ],
+  "E2E1_014": [
+    { "role": "SGS Admin", "persona": "Lin Mei (SGS Taiwan)", "portal": "ops", "email": "lin.mei@example.com", "source": "seed — chỉ dùng để tạo khách hàng tiền đề" },
+    { "role": "Customer Admin", "persona": "張雅婷", "portal": "customer", "email": "yt.chang+{run}@hsinchu-ai.com", "source": "onboard" },
+    { "role": "Customer User", "persona": "Kevin Wu", "portal": "customer", "email": "kevin.wu+{run}@hsinchu-ai.com", "source": "db" }
+  ],
+  "E2E1_015": [
+    { "role": "SGS Admin", "persona": "Lin Mei (SGS Taiwan)", "portal": "ops", "email": "lin.mei@example.com", "source": "seed — chỉ dùng để tạo khách hàng tiền đề" },
+    { "role": "Customer Admin", "persona": "張雅婷", "portal": "customer", "email": "yt.chang+{run}@hsinchu-ai.com", "source": "onboard" },
+    { "role": "Customer User", "persona": "Kevin Wu", "portal": "customer", "email": "kevin.wu+{run}@hsinchu-ai.com", "source": "db" },
+    { "role": "Customer Viewer", "persona": "Iris Huang", "portal": "customer", "email": "iris.huang+{run}@hsinchu-ai.com", "source": "db" }
+  ]
+}

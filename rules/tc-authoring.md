@@ -1,6 +1,6 @@
 # Rule — Viết test case (tc-authoring)
 
-Phiên bản: v0.10 · Nạp cùng `rules/common.md`, `rules/feedback.md`, `rules/tester.md` khi viết hoặc sửa file test case. Quy trình chi tiết: skill `tc-authoring`.
+Phiên bản: v0.11 · Nạp cùng `rules/common.md`, `rules/feedback.md`, `rules/tester.md` khi viết hoặc sửa file test case. Quy trình chi tiết: skill `tc-authoring`.
 
 Rule này nói về **file test case bàn giao được**: tổ chức, nội dung, và định dạng. Phần kỹ thuật thiết kế (phân vùng tương đương, bảng quyết định, chuyển trạng thái) vẫn ở `rules/tester.md` và skill `test-design`.
 
@@ -11,11 +11,13 @@ Rule này nói về **file test case bàn giao được**: tổ chức, nội du
     - Web có nhiều chức năng hơn UC → vẫn viết theo web; UC xếp chức năng đó vào Phase 2 thì cột UC ghi mã `P2-…`.
     - UC có mà web và Figma chưa có → vẫn viết case, theo rule 40.
     - Web sai rõ ràng (lỗi chính tả, dữ liệu hai chỗ lệch nhau, phi logic) → Expected ghi điều đúng; case sẽ fail và thành bug.
+    - **Dev hoặc dự án đã bỏ, đổi có chủ đích** một chi tiết của Figma (có người xác nhận, ngày, commit) → Expected theo web, ghi căn cứ ở Remark; không đánh Failed. Vd 19/10: dòng `Your affiliate. New customers always belong to it.` dev bỏ ở commit 48e50cb (FB-095).
 2. Lệch nhau mà **không áp được rule 1** thì ghi thành câu hỏi `Q-<mã màn>-nn` (rule 13, 23), không tự chọn bên nào.
 
 ## B. Tổ chức file
 
 3. **Một màn hình một sheet.** Màn hình tính theo mục menu: danh sách, chi tiết, hộp thoại, panel mở từ cùng một mục menu mặc định nằm chung một sheet, như sheet `Scopes` gồm cả Danh sách và Chi tiết; phần nào đủ lớn thì tách (rule 25). Tên sheet lấy đúng tên mục menu của hệ thống, không dịch, không viết tắt; sheet tách ra thì lấy tên màn như trên giao diện. Vai trò, gộp và tách: mục G.
+    - **Không thêm sheet mới vào file TC** khi người dùng không yêu cầu. Báo cáo rà soát, kết quả chạy có ảnh, danh sách bug để ở file riêng (FB-085).
 4. Trong sheet, TC xếp theo **khu vực**; thứ tự khu vực theo mắt đọc: trên → dưới trong một cột, hết cột trái sang cột phải. Màn có danh sách thì xếp theo vòng đời dữ liệu trước: mở màn → trạng thái rỗng (Empty state) → tạo mới → các khu vực cần có dữ liệu (bảng, tìm kiếm, lọc, phân trang); trong từng chặng vẫn theo mắt đọc.
 5. **Luồng nghiệp vụ xuyên màn** có sheet riêng `FLOW-nn`, không nhét vào sheet màn hình. Mỗi bước trong luồng ghi rõ màn hình thực hiện.
 6. Đầu mỗi sheet có khối thông tin: tên chức năng · tên màn · người viết · ngày tạo · nguồn tham chiếu.
@@ -35,6 +37,8 @@ Rule này nói về **file test case bàn giao được**: tổ chức, nội du
 
 Ví dụ trên là file TC tiếng Anh. Mỗi ô ghi một thứ tiếng theo ngôn ngữ của file (rule 16), vd `Login`, không ghi `Đăng nhập - Login`. Tên nhóm kiểm dùng bảng từ cố định ở `references/format.md` §7.
 
+**Hộp thoại, wizard nhiều bước** (FB-088): mọi case của nó nằm liền một khối dưới cùng cấp I; cấp II là **tên bước như trên giao diện** (vd `Bước 1 · Account`, `Bước 2 · Invite initial Customer Admin`), thêm nhóm `Sau khi tạo` cho các case kiểm ở nơi hành động trả về. Case Hiển thị của mỗi bước kiểm trạng thái thanh bước (bước đang làm, đã xong, chưa tới; bấm tên bước có chuyển bước không). Các case validation của bước nào đặt ở bước đó.
+
 8. **Xếp case sao cho cùng nhóm kết quả nằm liền nhau.** Xen kẽ thì không gộp ô được, và người đọc mất mạch.
     - Case mà bước cuối là bấm nút gửi (vd `Create scope`, `Save`, `Link and create workspace`) nhưng **không lưu được** — bỏ trống trường bắt buộc, chỉ có khoảng trắng, trùng tên, quá giới hạn — nằm trong nhóm **Không thành công** của khu vực, cùng các case Cancel, ×, Esc. Không lập nhóm Kiểm tra dữ liệu riêng cho các case đó.
     - Thứ tự trong một khu vực: **Hiển thị → Nhập liệu → Không thành công → Thành công** (Hanna 15/10).
@@ -48,15 +52,16 @@ Ví dụ trên là file TC tiếng Anh. Mỗi ô ghi một thứ tiếng theo ng
 
 ## D. Nội dung một dòng
 
-10. Mỗi TC có đúng một `UC_ID`. Không map được thì ghi `[NGOÀI UC]` kèm lý do, không để trống. Case `[OUT]`, `[Phase 2]` vẫn giữ mã UC gốc (rule 40).
+10. Mỗi TC có đúng một `UC_ID`. Không map được thì ghi `[NGOÀI UC]` kèm lý do, không để trống. Case `[Phase 2]` giữ mã UC gốc (rule 40); case lỗi thời bị xoá khỏi file, không còn tiền tố `[OUT]` (rule 40, FB-083).
 11. `TVP_ID` duy nhất trong sheet, theo mẫu `TC_nnn`. Tham chiếu từ ngoài dùng `<tên sheet>_TC_nnn`.
+    - **Mã TC đồng nhất với cột No.**: `TC_` + số No. 3 chữ số (FB-086, thay quy định "không đánh lại mã" của FB-081). Đánh lại mã thì cập nhật mọi tham chiếu: sheet `Cần xác nhận`, file bug, file E2E. **Chờ chốt** cách làm khi thêm case: (a) chèn đúng nhóm rồi đánh lại toàn bộ, hay (b) nối case mới vào cuối sheet để mã cũ không đổi (cách đã dùng cho TC_100 sheet Customers, 20/10).
     - **Mã TC không bao giờ đánh lại** sau khi file đã giao cho người dùng hoặc đã đưa lên Azure DevOps. Case mới lấy mã kế tiếp; case bỏ đi không xoá, không dùng lại mã mà đánh dấu `[OUT]` (rule 40).
 12. Kết quả mong đợi phải **quan sát được**: text nguyên văn, màn hình đích, trạng thái, dữ liệu thay đổi. Cấm "hoạt động bình thường", "hiển thị đúng", "thành công" mà không nói thấy gì; tiếng Anh cũng vậy, vd "works normally", "displays correctly", "as expected".
     - Ghi thẳng trong ô: không trỏ sang TC khác ("giống TC_006"), không ghi "ở cả hai màn" mà không nêu tên từng màn.
     - Từ hai mục trở lên (cột, trường, lựa chọn, nút) thì mỗi mục một dòng `- <mục>`, không nối bằng " · "; chỉ giữ " · " khi đó là chữ thật trên giao diện.
 13. **Open question tinh gọn.** Chỉ đặt câu hỏi khi các nguồn mâu thuẫn mà không áp được rule 1, hoặc khi đọc hết các nguồn đang có (rule 36) vẫn chưa có căn cứ để viết Expected. Khi đó **để trống Expected**, ghi câu hỏi vào `Open question` và **tô màu ô** theo bảng màu. Tự đặt text chưa ai duyệt sẽ tạo bug giả.
     - Kết quả **suy ra** mà không nguồn nào nêu thì không viết thành câu khẳng định: để trống và hỏi, hoặc viết theo dạng **đề xuất**: tô **vàng `FFF2CC`** ô UC, giữ câu hỏi ở Open question, đưa vào sheet `Cần xác nhận` kèm "Đề xuất mặc định" (rule 23). Tester chạy theo đề xuất; BA chỉ cần xác nhận hoặc sửa.
-    - **Câu đã có trả lời** (người dùng trả lời, nguồn khác đã nêu, case khác đã kiểm ra): ghi câu trả lời vào Expected, xoá câu hỏi ở case và ở sheet `Cần xác nhận`, bỏ tô màu.
+    - **Câu đã có trả lời** (người dùng trả lời, nguồn khác đã nêu, case khác đã kiểm ra, web đã hiện): ghi câu trả lời vào Expected, xoá câu hỏi ở case và **xoá dòng ở sheet `Cần xác nhận`**, bỏ tô màu. Áp cả khi rà soát hàng loạt: câu kết luận Đóng thì xoá dòng (FB-084).
     - **Câu người dùng đã xoá là đã xử lý**: khi viết lại hay soát chéo không thêm lại, không tô lại.
     - **Chữ báo lỗi chưa thấy trên web** ghi theo mẫu của ứng dụng, không đặt câu hỏi; đoán không chắc thì chỉ ghi hành vi (không lưu, ô viền đỏ, có lỗi dưới ô). Ô Reference ghi "chạy thấy khác thì sửa theo web". Mẫu:
 
@@ -69,6 +74,8 @@ Ví dụ trên là file TC tiếng Anh. Mỗi ô ghi một thứ tiếng theo ng
 
 14. **Viết bằng chữ, cho Tester đọc là chạy được.**
     - **Dòng đăng nhập ở Pre-condition:** `Login acc <vai trò> (<tên tài khoản>) <điều kiện>`, **không dùng dấu `;` sau vai trò**. Điều kiện bắt đầu bằng có, chưa có, được, đã… thì viết liền sau, vd `Login acc Customer Admin (Linh Tran) chưa có sự kiện nào`, `Login acc Customer Viewer (Iris Huang) được gán scope [System], không được gán scope [Organization]`; điều kiện khác nối bằng dấu phẩy, vd `Login acc Customer Admin của Formosa Chips Inc. (Chen Wei-Ting), ABC Trading Co., Ltd. có evidence …`. Màn không cần đăng nhập ghi `Chưa đăng nhập`. (File TC tiếng Anh: `Logged in as <role>`, `Not logged in`.)
+    - **Pre-condition dạng đánh số, nêu rõ môi trường và tài khoản** (FB-089; áp cho sheet E2E; sheet màn hình **chờ Hanna chốt** có đổi sang dạng này không):
+      `1. Vào môi trường: <URL đăng nhập>` → mỗi tài khoản một dòng `2. Login acc <vai trò> (<tên>): <email> / <mật khẩu>` → các điều kiện dữ liệu → `n. Hộp thư test: <URL>`. Tài khoản tạo trong luồng ghi `— tạo trong luồng, đăng nhập sau khi kích hoạt`. Sheet E2E có thêm bảng Tài khoản test (vai trò · nhân vật, mật khẩu, link đăng nhập, email · nguồn).
     - **Pre-condition chỉ ghi trạng thái cần có trước khi vào màn hình đang test** (đăng nhập bằng vai trò nào, dữ liệu đã dựng). Không ghi "mở màn hình đang test" vào Pre-condition: việc đó là **Step 1**. Một sheet test một màn hình, nên TC chỉ tập trung vào màn đó. Ví dụ sheet Scopes: Pre-condition `Login acc Customer Admin (Linh Tran)`; Step 1 `Bấm Scopes ở menu trái`.
     - Muốn tới màn B mà phải làm nhiều thao tác dữ liệu ở màn A (tạo dữ liệu, chọn, gắn…) thì Pre-condition mới ghi các thao tác ở màn A, **liệt kê từng thao tác kèm giá trị cụ thể** (vd `On Scopes, create scope: Type Organization, Name abc, What is in scope abc`). Step vẫn bắt đầu bằng mở màn B, rồi các thao tác tiếp theo trên màn B.
     - Dữ liệu ghi ngay trong ô của TC, nhãn giao diện ghi đúng nguyên văn. **Không còn `{{…}}` ở bất kỳ ô nào của file giao**: người dùng → dòng đăng nhập; địa chỉ → `[URL …]`, định nghĩa ở ô Reference.
@@ -78,6 +85,7 @@ Ví dụ trên là file TC tiếng Anh. Mỗi ô ghi một thứ tiếng theo ng
         - Text nguyên văn của giao diện (lỗi, thông báo, mô tả) đặt riêng một dòng, trong ngoặc kép, sau dòng dẫn, vd `- Hiện lỗi tại Name:` rồi `"Enter a name."`.
     - **Step ghi rõ thao tác:** bước 1 là nhập URL vào thanh địa chỉ hoặc bấm mục ở menu trái; mỗi bước một thao tác cụ thể (bấm vào đâu, nhập giá trị gì); tên nút ghi `button [Tên]`; case chỉ kiểm hiển thị ghi `Nhìn <vùng>`. **Không** ghi "Kiểm tra …" hay "Mở màn …" trong Step. Một case có nhiều kết quả theo bước thì Expected ghi `Sau bước n: …`. Chưa biết thao tác hay kết quả thì để trống và ghi câu hỏi (rule 13).
 15. Mỗi khu vực có thao tác ghi dữ liệu phải có đủ: ít nhất một case Thành công, một case Không thành công, một case Phân quyền, một case Bảo mật (file tiếng Anh: Success, Failure, Permission, Security). Case Bảo mật là case tester làm được trên giao diện hoặc trình duyệt; case cần gọi thẳng API theo rule 29.
+    - **Bộ case abnormal cho mỗi ô nhập có giới hạn** (FB-087): (1) đúng giới hạn — tạo được, lưu đủ, chữ dài không tràn khung; (2) vượt 1 ký tự — chặn ngay ở bước đang nhập, lỗi dưới đúng ô; (3) chỉ dấu cách; (4) dấu cách đầu, cuối — lưu đã cắt; (5) ký tự đặc biệt, emoji, HTML/script — hiện đúng như văn bản; (6) sai định dạng — gom nhiều giá trị a, b, c… trong một case, mỗi giá trị bấm nút một lần. Pre-condition ghi cách tạo chuỗi bằng công thức Excel (vd `=REPT("A",201)`, kiểm `=LEN(...)`); giới hạn lấy từ tài liệu, không có thì từ schema API của hệ thống (ghi nguồn). Hai lỗi cùng lúc (vd Name trống và Email sai) có một case riêng.
     - **Priority:** Critical · High · Medium · Low. **Critical** dành cho case bảo mật và phân quyền phải qua trước UAT (vd consultant chưa được duyệt mở workspace bằng URL, dữ liệu nháp lộ sang khách hàng). Hanna đồng ý 15/10.
 
 ## E. Đa ngôn ngữ
@@ -157,12 +165,13 @@ Ví dụ trên là file TC tiếng Anh. Mỗi ô ghi một thứ tiếng theo ng
 40. **Phạm vi: viết theo danh sách UC, theo wave, có đánh dấu Phase.**
     - Trước khi viết, lập **bảng độ phủ**: mỗi UC Phase 1 của UC List hiện hành có bao nhiêu case chạy được. Mỗi UC phải có **ít nhất một case chạy được** (có Expected, không mang tiền tố `[Phase 2]`, `[OUT]`). Wave của dự án ghi ở `profile.md`.
     - Chức năng chưa có thiết kế, hoặc chưa làm ở Phase 1: tên case bắt đầu `[Phase 2]`, cột UC ghi mã UC gốc, Expected ghi `- Chưa viết Expected: thuộc Phase 2 (<lý do>)`. Quyết định ghi rõ "không thuộc Phase 1" thì dùng `[Ngoài Phase 1]`.
-    - **Case lỗi thời** giữ lại với tiền tố `[OUT]`: không xoá, không đánh lại mã, giữ mã UC gốc; Remark (hoặc Expected) ghi lý do và căn cứ, vd `OUT: D57, SGS Admin không còn duyệt yêu cầu`. Case `[OUT]` không tính vào Test_Report; `tc_check.py` bỏ qua phần kiểm Expected và câu hỏi của chúng.
+    - **Case lỗi thời bị xoá khỏi file** (FB-083, thay quy định "giữ lại với tiền tố `[OUT]`" ngày 15/10): trước khi xoá, ghi lý do và căn cứ vào báo cáo rà soát (file riêng, skill `tc-review`), vd `Xoá: D57, SGS Admin không còn duyệt yêu cầu`. File giao không còn case `[OUT]`; Test_Report cập nhật theo số case còn lại.
 
 ## Changelog
 
 | Version | Ngày | Thay đổi | Nguồn |
 |---|---|---|---|
+| v0.11 | 2026-10-20 | Gộp góp ý 19–20/10 (chạy sheet Customers, E2E Wave 1) vào rule có sẵn, không thêm số: rule 1 quyết định của dev đè Figma; rule 3 không thêm sheet; rule 7 hộp thoại nhiều bước nhóm theo bước; rule 10, 40 xoá case lỗi thời (bỏ `[OUT]`, thay FB-081); rule 11 mã TC = No. (chờ chốt cách thêm case); rule 13 câu Đóng xoá khỏi sheet Cần xác nhận; rule 14 Pre-condition đánh số (E2E; sheet màn hình chờ chốt); rule 15 bộ case abnormal. **Chờ duyệt.** | FB-083 · FB-084 · FB-085 · FB-086 · FB-087 · FB-088 · FB-089 · FB-095 |
 | v0.10 | 2026-10-15 | Gộp bản tổng hợp 15/10 (rule 36–56 của phiên chat) vào rule có sẵn, không thêm số: rule 1–2 thứ tự 5 nguồn và cách xử lý lệch; 6 người viết là Hanna; 8 thứ tự Hiển thị → Nhập liệu → Không thành công → Thành công, chèn case đúng nhóm, Test_Report theo nhóm; 10–11 mã TC không đánh lại, `[OUT]`; 13 Open question tinh gọn, Expected đề xuất tô vàng, mẫu chữ báo lỗi (gộp rule 40 cũ); 14 dòng `Login acc`, không `{{…}}`, Step `button [Tên]`, `Nhìn <vùng>`; 15 Priority Critical; 18 phông mức XML; 23 Đề xuất mặc định; 24 `[SGS]`, `[Consultant]`; 35 một số phiên bản; 36 thêm quyết định chốt và tiêu chí chấp nhận; 38 cổng `tc_fix_xlsx` + `tc_check`; 40 viết rule mới: độ phủ UC theo wave, `[Phase 2]`, `[Ngoài Phase 1]`, `[OUT]`. Bỏ ngoại lệ theo `profile.md` ở rule 1, 2, 13, 14 vì đã thành rule chung. | FB-074 · FB-075 · FB-076 · FB-077 · FB-078 · FB-079 · FB-080 · FB-081 · FB-082 |
 | v0.9 | 2026-10-14 | Rule 1, 2, 13, 14: thêm ngoại lệ theo mục "Quy tắc viết TC của dự án" trong `profile.md` (SGS DTP: theo web khi hợp lý, thông báo lỗi theo mẫu app, không đặt câu hỏi). Thêm rule 40 (câu hỏi người dùng đã xoá là đã giải quyết). **Chờ duyệt.** | FB-070 |
 | v0.8 | 2026-10-09 | Thêm rule 39 (soát chéo gửi đủ lỗi một lần; lỗi sót từ vòng trước đánh dấu, đếm riêng). **Chờ duyệt.** | FB-067 |

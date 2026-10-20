@@ -1,0 +1,1 @@
+{ "name": "qa-pipeline-tc-review-scripts", "private": true, "description": "Node deps for the tc-review scripts (npm install here)", "dependencies": { "exceljs": "4.4.0", "sharp": "0.34.4", "playwright": "1.63.0", "pg": "8.16.3" } }

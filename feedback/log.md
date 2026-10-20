@@ -88,6 +88,22 @@ Bản ghi `FB-001` là góp ý của người dùng. `FB-002` trở đi là **đ
 | FB-080 | Step chưa rõ bấm vào đâu | L2-rule | Đã vào rule (chờ duyệt) | 0 |
 | FB-081 | UC có mà web chưa có: `[Phase 2]`, `[Ngoài Phase 1]`; độ phủ UC theo wave; `[OUT]`; mã TC không đánh lại | L2-rule | Đã vào rule (chờ duyệt) | 0 |
 | FB-082 | So sánh v0.22 và v0.2_Phase1: chèn đúng nhóm, Test_Report theo nhóm, một số phiên bản, Priority Critical, một bộ rule duy nhất | L2-rule | Đã vào rule (chờ duyệt) | 0 |
+| FB-083 | Case `[OUT]` phải xoá khỏi file TC, không giữ lại | L2-rule | Đã vào rule (chờ duyệt) | 0 |
+| FB-084 | Câu hỏi Cần xác nhận đã đóng thì xoá khỏi sheet; câu trả lời đưa vào Expected | L2-rule | Đã vào rule (chờ duyệt) | 0 |
+| FB-085 | Không thêm sheet mới vào file TC; báo cáo, rà soát, bug để ở file riêng | L2-rule | Đã vào rule (chờ duyệt) | 0 |
+| FB-086 | Mã TC đồng nhất với cột No. | L2-rule | Chưa rõ phạm vi | 0 |
+| FB-087 | Bộ case abnormal cho ô nhập: biên độ dài, vượt 1 ký tự, sai định dạng nhiều dạng, dữ liệu đặc biệt — viết rõ cách tạo chuỗi | L3-checklist | Đã vào rule (chờ duyệt) | 0 |
+| FB-088 | Hộp thoại nhiều bước: nhóm case theo từng bước (tab) | L2-rule | Đã vào rule (chờ duyệt) | 0 |
+| FB-089 | Pre-condition ngắn gọn, đánh số: môi trường → tài khoản → điều kiện dữ liệu | L4-mẫu | Đã vào rule (chờ duyệt) | 0 |
+| FB-090 | Remark "Thực tế" tách dòng, có tên và số liệu thật; nêu đúng vấn đề | L4-mẫu | Đã vào rule (chờ duyệt) | 0 |
+| FB-091 | Kết quả Fail phải có file bằng chứng kèm ảnh, dạng như E2E | L4-mẫu | Đã vào rule (chờ duyệt) | 0 |
+| FB-092 | Bug gộp theo nguyên nhân; bug phát hiện khi test tự do thì thêm cả case | L2-rule | Đã vào rule (chờ duyệt) | 0 |
+| FB-093 | Kết quả: Failed khi lệch cả thiết kế; Pending cho UC chưa Done theo Plan, giữ case không bỏ | L2-rule | Đã vào rule (chờ duyệt) | 0 |
+| FB-094 | Sheet E2E: mỗi bước có ảnh Figma màn thao tác, ảnh Figma kết quả mong đợi và ảnh thực tế | L4-mẫu | Đã vào rule (chờ duyệt) | 0 |
+| FB-095 | Quyết định của dev / dự án đè Figma thì TC theo quyết định đó | L2-rule | Đã vào rule (chờ duyệt) | 0 |
+| FB-096 | Chỉ chạy test trên localhost; luôn nêu rõ môi trường, nhánh, commit, ngày | L2-rule | Đã vào rule (chờ duyệt) | 0 |
+| FB-097 | Rà soát TC theo Figma, UC và web: từng case Xoá / Sửa / Lệch web / Wave sau / OK, chỉ wave đang làm, chưa sửa khi chưa có lệnh | L2-rule | Đã vào rule (chờ duyệt) | 0 |
+| FB-098 | Lệch giữa quy ước dự án và web hiện tại cần người dùng chốt (404 scope; Documents / Evidence Library) | L6-tri thức | Chưa rõ phạm vi | 0 |
 
 ---
 
@@ -1207,4 +1223,166 @@ Bản ghi `FB-001` là góp ý của người dùng. `FB-002` trở đi là **đ
 - Phạm vi ảnh hưởng: mọi file TC SGS DTP từ lượt viết sau; không sửa file TC trong lượt này
 - Đã sửa: rule 45, 53, 54, 55, 56 (gộp vào rule 8, 15, 24, 35, CLAUDE.md); `rules/tc-authoring.md` v0.10, skill `tc-authoring` v0.8
 - Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-083 · Case `[OUT]` phải xoá khỏi file TC, không giữ lại
+- Ngày: 2026-10-19
+- Nguồn: chat Claude Code 19/10 · "tại sao lại vẫn giữ mấy case [OUT] vậy, viết ntn thì ai mà hiểu dc, phải xóa đi chứ … out là bỏ đi chứ"
+- Loại: L2-rule
+- Liên quan: FB-081 (15/10 ghi "[OUT] vẫn giữ mã UC gốc" — FB này thay phần giữ case)
+- Địa chỉ: rules/tc-authoring.md rule 10, 40
+- Tiêu chí kiểm: file TC giao không còn dòng nào có tên case chứa `[OUT]`
+- Phạm vi ảnh hưởng: SGS-DTP_TestCase_v0.2_Phase1 có 53 case [OUT] ở 11 sheet Wave 1 (đếm bằng script); đã xoá trong v0.3 (19/10) cùng 83 case ngoài phạm vi khác
+- Đã sửa: exports v0.3 (136 case xoá); rules/tc-authoring.md v0.11 rule 10
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-084 · Câu hỏi Cần xác nhận đã đóng thì xoá khỏi sheet; câu trả lời đưa vào Expected
+- Ngày: 2026-10-19
+- Nguồn: chat Claude Code 19/10 · "Cần xác nhận đã đóng thì xóa luôn đi"
+- Loại: L2-rule
+- Địa chỉ: rules/tc-authoring.md rule 13
+- Tiêu chí kiểm: sheet Cần xác nhận không còn câu ở trạng thái Đóng; case liên quan có câu trả lời trong Expected và cột Open question trống
+- Phạm vi ảnh hưởng: 44 câu Đóng (Wave 1) đã xoá trong v0.3; còn 80 câu (19/10), 85 câu sau khi thêm Q-CU-12…16
+- Đã sửa: exports v0.3; rules/tc-authoring.md v0.11 rule 13
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-085 · Không thêm sheet mới vào file TC; báo cáo, rà soát, bug để ở file riêng
+- Ngày: 2026-10-19
+- Nguồn: chat Claude Code 19/10 · "tôi ko muốn thêm sheet nữa đâu, quá nhiều rồi"
+- Loại: L2-rule
+- Địa chỉ: rules/tc-authoring.md rule 3
+- Tiêu chí kiểm: số sheet của file TC không đổi giữa hai version trừ khi người dùng yêu cầu
+- Phạm vi ảnh hưởng: v0.3 giữ đúng 25 sheet như v0.2; báo cáo rà soát (Ra-soat-TC-Wave1_v0.1.xlsx) và bug (Customers_Bug-Round1_kem-anh.xlsx) là file riêng
+- Đã sửa: rules/tc-authoring.md v0.11 rule 3
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-086 · Mã TC đồng nhất với cột No.
+- Ngày: 2026-10-19
+- Nguồn: chat Claude Code 19/10 · "mã TCs pải đồng nhất nữa" (ảnh: dòng No. 61 mang mã TC_024)
+- Loại: L2-rule
+- Liên quan: FB-081 (15/10 ghi "mã TC không đánh lại" — mâu thuẫn, chờ người dùng chốt)
+- Địa chỉ: rules/tc-authoring.md rule 11
+- Tiêu chí kiểm: trong mỗi sheet, `TVP_ID` = `TC_` + số No. 3 chữ số; tham chiếu ở sheet Cần xác nhận trỏ đúng mã mới
+- Phạm vi ảnh hưởng: sheet Customers đánh lại 84/99 mã (19/10); các sheet khác chưa kiểm
+- Đã sửa: exports v0.3 sheet Customers; rules/tc-authoring.md v0.11 rule 11 (ghi hai cách, chờ chốt: đánh lại mọi lần, hay case mới nối cuối nhóm cuối sheet)
+- Trạng thái: Chưa rõ phạm vi
+- Tái phát: 0
+## FB-087 · Bộ case abnormal cho ô nhập: biên độ dài, vượt 1 ký tự, sai định dạng nhiều dạng, dữ liệu đặc biệt — viết rõ cách tạo chuỗi
+- Ngày: 2026-10-19
+- Nguồn: chat Claude Code 19/10 · "hãy thêm các case abnormal, như là nhập quá nhiều text > nhập email sai format … viết rõ các case quá text nhé"
+- Loại: L3-checklist
+- Địa chỉ: rules/tc-authoring.md rule 15
+- Tiêu chí kiểm: mỗi ô nhập có giới hạn có 1 case đúng giới hạn + 1 case vượt 1 ký tự; Pre-condition ghi cách tạo chuỗi (`=REPT("A",201)`, kiểm `=LEN()`); email sai định dạng gom nhiều giá trị a–g trong một case
+- Phạm vi ảnh hưởng: hộp thoại Create customer account thêm 27 case (19/10); các form khác chưa rà
+- Đã sửa: exports v0.3 sheet Customers; rules/tc-authoring.md v0.11 rule 15
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-088 · Hộp thoại nhiều bước: nhóm case theo từng bước (tab)
+- Ngày: 2026-10-19
+- Nguồn: chat Claude Code 19/10 · "tổng hợp lại các case > tách 2 tab: Account và Invite initial Customer Admin để gộp đúng format TCs"
+- Loại: L2-rule
+- Địa chỉ: rules/tc-authoring.md rule 7
+- Tiêu chí kiểm: case của một wizard/hộp thoại nhiều bước nằm liền nhau, Classification II = tên bước (vd "Bước 1 · Account"), có nhóm "Sau khi tạo"; thanh bước được kiểm ở case Hiển thị của mỗi bước
+- Phạm vi ảnh hưởng: Customers (Create customer account) đã gom 46 case; các wizard khác (Import framework, Link framework, Create workspace) chưa rà
+- Đã sửa: exports v0.3; rules/tc-authoring.md v0.11 rule 7
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-089 · Pre-condition ngắn gọn, đánh số: môi trường → tài khoản → điều kiện dữ liệu
+- Ngày: 2026-10-20
+- Nguồn: chat Claude Code 19–20/10 · "1 cần nêu rõ môi trường test, như link test … acc: .... và pass rõ ràng" · "hãy viết ngắn gọn pre-condition ntn nhé 1. Vào môi trường: localhost:3000/ops/login 2. Login acc SGS Admin: lin... / pass.... 3. ...."
+- Loại: L4-mẫu
+- Địa chỉ: rules/tc-authoring.md rule 14 · skills/e2e-flow/SKILL.md
+- Tiêu chí kiểm: Pre-condition dòng 1 là URL môi trường, mỗi tài khoản một dòng `Login acc <vai trò> (<tên>): <email> / <mật khẩu>`, rồi điều kiện dữ liệu; sheet E2E có bảng Tài khoản test (vai trò, link, email, mật khẩu, nguồn)
+- Phạm vi ảnh hưởng: 15 sheet E2E1 trong SGS-DTP_E2E_Phase1_v0.7 (đã sửa 20/10); file TC màn hình chưa áp
+- Đã sửa: exports E2E v0.7; rules/tc-authoring.md v0.11 rule 14
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-090 · Remark "Thực tế" tách dòng, có tên và số liệu thật; nêu đúng vấn đề
+- Ngày: 2026-10-20
+- Nguồn: chat Claude Code 19–20/10 · "Thực tế: có 127 customers nhưng web chỉ hiển thị 100 customers > hãy nêu rõ ràng vấn đề của mình hơn" · "viết tách dòng ra nhé như VD trên nhé" · "check lại với bug 1 thì đó ko pải là lỗi … => đây là đúng nhé"
+- Loại: L4-mẫu
+- Địa chỉ: rules/automation.md rule 20 · skills/manual-run/SKILL.md bước 4
+- Tiêu chí kiểm: Remark Failed có dạng "Thực tế:" + mỗi dữ liệu một dòng (tên, số) + "Mong đợi (bước N):"; không có `[W]`, `[N]`, `≠`; tiêu đề bug nói đúng nguyên nhân, không gán lỗi cho chức năng đang đúng
+- Phạm vi ảnh hưởng: 23 remark Failed sheet Customers viết lại (20/10); TC_011 chuyển Passed
+- Đã sửa: exports v0.3; rules/automation.md v0.3 rule 20
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-091 · Kết quả Fail phải có file bằng chứng kèm ảnh, dạng như E2E
+- Ngày: 2026-10-19
+- Nguồn: chat Claude Code 19/10 · "Vậy hình ảnh ở đâu, t nghĩ nên tạo 1 file tương tự các case e2e Fail"
+- Loại: L4-mẫu
+- Địa chỉ: skills/bug-evidence/SKILL.md · rules/automation.md rule 21
+- Tiêu chí kiểm: mỗi lượt chạy có Fail thì có file `<màn>_Bug-Round<N>_kem-anh.xlsx`: sheet Danh sách bug + mỗi bug một sheet (Figma mong đợi; từng case: Pre, bước, mong đợi, thực tế, ảnh thực tế); ảnh gốc chép vào `evidence/`
+- Phạm vi ảnh hưởng: Customers Round 1: 15 bug, 24 case Failed
+- Đã sửa: skill bug-evidence v0.1 (mới); rules/automation.md v0.3
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-092 · Bug gộp theo nguyên nhân; bug phát hiện khi test tự do thì thêm cả case
+- Ngày: 2026-10-19
+- Nguồn: chat Claude Code 19/10 · "trên nữa khi scroll thì mất thanh tiêu đề, cho thêm bug nhé"
+- Loại: L2-rule
+- Địa chỉ: rules/automation.md rule 21
+- Tiêu chí kiểm: một mã bug = một nguyên nhân (nhiều case cùng nguyên nhân dùng chung mã); bug không có case thì thêm case vào đúng nhóm, gắn mã bug
+- Phạm vi ảnh hưởng: 23 tiêu đề lỗi gộp thành 14 bug, thêm CU-BUG-15 (TC_100)
+- Đã sửa: rules/automation.md v0.3
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-093 · Kết quả: Failed khi lệch cả thiết kế; Pending cho UC chưa Done theo Plan, giữ case không bỏ
+- Ngày: 2026-10-19
+- Nguồn: chat Claude Code 19/10 · "bước 6 hiện tại là đang bị fail nhưng hệ thống đánh pass, cần phải xem lại trường hợp này" · "những UC chưa done, thì note lại thôi > ko bỏ: note Pending"
+- Loại: L2-rule
+- Địa chỉ: rules/automation.md rule 19
+- Tiêu chí kiểm: kết quả theo bảng: Passed / Failed (có nhưng sai mong đợi hoặc Figma, kể cả bố cục như nút so với link) / Blocked (Plan ghi Done mà bản chạy chưa có) / Pending (UC Not started hoặc wave sau); ghi chú "khác Figma" không được để Passed
+- Phạm vi ảnh hưởng: E2E1_001 bước 6 đổi Passed → Failed; 15 luồng E2E1 chạy lại theo quy tắc (19/10)
+- Đã sửa: skill e2e-flow (builder tính kết quả theo Plan); rules/automation.md v0.3
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-094 · Sheet E2E: mỗi bước có ảnh Figma màn thao tác, ảnh Figma kết quả mong đợi và ảnh thực tế
+- Ngày: 2026-10-19
+- Nguồn: chat Claude Code 19/10 · "Thiếu hình ảnh figma có expect ntn, cũng cần hiện popup Create customer account như ảnh thực tế để so sánh" · "format hiện tại chưa được dễ hiểu … nếu chưa có thì cũng cần note lại > cũng cần để hiển thị báo cáo đẹp hơn"
+- Loại: L4-mẫu
+- Địa chỉ: skills/e2e-flow/SKILL.md
+- Tiêu chí kiểm: mỗi bước có 3 ảnh (đỏ ①② thao tác · xanh (A)(B) mong đợi · thực tế); Figma không có màn thì ô ảnh ghi "Figma chưa có màn này" kèm lý do; bảng mong đợi ↔ thực tế từng dòng có UC và trạng thái Plan
+- Phạm vi ảnh hưởng: 15 sheet E2E1 (v0.7)
+- Đã sửa: skill e2e-flow v0.1 (mới)
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-095 · Quyết định của dev / dự án đè Figma thì TC theo quyết định đó
+- Ngày: 2026-10-19
+- Nguồn: chat Claude Code 19/10 · "đoạn text: Your affiliate. New customers always belong to it. đã đc xóa theo dev, nên hãy update thêm TCs đoạn này"
+- Loại: L2-rule
+- Liên quan: rules/tc-authoring.md rule 1 (thứ tự 5 nguồn)
+- Địa chỉ: rules/tc-authoring.md rule 1
+- Tiêu chí kiểm: chỗ dev bỏ hoặc đổi có chủ đích (có người xác nhận, ngày, commit) thì Expected theo web, ghi căn cứ ở ghi chú; không đánh Failed
+- Phạm vi ảnh hưởng: Customers TC_015, E2E1_001 bước 2 (đã sửa)
+- Đã sửa: exports v0.3, E2E v0.7; rules/tc-authoring.md v0.11 rule 1
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-096 · Chỉ chạy test trên localhost; luôn nêu rõ môi trường, nhánh, commit, ngày
+- Ngày: 2026-10-19
+- Nguồn: chat Claude Code 19/10 · "ko test trên dtp nữa, chỉ update trên local host mà" · "vậy thì lần sau b nói rõ hơn nhé, hãy pull đi nhé" (sau khi local chậm 23 commit so với origin/main mà không báo)
+- Loại: L2-rule
+- Địa chỉ: rules/automation.md rule 22 · projects/sgs-dtp/profile.md
+- Tiêu chí kiểm: mọi báo cáo kết quả ghi `local · <nhánh> <commit> (<ngày>) · chậm N commit so với origin/main`; trước khi chạy đã `git fetch` thành công
+- Phạm vi ảnh hưởng: E2E v0.7 (ghi commit 4be5d13, trước khi pull), Customers Round 1 (b5cb690)
+- Đã sửa: rules/automation.md v0.3 rule 22; profile.md mục Môi trường local
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-097 · Rà soát TC theo Figma, UC và web: từng case Xoá / Sửa / Lệch web / Wave sau / OK, chỉ wave đang làm, chưa sửa khi chưa có lệnh
+- Ngày: 2026-10-19
+- Nguồn: chat Claude Code 19/10 · "hãy rà soát lại tất cả cho tôi, lệch giữa figma, UC, web ... chỉ wave 1 > ko dc update vội"
+- Loại: L2-rule
+- Địa chỉ: skills/tc-review/SKILL.md (mới) · rules/feedback.md rule 15
+- Tiêu chí kiểm: báo cáo rà soát là file riêng; mỗi case có kết luận, sai ở đâu, đề xuất, web, nguồn; file TC chỉ sửa sau khi người dùng nói "update"
+- Phạm vi ảnh hưởng: 1.089 case Wave 1 (11 sheet) và 78 câu Cần xác nhận
+- Đã sửa: skill tc-review v0.1 (mới)
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-098 · Lệch giữa quy ước dự án và web hiện tại cần người dùng chốt (404 scope; Documents / Evidence Library)
+- Ngày: 2026-10-20
+- Nguồn: AI phát hiện khi lưu rule 20/10 · profile.md sgs-dtp ghi "This scope doesn’t exist…" và "Documents đổi thành Evidence Library (D70)"; lượt rà soát 19/10 sửa một số Expected theo web ("Page not found", "Documents")
+- Loại: L6-tri thức
+- Liên quan: FB-095 · FB-097
+- Địa chỉ: projects/sgs-dtp/profile.md · exports v0.3 (Scopes, Workspaces, Workspace detail, Documents)
+- Tiêu chí kiểm: người dùng chốt một trong hai; file TC và profile ghi cùng một cách
+- Trạng thái: Chưa rõ phạm vi
 - Tái phát: 0

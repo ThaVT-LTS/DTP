@@ -26,7 +26,10 @@ Code Playwright: mỗi dự án một thư mục `automation/<dự-án>/` (sao t
 | 3 Baseline + test basis | `ba-analysis` bước 4–5 | Cổng 2: checklist "Sẵn sàng bàn giao" + review phiên mới |
 | 4 Thiết kế test | `test-design` | Cổng 3: `rtm_check.py` sạch + agent `coverage-reviewer` |
 | 5 File TC Excel | `tc-authoring` | `tc_fix_xlsx.py` và `tc_check.py` cùng 0 lỗi |
-| 6 Chạy manual | `manual-run` | Con người xác nhận mọi kết quả Fail |
+| 5b Rà soát TC | `tc-review` (lượt 1 báo cáo, lượt 2 áp khi người dùng nói "update") | Người dùng duyệt báo cáo rà soát trước khi sửa file TC |
+| 6 Chạy manual | `manual-run` (kết quả vào `runs/` và cột Round N) | Con người xác nhận mọi kết quả Fail |
+| 6b File bug kèm ảnh | `bug-evidence` | Con người xác nhận Fail trước khi tạo bug thật |
+| 6c Luồng E2E | `e2e-flow` (ảnh Figma thao tác / mong đợi / thực tế, kết quả theo Plan) | Con người xác nhận Fail; UC chưa Done ghi Pending |
 | 7 Automation | `write-e2e-spec` | Con người quyết khi màn hình trái với test basis |
 | Mọi nhận xét | `feedback-loop` | Chỉ người dùng chuyển FB sang `Đã duyệt` |
 
@@ -39,6 +42,12 @@ AI không tự duyệt. Phải dừng lại hỏi ở: câu CHẶN; baseline và
     python .claude/skills/test-design/scripts/rtm_check.py --basis projects/<p>/docs/test-basis/<tên>.md projects/<p>/tests/design/*.md --cases projects/<p>/tests/cases/*.md --out projects/<p>/tests/rtm.md
     python .claude/skills/tc-authoring/scripts/tc_fix_xlsx.py projects/<p>/exports/<file>.xlsx --fix --creator <người viết>   # chờ file script
     python .claude/skills/tc-authoring/scripts/tc_check.py projects/<p>/exports/<file>.xlsx --creator <người viết> [--uc <file UC>]
+    node .claude/skills/tc-review/scripts/build-report.js <báo-cáo.xlsx>              # tc-review lượt 1 (cần <WORK>/in, <WORK>/out)
+    node .claude/skills/tc-review/scripts/make-plan.js; powershell -File .claude/skills/tc-review/scripts/apply-tc.ps1 -Src <vX.xlsx> -Dst <vY.xlsx> -PlanPath apply-plan.json
+    node .claude/skills/manual-run/scripts/make-writeback.js; powershell -File .claude/skills/manual-run/scripts/apply-writeback.ps1 <file.xlsx> writeback.json
+    node .claude/skills/e2e-flow/scripts/build-e2e-v3.js <out.xlsx> E2E1_001 …       # sau khi chạy run2-<ID>.js
+    node .claude/skills/bug-evidence/scripts/build-bug-report.js <Màn>_Bug-Round<N>_kem-anh.xlsx
+Script Node của 4 skill trên: chạy `npm install` một lần trong từng thư mục `scripts/` (exceljs, sharp, playwright, pg). Script `.ps1` cần Excel trên máy (COM). Một số script viết cho SGS DTP (cột, tên sheet): đọc đầu file trước khi dùng cho dự án khác.
 Trong rule và skill, đường dẫn `skills/…` nghĩa là `.claude/skills/…`.
 
 ## Khi sửa hoặc thêm rule, skill (ở bất kỳ chat nào)

@@ -1,6 +1,6 @@
 # Rule — Chạy manual và Automation (Playwright)
 
-Phiên bản: v0.2 · **[ĐỀ XUẤT] — chờ duyệt.** Nạp cùng `rules/common.md`, `rules/feedback.md`, `rules/tester.md` khi chạy test hoặc viết spec. Skill: `manual-run`, `write-e2e-spec`. Ánh xạ TC → Playwright: `skills/test-design/references/templates.md` §6.
+Phiên bản: v0.3 · **[ĐỀ XUẤT] — chờ duyệt.** Nạp cùng `rules/common.md`, `rules/feedback.md`, `rules/tester.md` khi chạy test hoặc viết spec. Skill: `manual-run`, `write-e2e-spec`. Ánh xạ TC → Playwright: `skills/test-design/references/templates.md` §6.
 
 1. Chỉ chạy và chỉ tự động hoá TC thuộc bộ test đã qua cổng 3 (`rtm_check.py` sạch, đã review).
 2. Title của `test()` là `<ID TC> · <tiêu đề>`; ID không đổi khi sửa nội dung. Tag đặt trong option `tag`, không nhét vào title: `@<UC-ID>`, `@<nhóm>`, `@<loại>`, `@P<n>`, và các ID trong trường `Nguồn` của TC.
@@ -9,7 +9,7 @@ Phiên bản: v0.2 · **[ĐỀ XUẤT] — chờ duyệt.** Nạp cùng `rules/c
 5. Mỗi ý trong `Mong đợi` của TC ứng với ít nhất một `expect`, comment ghi ID nguồn.
 6. TC có nguồn đang `[CHỜ Q-nn]` thì `test.fixme('<Q-nn> chờ trả lời')`; không viết assertion đoán.
 7. **Không sửa kết quả mong đợi cho test pass.** Khi chạy lệch: được sửa locator, thời gian chờ, bước thao tác. Giá trị mong đợi lệch thì dừng và báo người dùng quyết: bug, TC sai, hay yêu cầu đã đổi.
-8. Kết quả chạy ghi vào `runs/`, không ghi vào file TC. Kết quả Fail phải được người dùng xác nhận trước khi thành bug.
+8. Kết quả chạy ghi vào `runs/`. Khi người dùng yêu cầu chạy một sheet TC, kết quả từng case ghi thêm vào cột **Round N** của file TC (Result, Test person, Test date, Bug_ID, Remark) để Test_Report tự đếm (19/10). Kết quả Fail phải được người dùng xác nhận trước khi thành bug thật (Jira, ticket).
 9. Spec kiểm chứng một lần (cho một bug, một bản demo) để ở `automation/tests/verification/`; xong thì nâng thành spec hồi quy hoặc xoá. Bộ hồi quy không chứa spec loại này.
 10. Phiên bản Playwright, Node và cấu hình chạy do `package.json` và `playwright.config.ts` quyết định; rule không ghi số phiên bản.
 
@@ -22,10 +22,35 @@ Phiên bản: v0.2 · **[ĐỀ XUẤT] — chờ duyệt.** Nạp cùng `rules/c
 17. Mỗi dự án ghi kết quả máy đọc được vào `automation/<dự-án>/runs/latest.json` (reporter `json`) và báo cáo HTML; AI đọc file này để biết test nào fail, người dùng không phải chụp màn hình. Kết quả tổng hợp theo TC vẫn ghi ở `projects/<dự-án>/runs/` (rule 8).
 18. Test chưa có cơ sở để khẳng định (kết quả mong đợi chưa rõ, dữ liệu chưa tự tạo được) viết thành `test.fixme('<mã câu hỏi> …')` kèm lý do, không để comment hay đoán assertion cho pass.
 
+## Chạy test và báo kết quả (19–20/10/2026, chờ duyệt)
+
+19. **Kết quả của một case, một bước E2E** (FB-093):
+    | Kết quả | Khi nào |
+    |---|---|
+    | Passed | mọi ý của Expected đúng |
+    | Failed | màn, chức năng có nhưng ít nhất một ý sai so với Expected **hoặc Figma** (chữ, thiếu thành phần, link thay vì nút, số liệu, trạng thái). Ghi chú "khác Figma" không được để Passed |
+    | Blocked | Plan ghi UC Done mà bản đang chạy chưa có màn, chức năng; hoặc môi trường không làm được và không có cách thay thế (ghi cần gì) |
+    | Pending | UC chưa Done theo Plan (Not started, hoặc thuộc wave sau); hoặc case chỉ chờ câu hỏi đang mở mà web chưa có hành vi để so. Case vẫn giữ trong bộ, không bỏ |
+    | NA | không áp dụng (ghi lý do) |
+    Lỗi môi trường trong lúc chạy (backend sập, 502, hết phiên do người khác đăng xuất) không ghi Failed: dựng lại môi trường và chạy lại.
+20. **Remark của case Failed** (FB-090): dòng `Thực tế:`, rồi mỗi dữ liệu hoặc tình huống đã thử một dòng có tên và số thật, rồi `Mong đợi (bước N): …`. Không dùng biến `[W]`, `[N]`, không dùng `≠`, chữ giao diện ghi nguyên văn tiếng Anh. Tối đa khoảng 8 dòng. Tiêu đề bug nói đúng nguyên nhân; chức năng đang đúng (vd chu kỳ 3 trạng thái của nút sắp xếp) không bị gán lỗi chỉ vì số liệu đầu vào sai.
+    ```
+    Thực tế: cột Workspaces luôn hiện "—" thay vì số workspace:
+    - "ABC Trading Co., Ltd. a154930" có 0 workspace → hiện "—" (mong đợi: 0)
+    - "E2E WS Tenant yaxgl37" có 1 workspace → hiện "—" (mong đợi: 1)
+    Mong đợi (bước 2): cột Workspaces ghi đúng số workspace của khách hàng.
+    ```
+21. **Bug** (FB-091, FB-092): một mã bug = một nguyên nhân; nhiều case cùng nguyên nhân dùng chung mã. Mã tạm `<MÀN>-BUG-nn` đánh theo case Failed đầu tiên trong sheet, thay bằng mã Jira khi tạo bug. Mỗi lượt có Fail thì có file bằng chứng kèm ảnh (skill `bug-evidence`): Figma mong đợi, từng case (Pre, bước, mong đợi, thực tế, ảnh), ảnh gốc chép vào `evidence/`. Lỗi thấy khi test tự do mà chưa có case thì thêm case vào đúng nhóm và gắn mã bug.
+22. **Môi trường và phiên bản code** (FB-096): SGS DTP chỉ chạy trên localhost (quyết định 19/10). Trước khi chạy: `git fetch` (kiểm thành công), báo `<nhánh> <commit> (<ngày>)` và chậm bao nhiêu commit so với `origin/main`; ghi dòng này vào mọi file kết quả. Kết quả chạy trên bản cũ phải ghi rõ là bản cũ.
+23. **Dữ liệu test** : mọi tên, email tạo ra có hậu tố duy nhất của lượt chạy. Dữ liệu tiền đề mà màn hình chưa hỗ trợ (vd mời user khi màn Users chưa có) được tạo qua DB và ghi rõ ở ghi chú bước. **Không để hỏng tài khoản có sẵn**: case mời email của tài khoản seed (đã là user khách hàng khác, là tài khoản SGS) phải xoá đúng bản ghi mình tạo (invitation, membership) ngay sau case và kiểm tài khoản đó đăng nhập lại được.
+24. **Xác nhận Failed bằng ảnh** trước khi ghi: mở ảnh chụp của bước, chắc chắn lỗi là của ứng dụng chứ không phải của locator hay dữ liệu.
+25. **Ghi vào file Excel có công thức, ô gộp** (Test_Report đếm bằng COUNTIF theo vùng dòng, cột Classification gộp ô): xoá, chèn dòng và ghi ô bằng chính Excel (COM) để công thức và ô gộp tự chỉnh; sao lưu trước khi ghi; chạy thử trên bản sao rồi mới ghi file thật. Công thức mới viết bằng so sánh trực tiếp (`OR(F17="Failed",…)`), không dùng COUNTIF (ONLYOFFICE của người dùng tính sai). File đang mở trong ONLYOFFICE (có `.~lock.<tên>#`) thì không ghi: nhờ người dùng đóng file, không lưu.
+26. **Môi trường local SGS DTP — điều đã gặp** (để không mất thời gian lần sau): Mailpit không lưu email khi khởi động lại, dừng Mailpit làm mất email của mọi luồng khác; `nest start --watch` có thể tự sập trên Windows khi khởi động lại, chạy dài thì chạy backend bằng `node --enable-source-maps dist/main.js`; sau `git pull` build lại `packages/api-contracts` trước `db:reset`; `db:reset` xoá toàn bộ dữ liệu; Next.js có phần tử `role="alert"` ẩn (route announcer), không dùng nó để dò thông báo lỗi.
 
 ## Changelog
 
 | Version | Ngày | Thay đổi | Nguồn |
 |---|---|---|---|
 | v0.1 | 2026-10-02 | Khởi tạo. Rule 2, 5, 6, 7, 9 lấy theo cách làm của đề xuất FEEC Local E2E (v13, 30/09/2026); rule 8 theo yêu cầu "một số yêu cầu cần confirm vẫn cần con người vào". Đề xuất của AI — **chờ duyệt** | Thiết kế trong chat Building 02/10 |
+| v0.3 | 2026-10-20 | Rule 8: kết quả ghi thêm vào cột Round N của file TC khi người dùng yêu cầu. Thêm rule 19–26: bảng kết quả Passed/Failed/Blocked/Pending/NA theo Plan; mẫu Remark Failed; bug một nguyên nhân một mã, file bằng chứng kèm ảnh; môi trường và commit; dữ liệu test và tài khoản seed; xác nhận Failed bằng ảnh; ghi Excel bằng COM, không COUNTIF, file đang mở; điều đã gặp ở môi trường local. **Chờ duyệt.** | FB-090 · FB-091 · FB-092 · FB-093 · FB-096 · chạy Customers Round 1 và E2E Wave 1 ngày 19–20/10 |
 | v0.2 | 2026-10-02 | Thêm rule 11–18 rút từ dự án thử nghiệm `automation/feec-learning` (chạy thật lần đầu: lỗi `#` trong `.env`, `networkidle`, dữ liệu phụ thuộc môi trường, menu rớt). Đề xuất của AI — **chờ duyệt** | FB-020 |

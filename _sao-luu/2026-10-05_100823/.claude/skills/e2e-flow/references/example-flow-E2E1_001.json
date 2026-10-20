@@ -1,0 +1,767 @@
+{
+  "id": "E2E1_001",
+  "wave": 1,
+  "name": "Onboard khách hàng mới: SGS tạo tài khoản → mời Customer Admin → email → kích hoạt → vào Customer Portal",
+  "goal": "Khách hàng mới do SGS Admin tạo; Customer Admin đầu tiên nhận email, kích hoạt và vào được Customer Portal; trạng thái ở phía SGS đổi đúng; mọi thao tác được ghi vết.",
+  "priority": "Critical",
+  "roles": [
+    "SGS Admin (Lin Mei) · Operations Console",
+    "Người được mời / Customer Admin (張雅婷) · Hộp thư, Customer Portal"
+  ],
+  "pre": [
+    "Đăng nhập SGS Admin tại http://localhost:3000/ops/login — Email: lin.mei@example.com — Password: password",
+    "Chưa có khách hàng tên Hsinchu AI Labs. Khi chạy lại, thêm số vào tên để không trùng (vd Hsinchu AI Labs 0119).",
+    "Email Customer Admin chưa từng được mời: mỗi lần chạy dùng email mới, vd yt.chang+0119@hsinchu-ai.com (mỗi email chỉ mời được một lần).",
+    "Mở được hộp thư test http://localhost:8025 — mọi email gửi từ môi trường local đều về đây, không gửi ra ngoài."
+  ],
+  "data": {
+    "Khách hàng": "Hsinchu AI Labs",
+    "Tên tiếng Trung": "新竹人工智慧實驗室股份有限公司",
+    "Liên hệ / Customer Admin": "張雅婷",
+    "Email": "yt.chang@hsinchu-ai.com",
+    "Điện thoại": "+886 3 578 1234",
+    "SGS Admin": "Lin Mei (SGS Taiwan)"
+  },
+  "uc": "ACC-01, ACC-02, ACC-03, ACC-05, NTF-03, AUTH-01, AUTH-03, CKP-01, AUD-01, AUD-02",
+  "steps": [
+    {
+      "title": "SGS Admin mở chức năng tạo khách hàng",
+      "role": "SGS Admin · Operations Console",
+      "uc": "ACC-01, ACC-03",
+      "rel": "Customers TC_015",
+      "act": {
+        "img": "191-29625.jpg",
+        "frame": "ACC-01 Customer accounts",
+        "marks": [
+          {
+            "n": 1,
+            "b": [
+              15,
+              102,
+              178,
+              133
+            ]
+          },
+          {
+            "n": 2,
+            "b": [
+              883,
+              167,
+              1045,
+              199
+            ]
+          }
+        ]
+      },
+      "expImg": {
+        "img": "191-29808.jpg",
+        "frame": "ACC-03 Create customer account",
+        "marks": [
+          {
+            "n": "A",
+            "b": [
+              240,
+              188,
+              842,
+              256
+            ]
+          }
+        ]
+      },
+      "do": [
+        "① Bấm Customers ở menu trái",
+        "② Bấm button [+ Create customer account]"
+      ],
+      "input": [],
+      "exp": [
+        {
+          "t": "Ⓐ Mở hộp thoại Create customer account, đang ở bước 1 Account",
+          "uc": "ACC-03"
+        }
+      ]
+    },
+    {
+      "title": "Nhập thông tin khách hàng (bước 1 · Account)",
+      "role": "SGS Admin · Operations Console",
+      "uc": "ACC-03",
+      "rel": "Customers TC_015, TC_021",
+      "act": {
+        "img": "191-29808.jpg",
+        "frame": "ACC-03 Create customer account",
+        "marks": [
+          {
+            "n": 1,
+            "b": [
+              250,
+              263,
+              527,
+              309
+            ]
+          },
+          {
+            "n": 2,
+            "b": [
+              538,
+              263,
+              815,
+              309
+            ]
+          },
+          {
+            "n": 3,
+            "b": [
+              250,
+              321,
+              527,
+              367
+            ]
+          },
+          {
+            "n": 4,
+            "b": [
+              538,
+              321,
+              815,
+              367
+            ]
+          },
+          {
+            "n": 5,
+            "b": [
+              250,
+              379,
+              527,
+              425
+            ]
+          },
+          {
+            "n": 6,
+            "b": [
+              538,
+              379,
+              815,
+              442
+            ]
+          },
+          {
+            "n": 7,
+            "b": [
+              776,
+              456,
+              831,
+              489
+            ]
+          }
+        ]
+      },
+      "expImg": {
+        "img": "191-30058.jpg",
+        "frame": "ACC-03 ACC-05 Invite initial Customer Admin",
+        "marks": [
+          {
+            "n": "A",
+            "b": [
+              244,
+              270,
+              496,
+              294
+            ]
+          }
+        ]
+      },
+      "do": [
+        "Nhập ①–⑤ theo Dữ liệu nhập",
+        "⑥ Kiểm tra ô SGS affiliate",
+        "⑦ Bấm button [Next]"
+      ],
+      "input": [
+        "① Company name: Hsinchu AI Labs",
+        "② Company name (Traditional Chinese): 新竹人工智慧實驗室股份有限公司",
+        "③ Contact name: 張雅婷",
+        "④ Contact email: yt.chang@hsinchu-ai.com",
+        "⑤ Contact phone: +886 3 578 1234"
+      ],
+      "exp": [
+        {
+          "t": "⑥ Ô SGS affiliate ghi SGS Taiwan, không sửa được",
+          "uc": "ACC-03"
+        },
+        {
+          "t": "Ⓐ Sau ⑦: chuyển sang bước 2 Invite initial Customer Admin",
+          "uc": "ACC-03"
+        }
+      ]
+    },
+    {
+      "title": "Mời Customer Admin đầu tiên (bước 2)",
+      "role": "SGS Admin · Operations Console",
+      "uc": "ACC-03, ACC-05",
+      "rel": "Customers TC_037, TC_021",
+      "act": {
+        "img": "191-30058.jpg",
+        "frame": "ACC-03 ACC-05 Invite initial Customer Admin",
+        "marks": [
+          {
+            "n": 1,
+            "b": [
+              250,
+              330,
+              527,
+              377
+            ]
+          },
+          {
+            "n": 2,
+            "b": [
+              538,
+              330,
+              815,
+              377
+            ]
+          },
+          {
+            "n": 3,
+            "b": [
+              246,
+              386,
+              656,
+              404
+            ]
+          },
+          {
+            "n": 4,
+            "b": [
+              675,
+              416,
+              831,
+              450
+            ]
+          }
+        ]
+      },
+      "expImg": {
+        "img": "191-29625.jpg",
+        "frame": "ACC-01 Customer accounts",
+        "marks": [
+          {
+            "n": "A",
+            "b": [
+              226,
+              395,
+              1044,
+              446
+            ]
+          }
+        ]
+      },
+      "do": [
+        "Nhập ①, ②",
+        "③ Đọc dòng ghi chú lời mời",
+        "④ Bấm button [Create and send invitation]"
+      ],
+      "input": [
+        "① Name: 張雅婷",
+        "② Email: yt.chang@hsinchu-ai.com"
+      ],
+      "exp": [
+        {
+          "t": "Dòng đầu hộp thoại: \"Hsinchu AI Labs · SGS Taiwan. The Customer Admin invites the rest of their team.\"",
+          "uc": "ACC-03"
+        },
+        {
+          "t": "③ \"The invitation email works once and expires after 7 days. You can resend or revoke it on the account.\"",
+          "uc": "ACC-05"
+        },
+        {
+          "t": "Ⓐ Sau ④: hộp thoại đóng, không có thông báo lỗi; khách hàng mới được tạo",
+          "uc": "ACC-03"
+        }
+      ]
+    },
+    {
+      "title": "Khách hàng mới xuất hiện trong danh sách",
+      "role": "SGS Admin · Operations Console",
+      "uc": "ACC-01, ACC-03",
+      "rel": "Customers TC_022",
+      "act": null,
+      "expImg": {
+        "img": "191-29625.jpg",
+        "frame": "ACC-01 Customer accounts",
+        "marks": [
+          {
+            "n": "A",
+            "b": [
+              226,
+              395,
+              790,
+              446
+            ]
+          },
+          {
+            "n": "B",
+            "b": [
+              886,
+              410,
+              1018,
+              436
+            ]
+          }
+        ]
+      },
+      "do": [
+        "Bấm Customers ở menu trái",
+        "Nhìn dòng khách hàng vừa tạo"
+      ],
+      "input": [],
+      "exp": [
+        {
+          "t": "Ⓐ Có dòng Hsinchu AI Labs · 新竹人工智慧實驗室股份有限公司, SGS affiliate SGS Taiwan",
+          "uc": "ACC-01"
+        },
+        {
+          "t": "Ⓐ Users 1, Scopes 0, Workspaces 0",
+          "uc": "ACC-01"
+        },
+        {
+          "t": "Ⓑ Status: Customer Admin invited",
+          "uc": "ACC-01"
+        }
+      ]
+    },
+    {
+      "title": "Lời mời đang chờ ở chi tiết khách hàng",
+      "role": "SGS Admin · Operations Console",
+      "uc": "ACC-02, ACC-05",
+      "rel": "Customers TC_061, TC_060",
+      "act": null,
+      "expImg": {
+        "img": "191-30411.jpg",
+        "frame": "ACC-02 ACC-05 New account · Customer Admin invited",
+        "marks": [
+          {
+            "n": "A",
+            "b": [
+              243,
+              360,
+              800,
+              398
+            ]
+          },
+          {
+            "n": "B",
+            "b": [
+              806,
+              360,
+              995,
+              395
+            ]
+          },
+          {
+            "n": "C",
+            "b": [
+              436,
+              160,
+              498,
+              191
+            ]
+          }
+        ]
+      },
+      "do": [
+        "Bấm tên Hsinchu AI Labs",
+        "Bấm tab Users · 1",
+        "Bấm tab NirmatAI"
+      ],
+      "input": [],
+      "exp": [
+        {
+          "t": "Ⓐ Dòng 張雅婷 · yt.chang@hsinchu-ai.com, Role Customer Admin, Status Invited",
+          "uc": "ACC-02"
+        },
+        {
+          "t": "Ⓑ Cột Invitation có Resend invitation và Revoke",
+          "uc": "ACC-05"
+        },
+        {
+          "t": "Ⓒ Tab NirmatAI: Not linked to NirmatAI yet",
+          "uc": "ACC-02"
+        }
+      ]
+    },
+    {
+      "title": "Người được mời nhận email",
+      "role": "Người được mời · Hộp thư (Mailpit)",
+      "uc": "NTF-03, ACC-05",
+      "rel": "Customers TC_045; Users TC_012",
+      "act": null,
+      "expImg": {
+        "img": "9-26710.jpg",
+        "frame": "NTF-03 Invitation email",
+        "portrait": true,
+        "marks": [
+          {
+            "n": "A",
+            "b": [
+              55,
+              38,
+              482,
+              86
+            ]
+          },
+          {
+            "n": "B",
+            "b": [
+              56,
+              98,
+              404,
+              124
+            ]
+          },
+          {
+            "n": "C",
+            "b": [
+              56,
+              136,
+              410,
+              154
+            ]
+          },
+          {
+            "n": "D",
+            "b": [
+              58,
+              210,
+              200,
+              246
+            ]
+          },
+          {
+            "n": "E",
+            "b": [
+              56,
+              255,
+              480,
+              275
+            ]
+          },
+          {
+            "n": "F",
+            "b": [
+              56,
+              298,
+              480,
+              366
+            ]
+          },
+          {
+            "n": "G",
+            "b": [
+              40,
+              394,
+              500,
+              428
+            ]
+          }
+        ]
+      },
+      "do": [
+        "Mở hộp thư của yt.chang@hsinchu-ai.com",
+        "Mở email mời mới nhất"
+      ],
+      "input": [],
+      "note": "Ảnh Figma dùng dữ liệu mẫu khác (Kevin Lin, Formosa Payments Ltd., Customer User) — so theo bố cục và câu chữ, thay tên bằng dữ liệu của case.",
+      "exp": [
+        {
+          "t": "Có đúng 1 email mời",
+          "uc": "NTF-03"
+        },
+        {
+          "t": "Ⓐ Đầu email: logo SGS + Digital Trust Platform, gạch cam; nội dung nằm trong khung trắng như Figma",
+          "uc": "NTF-03"
+        },
+        {
+          "t": "Ⓑ Tiêu đề: You’re invited to the Digital Trust Platform",
+          "uc": "NTF-03"
+        },
+        {
+          "t": "Ⓒ \"Lin Mei invited you to join Hsinchu AI Labs as a Customer Admin.\"",
+          "uc": "ACC-05"
+        },
+        {
+          "t": "Ⓓ Có button (nút cam) [Activate your account]",
+          "uc": "NTF-03"
+        },
+        {
+          "t": "Ⓔ \"This link works once and expires on <ngày mời + 7 ngày>. If it has expired, ask Lin Mei to send a new invitation.\"",
+          "uc": "NTF-03"
+        },
+        {
+          "t": "Ⓕ Có phần tiếng Trung phồn thể (您受邀加入 Digital Trust Platform + đoạn mời)",
+          "uc": "NTF-03"
+        },
+        {
+          "t": "Ⓖ Chân email: \"SGS Taiwan · You received this email because an administrator invited you…\"",
+          "uc": "NTF-03"
+        }
+      ]
+    },
+    {
+      "title": "Kích hoạt tài khoản và đăng nhập Customer Portal",
+      "role": "Người được mời · Trình duyệt khác (chưa đăng nhập)",
+      "uc": "AUTH-03, AUTH-01",
+      "rel": "Login TC_079, TC_080",
+      "act": {
+        "img": "194-33051.jpg",
+        "frame": "Customer / Sign in",
+        "marks": [
+          {
+            "n": 1,
+            "b": [
+              564,
+              247,
+              846,
+              293
+            ]
+          },
+          {
+            "n": 2,
+            "b": [
+              564,
+              304,
+              846,
+              350
+            ]
+          },
+          {
+            "n": 3,
+            "b": [
+              564,
+              412,
+              846,
+              444
+            ]
+          }
+        ]
+      },
+      "expImg": null,
+      "expNote": "Figma chưa có màn kích hoạt tài khoản (AUTH-03 · no screen trong Figma P1) — so theo nội dung UC / US-002.",
+      "do": [
+        "Bấm [Activate your account] trong email → trang kích hoạt",
+        "Nhập tên hiển thị, đặt mật khẩu, tick đồng ý, bấm [Activate account]",
+        "Đăng nhập Customer Portal: nhập ①, ②, bấm ③ Sign in"
+      ],
+      "input": [
+        "① Email: yt.chang@hsinchu-ai.com",
+        "② Password: mật khẩu vừa đặt"
+      ],
+      "note": "Ảnh thao tác là màn Sign in (Figma chưa có màn kích hoạt). Bỏ qua dòng lỗi đỏ trong ảnh. Môi trường local: đăng nhập dev dùng mật khẩu chung; mật khẩu đặt khi kích hoạt chỉ có hiệu lực với Microsoft Entra thật.",
+      "exp": [
+        {
+          "t": "Trang kích hoạt hiển thị: tổ chức Hsinchu AI Labs, cổng Customer Portal, vai trò Customer Admin, email yt.chang@hsinchu-ai.com",
+          "uc": "AUTH-03"
+        },
+        {
+          "t": "Kích hoạt xong: màn \"Your account is ready\"",
+          "uc": "AUTH-03"
+        },
+        {
+          "t": "Đăng nhập được, vào Customer Portal (Home)",
+          "uc": "AUTH-01"
+        }
+      ]
+    },
+    {
+      "title": "Customer Admin vào Home",
+      "role": "Customer Admin (張雅婷) · Customer Portal",
+      "uc": "CKP-01, ROL-01",
+      "rel": "Home TC_001; Users TC_001",
+      "act": null,
+      "expImg": {
+        "img": "9-28201.jpg",
+        "frame": "CKP-01 Cockpit · Customer Admin",
+        "marks": [
+          {
+            "n": "A",
+            "b": [
+              205,
+              68,
+              405,
+              98
+            ]
+          },
+          {
+            "n": "B",
+            "b": [
+              205,
+              110,
+              325,
+              127
+            ]
+          },
+          {
+            "n": "C",
+            "b": [
+              15,
+              372,
+              178,
+              466
+            ]
+          }
+        ]
+      },
+      "do": [
+        "Nhìn màn Home sau khi đăng nhập"
+      ],
+      "input": [],
+      "note": "Ảnh Figma là Home của khách hàng đã có dữ liệu (Kevin, Formosa Payments) — chỉ so bố cục.",
+      "exp": [
+        {
+          "t": "Ⓐ Lời chào theo buổi kèm tên, vd Good morning, 雅婷",
+          "uc": "CKP-01"
+        },
+        {
+          "t": "Ⓑ Dòng phụ: Hsinchu AI Labs",
+          "uc": "CKP-01"
+        },
+        {
+          "t": "Ⓒ Menu có ADMINISTRATION › Users, Roles & permissions (quyền Customer Admin)",
+          "uc": "ROL-01"
+        },
+        {
+          "t": "Các khối số liệu đều 0 / trống vì khách hàng mới",
+          "uc": "CKP-01"
+        }
+      ]
+    },
+    {
+      "title": "SGS Admin thấy khách hàng đã kích hoạt",
+      "role": "SGS Admin · Operations Console",
+      "uc": "ACC-01, ACC-05",
+      "rel": "Customers TC_022, TC_071",
+      "act": null,
+      "expImg": {
+        "img": "191-29625.jpg",
+        "frame": "ACC-01 Customer accounts",
+        "marks": [
+          {
+            "n": "A",
+            "b": [
+              886,
+              256,
+              946,
+              280
+            ]
+          }
+        ]
+      },
+      "do": [
+        "Bấm Customers ở menu trái (tải lại trang)",
+        "Bấm tên Hsinchu AI Labs › tab Users · 1"
+      ],
+      "input": [],
+      "note": "Figma chưa vẽ Hsinchu AI Labs ở trạng thái Active — so với Ⓐ Status Active của các khách hàng khác.",
+      "exp": [
+        {
+          "t": "Ⓐ Dòng Hsinchu AI Labs: Status đổi từ Customer Admin invited sang Active",
+          "uc": "ACC-01"
+        },
+        {
+          "t": "Tab Users: 張雅婷 Status Active",
+          "uc": "ACC-05"
+        },
+        {
+          "t": "Cột Invitation không còn Resend invitation, Revoke",
+          "uc": "ACC-05"
+        }
+      ]
+    },
+    {
+      "title": "Nhật ký ghi lại toàn bộ luồng",
+      "role": "SGS Admin · Operations Console",
+      "uc": "AUD-01, AUD-02",
+      "rel": "Customers TC_072",
+      "act": {
+        "img": "9-27543.jpg",
+        "frame": "AUD-02 Audit logs · SGS Admin",
+        "marks": [
+          {
+            "n": 1,
+            "b": [
+              553,
+              152,
+              716,
+              200
+            ]
+          }
+        ]
+      },
+      "expImg": {
+        "img": "9-27543.jpg",
+        "frame": "AUD-02 Audit logs · SGS Admin",
+        "marks": [
+          {
+            "n": "A",
+            "b": [
+              674,
+              570,
+              900,
+              604
+            ]
+          }
+        ]
+      },
+      "do": [
+        "Bấm Audit logs ở menu trái",
+        "① Chọn Customer: Hsinchu AI Labs"
+      ],
+      "input": [
+        "① Customer: Hsinchu AI Labs"
+      ],
+      "note": "Tên sự kiện mời / kích hoạt chưa có trong Figma — so theo nội dung, không so nguyên văn.",
+      "exp": [
+        {
+          "t": "Ⓐ Có dòng Customer account created · Hsinchu AI Labs, User Lin Mei · SGS Admin, Area Customer accounts",
+          "uc": "AUD-02"
+        },
+        {
+          "t": "Có dòng mời Customer Admin 張雅婷 (người thực hiện Lin Mei)",
+          "uc": "AUD-01"
+        },
+        {
+          "t": "Có dòng 張雅婷 kích hoạt tài khoản",
+          "uc": "AUD-01"
+        },
+        {
+          "t": "Thời gian các dòng khớp thứ tự các bước",
+          "uc": "AUD-01"
+        }
+      ]
+    }
+  ],
+  "env": {
+    "web": "http://localhost:3000",
+    "mail": "http://localhost:8025",
+    "password": "password",
+    "code": "CORP-BA-DTP main · commit 4be5d13 (15/10/2026)"
+  },
+  "accounts": [
+    {
+      "role": "SGS Admin",
+      "persona": "Lin Mei (SGS Taiwan)",
+      "portal": "ops",
+      "email": "lin.mei@example.com",
+      "source": "Có sẵn (seed)"
+    },
+    {
+      "role": "Customer Admin",
+      "persona": "張雅婷 (người được mời)",
+      "portal": "customer",
+      "email": "yt.chang+{run}@hsinchu-ai.com",
+      "source": "Tạo trong luồng: SGS Admin mời ở bước 3, kích hoạt ở bước 7. Mỗi lần chạy dùng email mới."
+    }
+  ],
+  "runData": {
+    "Khách hàng": "Hsinchu AI Labs {run}",
+    "Email Customer Admin": "yt.chang+{run}@hsinchu-ai.com"
+  }
+}

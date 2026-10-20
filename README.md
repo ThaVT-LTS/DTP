@@ -24,8 +24,12 @@ Claude đọc `CLAUDE.md` (quy tắc), `.claude/rules/` (rule theo thư mục), 
 | 7 | "Viết spec Playwright cho UC-AUTH-001" | Quyết chỗ màn hình trái yêu cầu |
 | Khi yêu cầu đổi | "Có bản UC mới, phân tích thay đổi" | Duyệt báo cáo ảnh hưởng |
 | Khi bạn nhận xét | nói thẳng nhận xét | Duyệt FB trong feedback/log.md |
+| Rà soát TC | "Rà soát file TC v0.2 theo Figma, UC, web, chỉ Wave 1" → sau đó "update" | Duyệt báo cáo rà soát, rồi bảo update |
+| Chạy một sheet | "Chạy test case sheet Customers trên localhost, ghi Round 1" | Xác nhận Fail, xem file bug kèm ảnh |
+| Luồng E2E | "Chạy E2E Wave 1 trên local" | Xác nhận Fail; kiểm Pending theo Plan |
 
 ## Thành phần
+- Cập nhật 20/10/2026 (FB-083 → FB-098, chờ duyệt): `rules/tc-authoring.md` v0.11 (xoá case `[OUT]`, câu Đóng xoá khỏi Cần xác nhận, không thêm sheet, mã TC = No. — chờ chốt cách thêm case, hộp thoại nhiều bước nhóm theo bước, Pre-condition đánh số, bộ case abnormal, quyết định của dev đè Figma); `rules/automation.md` v0.3 (rule 19–26: bảng kết quả theo Plan, mẫu Remark, bug một nguyên nhân một mã, môi trường và commit, tài khoản seed, ghi Excel bằng COM, điều đã gặp ở local); skill mới `tc-review`, `e2e-flow`, `bug-evidence`; `manual-run` v0.2. Rút từ lượt rà soát 1.089 case Wave 1, chạy sheet Customers và 15 luồng E2E SGS DTP ngày 19–20/10. Môi trường local và tài khoản: `projects/sgs-dtp/profile.md`.
 - `rules/`, `.claude/skills/{ba-analysis,test-design,tc-authoring,feedback-loop}`, `feedback/`: nguyên bộ **ai-ecosystem v0.3** (01/10/2026). Mô tả đầy đủ: `docs/README-ai-ecosystem-v0.3.md`.
 - Cập nhật 15/10/2026 (FB-074 → FB-082, chờ duyệt): `rules/tc-authoring.md` v0.10 và `tc-authoring` v0.8 — gộp bản tổng hợp 15/10 của phiên chat vào rule có sẵn (tổng vẫn 40 rule): thứ tự 5 nguồn, Open question tinh gọn, dòng `Login acc`, Step `button [Tên]`, Priority Critical, `[Phase 2]`/`[OUT]`, độ phủ UC theo wave, cổng `tc_fix_xlsx.py` + `tc_check.py --creator`. Script `tc_fix_xlsx.py`, `tc_rows.py` chờ file kèm theo.
 - Cập nhật 09/10/2026 (FB-067, chờ duyệt): `tc-authoring` v0.6 và `rules/tc-authoring.md` v0.8 — chế độ soát chéo thêm bước 2b: bên soát gửi đủ lỗi trong một lần; lỗi sót từ vòng trước đánh dấu và đếm riêng (rule 39).
