@@ -104,6 +104,10 @@ Bản ghi `FB-001` là góp ý của người dùng. `FB-002` trở đi là **đ
 | FB-096 | Chỉ chạy test trên localhost; luôn nêu rõ môi trường, nhánh, commit, ngày | L2-rule | Đã vào rule (chờ duyệt) | 0 |
 | FB-097 | Rà soát TC theo Figma, UC và web: từng case Xoá / Sửa / Lệch web / Wave sau / OK, chỉ wave đang làm, chưa sửa khi chưa có lệnh | L2-rule | Đã vào rule (chờ duyệt) | 0 |
 | FB-098 | Lệch giữa quy ước dự án và web hiện tại cần người dùng chốt (404 scope; Documents / Evidence Library) | L6-tri thức | Chưa rõ phạm vi | 0 |
+| FB-099 | Nghiệp vụ cấm thao tác và web ẩn nút → đúng, không phải bug (xoá workspace có evidence / request) | L2-rule | Đã vào rule (chờ duyệt) | 0 |
+| FB-100 | Case cần email thật: gửi mời, lấy link từ người dùng trước rồi mới chạy; hỏi lại thay vì chạy hàng loạt | L2-rule | Đã vào rule (chờ duyệt) | 0 |
+| FB-101 | Đối chiếu US / decision log / contract mới nhất trước khi ghi bug; bug sai thì Rút, không xoá mã | L2-rule | Đã vào rule (chờ duyệt) | 0 |
+| FB-102 | Mã TC có tiền tố theo màn (vd Documents DC_001), duy nhất trong file | L2-rule | Đã vào rule (chờ duyệt) | 0 |
 
 ---
 
@@ -1385,4 +1389,48 @@ Bản ghi `FB-001` là góp ý của người dùng. `FB-002` trở đi là **đ
 - Địa chỉ: projects/sgs-dtp/profile.md · exports v0.3 (Scopes, Workspaces, Workspace detail, Documents)
 - Tiêu chí kiểm: người dùng chốt một trong hai; file TC và profile ghi cùng một cách
 - Trạng thái: Chưa rõ phạm vi
+- Tái phát: 0
+## FB-099 · Nghiệp vụ cấm thao tác và web ẩn nút → đúng, không phải bug (xoá workspace có evidence / request)
+- Ngày: 2026-10-21
+- Nguồn: chat Claude Code 21/10 · dev: "Phần xóa workspace … nghiệp vụ đang là k cho phép xóa các workspace đang có evidence/request" · người dùng: "=> update rule"
+- Loại: L2-rule
+- Liên quan: FB-095 · rules/tc-authoring.md rule 1 · US-023 AC4 · Figma WSP-03/WSP-04 (header In progress vẫn vẽ nút Delete)
+- Địa chỉ: rules/tc-authoring.md rule 1
+- Tiêu chí kiểm: workspace không rỗng → Expected "không có button Delete"; không đánh Failed vì không có thông báo lý do; case API xoá vẫn mong đợi 409 WORKSPACE_NOT_EMPTY
+- Phạm vi ảnh hưởng: WS-BUG-02 (rút lại) · Workspaces_062, _073, _082, _083, _084 · ticket TICKET-FIX-BE-16, TICKET-FIX-FE-33 (cần đóng)
+- Đã sửa: rules/tc-authoring.md rule 1; register web2 (WS-BUG-02 rút)
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-100 · Case cần email thật: gửi mời, lấy link từ người dùng trước rồi mới chạy; hỏi lại thay vì chạy hàng loạt
+- Ngày: 2026-10-21
+- Nguồn: chat Claude Code 21/10 · "tôi đã nói rõ ràng rồi mà nhỉ, với case cần mail thật thì pải cho mail thật để test chứ, cứ là mà ko hỏi lại, ko confirm lại là sao, cứ chạy ầm ầm tốn time và token mà ko dc việc gì vậy"
+- Loại: L2-rule
+- Liên quan: rules/automation.md rule 23 (dữ liệu test), rule 26 (môi trường local có Mailpit)
+- Địa chỉ: rules/automation.md rule 27
+- Tiêu chí kiểm: lượt chạy có case email thì trước khi chạy đã có danh sách case ↔ hộp thư, đã gửi mời và đã có link từ người dùng; không còn case "Chờ email" / "Not execute" do AI chưa hỏi
+- Phạm vi ảnh hưởng: lượt web 21/10 — 32 case TC và 74 bullet E2E để "Chờ email / Not execute"; CU-BUG-08, 09, 12, 16, 17, US-BUG-05 chưa kiểm lại
+- Đã sửa: rules/automation.md v0.4 rule 27; bộ nhớ AI `real-mail-first-confirm`
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-101 · Đối chiếu US / decision log / contract mới nhất trước khi ghi bug; bug sai thì Rút, không xoá mã
+- Ngày: 2026-10-21
+- Nguồn: lượt chạy web 21/10 — 12 bug phải rút vì web làm đúng quyết định mới hơn (WS-BUG-02 do dev nhắc; FW-BUG-07, 15, LG-BUG-03, US-BUG-12, 14, WD-BUG-02, 04, 09…13 do agent viết ticket phát hiện khi đọc code và spec)
+- Loại: L2-rule
+- Liên quan: FB-095 · FB-099 · rules/tc-authoring.md rule 1
+- Địa chỉ: rules/automation.md rule 28
+- Tiêu chí kiểm: mỗi bug mới có dòng căn cứ (US / decision / contract / Figma, ngày); register ghi trạng thái Rút kèm lý do; case liên quan Passed và Expected đã sửa
+- Phạm vi ảnh hưởng: register 82 mã (12 Rút); file TC v0.4 (22 Expected đã sửa); E2E v0.8 (expFix)
+- Đã sửa: rules/automation.md v0.4 rule 28
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+## FB-102 · Mã TC có tiền tố theo màn (vd Documents DC_001), duy nhất trong file
+- Ngày: 2026-10-21
+- Nguồn: chat Claude Code 21/10 · "ghi nhớ Mã TCs cũng cần có quy định VD: Document > DC_001. tôi đang làm r, chỉ ghi nhớ, update rule"
+- Loại: L2-rule
+- Liên quan: rules/tc-authoring.md rule 11 · FB-086 · tiền tố mã bug (LG, CU, US, FW, SC, WS, WD, DC, PF, BU)
+- Địa chỉ: rules/tc-authoring.md rule 11
+- Tiêu chí kiểm: mọi TVP_ID dạng `<MÃ MÀN>_nnn`, không trùng giữa các sheet; tiền tố trùng với tiền tố mã bug của màn
+- Phạm vi ảnh hưởng: file TC v0.4 (người dùng đang tự đổi); mọi tham chiếu mã case (file bug, E2E "Case màn hình", register, ticket) cần theo mã mới
+- Đã sửa: rules/tc-authoring.md rule 11
+- Trạng thái: Đã vào rule (chờ duyệt)
 - Tái phát: 0

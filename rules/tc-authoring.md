@@ -12,6 +12,7 @@ Rule này nói về **file test case bàn giao được**: tổ chức, nội du
     - UC có mà web và Figma chưa có → vẫn viết case, theo rule 40.
     - Web sai rõ ràng (lỗi chính tả, dữ liệu hai chỗ lệch nhau, phi logic) → Expected ghi điều đúng; case sẽ fail và thành bug.
     - **Dev hoặc dự án đã bỏ, đổi có chủ đích** một chi tiết của Figma (có người xác nhận, ngày, commit) → Expected theo web, ghi căn cứ ở Remark; không đánh Failed. Vd 19/10: dòng `Your affiliate. New customers always belong to it.` dev bỏ ở commit 48e50cb (FB-095).
+    - **Nghiệp vụ cấm một thao tác** (dev hoặc dự án xác nhận) mà web **ẩn hẳn nút** của thao tác đó, còn spec chỉ ghi "bị từ chối" chứ không bắt hiện nút rồi báo lý do → ẩn nút là đúng nghiệp vụ: Expected ghi "không có button …", không đánh Failed vì thiếu thông báo lý do. Case gọi API trực tiếp vẫn giữ (phải trả lỗi, không đổi dữ liệu). Vd 21/10: workspace có evidence / service request không cho xoá → không có nút Delete; WS-BUG-02 rút lại (FB-099).
 2. Lệch nhau mà **không áp được rule 1** thì ghi thành câu hỏi `Q-<mã màn>-nn` (rule 13, 23), không tự chọn bên nào.
 
 ## B. Tổ chức file
@@ -53,7 +54,7 @@ Ví dụ trên là file TC tiếng Anh. Mỗi ô ghi một thứ tiếng theo ng
 ## D. Nội dung một dòng
 
 10. Mỗi TC có đúng một `UC_ID`. Không map được thì ghi `[NGOÀI UC]` kèm lý do, không để trống. Case `[Phase 2]` giữ mã UC gốc (rule 40); case lỗi thời bị xoá khỏi file, không còn tiền tố `[OUT]` (rule 40, FB-083).
-11. `TVP_ID` duy nhất trong sheet, theo mẫu `TC_nnn`. Tham chiếu từ ngoài dùng `<tên sheet>_TC_nnn`.
+11. `TVP_ID` duy nhất **trong cả file**, theo mẫu `<MÃ MÀN>_nnn` (FB-102, 21/10): tiền tố 2 chữ theo màn, cùng bộ tiền tố với mã bug — vd Documents `DC_001`, Login `LG_`, Customers `CU_`, Users `US_`, Frameworks `FW_`, Scopes `SC_`, Workspaces `WS_`, Workspace detail `WD_`, Profile `PF_`, Bulk upload `BU_`. Màn chưa có tiền tố thì chọn 2 chữ chưa dùng và ghi vào bảng tiền tố của dự án. Không dùng `TC_nnn` trùng giữa các sheet.
     - **Mã TC đồng nhất với cột No.**: `TC_` + số No. 3 chữ số (FB-086, thay quy định "không đánh lại mã" của FB-081). Đánh lại mã thì cập nhật mọi tham chiếu: sheet `Cần xác nhận`, file bug, file E2E. **Chờ chốt** cách làm khi thêm case: (a) chèn đúng nhóm rồi đánh lại toàn bộ, hay (b) nối case mới vào cuối sheet để mã cũ không đổi (cách đã dùng cho TC_100 sheet Customers, 20/10).
     - **Mã TC không bao giờ đánh lại** sau khi file đã giao cho người dùng hoặc đã đưa lên Azure DevOps. Case mới lấy mã kế tiếp; case bỏ đi không xoá, không dùng lại mã mà đánh dấu `[OUT]` (rule 40).
 12. Kết quả mong đợi phải **quan sát được**: text nguyên văn, màn hình đích, trạng thái, dữ liệu thay đổi. Cấm "hoạt động bình thường", "hiển thị đúng", "thành công" mà không nói thấy gì; tiếng Anh cũng vậy, vd "works normally", "displays correctly", "as expected".

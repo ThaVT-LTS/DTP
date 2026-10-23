@@ -1,8 +1,8 @@
 # Báo cáo sổ góp ý
 
-Sinh tự động bởi `fb_report.py` — không sửa tay. Nguồn: `feedback\log.md`. Ngày: 2026-10-20.
+Sinh tự động bởi `fb_report.py` — không sửa tay. Nguồn: `feedback\log.md`. Ngày: 2026-10-21.
 
-Tổng: **98** bản ghi · lỗi: **0** · cảnh báo: **19**
+Tổng: **102** bản ghi · lỗi: **0** · cảnh báo: **19**
 
 ## Cần nạp khi bắt đầu task
 
@@ -105,6 +105,10 @@ Tổng: **98** bản ghi · lỗi: **0** · cảnh báo: **19**
 | FB-096 | Chỉ chạy test trên localhost; luôn nêu rõ môi trường, nhánh, commit, ngày | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
 | FB-097 | Rà soát TC theo Figma, UC và web: từng case Xoá / Sửa / Lệch web / Wave sau / OK, chỉ wave đang làm, chưa sửa khi chưa có lệnh | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
 | FB-098 | Lệch giữa quy ước dự án và web hiện tại cần người dùng chốt (404 scope; Documents / Evidence Library) | L6-tri thức | Chưa rõ phạm vi | chưa có |
+| FB-099 | Nghiệp vụ cấm thao tác và web ẩn nút → đúng, không phải bug (xoá workspace có evidence / request) | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
+| FB-100 | Case cần email thật: gửi mời, lấy link từ người dùng trước rồi mới chạy; hỏi lại thay vì chạy hàng loạt | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
+| FB-101 | Đối chiếu US / decision log / contract mới nhất trước khi ghi bug; bug sai thì Rút, không xoá mã | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
+| FB-102 | Mã TC có tiền tố theo màn (vd Documents DC_001), duy nhất trong file | L2-rule | Đã vào rule (chờ duyệt) | chưa có |
 
 ## Chờ người dùng duyệt
 
@@ -161,6 +165,10 @@ Tổng: **98** bản ghi · lỗi: **0** · cảnh báo: **19**
 - FB-095 · Quyết định của dev / dự án đè Figma thì TC theo quyết định đó (rules/tc-authoring.md rule 1)
 - FB-096 · Chỉ chạy test trên localhost; luôn nêu rõ môi trường, nhánh, commit, ngày (rules/automation.md rule 22 · projects/sgs-dtp/profile.md)
 - FB-097 · Rà soát TC theo Figma, UC và web: từng case Xoá / Sửa / Lệch web / Wave sau / OK, chỉ wave đang làm, chưa sửa khi chưa có lệnh (skills/tc-review/SKILL.md (mới) · rules/feedback.md rule 15)
+- FB-099 · Nghiệp vụ cấm thao tác và web ẩn nút → đúng, không phải bug (xoá workspace có evidence / request) (rules/tc-authoring.md rule 1)
+- FB-100 · Case cần email thật: gửi mời, lấy link từ người dùng trước rồi mới chạy; hỏi lại thay vì chạy hàng loạt (rules/automation.md rule 27)
+- FB-101 · Đối chiếu US / decision log / contract mới nhất trước khi ghi bug; bug sai thì Rút, không xoá mã (rules/automation.md rule 28)
+- FB-102 · Mã TC có tiền tố theo màn (vd Documents DC_001), duy nhất trong file (rules/tc-authoring.md rule 11)
 
 ## Thống kê
 
@@ -171,12 +179,12 @@ Tổng: **98** bản ghi · lỗi: **0** · cảnh báo: **19**
 | Mới | 15 |
 | Đã duyệt | 8 |
 | Đã sửa sản phẩm | 15 |
-| Đã vào rule (chờ duyệt) | 53 |
+| Đã vào rule (chờ duyệt) | 57 |
 
 | Loại | Số lượng |
 |---|---|
 | L1-sản phẩm | 5 |
-| L2-rule | 48 |
+| L2-rule | 52 |
 | L3-checklist | 5 |
 | L4-mẫu | 17 |
 | L5-script | 6 |
@@ -188,22 +196,22 @@ Không có.
 
 ## Cảnh báo
 
-- FB-002 · đứng ở 'Mới' 21 ngày
-- FB-003 · đứng ở 'Mới' 21 ngày
-- FB-004 · đứng ở 'Mới' 21 ngày
-- FB-005 · đứng ở 'Mới' 21 ngày
-- FB-006 · đứng ở 'Mới' 21 ngày
-- FB-007 · đứng ở 'Mới' 21 ngày
-- FB-008 · đứng ở 'Mới' 21 ngày
-- FB-009 · đứng ở 'Mới' 21 ngày
-- FB-018 · đứng ở 'Mới' 19 ngày
-- FB-022 · đứng ở 'Chưa rõ phạm vi' 18 ngày
-- FB-023 · đứng ở 'Mới' 18 ngày
-- FB-024 · đứng ở 'Mới' 18 ngày
-- FB-025 · đứng ở 'Chưa rõ phạm vi' 18 ngày
+- FB-002 · đứng ở 'Mới' 22 ngày
+- FB-003 · đứng ở 'Mới' 22 ngày
+- FB-004 · đứng ở 'Mới' 22 ngày
+- FB-005 · đứng ở 'Mới' 22 ngày
+- FB-006 · đứng ở 'Mới' 22 ngày
+- FB-007 · đứng ở 'Mới' 22 ngày
+- FB-008 · đứng ở 'Mới' 22 ngày
+- FB-009 · đứng ở 'Mới' 22 ngày
+- FB-018 · đứng ở 'Mới' 20 ngày
+- FB-022 · đứng ở 'Chưa rõ phạm vi' 19 ngày
+- FB-023 · đứng ở 'Mới' 19 ngày
+- FB-024 · đứng ở 'Mới' 19 ngày
+- FB-025 · đứng ở 'Chưa rõ phạm vi' 19 ngày
 - FB-034 · tái phát 1 lần, Gate 'mức 1 · nâng mức 3 được cho phần tìm chuỗi' — nên nâng một mức
-- FB-048 · đứng ở 'Chưa rõ phạm vi' 13 ngày
-- FB-050 · đứng ở 'Mới' 13 ngày
-- FB-051 · đứng ở 'Chưa rõ phạm vi' 13 ngày
-- FB-060 · đứng ở 'Mới' 11 ngày
-- FB-061 · đứng ở 'Mới' 11 ngày
+- FB-048 · đứng ở 'Chưa rõ phạm vi' 14 ngày
+- FB-050 · đứng ở 'Mới' 14 ngày
+- FB-051 · đứng ở 'Chưa rõ phạm vi' 14 ngày
+- FB-060 · đứng ở 'Mới' 12 ngày
+- FB-061 · đứng ở 'Mới' 12 ngày

@@ -108,3 +108,6 @@ Mỗi bug lọt ra sau khi test là dữ liệu để cải thiện bộ quy t�
 | v0.2 | 2026-10-05 | `references/coverage-checklist.md`, `techniques.md`, `tc-framework.md`: phân quyền âm kiểm trên giao diện và URL; kiểm API chỉ khi `profile.md` ghi tester được gọi API, viết ở sheet `API` riêng (14 chỗ). Hanna duyệt 05/10. | FB-039 |
 | v0.2 | 2026-10-02 | Thêm checklist rủi ro ngoài nghiệp vụ (`technical-risk-checklist.md`), bước bắt buộc cho mỗi màn hình; mẫu phân tích case cha con (templates §7); coverage-checklist thêm các kiểu bug 16–20 và mục E. | FB-028 |
 | v0.1 | 2026-09-28 | Khởi tạo: chế độ A (bước 0–6), chế độ B, vòng học từ bug lọt; khung Redirect / Validation / Function; script RTM và xuất Excel. | Yêu cầu trong chat: ma trận, bảng quyết định, phân vùng biên, khung TC Redirect / Validation / Function |
+## Mẫu lỗi người dùng đã báo
+
+Trước khi viết hoặc review case cho một màn, đọc `rules/bug-patterns.md` (rule 29 của `rules/automation.md`) và thêm case cho mọi mẫu áp dụng được với màn đó (dropdown cuộn, divider gây hiểu lầm, thứ tự dòng chính/phụ của thẻ, menu ⋮ theo trạng thái, nhãn bộ lọc, chọn một/nhiều đồng nhất, mục chọn được lên trên, múi giờ, Back trong wizard…).

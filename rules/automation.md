@@ -1,6 +1,6 @@
 # Rule — Chạy manual và Automation (Playwright)
 
-Phiên bản: v0.3 · **[ĐỀ XUẤT] — chờ duyệt.** Nạp cùng `rules/common.md`, `rules/feedback.md`, `rules/tester.md` khi chạy test hoặc viết spec. Skill: `manual-run`, `write-e2e-spec`. Ánh xạ TC → Playwright: `skills/test-design/references/templates.md` §6.
+Phiên bản: v0.4 · **[ĐỀ XUẤT] — chờ duyệt.** Nạp cùng `rules/common.md`, `rules/feedback.md`, `rules/tester.md` khi chạy test hoặc viết spec. Skill: `manual-run`, `write-e2e-spec`. Ánh xạ TC → Playwright: `skills/test-design/references/templates.md` §6.
 
 1. Chỉ chạy và chỉ tự động hoá TC thuộc bộ test đã qua cổng 3 (`rtm_check.py` sạch, đã review).
 2. Title của `test()` là `<ID TC> · <tiêu đề>`; ID không đổi khi sửa nội dung. Tag đặt trong option `tag`, không nhét vào title: `@<UC-ID>`, `@<nhóm>`, `@<loại>`, `@P<n>`, và các ID trong trường `Nguồn` của TC.
@@ -47,10 +47,21 @@ Phiên bản: v0.3 · **[ĐỀ XUẤT] — chờ duyệt.** Nạp cùng `rules/c
 25. **Ghi vào file Excel có công thức, ô gộp** (Test_Report đếm bằng COUNTIF theo vùng dòng, cột Classification gộp ô): xoá, chèn dòng và ghi ô bằng chính Excel (COM) để công thức và ô gộp tự chỉnh; sao lưu trước khi ghi; chạy thử trên bản sao rồi mới ghi file thật. Công thức mới viết bằng so sánh trực tiếp (`OR(F17="Failed",…)`), không dùng COUNTIF (ONLYOFFICE của người dùng tính sai). File đang mở trong ONLYOFFICE (có `.~lock.<tên>#`) thì không ghi: nhờ người dùng đóng file, không lưu.
 26. **Môi trường local SGS DTP — điều đã gặp** (để không mất thời gian lần sau): Mailpit không lưu email khi khởi động lại, dừng Mailpit làm mất email của mọi luồng khác; `nest start --watch` có thể tự sập trên Windows khi khởi động lại, chạy dài thì chạy backend bằng `node --enable-source-maps dist/main.js`; sau `git pull` build lại `packages/api-contracts` trước `db:reset`; `db:reset` xoá toàn bộ dữ liệu; Next.js có phần tử `role="alert"` ẩn (route announcer), không dùng nó để dò thông báo lỗi.
 
+27. **Case cần email thật: gửi mời và lấy link TRƯỚC, rồi mới chạy** (FB-100). Trên môi trường không có Mailpit / DB (vd web test dùng Gmail thật), AI không đọc được hộp thư và token kích hoạt chỉ nằm trong email. Vì vậy, trước khi chạy một lượt có case cần email thật (mời, kích hoạt, nội dung email, link cũ / đã thu hồi):
+    - Liệt kê case nào cần email, mỗi case dùng hộp thư nào (`<mail người dùng>+qaNN@…`), gom case để ít hộp thư nhất.
+    - Gửi các lời mời đó trước, **dừng lại hỏi người dùng** dán link kích hoạt (và ảnh chụp email nếu kiểm nội dung). Chờ có link.
+    - Chỉ sau đó mới chạy, kể cả các case email, để kết quả là Passed / Failed thật. Không chạy hàng loạt rồi để case ở "Chờ email" / "Not execute".
+    - Việc nào phụ thuộc người dùng (link, ảnh, quyết định, dữ liệu) thì hỏi và xác nhận trước khi dùng nhiều agent chạy song song.
+28. **Trước khi ghi một bug, đối chiếu quyết định mới nhất** (FB-101): user story đã sửa, decision log, contract API, commit có chủ đích của dev (ghi rõ ngày). Web làm đúng theo quyết định mới hơn Figma / TC thì không phải bug: case Passed, Remark nêu căn cứ, sửa Expected (rule 1 của `tc-authoring.md`, FB-095, FB-099). Bug đã ghi mà sau đó thấy đúng quyết định thì đánh **Rút** trong register, không xoá mã.
+
+29. **Bug người dùng báo khi test tay → bug + case + mẫu lỗi** (23/10): ngoài việc log như mọi bug (tiếng Anh, ticket rồi Azure, gán theo PIC trong Plan), làm luôn hai việc: (a) thêm hoặc sửa case trong đúng nhóm của sheet TC, gắn mã bug, Expected theo đúng quy tắc người dùng đã làm rõ; (b) thêm mẫu lỗi tổng quát vào `rules/bug-patterns.md` (mẫu · cách kiểm · mã ví dụ). Khi thiết kế TC cho màn mới hoặc chạy lượt mới, đối chiếu `bug-patterns.md` và thêm case cho mẫu áp dụng được.
+
 ## Changelog
 
 | Version | Ngày | Thay đổi | Nguồn |
 |---|---|---|---|
+| v0.5 | 2026-10-23 | Thêm rule 29: bug người dùng báo khi test tay → log, thêm case vào TC, thêm mẫu vào `rules/bug-patterns.md`. **Chờ duyệt.** | Yêu cầu người dùng 23/10 |
+| v0.4 | 2026-10-21 | Thêm rule 27 (case cần email thật: gửi mời, lấy link trước rồi mới chạy) và rule 28 (đối chiếu quyết định mới nhất trước khi ghi bug). **Chờ duyệt.** | FB-100 · FB-101 · lượt chạy web 21/10 |
 | v0.1 | 2026-10-02 | Khởi tạo. Rule 2, 5, 6, 7, 9 lấy theo cách làm của đề xuất FEEC Local E2E (v13, 30/09/2026); rule 8 theo yêu cầu "một số yêu cầu cần confirm vẫn cần con người vào". Đề xuất của AI — **chờ duyệt** | Thiết kế trong chat Building 02/10 |
 | v0.3 | 2026-10-20 | Rule 8: kết quả ghi thêm vào cột Round N của file TC khi người dùng yêu cầu. Thêm rule 19–26: bảng kết quả Passed/Failed/Blocked/Pending/NA theo Plan; mẫu Remark Failed; bug một nguyên nhân một mã, file bằng chứng kèm ảnh; môi trường và commit; dữ liệu test và tài khoản seed; xác nhận Failed bằng ảnh; ghi Excel bằng COM, không COUNTIF, file đang mở; điều đã gặp ở môi trường local. **Chờ duyệt.** | FB-090 · FB-091 · FB-092 · FB-093 · FB-096 · chạy Customers Round 1 và E2E Wave 1 ngày 19–20/10 |
 | v0.2 | 2026-10-02 | Thêm rule 11–18 rút từ dự án thử nghiệm `automation/feec-learning` (chạy thật lần đầu: lỗi `#` trong `.env`, `networkidle`, dữ liệu phụ thuộc môi trường, menu rớt). Đề xuất của AI — **chờ duyệt** | FB-020 |
