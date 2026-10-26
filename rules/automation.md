@@ -56,10 +56,29 @@ Phiên bản: v0.4 · **[ĐỀ XUẤT] — chờ duyệt.** Nạp cùng `rules/c
 
 29. **Bug người dùng báo khi test tay → bug + case + mẫu lỗi** (23/10): ngoài việc log như mọi bug (tiếng Anh, ticket rồi Azure, gán theo PIC trong Plan), làm luôn hai việc: (a) thêm hoặc sửa case trong đúng nhóm của sheet TC, gắn mã bug, Expected theo đúng quy tắc người dùng đã làm rõ; (b) thêm mẫu lỗi tổng quát vào `rules/bug-patterns.md` (mẫu · cách kiểm · mã ví dụ). Khi thiết kế TC cho màn mới hoặc chạy lượt mới, đối chiếu `bug-patterns.md` và thêm case cho mẫu áp dụng được.
 
+30. **Quét giá trị gán cứng trong code trước mỗi lượt chạy** (26/10): khi có build mới hoặc trước lượt chạy, chạy skill `hardcode-check` trên code đang deploy (ghi rõ commit). Tìm: (a) danh sách / dropdown lấy cố định N mục mà không có tìm kiếm hay phân trang; (b) hằng số nghiệp vụ (số file, MB, ngày, tháng, giờ poll, hạn link) so với bảng giá trị của UC; (c) ID, tên tổ chức, email, URL viết thẳng; (d) text hiển thị không qua i18n EN/ZH; (e) bộ lọc mặc định làm ẩn dữ liệu. Mỗi chỗ lệch UC hoặc làm người dùng không tới được dữ liệu: thêm case vào đúng sheet TC (không đánh dấu "chờ dữ liệu", tạo dữ liệu cần thiết hoặc hỏi người dùng), kiểm trên web, có bug thì báo người dùng trước rồi mới log (tiếng Anh).
+
+31. **Mỗi lượt chạy: tìm lỗi chủ động, phân loại nghi ngờ / lỗi / tiềm ẩn** (26/10, skill `run-cycle`). TC chỉ theo UC sẽ bỏ sót lỗi chỉ lộ ra khi có dữ liệu, giờ hoặc cách gọi đặc biệt. Ngoài TC thường, tìm theo 4 hướng:
+    - **Quét code**: giới hạn, hằng số, text viết cứng, so với UC (skill `hardcode-check`, rule 30). Ví dụ: `limit 100`, 25 MB, 500 file, "SGS Taiwan".
+    - **Tạo đúng dữ liệu để lỗi lộ ra trên web**: hơn 100 scope, file 30 MB, hơn 50 evidence.
+    - **Test biên và thời gian**: số lượng lớn, file lớn, khung 00:00–08:00 giờ Đài Loan (lỗi ngày tính theo UTC).
+    - **Gọi thẳng API** những gì giao diện đang chặn (vd UI chặn 21 file nhưng API nhận 500). Đây vẫn là lỗi thật vì người khác có thể gọi API trực tiếp. Chỉ gọi trên môi trường test, bằng tài khoản test.
+
+    Lỗi tìm theo 4 hướng này ghi là **nghi ngờ**, rồi **viết case TC kèm dữ liệu để kích hoạt**. Chạy trên web thấy lỗi thì log (báo người dùng trước, rule 29). Không tái hiện được thì ghi **tiềm ẩn**, báo dev xem, không tính là bug.
+
+    Quy trình mỗi lượt:
+    1. Ghi lại build và commit đang deploy (rule 22). Quét đúng commit đó, không mặc định `origin/main`.
+    2. Kiểm môi trường: biến cấu hình, migration đã chạy, dịch vụ ngoài (mail, scanner, NirmatAI) đang dùng thật hay giả.
+    3. Quét code để có danh sách nghi ngờ (skill `hardcode-check`). Đối chiếu ticket và Azure để không trùng bug đã có.
+    4. Chạy TC trên web, kèm các case kích hoạt nghi ngờ (skill `manual-run`).
+    5. Phân loại kết quả: **lỗi code** (gán dev theo PIC trong Plan), **lỗi môi trường hoặc deploy** (gán devops, không ghi Failed cho case), **tiềm ẩn** (chưa log, ghi vào báo cáo cho dev).
+
 ## Changelog
 
 | Version | Ngày | Thay đổi | Nguồn |
 |---|---|---|---|
+| v0.7 | 2026-10-26 | Thêm rule 31: mỗi lượt chạy tìm lỗi chủ động theo 4 hướng (quét code, tạo dữ liệu, biên và thời gian, gọi thẳng API); nghi ngờ → case kích hoạt → lỗi / tiềm ẩn; quy trình 5 bước (skill `run-cycle`). **Chờ duyệt.** | Yêu cầu người dùng 26/10 |
+| v0.6 | 2026-10-26 | Thêm rule 30: quét giá trị gán cứng trong code (skill `hardcode-check`) trước mỗi lượt chạy. **Chờ duyệt.** | Yêu cầu người dùng 26/10 (dropdown Scope chỉ tải 100 mục) |
 | v0.5 | 2026-10-23 | Thêm rule 29: bug người dùng báo khi test tay → log, thêm case vào TC, thêm mẫu vào `rules/bug-patterns.md`. **Chờ duyệt.** | Yêu cầu người dùng 23/10 |
 | v0.4 | 2026-10-21 | Thêm rule 27 (case cần email thật: gửi mời, lấy link trước rồi mới chạy) và rule 28 (đối chiếu quyết định mới nhất trước khi ghi bug). **Chờ duyệt.** | FB-100 · FB-101 · lượt chạy web 21/10 |
 | v0.1 | 2026-10-02 | Khởi tạo. Rule 2, 5, 6, 7, 9 lấy theo cách làm của đề xuất FEEC Local E2E (v13, 30/09/2026); rule 8 theo yêu cầu "một số yêu cầu cần confirm vẫn cần con người vào". Đề xuất của AI — **chờ duyệt** | Thiết kế trong chat Building 02/10 |

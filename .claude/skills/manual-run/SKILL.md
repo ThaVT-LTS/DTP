@@ -6,6 +6,7 @@ description: Chạy test case trên trình duyệt thật (tay hoặc Playwright
 Tuân thủ `rules/common.md`, `rules/feedback.md`, `rules/automation.md` (rule 8, 19–26). Ứng với việc số 5 `test-execution` trong `docs/tester-skill-map.md`. Định nghĩa Pending / Blocked / NA: `rules/automation.md` rule 19 (chờ duyệt, thay phần "còn chờ chốt" của FB-008).
 
 1. Xác nhận với người dùng: môi trường, URL, tài khoản theo vai trò, vòng chạy, phạm vi (sheet, tag hoặc danh sách TC). Báo nhánh, commit, ngày của bản đang chạy và chậm bao nhiêu commit so với `origin/main` (`rules/automation.md` rule 22).
+   Lượt chạy đầy đủ trên web (Round N, build mới) đi theo skill `run-cycle` (rule 31): ghi build, kiểm môi trường, quét code lấy nghi ngờ (`hardcode-check`), chạy TC kèm case kích hoạt, phân loại lỗi code / lỗi môi trường / tiềm ẩn.
 2. Chỉ chạy TC đã qua cổng rà soát. Đọc TC từ file TC (xuất ra JSON) hoặc `tests/cases/*.md`.
 3. Với mỗi TC: chuẩn bị theo Pre-condition (dữ liệu có hậu tố riêng; tài khoản seed không được để hỏng — rule 23), thao tác từng bước, chụp ảnh ở mỗi ý của Expected (`run/shots/<TC>.png`, ảnh phụ `<TC>-<bước>.png`).
 4. Kết quả theo bảng `rules/automation.md` rule 19; Remark case Failed theo mẫu rule 20; xem ảnh trước khi ghi Failed (rule 24). Lỗi môi trường thì dựng lại và chạy lại, không ghi Failed.

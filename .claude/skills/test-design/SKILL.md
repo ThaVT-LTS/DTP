@@ -110,4 +110,4 @@ Mỗi bug lọt ra sau khi test là dữ liệu để cải thiện bộ quy t�
 | v0.1 | 2026-09-28 | Khởi tạo: chế độ A (bước 0–6), chế độ B, vòng học từ bug lọt; khung Redirect / Validation / Function; script RTM và xuất Excel. | Yêu cầu trong chat: ma trận, bảng quyết định, phân vùng biên, khung TC Redirect / Validation / Function |
 ## Mẫu lỗi người dùng đã báo
 
-Trước khi viết hoặc review case cho một màn, đọc `rules/bug-patterns.md` (rule 29 của `rules/automation.md`) và thêm case cho mọi mẫu áp dụng được với màn đó (dropdown cuộn, divider gây hiểu lầm, thứ tự dòng chính/phụ của thẻ, menu ⋮ theo trạng thái, nhãn bộ lọc, chọn một/nhiều đồng nhất, mục chọn được lên trên, múi giờ, Back trong wizard…).
+Trước khi viết hoặc review case cho một màn, đọc `rules/bug-patterns.md` (rule 29 của `rules/automation.md`) và thêm case cho mọi mẫu áp dụng được với màn đó (dropdown cuộn, divider gây hiểu lầm, thứ tự dòng chính/phụ của thẻ, menu ⋮ theo trạng thái, nhãn bộ lọc, chọn một/nhiều đồng nhất, mục chọn được lên trên, múi giờ, Back trong wizard, giá trị gán cứng / chỉ tải 100 mục — quét bằng skill `hardcode-check`…).
