@@ -73,10 +73,18 @@ Phiên bản: v0.4 · **[ĐỀ XUẤT] — chờ duyệt.** Nạp cùng `rules/c
     4. Chạy TC trên web, kèm các case kích hoạt nghi ngờ (skill `manual-run`).
     5. Phân loại kết quả: **lỗi code** (gán dev theo PIC trong Plan), **lỗi môi trường hoặc deploy** (gán devops, không ghi Failed cho case), **tiềm ẩn** (chưa log, ghi vào báo cáo cho dev).
 
+32. **Test tích hợp NirmatAI (Bulk → NirmatAI)** (27/10, skill `nirmatai-check`). Tài liệu gốc: `DTP/dts-agent-workspace/docs/integrations/nirmatai/` (Connection Guide dev v4 của Usman và file OpenAPI, 20 endpoint DTP được gọi).
+    - **Luồng**: khách tạo Bulk workspace, upload, map Work Product (WP) → Request audit → SGS Admin link client NirmatAI (trên trang chi tiết request) → **Approve and send** → DTP tạo audit (`POST /audits`), upload, `trigger-ingestion` → chờ từng tài liệu `success` / `failure` (khoảng 2 phút mỗi file) → gán WP.
+    - **Approve and send, link/đổi client, Sync, bật/tắt framework là cấu hình NirmatAI dùng chung và không quay lại được**: chỉ làm khi người dùng đồng ý rõ ràng trong tin nhắn; nếu hệ thống chặn, nhờ người dùng tự bấm rồi QA kiểm phần còn lại ở chế độ chỉ đọc.
+    - **Khi báo kết quả cho dev / NirmatAI** luôn ghi: `audit_code` (dạng `AUD-4391-000NN`, là mã của NirmatAI, mở tại `/prepare-audit?auditCode=<audit_code>`), `audit_id`, client ID và tên, org ID (dev: 10 "Digital Trust Platform"), standard (dev: 107 `ISO27001-2022-DEMO-DTP`, 35 WP), giờ tạo (UTC), danh sách file và WP.
+    - **Phía DTP kiểm**: trạng thái request (Waiting for approval → Sending → Under review), từng lượt gửi (Initial / Additional: Queued → Sent), cột "Processing in NirmatAI" (Ready / lỗi), màn khách hàng, audit log, thông báo. **Phía NirmatAI** QA không có quyền: nhờ Usman kiểm.
+    - **Case biên lấy từ tài liệu** (thêm vào TC Bulk upload / Settings): file loại không hỗ trợ (`400 E_INVALID_TYPE`), file trên 100 MiB (phải đi upload session, tối đa 3 GiB), trùng tên trong cùng audit (`409 E_DUPLICATE_DOCUMENTS`), hơn 25 tài liệu (một lần xử lý tối đa 25), đổi WP khi tài liệu đang `running` (bị từ chối), tài liệu `failure` thì DTP phải hiện lỗi, framework của org khác (`400 E_ORG_MISMATCH`), giờ NirmatAI trả dạng `YYYY-MM-DD HH:MM:SS` UTC phải hiện đúng giờ Đài Loan.
+
 ## Changelog
 
 | Version | Ngày | Thay đổi | Nguồn |
 |---|---|---|---|
+| v0.8 | 2026-10-27 | Thêm rule 32: test tích hợp NirmatAI (luồng, cấu hình dùng chung, thông tin phải báo, case biên từ Connection Guide dev v4); skill `nirmatai-check` | Người dùng 27/10; NirmatAI Connection Guide v4 |
 | v0.7 | 2026-10-26 | Thêm rule 31: mỗi lượt chạy tìm lỗi chủ động theo 4 hướng (quét code, tạo dữ liệu, biên và thời gian, gọi thẳng API); nghi ngờ → case kích hoạt → lỗi / tiềm ẩn; quy trình 5 bước (skill `run-cycle`). **Chờ duyệt.** | Yêu cầu người dùng 26/10 |
 | v0.6 | 2026-10-26 | Thêm rule 30: quét giá trị gán cứng trong code (skill `hardcode-check`) trước mỗi lượt chạy. **Chờ duyệt.** | Yêu cầu người dùng 26/10 (dropdown Scope chỉ tải 100 mục) |
 | v0.5 | 2026-10-23 | Thêm rule 29: bug người dùng báo khi test tay → log, thêm case vào TC, thêm mẫu vào `rules/bug-patterns.md`. **Chờ duyệt.** | Yêu cầu người dùng 23/10 |
