@@ -1434,3 +1434,148 @@ Bản ghi `FB-001` là góp ý của người dùng. `FB-002` trở đi là **đ
 - Đã sửa: rules/tc-authoring.md rule 11
 - Trạng thái: Đã vào rule (chờ duyệt)
 - Tái phát: 0
+
+## FB-103 · Lượt chạy hằng ngày 11:30 / 16:30 tự quyết theo rule, hỏi tối đa 3 mục có gợi ý, đẩy QnA mỗi ngày
+- Ngày: 2026-10-29
+- Nguồn: chat Claude Code 29/10 · "t vẫn pải trả lời và làm rõ các issue của b quá nhiều, cần confirm quá nhiều" · "có thể thực sự chạy vậy TẠI SAO b lại ko chạy đi"
+- Loại: L2-rule
+- Địa chỉ: rules/automation.md rule 33; skill run-cycle
+- Đã sửa: rules/automation.md rule 33; skill run-cycle
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+
+## FB-104 · Chức năng chưa làm → On hold; In progress → Pending; case gắn bug Open → Failed
+- Ngày: 2026-10-29
+- Nguồn: chat Claude Code 29/10 · "mấy phần Chức năng chưa làm (Plan chưa Done) có thể cho vào On hold dc ko" · 30/10 "cho 2 case kia Fail và fix thì test lại chứ"
+- Loại: L2-rule
+- Địa chỉ: rules/automation.md rule 34
+- Đã sửa: rules/automation.md rule 34
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+
+## FB-105 · Đọc decision log trước khi log bug suy từ UC (DC-BUG-05 huỷ theo D84)
+- Ngày: 2026-10-30
+- Nguồn: chat Claude Code 30/10 · Người dùng đồng ý huỷ DC-BUG-05 sau khi thấy D84 (chốt với khách 28/10)
+- Loại: L2-rule
+- Địa chỉ: rules/automation.md rule 35; rules/bug-patterns.md mẫu 15
+- Đã sửa: rules/automation.md rule 35; rules/bug-patterns.md mẫu 15
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+
+## FB-106 · Mã bug cấp bằng bug_codes.py, kiểm trùng sau khi log
+- Ngày: 2026-10-29
+- Nguồn: chat Claude Code 29/10 · "tại sao lại có nhiều lỗi trùng vậy, ko có quản lý rõ ràng à"
+- Loại: L2-rule
+- Địa chỉ: rules/automation.md rule 36
+- Đã sửa: rules/automation.md rule 36
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+
+## FB-107 · Huỷ bug có lý do đồng nhất ticket + Azure + register; báo cáo đếm từ bugs.md
+- Ngày: 2026-10-29
+- Nguồn: chat Claude Code 29/10 · "lần sau cần đồng nhất cancel cần lý do, trên ticket và Azure cũng vậy" · "tôi cần lấy theo bugs.md"
+- Loại: L2-rule
+- Địa chỉ: rules/automation.md rule 37, 38
+- Đã sửa: rules/automation.md rule 37, 38
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+
+## FB-108 · Pass trên local khác commit: ghi "cần xác nhận lại trên web"; ảnh chỉ cho bug
+- Ngày: 2026-10-29
+- Nguồn: chat Claude Code 29/10 · "Pass vs local thì cũng chưa ổn, có chỗ để b note lại môi trg pải ko" · "bug thì mới cần ảnh thôi"
+- Loại: L2-rule
+- Địa chỉ: rules/automation.md rule 39
+- Đã sửa: rules/automation.md rule 39
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+
+## FB-109 · Git workspace: ghép origin trước khi push, sinh lại bugs.md / kanban khi xung đột
+- Ngày: 2026-10-30
+- Nguồn: chat Claude Code 30/10 · "kéo đi nha" (ghép 13 commit origin, xung đột 6 file)
+- Loại: L2-rule
+- Địa chỉ: rules/automation.md rule 40
+- Đã sửa: rules/automation.md rule 40
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+
+## FB-110 · Mỗi nút thao tác: một case cho mỗi điều kiện, kể cả đối tượng khác bị ảnh hưởng và gọi thẳng API
+- Ngày: 2026-10-29
+- Nguồn: chat Claude Code 29/10 · "cập nhật kiến thức để sau này đủ TCs với các trường hợp trên cho những module khác nữa"
+- Loại: L2-rule
+- Địa chỉ: rules/tc-authoring.md rule 41
+- Đã sửa: rules/tc-authoring.md rule 41
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+
+## FB-111 · Đọc case / ticket trước khi nhắc tới
+- Ngày: 2026-11-02
+- Nguồn: chat Claude Code 02/11 · "Tại sao lại nhầm nữa vậy" — mô tả BU_007 là "upload .zip" mà không đọc case; agent con báo mã "BE-71" không tồn tại
+- Loại: L2-rule
+- Địa chỉ: rules/automation.md rule 42
+- Đã sửa: rules/automation.md rule 42; skill run-cycle / nirmatai-check / manual-run
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+
+## FB-112 · QnA phải đối chiếu kết quả TC
+- Ngày: 2026-11-02
+- Nguồn: chat Claude Code 02/11 · "vậy hỏi làm gì… tôi sẽ phải báo lại cho BA và khách" — Q-U-07, Q-U-18, Q-SR-15 đưa đi hỏi dù case đã Passed
+- Loại: L2-rule
+- Địa chỉ: rules/automation.md rule 43
+- Đã sửa: rules/automation.md rule 43; skill run-cycle / nirmatai-check / manual-run
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+
+## FB-113 · Khách quyết sau cùng
+- Ngày: 2026-11-02
+- Nguồn: chat Claude Code 02/11 · Xavier "agree" 13:18 ngược quyết định trưa (Bulk luôn qua NirmatAI, nhiều account P2) — "tất nhiên theo ý của khách"
+- Loại: L2-rule
+- Địa chỉ: rules/automation.md rule 44
+- Đã sửa: rules/automation.md rule 44; skill run-cycle / nirmatai-check / manual-run
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+
+## FB-114 · Chuyển phase / quay lại phase
+- Ngày: 2026-11-02
+- Nguồn: chat Claude Code 02/11 · BE-52 chuyển Phase 2 rồi quay lại Phase 1 trong ngày
+- Loại: L2-rule
+- Địa chỉ: rules/automation.md rule 45
+- Đã sửa: rules/automation.md rule 45; skill run-cycle / nirmatai-check / manual-run
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+
+## FB-115 · Dev đánh Done trước deploy; code main lệch tài liệu
+- Ngày: 2026-11-02
+- Nguồn: chat Claude Code 02/11 · 8 ticket Việt Done khi web chưa có commit; luồng Customer Consultant trên main lệch Mao-Chi
+- Loại: L2-rule
+- Địa chỉ: rules/automation.md rule 46
+- Đã sửa: rules/automation.md rule 46; skill run-cycle / nirmatai-check / manual-run
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+
+## FB-116 · Kiểm số liệu agent con
+- Ngày: 2026-11-02
+- Nguồn: chat Claude Code 02/11 · báo cáo trưa có "BE-71" không tồn tại, số Blocked của Huy sai
+- Loại: L2-rule
+- Địa chỉ: rules/automation.md rule 47
+- Đã sửa: rules/automation.md rule 47; skill run-cycle / nirmatai-check / manual-run
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+
+## FB-117 · Môi trường dùng chung
+- Ngày: 2026-11-02
+- Nguồn: chat Claude Code 02/11 · workspace ggg/dfdf/HANNA1212 của QA lead; Approve and send bị chặn; tạo client NirmatAI; mock có sẵn lỗi
+- Loại: L2-rule
+- Địa chỉ: rules/automation.md rule 48
+- Đã sửa: rules/automation.md rule 48; skill run-cycle / nirmatai-check / manual-run
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+
+## FB-118 · Trả lời ngắn, một bảng
+- Ngày: 2026-11-02
+- Nguồn: chat Claude Code 02/11 · "ko cần quá nhiều ntn đâu, tốn time lắm", "tôi cần ngắn gọn thôi", "ko cần tiếng Anh"
+- Loại: L2-rule
+- Địa chỉ: rules/automation.md rule 49
+- Đã sửa: rules/automation.md rule 49; skill run-cycle / nirmatai-check / manual-run
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0
+

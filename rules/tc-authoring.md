@@ -168,10 +168,20 @@ Ví dụ trên là file TC tiếng Anh. Mỗi ô ghi một thứ tiếng theo ng
     - Chức năng chưa có thiết kế, hoặc chưa làm ở Phase 1: tên case bắt đầu `[Phase 2]`, cột UC ghi mã UC gốc, Expected ghi `- Chưa viết Expected: thuộc Phase 2 (<lý do>)`. Quyết định ghi rõ "không thuộc Phase 1" thì dùng `[Ngoài Phase 1]`.
     - **Case lỗi thời bị xoá khỏi file** (FB-083, thay quy định "giữ lại với tiền tố `[OUT]`" ngày 15/10): trước khi xoá, ghi lý do và căn cứ vào báo cáo rà soát (file riêng, skill `tc-review`), vd `Xoá: D57, SGS Admin không còn duyệt yêu cầu`. File giao không còn case `[OUT]`; Test_Report cập nhật theo số case còn lại.
 
+41. **Mỗi nút thao tác: một case cho mỗi điều kiện bật / tắt** (FB-110, 29/10). Với mỗi nút ghi dữ liệu (Approve, Send, Activate, Change client, Archive…), đọc code để liệt kê điều kiện, rồi viết một case cho từng điều kiện:
+    - trạng thái của đối tượng;
+    - cờ tích hợp (bật / tắt kết nối);
+    - dữ liệu đi kèm (đã link chưa, file sẵn sàng chưa);
+    - vai trò và portal;
+    - **đối tượng khác bị ảnh hưởng** (vd tắt framework thì workspace đang dùng nó ra sao).
+
+    Thêm một case gọi thẳng API khi giao diện đang chặn. Tên case nêu đúng điều kiện. Không gộp nhiều điều kiện vào một case.
+
 ## Changelog
 
 | Version | Ngày | Thay đổi | Nguồn |
 |---|---|---|---|
+| v0.12 | 2026-10-30 | Thêm rule 41: mỗi nút thao tác một case cho mỗi điều kiện (trạng thái, cờ tích hợp, dữ liệu, vai trò / portal, đối tượng khác) và một case gọi thẳng API. **Chờ duyệt.** | FB-110 |
 | v0.11 | 2026-10-20 | Gộp góp ý 19–20/10 (chạy sheet Customers, E2E Wave 1) vào rule có sẵn, không thêm số: rule 1 quyết định của dev đè Figma; rule 3 không thêm sheet; rule 7 hộp thoại nhiều bước nhóm theo bước; rule 10, 40 xoá case lỗi thời (bỏ `[OUT]`, thay FB-081); rule 11 mã TC = No. (chờ chốt cách thêm case); rule 13 câu Đóng xoá khỏi sheet Cần xác nhận; rule 14 Pre-condition đánh số (E2E; sheet màn hình chờ chốt); rule 15 bộ case abnormal. **Chờ duyệt.** | FB-083 · FB-084 · FB-085 · FB-086 · FB-087 · FB-088 · FB-089 · FB-095 |
 | v0.10 | 2026-10-15 | Gộp bản tổng hợp 15/10 (rule 36–56 của phiên chat) vào rule có sẵn, không thêm số: rule 1–2 thứ tự 5 nguồn và cách xử lý lệch; 6 người viết là Hanna; 8 thứ tự Hiển thị → Nhập liệu → Không thành công → Thành công, chèn case đúng nhóm, Test_Report theo nhóm; 10–11 mã TC không đánh lại, `[OUT]`; 13 Open question tinh gọn, Expected đề xuất tô vàng, mẫu chữ báo lỗi (gộp rule 40 cũ); 14 dòng `Login acc`, không `{{…}}`, Step `button [Tên]`, `Nhìn <vùng>`; 15 Priority Critical; 18 phông mức XML; 23 Đề xuất mặc định; 24 `[SGS]`, `[Consultant]`; 35 một số phiên bản; 36 thêm quyết định chốt và tiêu chí chấp nhận; 38 cổng `tc_fix_xlsx` + `tc_check`; 40 viết rule mới: độ phủ UC theo wave, `[Phase 2]`, `[Ngoài Phase 1]`, `[OUT]`. Bỏ ngoại lệ theo `profile.md` ở rule 1, 2, 13, 14 vì đã thành rule chung. | FB-074 · FB-075 · FB-076 · FB-077 · FB-078 · FB-079 · FB-080 · FB-081 · FB-082 |
 | v0.9 | 2026-10-14 | Rule 1, 2, 13, 14: thêm ngoại lệ theo mục "Quy tắc viết TC của dự án" trong `profile.md` (SGS DTP: theo web khi hợp lý, thông báo lỗi theo mẫu app, không đặt câu hỏi). Thêm rule 40 (câu hỏi người dùng đã xoá là đã giải quyết). **Chờ duyệt.** | FB-070 |

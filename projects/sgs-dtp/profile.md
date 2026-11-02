@@ -15,6 +15,34 @@
   - Kế hoạch theo UC (wave, trạng thái Done / In progress / Not started): `SGS_DTP_Detailed_Plan_v3.0.xlsx`, sheet "Plan by UC" — dùng để ghi Pending / Blocked (`rules/automation.md` rule 19).
   - **Chờ Hanna chốt (FB-098):** trang 404 scope / workspace (quy ước bên dưới ghi `This scope doesn’t exist`, web hiện `Page not found`) và tên "Documents" / "Evidence Library" (D70); lượt rà soát 19/10 đã sửa một số Expected theo web.
 - Nguồn thiết kế: Figma DTP-P1 (file key `jluZdAkgifmZndi5hD12tt`; trước đây "SGS DTP DS" `KM5Oc1DaB78FXOMimDyB0U`); tài liệu yêu cầu: SGS DTP Use Case List v5.4 (13/10/2026)
+## Cập nhật 27–30/10/2026 (thay các dòng cũ khi khác)
+- **Môi trường**: chạy chính trên web test `https://dtp.ltsgroup.tech`, ghi build lấy từ Portainer (`tests/tools/pw/portainer-ps.js`). Local (`localhost:3000`, mock NirmatAI `:4010`) chỉ dùng để giả lập (rule 39 của `automation.md`). Web test gửi **mọi mail vào Mailpit** của chính nó (`SMTP_HOST=mailpit`), không tới hộp thư thật; đọc mail qua Portainer exec.
+- **Nơi làm việc QA**: `DTP/dts-agent-workspace/tests`
+  - `cases`: file TC `SGS-DTP_TestCase_v0.4_Phase1.xlsx`;
+  - `input`: Plan v3.0, UC List v6.3 XV_TW, tài liệu NirmatAI;
+  - `reports`, `evidence`, `tools`.
+
+  Bug là ticket `tasks/tickets/TICKET-FIX-*.md`; `tasks/bugs.md` do `scripts/bug-sync.py` sinh ra. Decision log: `knowledge/L1-domain/decision-log.md` (D71–D85 thêm ngoài file UC; D84/D85 về retention đè UC v6.3).
+- **Cách gọi các bên** (người dùng chốt 30/10):
+  - **khách hàng** = bên NirmatAI, người quản lý NirmatAI và bật / tắt standard bên đó;
+  - **Customer Admin** = người dùng ở Customer Portal (`/login`);
+  - **SGS Admin** = người dùng ở SGS Portal (`/ops/login`);
+  - phía SGS duyệt nghiệp vụ = **SGS / Xavier**.
+
+  Không gọi Customer Admin là "khách".
+- **NirmatAI — hành vi đã kiểm (code 6ab6689c, local 30/10)**:
+  - **Approve and send bị chặn khi**: toggle kết nối NirmatAI tắt (`INTEGRATION_OFF`); standard không còn bên NirmatAI, tức Inactive sau Sync (`STANDARD_UNAVAILABLE`); chưa link client (`NOT_LINKED`); có file chưa sẵn sàng (`FILES_UNAVAILABLE`); request không ở Waiting for approval.
+  - **SGS Admin Deactivate framework trong DTP** chỉ chặn tạo Bulk workspace mới. Workspace đang làm vẫn gửi được (BU_133). Khách hàng tắt standard bên NirmatAI thì chặn mọi lần gửi mới tới khi bật lại và Sync (BU_134).
+  - Người dùng chốt 30/10: luồng **không xét việc bật / tắt framework**. Chỉ ghi lại hành vi, không hỏi QnA, không log bug về việc này.
+  - **Mỗi scope + standard chỉ có một workspace Active.** Muốn tạo lại thì Archive trước. Một standard dùng chung được cho nhiều scope.
+  - Link framework ở màn Scope chỉ tạo workspace Assisted. Bulk tạo ở Workspaces › Create Bulk workspace.
+  - Cột Customer ở SGS Portal › Bulk workspaces là tên Customer Account (`tenant.name`).
+- **Trạng thái**:
+  - Workspace: Not started → In progress (có file) → Archived → Deleted.
+  - Audit Bulk phía Customer Admin: Draft → Requested → Under review → Closed.
+  - Các tab SGS Portal: Waiting for approval / Sending / Needs action / Under review / All.
+- **Đăng nhập dev (mock)**: tài khoản thuộc 2 tổ chức bị API trả 409 `ORGANISATION_CHOICE_REQUIRED`, nhưng màn hình báo "Incorrect email or password". Chỉ ghi chú dưới CU-BUG-27 (team đang thương lượng không cho một user thuộc 2 tenant).
+
 ## Quy ước riêng của dự án (15/10/2026)
 Bảy quy tắc ngày 14/10 (FB-070) đã thành rule chung ở `rules/tc-authoring.md` v0.10 (rule 1, 13, 14, 40); mục này chỉ còn quy ước riêng của SGS DTP.
 - Người viết (ô Creator, tác giả file): **Hanna**.

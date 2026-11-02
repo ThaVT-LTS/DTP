@@ -31,6 +31,8 @@ Vì sao cần skill riêng: viết TC thẳng từ màn hình thì chỉ ra đư
 
 ---
 
+> Nút thao tác: một case cho mỗi điều kiện bật / tắt, kể cả đối tượng khác bị ảnh hưởng, và một case gọi thẳng API (rule 41). Đối chiếu `rules/bug-patterns.md` (mẫu 15–18 thêm 30/10).
+
 ## Bước 0 — Bảng độ phủ UC theo wave (rule 40)
 
 Trước khi viết: lấy danh sách UC Phase 1 của UC List hiện hành và wave ghi ở `profile.md`; với mỗi UC đếm số case chạy được (có Expected, không mang `[Phase 2]`, `[OUT]`). UC nào chưa có case chạy được thì đưa vào danh sách việc của lượt này. Ghi bảng vào file thiết kế của lượt (vd khung case cha). `tc_check.py --uc <danh sách>` in bảng này theo wave.

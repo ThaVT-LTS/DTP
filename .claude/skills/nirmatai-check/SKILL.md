@@ -4,7 +4,7 @@ description: Kiểm luồng Bulk → NirmatAI trên web test — chuẩn bị re
 ---
 # Kiểm tích hợp NirmatAI (v0.1)
 
-Tuân thủ rule 32 của `rules/automation.md` (cùng rule 22, 23, 29, 31). Tài liệu: `DTP/dts-agent-workspace/docs/integrations/nirmatai/` (Connection Guide dev v4, OpenAPI).
+Tuân thủ rule 32 của `rules/automation.md` (cùng rule 22, 23, 29, 31). Điều kiện chặn Approve and send, quy tắc một workspace Active cho mỗi scope + standard, cách gọi các bên (khách hàng = bên NirmatAI): mục "Cập nhật 27–30/10" của `projects/sgs-dtp/profile.md`. Bật / tắt framework chỉ ghi lại hành vi, không hỏi, không log bug (người dùng chốt 30/10). Tài liệu: `DTP/dts-agent-workspace/docs/integrations/nirmatai/` (Connection Guide dev v4, OpenAPI).
 
 ## Thông số env dev (27/10/2026)
 
@@ -29,3 +29,11 @@ Dòng framework cùng tên nhưng nguồn **Imported** (Hanna_Framework_02) và 
 ## Case biên nên có trong TC
 
 Loại file không hỗ trợ · file > 100 MiB (upload session, ≤ 3 GiB) · trùng tên tài liệu trong audit · > 25 tài liệu một lần · đổi WP khi tài liệu đang xử lý · tài liệu xử lý lỗi (`failure`) · framework thuộc org khác · hiển thị giờ trả về từ NirmatAI (UTC không có múi giờ).
+
+## Bổ sung 02/11 (rule 48)
+- Bulk Phase 1 có 2 cách: SGS Admin chọn dùng / không dùng NirmatAI khi duyệt (Xavier "agree" 02/11). Code 28b6cd9d vẫn luôn bắt NirmatAI → BU_139–141 Pending.
+- Link client: tìm client có sẵn trước; tạo mới chỉ tên `[QA] …`, một client / Customer Account; không chọn client của người khác (khoá sau lần gửi đầu). Danh sách client hiện trong hộp "Link NirmatAI client" (mờ = đã link nơi khác).
+- "Approve and send" tự động bị chặn → chuẩn bị request, QA lead bấm tay; ghi mã request, workspace, client, giờ gửi để NirmatAI tra cứu.
+- Lỗi NirmatAI (từ chối file, hết lần thử, 503) test trên local cùng commit web bằng mock có sẵn; không sửa mock khi chưa hỏi. Giả lập lỗi trên DEV (8 tag) đang chờ QA lead duyệt ticket.
+- Sync from NirmatAI: chỉ bấm tay (QA lead 02/11); kéo về standard + work product, không có requirement. Không bấm trên môi trường dùng chung khi chưa báo.
+- Loại file / dung lượng / trạng thái audit: lấy từ `tests/input/nirmatai-dtp-api-dev.openapi.yaml` và `bulk-document.schema.ts` (68 đuôi, 100 MiB / 3 GiB), không hỏi lại Usman.

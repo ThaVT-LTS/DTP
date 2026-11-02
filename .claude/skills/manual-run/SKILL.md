@@ -3,7 +3,7 @@ name: manual-run
 description: Chạy test case trên trình duyệt thật (tay hoặc Playwright hỗ trợ) và ghi kết quả vòng chạy — vào log `runs/` và, khi người dùng yêu cầu, vào cột Round N của file TC. Dùng khi được yêu cầu chạy TC cho một sheet, một UC, một tag hoặc một vòng test (Round N).
 ---
 # Chạy test case (v0.2 — [ĐỀ XUẤT], chờ duyệt)
-Tuân thủ `rules/common.md`, `rules/feedback.md`, `rules/automation.md` (rule 8, 19–26). Ứng với việc số 5 `test-execution` trong `docs/tester-skill-map.md`. Định nghĩa Pending / Blocked / NA: `rules/automation.md` rule 19 (chờ duyệt, thay phần "còn chờ chốt" của FB-008).
+Tuân thủ `rules/common.md`, `rules/feedback.md`, `rules/automation.md` (rule 8, 19–26). Ứng với việc số 5 `test-execution` trong `docs/tester-skill-map.md`. Định nghĩa Pending / Blocked / NA: `rules/automation.md` rule 19, cùng bảng On hold / Pending / Failed theo lý do ở rule 34, và kết quả chạy trên local ở rule 39 (chờ duyệt, thay phần "còn chờ chốt" của FB-008).
 
 1. Xác nhận với người dùng: môi trường, URL, tài khoản theo vai trò, vòng chạy, phạm vi (sheet, tag hoặc danh sách TC). Báo nhánh, commit, ngày của bản đang chạy và chậm bao nhiêu commit so với `origin/main` (`rules/automation.md` rule 22).
    Lượt chạy đầy đủ trên web (Round N, build mới) đi theo skill `run-cycle` (rule 31): ghi build, kiểm môi trường, quét code lấy nghi ngờ (`hardcode-check`), chạy TC kèm case kích hoạt, phân loại lỗi code / lỗi môi trường / tiềm ẩn.
@@ -22,3 +22,8 @@ Tuân thủ `rules/common.md`, `rules/feedback.md`, `rules/automation.md` (rule 
 |---|---|---|---|
 | v0.2 | 2026-10-20 | Chạy theo sheet TC, ghi kết quả vào cột Round N bằng script; agent con theo run-spec; kết quả và Remark theo `rules/automation.md` rule 19–20; Fail kèm file bug có ảnh; kiểm thử tự do. **Chờ duyệt.** | FB-090 · FB-091 · FB-093 · FB-096 · chạy Customers Round 1 (19–20/10) |
 | v0.1 | 2026-10-02 | Khởi tạo. | Thiết kế trong chat Building 02/10 |
+
+## Bổ sung 02/11 (rule 42, 45, 48)
+- Trước khi ghi hoặc nhắc một case: đọc dòng TC (tên, Expected, kết quả hiện tại); ví dụ minh hoạ ghi là giả định.
+- Chuyển Phase 2 → On hold, remark có nguồn; quay lại → kết quả cũ.
+- Không chạy trên workspace / request QA lead đang test tay.

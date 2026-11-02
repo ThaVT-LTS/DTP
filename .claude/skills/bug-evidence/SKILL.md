@@ -3,7 +3,7 @@ name: bug-evidence
 description: Xuất file báo cáo bug kèm ảnh cho một lượt chạy test có case Failed — sheet Danh sách bug và mỗi bug một sheet (Figma kết quả mong đợi, từng case Failed với Pre-condition, bước, mong đợi, thực tế, ảnh thực tế). Dùng khi được hỏi "ảnh ở đâu", "tạo file bug", "báo cáo Fail kèm ảnh".
 ---
 # File bug kèm ảnh (v0.1 — [ĐỀ XUẤT], chờ duyệt · FB-091, FB-092, FB-090)
-Tuân thủ `rules/common.md`, `rules/feedback.md`, `rules/automation.md` rule 20, 21, 24. Bug thật (Jira) chỉ tạo khi người dùng đã xác nhận Fail (`rules/automation.md` rule 8).
+Tuân thủ `rules/common.md`, `rules/feedback.md`, `rules/automation.md` rule 20, 21, 24, và rule 35–37, 39 (đọc decision log trước khi log, mã bằng `bug_codes.py`, huỷ có lý do ở mọi nơi, ảnh chỉ cho bug: 1–2 JPG có URL ở `tasks/tickets/evidence/<MÃ>/`). Bug thật (Jira) chỉ tạo khi người dùng đã xác nhận Fail (`rules/automation.md` rule 8).
 
 1. Đầu vào: kết quả từng case (`results/*.json`: tc, result, remark, shot), nội dung case (`customers-cases.json`), danh sách bug (`writeback.json` → `bugs[]`: code, title, tcs).
 2. **Gộp bug theo nguyên nhân:** một mã một nguyên nhân; đánh mã `<MÀN>-BUG-nn` theo case Failed đầu tiên trong sheet. Tiêu đề nói đúng vấn đề và số liệu (vd "127 khách hàng nhưng chỉ hiện 100"). Lỗi thấy khi test tự do: thêm case mới, gắn mã.

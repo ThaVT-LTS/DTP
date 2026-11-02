@@ -80,10 +80,79 @@ Phiên bản: v0.4 · **[ĐỀ XUẤT] — chờ duyệt.** Nạp cùng `rules/c
     - **Phía DTP kiểm**: trạng thái request (Waiting for approval → Sending → Under review), từng lượt gửi (Initial / Additional: Queued → Sent), cột "Processing in NirmatAI" (Ready / lỗi), màn khách hàng, audit log, thông báo. **Phía NirmatAI** QA không có quyền: nhờ Usman kiểm.
     - **Case biên lấy từ tài liệu** (thêm vào TC Bulk upload / Settings): file loại không hỗ trợ (`400 E_INVALID_TYPE`), file trên 100 MiB (phải đi upload session, tối đa 3 GiB), trùng tên trong cùng audit (`409 E_DUPLICATE_DOCUMENTS`), hơn 25 tài liệu (một lần xử lý tối đa 25), đổi WP khi tài liệu đang `running` (bị từ chối), tài liệu `failure` thì DTP phải hiện lỗi, framework của org khác (`400 E_ORG_MISMATCH`), giờ NirmatAI trả dạng `YYYY-MM-DD HH:MM:SS` UTC phải hiện đúng giờ Đài Loan.
 
+## Lượt chạy hằng ngày, trạng thái case, bug và báo cáo (27–30/10/2026)
+
+33. **Lượt chạy hằng ngày tự quyết theo rule** (FB-103, 29/10, skill `run-cycle`). Hai lượt mỗi ngày làm việc, khoảng 11:30 và 16:30, mỗi lượt khoảng 1 giờ:
+    1. Ghi build đang deploy và commit mới (rule 22).
+    2. Đọc tài liệu đầu vào mới (`tests/input`: Plan, UC List, mail, tài liệu dev gửi).
+    3. Đọc `bugs.md` và Azure.
+    4. Chọn việc làm được:
+       - bug Fixed có commit fix nằm trong build đang deploy;
+       - case Pending / Blocked đã hết lý do: chạy `tests/tools/unblocked.py`, và tự đọc thêm remark vì công cụ có thể bỏ sót.
+    5. Chạy trên web, ghi TC, ticket, Azure (kèm lý do) và register.
+    6. Tự quyết theo rule. Chỉ hỏi người dùng tối đa **3 mục**, mỗi mục kèm gợi ý. Chỉ hỏi khi: huỷ bug, đảo ngược bug đã fix hoặc Figma, đổi cấu hình dùng chung, hoặc câu hỏi BA.
+    7. **Không dời case chạy được sang lượt sau.** Case chạy được thì chạy ngay trong lượt.
+
+    Kết thúc lượt bằng một tin tóm tắt:
+    - build;
+    - case Passed / Failed / Pending;
+    - bug Verified / Reopened / mới (mã, dev);
+    - bảng Chưa fix / Chưa resolve theo dev;
+    - **QnA cần push hôm nay**: nhóm theo người cần trả lời (BA, SGS / Xavier, PO, NirmatAI, dev, SGS IT, Plan), câu chặn nhiều case lên trước, mỗi câu một dòng gửi được ngay. Đóng các QnA đã có trả lời từ nguồn mới (mail, UC, Plan, decision log, web hiện tại).
+
+    Người dùng xin ảnh cho QnA thì chụp màn hình web hiện tại, có URL, lưu `tests/evidence/qna-<ngày>/`.
+34. **Pending, On hold, Failed: chọn theo lý do** (FB-104, 29–30/10; bổ sung bảng ở rule 19):
+    | Lý do | Kết quả |
+    |---|---|
+    | Chức năng Not started, chưa có trong Plan, hoặc Plan ghi Done mà chưa làm | **On hold**. Remark ghi lý do và UC nào chuyển In progress / Done thì đưa case về Pending |
+    | Chức năng đang In progress (dev đang làm) | **Pending**, để công cụ dò còn thấy |
+    | Case gắn với một bug đang Open (đã chốt quy tắc, đã giao dev) | **Failed** kèm mã bug, không bao giờ On hold. Fix lên build thì test lại |
+    | Chờ câu hỏi đang mở | Pending, ghi mã QnA |
+
+    Mỗi lượt kiểm lại Plan: UC chuyển trạng thái thì đổi kết quả case theo bảng trên. Hai sheet của Plan có thể mâu thuẫn (vd "Plan by UC" ghi Done, "SDLC Plan" ghi In progress). Khi đó không tự chọn: ghi vào remark và đưa vào QnA cho người giữ Plan.
+35. **Quyết định trong decision log đè UC cũ** (FB-105, 30/10). Trước khi log một bug suy ra từ UC, đọc decision log của workspace (`knowledge/L1-domain/decision-log.md`, gồm các D mới thêm ngoài file UC) và commit `docs(...)` mới trên origin. File UC gửi khách có thể chưa cập nhật quyết định đã chốt với khách. Ví dụ DC-BUG-05: UC v6.3 ghi "xoá evidence 36 tháng sau archive", nhưng D84 (chốt với khách 28/10) ghi "36 tháng sau upload". Web làm theo D84 nên đó không phải bug. Trường hợp này: đề xuất huỷ bug (rule 37), sửa Expected theo quyết định mới, và nhắc BA sửa UC.
+36. **Mã bug: chỉ cấp qua công cụ, kiểm trùng sau khi log** (FB-106, 29/10). Mã mới lấy bằng `python tests/tools/bug_codes.py next <TIỀN TỐ>`. Lệnh này đọc ticket, register, cột Bug của TC và Azure. Không đặt mã bằng tay, không dùng lại mã đã huỷ. Sau khi log, chạy `bug_codes.py check` phải ra 0 lỗi. Tiêu đề và nội dung bug viết tiếng Anh, tạo ticket workspace; Azure chỉ dùng cho bug cũ còn theo dõi.
+37. **Huỷ bug: một lý do, ghi ở mọi nơi** (FB-107, 29/10). Chỉ người dùng quyết huỷ, AI chỉ đề xuất kèm căn cứ. Khi đã quyết:
+    - ticket: Status Done, Progress "closed, won't fix (<ai>, <ngày>: <lý do>)", và một dòng Dev Notes;
+    - Azure: Removed / Closed, comment ghi cùng lý do;
+    - register: ghi status huỷ;
+    - TC: các case gắn bug đó được sửa Expected và chạy lại.
+
+    Bug đã giao dev thì không tự huỷ chỉ vì chưa có ai nhận.
+38. **Báo cáo đếm bug từ `bugs.md`** (FB-107). Các trạng thái dùng: Open, Reopened, Chờ QA (Fixed — awaiting QA), Verified, Huỷ. Không đếm theo Azure.
+    - Ticket chỉ được tính **Verified** khi có dòng "QA verified" hoặc "QA Round N: PASS". Ticket Done mà thiếu dòng đó là "Fixed — awaiting QA".
+    - Đếm theo mã bug hay theo ticket thì ghi rõ (một bug có thể có ticket BE và FE).
+39. **Kết quả chạy trên local và ảnh** (FB-108, 28–30/10):
+    - Passed trên local **cùng commit** với web thì tính Passed, remark "Giả lập trên local".
+    - **Khác commit** thì vẫn ghi Passed, remark "Passed trên local — cần xác nhận lại trên web", và đưa vào danh sách cùng tên trong báo cáo.
+    - Chỉ kết luận bug sau khi chạy trên web. Phát hiện chỉ từ code hoặc chỉ từ local thì gọi là **nghi ngờ** (rule 31).
+    - **Ảnh chỉ chụp cho bug**: 1–2 ảnh JPG có URL, để ở `tasks/tickets/evidence/<MÃ>/`. Case Passed không chụp.
+40. **Git của workspace** (FB-109, 29–30/10). Trước khi push: `git fetch`, rồi ghép `origin/main` vào (merge, không rebase lịch sử đã có người dùng). Khi xung đột:
+    - `bugs.md` và `kanban.md` là file sinh ra: lấy bản của mình rồi chạy lại `scripts/bug-sync.py` và `scripts/kanban-sync.py`.
+    - Ticket: giữ trạng thái QA verified (mới hơn ghi chú G4 của dev), nhưng nhận tiêu đề mới và Dev Notes của dev.
+
+    Chỉ push khi người dùng đồng ý. Đọc kỹ commit mới của origin: có thể có quyết định mới (rule 35).
+
+42. **Đọc case / ticket trước khi nhắc tới** (FB-111, 02/11). Không mô tả một mã case, ticket hay bug theo trí nhớ. Trước khi nói case đó kiểm tra gì: mở dòng TC (mã, tên case, Expected, kết quả hiện tại) hoặc file ticket (tiêu đề, trạng thái, người làm) và trích đúng tên. Danh sách mã lấy từ nguồn khác (cột "Chặn" của QnA, báo cáo của agent con) phải kiểm từng mã có tồn tại và đúng nội dung trước khi báo; mã không khớp thì bỏ hoặc ghi rõ "không tìm thấy". Ví dụ minh hoạ phải ghi là giả định, không gắn vào mã thật. Chưa đọc thì nói "chưa đọc case".
+
+43. **QnA: đối chiếu với TC trước khi đưa ra** (FB-112, 02/11). Trước khi liệt kê một câu QnA là "còn mở" hay đưa vào danh sách push: xem từng case trong cột "Chặn" (kết quả hiện tại + Expected). Case đã Passed với Expected trả lời được câu hỏi → đóng QnA, ghi "đã có trả lời qua <case> Passed dd/mm", không đưa ra nữa. Lượt chạy hằng ngày làm bước này cho mọi câu còn mở, không chỉ đóng theo mail / UC / Plan. Câu đã được QA lead gửi mail cho khách → ghi "đã gửi, chờ trả lời", không nhắc lại trong danh sách push. Mỗi câu còn mở phải ghi rõ: hỏi gì, web đang thế nào, đề xuất (Chốt theo web / Hỏi / Đóng / Bug?).
+44. **Khách quyết sau cùng** (FB-113, 02/11). Khi câu trả lời của khách (SGS / Xavier / Mao-Chi) khác quyết định của QA lead hoặc team (vd giữ Bulk luôn qua NirmatAI, chuyển nhiều account sang Phase 2): báo xung đột ngay, nêu nguồn và giờ, rồi làm theo khách khi QA lead xác nhận. Đổi lại toàn bộ: TC (kết quả + remark có nguồn), ticket (gỡ hoặc thêm dòng `- Blocked:`), QnA, memory. "agree" trích cả một tin nhiều điểm: ghi rõ điểm nào chắc chắn được xác nhận, điểm nào còn nghi.
+45. **Chuyển phase / hoãn** (FB-114, 02/11). Hạng mục chuyển Phase 2: case → On hold, remark "Chuyển Phase 2 (<ai> dd/mm)"; ticket bug giữ nguyên, thêm dòng `- Blocked: … moved to Phase 2` (không huỷ bug). Quay lại Phase 1: đổi dòng đó thành ghi chú lịch sử (không bắt đầu bằng `- Blocked:`), case về Pending / Failed như trước.
+46. **Ticket dev đánh Done khi chưa deploy** (FB-115, 02/11). Mỗi lượt: so commit fix với build đang chạy (Portainer). Fix chưa có trong build → báo "chờ deploy", không Verified, không mở lại. Code trên `main` chưa deploy mà lệch tài liệu khách (vd luồng Customer Consultant vào thẳng In Progress) → báo dev ngay kèm nguồn, không đợi deploy rồi mới log bug.
+47. **Kiểm số liệu của agent con** (FB-116, 02/11). Báo cáo của agent con (mã ticket, số đếm theo dev, danh sách case) phải đối chiếu lại `bugs.md` / file TC trước khi gửi QA lead. Mã không tồn tại (vd "BE-71") → bỏ và nói rõ đã sửa.
+48. **Thao tác trên môi trường dùng chung** (FB-117, 02/11):
+    - Không đụng workspace / request QA lead đang test tay; hỏi tên và dặn agent con tránh.
+    - "Approve and send" tự động bị chặn bởi bộ kiểm quyền dù QA lead đồng ý → không lách; chuẩn bị sẵn request, đưa QA lead bấm tay.
+    - Link NirmatAI client: tìm client có sẵn trước; chỉ tạo client mới tên `[QA] …`, một client cho mỗi Customer Account; không chọn client của người khác (link khoá sau lần gửi đầu).
+    - Lỗi NirmatAI (từ chối file, hết lần thử, 503…) test trên local cùng commit web bằng mock có sẵn; không sửa mock khi chưa hỏi.
+49. **Trả lời QA lead: ngắn, một bảng** (FB-118, 02/11). Mặc định một bảng phẳng (Mã · Hỏi gì / Việc · Hiện trạng · Đề xuất), không chia nhiều nhóm, không giải thích dài; tiếng Việt trừ khi được yêu cầu câu tiếng Anh để gửi đi. Danh sách dài → đưa số tổng và mục chính trước.
+
 ## Changelog
 
 | Version | Ngày | Thay đổi | Nguồn |
 |---|---|---|---|
+| v1.1 | 2026-11-02 | Thêm rule 42–49: đọc case trước khi nhắc, QnA đối chiếu TC, khách quyết sau cùng, chuyển phase, ticket Done chưa deploy, kiểm số liệu agent con, môi trường dùng chung, trả lời ngắn. **Chờ duyệt.** | Chat QA lead 02/11 |
+| v0.9 | 2026-10-30 | Thêm rule 33–40: lượt chạy hằng ngày tự quyết (≤ 3 câu hỏi, QnA cần push); Pending / On hold / Failed theo lý do; decision log đè UC; cấp mã bug bằng `bug_codes.py`; huỷ bug đồng nhất; báo cáo đếm từ `bugs.md`; kết quả local và ảnh chỉ cho bug; git merge origin trước khi push. **Chờ duyệt.** | FB-103 … FB-109 · lượt chạy 27–30/10 |
 | v0.8 | 2026-10-27 | Thêm rule 32: test tích hợp NirmatAI (luồng, cấu hình dùng chung, thông tin phải báo, case biên từ Connection Guide dev v4); skill `nirmatai-check` | Người dùng 27/10; NirmatAI Connection Guide v4 |
 | v0.7 | 2026-10-26 | Thêm rule 31: mỗi lượt chạy tìm lỗi chủ động theo 4 hướng (quét code, tạo dữ liệu, biên và thời gian, gọi thẳng API); nghi ngờ → case kích hoạt → lỗi / tiềm ẩn; quy trình 5 bước (skill `run-cycle`). **Chờ duyệt.** | Yêu cầu người dùng 26/10 |
 | v0.6 | 2026-10-26 | Thêm rule 30: quét giá trị gán cứng trong code (skill `hardcode-check`) trước mỗi lượt chạy. **Chờ duyệt.** | Yêu cầu người dùng 26/10 (dropdown Scope chỉ tải 100 mục) |

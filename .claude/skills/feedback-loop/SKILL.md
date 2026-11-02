@@ -27,7 +27,7 @@ rules/*.md, skills/**       bị sửa theo FB, kèm version + changelog trỏ F
 ## 7 bước xử lý một nhận xét
 
 ### Bước 1 — Ghi trước, sửa sau
-Mở `feedback/log.md`, cấp ID `FB-nnn` kế tiếp, dán **nguyên văn** câu của người dùng vào `Nguồn`. Nhiều ý trong một câu → tách nhiều FB. Chưa hiểu → hỏi đúng một câu lấy tiêu chí kiểm được (`rules/feedback.md` rule 3).
+Mở `feedback/log.md`, cấp ID `FB-nnn` kế tiếp (FB-110 là mục cuối ngày 30/10), dán **nguyên văn** câu của người dùng vào `Nguồn`. Nhiều ý trong một câu → tách nhiều FB. Chưa hiểu → hỏi đúng một câu lấy tiêu chí kiểm được (`rules/feedback.md` rule 3).
 
 ### Bước 2 — Xếp loại
 Tra `references/classification.md`, chọn một loại L1–L7 và ghi `Địa chỉ` cụ thể. Quy ước địa chỉ:

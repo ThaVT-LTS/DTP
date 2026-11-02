@@ -4,7 +4,7 @@ description: Quy trình một lượt chạy test trên web có tìm lỗi chủ
 ---
 # Lượt chạy có tìm lỗi chủ động (v0.1 — [ĐỀ XUẤT], chờ duyệt)
 
-Tuân thủ rule 31 của `rules/automation.md` (cùng rule 22, 28, 29, 30). Skill con: `hardcode-check` (quét code), `manual-run` (chạy TC, ghi kết quả), `bug-evidence` (file bằng chứng).
+Tuân thủ rule 31 của `rules/automation.md` (cùng rule 22, 28, 29, 30), và rule 33–40 cho lượt chạy hằng ngày: tự quyết, hỏi tối đa 3 mục có gợi ý, có mục "QnA cần push"; Pending / On hold / Failed theo rule 34; đọc decision log trước khi log bug (rule 35); cấp mã bằng `bug_codes.py` (rule 36); kết quả local ghi theo rule 39. Skill con: `hardcode-check` (quét code), `manual-run` (chạy TC, ghi kết quả), `bug-evidence` (file bằng chứng).
 
 ## Vì sao
 
@@ -41,3 +41,11 @@ Gọi API chỉ trên môi trường test, bằng tài khoản test, không dùn
 ## Báo cáo cuối lượt
 
 Ngắn, theo thứ tự: build / commit đã chạy · số case Passed / Failed / Blocked / Pending · lỗi code (mã bug, mức) · lỗi môi trường · danh sách tiềm ẩn cho dev. Không nêu bug khi người dùng chưa duyệt.
+
+## Bổ sung 02/11 (rule 42–49)
+- Đầu lượt: so commit fix của ticket "Done" với build Portainer; chưa có trong build → "chờ deploy" (rule 46). Code `main` lệch tài liệu khách → báo dev ngay.
+- Trước khi nhắc mã case / ticket: đọc dòng TC / file ticket, trích đúng tên (rule 42). Số liệu và mã từ agent con: kiểm lại `bugs.md` / TC trước khi báo (rule 47).
+- Mục "QnA cần push": đối chiếu từng câu với kết quả case trong cột "Chặn"; case Passed trả lời được → đóng; câu QA lead đã gửi mail → "đã gửi, chờ trả lời", không nhắc (rule 43). Mỗi câu: hỏi gì · web đang thế nào · đề xuất.
+- Trả lời khách khác quyết định nội bộ → báo xung đột, làm theo khách khi QA lead xác nhận (rule 44). Chuyển / quay lại phase theo rule 45.
+- Không đụng dữ liệu QA lead đang test tay; Approve and send do QA lead bấm tay (rule 48).
+- Báo cáo cuối lượt: một bảng ngắn, tiếng Việt (rule 49).
