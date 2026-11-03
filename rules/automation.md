@@ -147,6 +147,12 @@ Phiên bản: v0.4 · **[ĐỀ XUẤT] — chờ duyệt.** Nạp cùng `rules/c
     - Lỗi NirmatAI (từ chối file, hết lần thử, 503…) test trên local cùng commit web bằng mock có sẵn; không sửa mock khi chưa hỏi.
 49. **Trả lời QA lead: ngắn, một bảng** (FB-118, 02/11). Mặc định một bảng phẳng (Mã · Hỏi gì / Việc · Hiện trạng · Đề xuất), không chia nhiều nhóm, không giải thích dài; tiếng Việt trừ khi được yêu cầu câu tiếng Anh để gửi đi. Danh sách dài → đưa số tổng và mục chính trước.
 
+50. **Hỏi luồng hoạt động → bảng theo mẫu của QA lead** (FB-122, 03/11). Khi QA lead hỏi một luồng (ai làm gì ở đâu, trạng thái ra sao), trả lời bằng bảng Excel theo mẫu `docs/templates/flow-table-template.xlsx`, dựng bằng `scripts/flow_table.py`:
+    - Cột: **Ở đâu** (Portal, gộp ô) · **Ai làm** (2 cột: Vai trò | Tên tài khoản, gộp ô theo vai trò) · **Làm gì** (đánh số bước theo thứ tự chạy, ghi menu › màn › nút) · **Kết quả** chia 2 cột **Trạng thái của <bên 1>** / **Trạng thái của <bên 2>** (trạng thái mỗi bên thấy sau bước đó, kèm nút chính hiện ra).
+    - Nhóm dòng theo Portal rồi Vai trò; vai trò không tham gia ghi "—". Mỗi luồng (vd Marketplace / My consultants) một sheet; không gộp hai luồng vào một bảng có cột ✔/—.
+    - Chỉ ghi trạng thái đã thấy trên web; bước chưa chạy ghi "(chưa chạy)", chỗ web lệch ghi "web: … ❌ (mã bug)". Dòng chú thích dưới bảng: request dùng, build, ngày.
+    - Lưu file vào `tests/reports/SGS-DTP_<tên luồng>-flow_<dd-mm-yyyy>.xlsx`, trả lời trong chat 1–2 dòng + link file.
+
 ## Changelog
 
 | Version | Ngày | Thay đổi | Nguồn |

@@ -1606,3 +1606,11 @@ Bản ghi `FB-001` là góp ý của người dùng. `FB-002` trở đi là **đ
 - Đã sửa: rules/bug-patterns.md 24; TC Home HM_043
 - Trạng thái: Đã vào rule (chờ duyệt)
 - Tái phát: 0 (lọt: lượt chạy Home chỉ đọc API / DOM, không cuộn tới cuối trang)
+
+## FB-122 · Bảng luồng hoạt động theo mẫu
+- Ngày: 2026-11-03
+- Nguồn: chat Claude Code 03/11 · QA lead gửi mẫu Excel (Ở đâu · Ai làm · Làm gì · Kết quả: Trạng thái của xx / yy): "Hãy ghi nhớ cái bảng ntn, khi tôi hỏi về luồng hoạt động > cho vào repo"; sửa "đoạn Ai Làm" = 2 cột Vai trò | Tên
+- Loại: L2-rule + template
+- Địa chỉ: rules/automation.md rule 50; docs/templates/flow-table-template.xlsx; scripts/flow_table.py
+- Trạng thái: Đã vào rule (QA lead yêu cầu 03/11)
+- Tái phát: 0
