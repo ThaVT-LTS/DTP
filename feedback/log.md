@@ -1597,3 +1597,12 @@ Bản ghi `FB-001` là góp ý của người dùng. `FB-002` trở đi là **đ
 - Đã sửa: rules/tc-authoring.md rule 51; rules/bug-patterns.md 19–23; .claude/skills/edit-check/SKILL.md (mới); test-design, run-cycle trỏ tới edit-check
 - Trạng thái: Đã vào rule (chờ duyệt)
 - Tái phát: 0 (lọt: QA kết luận "không cần F5" từ code trước khi chạy web)
+
+## FB-121 · Màn mới không cuộn được
+- Ngày: 2026-11-03
+- Nguồn: chat Claude Code 03/11 · QA lead test tay Home (ce2ea1d2): "mà home ko có scroll" · HM-BUG-04
+- Loại: L2-rule
+- Địa chỉ: rules/bug-patterns.md 24
+- Đã sửa: rules/bug-patterns.md 24; TC Home HM_043
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0 (lọt: lượt chạy Home chỉ đọc API / DOM, không cuộn tới cuối trang)
