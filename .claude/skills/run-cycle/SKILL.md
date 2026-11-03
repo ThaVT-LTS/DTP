@@ -49,3 +49,7 @@ Ngắn, theo thứ tự: build / commit đã chạy · số case Passed / Failed
 - Trả lời khách khác quyết định nội bộ → báo xung đột, làm theo khách khi QA lead xác nhận (rule 44). Chuyển / quay lại phase theo rule 45.
 - Không đụng dữ liệu QA lead đang test tay; Approve and send do QA lead bấm tay (rule 48).
 - Báo cáo cuối lượt: một bảng ngắn, tiếng Việt (rule 49).
+
+## Bổ sung 03/11 (rule 50–51)
+- Thiếu dữ liệu bắt buộc mà nút khoá → đúng, không log (rule 50).
+- Màn có form sửa: chạy skill `edit-check` (mở lại sau Save không F5, Save lần hai, giới hạn ký tự web = API, ô giá trị cố định, hiển thị bên xem, trạng thái theo điều kiện). Chỉ kết luận sau khi chạy trên web (rule 51).

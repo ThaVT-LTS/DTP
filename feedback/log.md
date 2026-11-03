@@ -1588,3 +1588,12 @@ Bản ghi `FB-001` là góp ý của người dùng. `FB-002` trở đi là **đ
 - Đã sửa: rules/tc-authoring.md rule 50
 - Trạng thái: Đã vào rule (QA lead duyệt 03/11)
 - Tái phát: 0
+
+## FB-120 · Test form sửa (Edit): mở lại không F5, giới hạn ký tự, giá trị cố định
+- Ngày: 2026-11-03
+- Nguồn: chat Claude Code 03/11 · QA lead test tay profile Chen Wei: "rõ ràng pải F5 mà, check kỹ cho tôi", "lại lọt bug rồi, tôi chỉnh sửa text ở đây nhưng khi mở lại vẫn tên cũ", "các textbox cũng cần thêm 250 ký tự", "Update và Rule + Skill các case cần test edit này nhé" · MK-BUG-04, MK-BUG-05
+- Loại: L2-rule + skill
+- Địa chỉ: rules/tc-authoring.md rule 51; rules/bug-patterns.md 19–23; skill edit-check
+- Đã sửa: rules/tc-authoring.md rule 51; rules/bug-patterns.md 19–23; .claude/skills/edit-check/SKILL.md (mới); test-design, run-cycle trỏ tới edit-check
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0 (lọt: QA kết luận "không cần F5" từ code trước khi chạy web)

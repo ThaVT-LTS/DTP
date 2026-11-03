@@ -179,10 +179,20 @@ Ví dụ trên là file TC tiếng Anh. Mỗi ô ghi một thứ tiếng theo ng
 
 50. **Thiếu dữ liệu bắt buộc: ưu tiên nút bị khoá, không cần câu báo lỗi** (FB-119, 02–03/11). Khi một thao tác chưa làm được vì người dùng chưa chọn / chưa nhập đủ (vd Apply khi chưa chọn work product), cách đúng mặc định là **nút bị khoá (disabled)** cho tới khi đủ điều kiện. Expected của case viết: "Nút <X> mờ, không bấm được khi <điều kiện>; bấm được ngay khi <đủ điều kiện>". Không viết Expected "bấm rồi báo lỗi dưới ô" trừ khi UC / Figma có màn lỗi đó. Web khoá nút mà không có câu báo lỗi → **không phải bug**. Chỉ là bug khi nút **bấm được** mà không có phản hồi, hoặc khi đã đủ điều kiện mà nút vẫn khoá. Nguồn: BU-BUG-09 / BU_034, QA lead 03/11 "tốt nhất là disable btn".
 
+51. **Bộ case cho mỗi form sửa (Edit)** (FB-120, 03/11). Mỗi hộp / trang Edit có ít nhất các case sau (bug-patterns 19–23):
+    - **Mở lại sau Save, không F5**: sửa một ô chữ và một ô chọn, Save, mở lại cùng dòng → mọi ô hiện giá trị vừa lưu (so với API); F5 cũng vậy.
+    - **Save lần hai**: mở lại, Save không sửa gì → dữ liệu không quay về giá trị cũ.
+    - **Giới hạn ký tự từng ô**: gõ đúng giới hạn → lưu được; +1 → chặn trên form có câu báo. Giới hạn web = API. Mức chốt: ô lý do / ô chữ ngắn 250 trừ khi API đã chốt nhỏ hơn (vd Headline 160).
+    - **Ô có tập giá trị cố định là dropdown**; nếu là ô chữ: case gõ sai hoa thường / tên đầy đủ, Expected có báo hoặc không cho lưu, không âm thầm bỏ.
+    - **Hiển thị ở bên xem**: mỗi ô nhập được phải hiện ở màn người kia xem (portal còn lại, danh sách, chi tiết), trừ khi UC nói không.
+    - **Trạng thái theo điều kiện** (Publish, Active…): mỗi điều kiện thiếu một case, câu báo nêu đúng mục thiếu; một case đủ điều kiện → tick và Save một lần ra trạng thái mới, danh sách cập nhật không F5.
+    Ô không bắt buộc (không có *) thì Save phải được khi để trống; điều kiện riêng của trạng thái (vd Publish) không biến ô thành bắt buộc khi Save. Nguồn: MK-BUG-04, MK-BUG-05, QA lead 03/11.
+
 ## Changelog
 
 | Version | Ngày | Thay đổi | Nguồn |
 |---|---|---|---|
+| v0.13 | 2026-11-03 | Thêm rule 50 (nút khoá khi thiếu dữ liệu, QA lead duyệt) và rule 51 (bộ case cho mỗi form Edit: mở lại không F5, Save lần hai, giới hạn ký tự web = API, dropdown cho giá trị cố định, hiển thị bên xem, trạng thái theo điều kiện). **Chờ duyệt rule 51.** | FB-119 · FB-120 |
 | v0.12 | 2026-10-30 | Thêm rule 41: mỗi nút thao tác một case cho mỗi điều kiện (trạng thái, cờ tích hợp, dữ liệu, vai trò / portal, đối tượng khác) và một case gọi thẳng API. **Chờ duyệt.** | FB-110 |
 | v0.11 | 2026-10-20 | Gộp góp ý 19–20/10 (chạy sheet Customers, E2E Wave 1) vào rule có sẵn, không thêm số: rule 1 quyết định của dev đè Figma; rule 3 không thêm sheet; rule 7 hộp thoại nhiều bước nhóm theo bước; rule 10, 40 xoá case lỗi thời (bỏ `[OUT]`, thay FB-081); rule 11 mã TC = No. (chờ chốt cách thêm case); rule 13 câu Đóng xoá khỏi sheet Cần xác nhận; rule 14 Pre-condition đánh số (E2E; sheet màn hình chờ chốt); rule 15 bộ case abnormal. **Chờ duyệt.** | FB-083 · FB-084 · FB-085 · FB-086 · FB-087 · FB-088 · FB-089 · FB-095 |
 | v0.10 | 2026-10-15 | Gộp bản tổng hợp 15/10 (rule 36–56 của phiên chat) vào rule có sẵn, không thêm số: rule 1–2 thứ tự 5 nguồn và cách xử lý lệch; 6 người viết là Hanna; 8 thứ tự Hiển thị → Nhập liệu → Không thành công → Thành công, chèn case đúng nhóm, Test_Report theo nhóm; 10–11 mã TC không đánh lại, `[OUT]`; 13 Open question tinh gọn, Expected đề xuất tô vàng, mẫu chữ báo lỗi (gộp rule 40 cũ); 14 dòng `Login acc`, không `{{…}}`, Step `button [Tên]`, `Nhìn <vùng>`; 15 Priority Critical; 18 phông mức XML; 23 Đề xuất mặc định; 24 `[SGS]`, `[Consultant]`; 35 một số phiên bản; 36 thêm quyết định chốt và tiêu chí chấp nhận; 38 cổng `tc_fix_xlsx` + `tc_check`; 40 viết rule mới: độ phủ UC theo wave, `[Phase 2]`, `[Ngoài Phase 1]`, `[OUT]`. Bỏ ngoại lệ theo `profile.md` ở rule 1, 2, 13, 14 vì đã thành rule chung. | FB-074 · FB-075 · FB-076 · FB-077 · FB-078 · FB-079 · FB-080 · FB-081 · FB-082 |
