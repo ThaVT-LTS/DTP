@@ -177,6 +177,8 @@ Ví dụ trên là file TC tiếng Anh. Mỗi ô ghi một thứ tiếng theo ng
 
     Thêm một case gọi thẳng API khi giao diện đang chặn. Tên case nêu đúng điều kiện. Không gộp nhiều điều kiện vào một case.
 
+50. **Thiếu dữ liệu bắt buộc: ưu tiên nút bị khoá, không cần câu báo lỗi** (FB-119, 02–03/11). Khi một thao tác chưa làm được vì người dùng chưa chọn / chưa nhập đủ (vd Apply khi chưa chọn work product), cách đúng mặc định là **nút bị khoá (disabled)** cho tới khi đủ điều kiện. Expected của case viết: "Nút <X> mờ, không bấm được khi <điều kiện>; bấm được ngay khi <đủ điều kiện>". Không viết Expected "bấm rồi báo lỗi dưới ô" trừ khi UC / Figma có màn lỗi đó. Web khoá nút mà không có câu báo lỗi → **không phải bug**. Chỉ là bug khi nút **bấm được** mà không có phản hồi, hoặc khi đã đủ điều kiện mà nút vẫn khoá. Nguồn: BU-BUG-09 / BU_034, QA lead 03/11 "tốt nhất là disable btn".
+
 ## Changelog
 
 | Version | Ngày | Thay đổi | Nguồn |

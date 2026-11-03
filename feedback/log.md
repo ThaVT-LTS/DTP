@@ -1579,3 +1579,12 @@ Bản ghi `FB-001` là góp ý của người dùng. `FB-002` trở đi là **đ
 - Trạng thái: Đã vào rule (chờ duyệt)
 - Tái phát: 0
 
+
+## FB-119 · Thiếu dữ liệu bắt buộc: nút bị khoá là đúng, không cần báo lỗi
+- Ngày: 2026-11-03
+- Nguồn: chat Claude Code 03/11 · BU-BUG-09 / BU_034 (Huy won't fix 02/11) · QA lead: "tôi đồng ý > lưu lại trong repo sau cứ làm tương tự, tốt nhất là disable btn nhé"
+- Loại: L2-rule
+- Địa chỉ: rules/tc-authoring.md rule 50
+- Đã sửa: rules/tc-authoring.md rule 50
+- Trạng thái: Đã vào rule (QA lead duyệt 03/11)
+- Tái phát: 0
