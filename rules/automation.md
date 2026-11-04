@@ -153,6 +153,12 @@ Phiên bản: v0.4 · **[ĐỀ XUẤT] — chờ duyệt.** Nạp cùng `rules/c
     - Chỉ ghi trạng thái đã thấy trên web; bước chưa chạy ghi "(chưa chạy)", chỗ web lệch ghi "web: … ❌ (mã bug)". Dòng chú thích dưới bảng: request dùng, build, ngày.
     - Lưu file vào `tests/reports/SGS-DTP_<tên luồng>-flow_<dd-mm-yyyy>.xlsx`, trả lời trong chat 1–2 dòng + link file.
 
+51. **Mỗi build mới: bảng độ phủ cho phần thay đổi, không báo "đã test" khi chưa có case** (FB-123, 04/11). Khi có build / commit mới:
+    - Đọc diff code (`git diff <build cũ>..<build mới>`), liệt kê **mọi** nút, ô nhập, hộp thoại, upload, giới hạn (ký tự, dung lượng, loại file, quét mã độc), trạng thái mới — theo màn × vai trò × luồng.
+    - Đối chiếu từng mục với file TC: đã chạy trên build này / chỉ chạy trên build cũ / có case chưa chạy / **chưa có case**. Mục chưa có case → viết case (rule 41, 50, 51 của tc-authoring) và chạy ngay trong lượt đó, trước các case cũ.
+    - Khi QA lead hỏi "đã test chưa": trả lời theo bảng (case nào, build nào, ngày nào); không suy từ code, không trả lời "có" khi chỉ có case ở build cũ.
+    - Rule "chỉ chạy lại case liên quan" không áp cho tính năng mới: tính năng mới luôn chạy đủ case.
+
 ## Changelog
 
 | Version | Ngày | Thay đổi | Nguồn |

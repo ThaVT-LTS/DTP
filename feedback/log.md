@@ -1614,3 +1614,12 @@ Bản ghi `FB-001` là góp ý của người dùng. `FB-002` trở đi là **đ
 - Địa chỉ: rules/automation.md rule 50; docs/templates/flow-table-template.xlsx; scripts/flow_table.py
 - Trạng thái: Đã vào rule (QA lead yêu cầu 03/11)
 - Tái phát: 0
+
+## FB-123 · Tính năng mới không có case → "mở đâu cũng chưa test"
+- Ngày: 2026-11-04
+- Nguồn: chat Claude Code 04/11 · QA lead: "mở đến phần nào cũng chưa test là tại sao", "t thấy ko tin tưởng lắm, hãy chạy hết luôn đi" (Request clarification: giới hạn 250, file đính kèm; luồng My consultants; Home)
+- Loại: L2-rule
+- Địa chỉ: rules/automation.md rule 51
+- Đã sửa: rules/automation.md rule 51; bảng độ phủ Service Request build a6ec41c0 (scratchpad coverage-sr-04-11)
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0 (lọt: chỉ sửa Expected case cũ khi có build mới, không tìm phần tử UI mới; rule "chạy lại case liên quan" bỏ sót tính năng chưa có case)
