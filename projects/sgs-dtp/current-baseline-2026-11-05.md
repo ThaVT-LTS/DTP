@@ -17,7 +17,7 @@ Viết 05/11/2026 cuối ngày để một phiên / thread khác tiếp tục đ
 | Chủ đề | Quy tắc | Nguồn |
 |---|---|---|
 | Multi-account Customer Portal | **Phase 2** (chọn / chuyển account, account dùng lần trước). P1: một account active cho mỗi người | UC v6.5 D103, D105 |
-| Mời email đã active ở tenant khác | UC v6.5 **D104 / AUTH-03 col F–G**: P1 **không** cho kích hoạt membership thứ 2 (cách chặn chờ **Q44**). **Quy tắc tạm của QA lead 04/11** (đang áp cho CU_103, US_103, CU-BUG-27): vẫn mời + kích hoạt như thường, đăng nhập mở 1 account. **05/11 đã báo QA lead mâu thuẫn, chờ chị chọn** (a) theo D104 / (b) giữ tạm tới Q44 | D104, Q44 |
+| Mời email đã active ở tenant khác | UC v6.5 **D104 / AUTH-03 col F–G**: P1 **không** cho kích hoạt membership thứ 2 (cách chặn chờ **Q44**). **Quy tắc tạm của QA lead 04/11** (đang áp cho CU_103, US_103, CU-BUG-27): vẫn mời + kích hoạt như thường, đăng nhập mở 1 account. **05/11 QA lead chốt: theo UC v6.5 D104** — không kích hoạt membership thứ 2 (CU-BUG-29, CU_103 / US_103 Failed); quy tắc tạm 04/11 bỏ | D104, Q44 |
 | Ai quyết termination / completion | **Chỉ Customer Admin** (Approve/Reject termination, Confirm/Decline completion). Grant Workspace Access & Start cũng chỉ Customer Admin | UC v6.5 Q43 (SGS 05/11) — bug IS-BUG-16 |
 | Thay consultant của khách | Customer Admin thay consultant khách chỉ định (My consultants); cũ mất quyền; mới xin quyền; bị từ chối → chọn người khác hoặc để chờ | Q42 (SGS 05/11) |
 | Reassign (mọi nguồn) | **Customer Admin và SGS Admin đều bắt đầu được, bên kia xác nhận**; chọn theo đúng nguồn ban đầu; request **giữ In progress + trạng thái phụ "Reassignment"**; giữ dữ liệu cũ; consultant cũ mất quyền, mới phải được Grant; từ chối → chọn khác | SGS C-01–C-03 (05/11) — bug IS-BUG-17 (+ IS-BUG-07 gộp) |
@@ -29,7 +29,7 @@ Viết 05/11/2026 cuối ngày để một phiên / thread khác tiếp tục đ
 | Cockpit = Home | CKP-01 Customer Admin (khối **Reviews** theo luồng mới: "Ready to start → Grant access & start"), CKP-03 SGS Admin (khối **Audit Requests**: Bulk chờ duyệt / gửi lỗi / chưa link) | HM-BUG-07, HM-BUG-08 |
 | Certifications → **Trust Centre** | đã đổi trên web, Verified | D101, CT-BUG-11 |
 | Login | bỏ dòng hỗ trợ (Need help / Trouble signing in) | QA lead + Việt 04/11, LG-BUG-07 Verified |
-| On-site training TRN-03–06 | UC v6.5 ghi **P1 Confirmed**; QA lead chuyển Phase 2 ngày 03/11 (9 case On hold, TR-BUG-02 won't fix). **Chờ QA lead chọn** | mâu thuẫn mở |
+| On-site training TRN-03–06 | **Phase 1** (QA lead 05/11: theo UC v6.5). TR_031–039 Failed, thêm TR_040–042 (phía SGS), TR-BUG-02 mở lại (Việt) | UC v6.5 TRN-03–06 |
 | Q44, Q45, Q40 | Q44 (cách chặn tenant thứ 2) và Q40 (Bulk không qua NirmatAI kết thúc thế nào) còn mở; Q45 coi như đóng vì v6.5 đã duyệt | UC v6.5 Open Questions |
 
 ## 3. Môi trường và dữ liệu
@@ -67,3 +67,6 @@ Viết 05/11/2026 cuối ngày để một phiên / thread khác tiếp tục đ
 2. Chờ QA lead: D104 vs quy tắc tạm (mục 2); On-site training P1/P2; 8 Expected cũ (WD_050, WD_147, DC_014, CE_044, BU_042, BU_097, BU_018, BU_099) + LG_037/057/050, US_021/022/094, US_017, US_002/069 (3 tab SGS Users); xoá file `tests/data/scan-infected.pdf`; MK-BUG-07.
 3. Nghi ngờ chưa kết luận: trang kích hoạt lời mời tenant thứ 2 vẫn hỏi "Create password" (có tạo identity thứ 2 không?); số điện thoại có dấu cách bị từ chối sau CU-BUG-24; US_078 (Invite Freelancer không bắt buộc consulting firm); ST_044; bảng ngày lễ trên DB web.
 4. Báo cáo ngày 05/11 trước 17:00.
+
+## 7. Quyết định cuối ngày 05/11
+- QA lead: **"chấp nhận theo UC 6.5" cho mọi chỗ lệch** (D104, on-site training, AUD-04, INT-01, INT-02, SRQ-10…). Khi UC v6.5 và quyết định cũ của QA lead khác nhau → **theo UC v6.5**.
