@@ -30,6 +30,7 @@ Tuân thủ `rules/common.md`, `rules/automation.md` (rule 53, 54, 57). Cần Fi
   - Data mẫu phải nhất quán giữa các khối (cùng tổ chức, cùng tên scope / số chứng chỉ; khách chỉ thấy dữ liệu của tổ chức mình).
   - Nền mờ sau modal / drawer dùng đúng màn mới (thay Body cũ của designer), quyền theo vai trò (khách: chỉ xem / tải file, không icon sửa / xoá).
   - Web có mà Figma chưa có / web chưa có mà nên có (vd bấm dòng chứng chỉ trong chi tiết scope mở panel) → vẽ và ghi "Design proposal (not on web yet)" trong note.
+- **Màn khác hẳn Figma cũ** (vd Service Requests): dựng mới theo bố cục web bằng builder (khung "Shell · …" lấy từ frame cũ đã xoá Main + card / bảng / tag của bộ design), không cố sửa frame cũ. `setProperties` (vd đổi State của NavItem) reset màu đã tô đè → chạy lại bước tô màu menu sau khi tạo frame. Lớp nổi (scrim, modal, popover) trong frame auto-layout phải `layoutPositioning = 'ABSOLUTE'`.
 - **Phạm vi thread vẽ Figma**: chỉ dựng giao diện; không retest bug, không đổi ticket (bên khác làm). Lỗi web thấy khi đọc → ghi trong note / báo người dùng, không tự log.
 - **Kiểm trước khi báo (bắt buộc)**:
   - Tag, nút, chip, badge: `layoutSizingHorizontal = 'HUG'`, chữ bên trong `textAutoResize = 'WIDTH_AND_HEIGHT'` → nền luôn bao hết chữ (05/11: tag "Expires in 47 days", "In progress", "Submitted" bị chữ tràn khỏi nền vì component gốc rộng cố định 80px).
