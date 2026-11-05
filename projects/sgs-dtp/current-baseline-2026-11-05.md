@@ -70,3 +70,5 @@ Viết 05/11/2026 cuối ngày để một phiên / thread khác tiếp tục đ
 
 ## 7. Quyết định cuối ngày 05/11
 - QA lead: **"chấp nhận theo UC 6.5" cho mọi chỗ lệch** (D104, on-site training, AUD-04, INT-01, INT-02, SRQ-10…). Khi UC v6.5 và quyết định cũ của QA lead khác nhau → **theo UC v6.5**.
+
+- **Figma (05/11, QA lead):** bản mới nhất là trang "◆ QA · UC v6.5 updates" — https://www.figma.com/design/jluZdAkgifmZndi5hD12tt/DTP-P1?node-id=946-334 . Bản chép trong dts-agent-workspace: `docs/prototypes/figma-p1/qa-uc-v6-5-updates.md` (đồng bộ bằng `scripts/figma-prototype-sync.py`, chạy với `PYTHONUTF8=1` trên Windows). So Expected với Figma thì dùng trang này trước.
