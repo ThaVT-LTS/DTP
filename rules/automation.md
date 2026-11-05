@@ -159,15 +159,27 @@ Phiên bản: v0.4 · **[ĐỀ XUẤT] — chờ duyệt.** Nạp cùng `rules/c
     - Khi QA lead hỏi "đã test chưa": trả lời theo bảng (case nào, build nào, ngày nào); không suy từ code, không trả lời "có" khi chỉ có case ở build cũ.
     - Rule "chỉ chạy lại case liên quan" không áp cho tính năng mới: tính năng mới luôn chạy đủ case.
 
+52. **Tài liệu luồng happy case + mind map** (FB-124, 05/11). Khi được yêu cầu "tạo luồng", "kịch bản smoke test", "mind map": làm theo skill `flow-doc`:
+    - Tiếng Anh, mỗi luồng 1 file Word, đánh số theo thứ tự đi luồng (luồng nền trước, nhánh sau), tên không kèm "Review" / ngày; lưu `tests/reports/Flow report/`.
+    - Chỉ happy case, ảnh chụp trên web có URL và khung đỏ không đè chữ; luôn có mục "Not tested yet (blocked)" (Entra, SMTP, NirmatAI cert, malware, tính năng chưa có).
+    - Không có trang trắng: kiểm bằng `pagecheck.py` trước khi giao.
+    - Mind map HTML sinh từ cùng spec với Word; nhánh phụ để dạng planned cho tới khi chụp, khi chụp thì thêm "Alternative paths" vào file Word của luồng đó.
+
+53. **Đọc UC trước khi log bug hay đổi Expected — kể cả khi QA lead đã quyết** (FB-125, 05/11). Trước mỗi bug / Expected / sửa case: tìm dòng UC hiện hành (P1 Use Cases, Decision log, Open Questions) cho đúng vai trò và màn, trích nguyên văn vào ticket. Ý của QA lead ngược UC → báo trước ("UC SRQ-03 ghi ngược lại: …"), chỉ log khi chị vẫn muốn, ghi rõ mâu thuẫn trong ticket. Bài học: IS-BUG-13 (SGS Admin xem clarification) log theo quyết định 04/11, trái UC SRQ-03 / D57 → dev từ chối, QA lead phải huỷ.
+54. **Câu hỏi xác nhận của QA lead không phải lệnh làm** (FB-126, 05/11). "… phải không?", "là … à?", "đã log chưa?" → trả lời (có / không + lý do ngắn), đề xuất thay đổi cụ thể, chờ "ok / làm đi / log đi". Không tự sửa ticket, Expected, case, người nhận, hay gộp bug. Ngoại lệ: việc thường kỳ của lượt chạy (ghi kết quả, log bug mới theo rule 33–40). Khi sửa Expected chỉ sửa đúng ý được duyệt, không ghi đè các ý khác của case (05/11: ghi đè cả Expected AR_025 làm mất 3 ý).
+55. **Hiện trạng dự án SGS DTP**: đọc `projects/sgs-dtp/current-baseline-2026-11-05.md` trước `profile.md` (UC v6.5 đã duyệt, quy tắc Q42/Q43/C-01–03, 3 nguồn consultant, môi trường, người nhận bug, việc đang dở). Cập nhật file đó (hoặc tạo bản ngày mới) khi có quyết định mới.
+
 ## Changelog
 
 | Version | Ngày | Thay đổi | Nguồn |
 |---|---|---|---|
+| v1.2 | 2026-11-05 | Thêm rule 52: tài liệu luồng happy case (Word tiếng Anh, đánh số) + mind map HTML; skill `flow-doc`. **Chờ duyệt.** | FB-124 |
 | v1.1 | 2026-11-02 | Thêm rule 42–49: đọc case trước khi nhắc, QnA đối chiếu TC, khách quyết sau cùng, chuyển phase, ticket Done chưa deploy, kiểm số liệu agent con, môi trường dùng chung, trả lời ngắn. **Chờ duyệt.** | Chat QA lead 02/11 |
 | v0.9 | 2026-10-30 | Thêm rule 33–40: lượt chạy hằng ngày tự quyết (≤ 3 câu hỏi, QnA cần push); Pending / On hold / Failed theo lý do; decision log đè UC; cấp mã bug bằng `bug_codes.py`; huỷ bug đồng nhất; báo cáo đếm từ `bugs.md`; kết quả local và ảnh chỉ cho bug; git merge origin trước khi push. **Chờ duyệt.** | FB-103 … FB-109 · lượt chạy 27–30/10 |
 | v0.8 | 2026-10-27 | Thêm rule 32: test tích hợp NirmatAI (luồng, cấu hình dùng chung, thông tin phải báo, case biên từ Connection Guide dev v4); skill `nirmatai-check` | Người dùng 27/10; NirmatAI Connection Guide v4 |
 | v0.7 | 2026-10-26 | Thêm rule 31: mỗi lượt chạy tìm lỗi chủ động theo 4 hướng (quét code, tạo dữ liệu, biên và thời gian, gọi thẳng API); nghi ngờ → case kích hoạt → lỗi / tiềm ẩn; quy trình 5 bước (skill `run-cycle`). **Chờ duyệt.** | Yêu cầu người dùng 26/10 |
 | v0.6 | 2026-10-26 | Thêm rule 30: quét giá trị gán cứng trong code (skill `hardcode-check`) trước mỗi lượt chạy. **Chờ duyệt.** | Yêu cầu người dùng 26/10 (dropdown Scope chỉ tải 100 mục) |
+| v0.x | 2026-11-05 | Thêm rule 53 (đọc UC trước khi log / đổi Expected), 54 (câu hỏi xác nhận ≠ lệnh làm), 55 (file hiện trạng SGS DTP). | QA lead 05/11 (IS-BUG-13 huỷ, AR_025 ghi đè) |
 | v0.5 | 2026-10-23 | Thêm rule 29: bug người dùng báo khi test tay → log, thêm case vào TC, thêm mẫu vào `rules/bug-patterns.md`. **Chờ duyệt.** | Yêu cầu người dùng 23/10 |
 | v0.4 | 2026-10-21 | Thêm rule 27 (case cần email thật: gửi mời, lấy link trước rồi mới chạy) và rule 28 (đối chiếu quyết định mới nhất trước khi ghi bug). **Chờ duyệt.** | FB-100 · FB-101 · lượt chạy web 21/10 |
 | v0.1 | 2026-10-02 | Khởi tạo. Rule 2, 5, 6, 7, 9 lấy theo cách làm của đề xuất FEEC Local E2E (v13, 30/09/2026); rule 8 theo yêu cầu "một số yêu cầu cần confirm vẫn cần con người vào". Đề xuất của AI — **chờ duyệt** | Thiết kế trong chat Building 02/10 |

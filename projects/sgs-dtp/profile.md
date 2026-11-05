@@ -1,4 +1,6 @@
 # Hồ sơ dự án: sgs-dtp
+
+> **Đọc trước:** `current-baseline-2026-11-05.md` (hiện trạng 05/11/2026: UC v6.5 đã được SGS duyệt, quy tắc mới nhất, môi trường, việc đang dở). Các dòng bên dưới là lịch sử; khi khác thì file hiện trạng thắng.
 - Khách hàng / sản phẩm: SGS DTP
 - Ngôn ngữ giao diện của hệ thống (TC viết theo nhãn ngôn ngữ này): tiếng Anh (Figma "SGS DTP DS")
 - Ngôn ngữ viết file TC: tiếng Anh, trừ cột Open question và sheet Cần xác nhận viết tiếng Việt

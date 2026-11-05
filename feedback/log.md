@@ -1623,3 +1623,22 @@ Bản ghi `FB-001` là góp ý của người dùng. `FB-002` trở đi là **đ
 - Đã sửa: rules/automation.md rule 51; bảng độ phủ Service Request build a6ec41c0 (scratchpad coverage-sr-04-11)
 - Trạng thái: Đã vào rule (chờ duyệt)
 - Tái phát: 0 (lọt: chỉ sửa Expected case cũ khi có build mới, không tìm phần tử UI mới; rule "chạy lại case liên quan" bỏ sót tính năng chưa có case)
+
+## FB-124 · Tài liệu luồng happy case cho smoke test + mind map
+- Ngày: 2026-11-05
+- Nguồn: chat Claude Code 02–05/11 · QA lead: "tạo luồng giống đợt NirmatAI", "mỗi luồng 1 file", "chỉ cần happy case", "ko để trang trắng", "font chữ, màu mè cho đẹp hơn", "Mind Map … click vào gì thì đi tiếp", "update cách làm lên qa-pipeline"
+- Loại: L2-rule + skill
+- Địa chỉ: rules/automation.md rule 52; .claude/skills/flow-doc; projects/sgs-dtp/tests/flows
+- Đã sửa: 6 file Word + 00_DTP_Happy_Path_MindMap.html trong dts-agent-workspace/tests/reports/Flow report
+- Trạng thái: Đã vào rule (chờ duyệt)
+- Tái phát: 0 (lọt trước đó: trang trắng do đoạn PageBreak sau ảnh đầy trang; nhãn đỏ lệch do thanh URL đẩy trang)
+
+## FB-125 · Đọc UC trước khi log bug theo quyết định của QA lead
+- Ngày: 05/11/2026 · Nguồn: QA lead ("tại sao lại không đọc UC trước") sau khi Huy từ chối IS-BUG-13 ("chị tự thêm")
+- Việc: IS-BUG-13 (SGS Admin xem clarification) log 04/11 theo ý QA lead, trái UC SRQ-03 (v6.3–v6.5) và D57; huỷ 05/11.
+- Áp dụng: rule 53 của `rules/automation.md`.
+
+## FB-126 · Câu hỏi xác nhận không phải lệnh làm
+- Ngày: 05/11/2026 · Nguồn: QA lead ("đừng tự ý làm mà không hỏi")
+- Việc: QA lead hỏi "bug này expect là … phải không"; QA sửa luôn ticket BE-73 và ghi đè cả Expected AR_025 (mất 3 ý của luồng Reassign).
+- Áp dụng: rule 54 của `rules/automation.md`.
