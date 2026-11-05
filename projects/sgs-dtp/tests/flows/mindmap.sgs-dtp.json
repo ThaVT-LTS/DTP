@@ -1,0 +1,307 @@
+{
+ "out": "C:/Users/thavt/Documents/DTP/dts-agent-workspace/tests/reports/Flow report/00_DTP_Happy_Path_MindMap.html",
+ "specDir": ".",
+ "title": "DTP happy path",
+ "flows": [
+  {
+   "key": "onb",
+   "spec": "spec-onb.json",
+   "short": "Onboarding & users",
+   "shape": {
+    "chains": [
+     [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    ]
+   },
+   "planned": {
+    "0": [
+     {
+      "title": "Resend invitation",
+      "who": "SGS Admin",
+      "result": "New invitation email; the old link stops working",
+      "children": []
+     }
+    ]
+   },
+   "next": [
+    "sfw"
+   ],
+   "needs": null
+  },
+  {
+   "key": "sfw",
+   "spec": "spec-sfw.json",
+   "short": "Scope → Framework → Workspace",
+   "shape": {
+    "chains": [
+     [
+      0,
+      1,
+      2,
+      3
+     ]
+    ],
+    "fork": {
+     "3": [
+      [
+       4
+      ],
+      [
+       5,
+       6
+      ]
+     ]
+    }
+   },
+   "planned": {},
+   "next": [
+    "asst",
+    "nai"
+   ],
+   "needs": "onb"
+  },
+  {
+   "key": "asst",
+   "spec": "spec-asst.json",
+   "short": "Assisted workspace",
+   "shape": {
+    "chains": [
+     [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+     ]
+    ]
+   },
+   "planned": {
+    "7": [
+     {
+      "title": "Archive the workspace",
+      "who": "Customer Admin",
+      "result": "Archived; documents read only",
+      "children": []
+     },
+     {
+      "title": "Start a new cycle",
+      "who": "Customer Admin",
+      "result": "New workspace for the next cycle; the previous one is archived",
+      "children": []
+     }
+    ]
+   },
+   "next": [
+    "sr"
+   ],
+   "needs": "sfw"
+  },
+  {
+   "key": "nai",
+   "spec": "spec-nai.json",
+   "short": "Bulk → NirmatAI",
+   "shape": {
+    "chains": [
+     [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+     ]
+    ]
+   },
+   "planned": {
+    "5": [
+     {
+      "title": "Send additional documents",
+      "who": "Customer Admin",
+      "result": "New send added to the request after Under review",
+      "children": []
+     }
+    ],
+    "6": [
+     {
+      "title": "Change NirmatAI client",
+      "who": "SGS Admin",
+      "result": "Client unlinked; pick or create another before sending",
+      "children": []
+     }
+    ]
+   },
+   "next": [],
+   "needs": "sfw"
+  },
+  {
+   "key": "sr",
+   "spec": "spec-sr.json",
+   "short": "Service requests",
+   "shape": {
+    "chains": [
+     [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+     ],
+     [
+      7,
+      8,
+      9
+     ]
+    ]
+   },
+   "planned": {
+    "0": [
+     {
+      "title": "Decline + reason",
+      "who": "Consultant",
+      "result": "Closed",
+      "children": []
+     },
+     {
+      "title": "Cancel request + reason",
+      "who": "Customer Admin",
+      "result": "Cancelled",
+      "children": []
+     }
+    ],
+    "2": [
+     {
+      "title": "Close negotiation + reason",
+      "who": "Consultant",
+      "result": "Closed",
+      "children": []
+     },
+     {
+      "title": "Cancel request + reason",
+      "who": "Customer Admin",
+      "result": "Cancelled",
+      "children": []
+     },
+     {
+      "title": "Return to discussion + reason",
+      "who": "Customer Admin / Consultant",
+      "result": "In discussion",
+      "children": []
+     }
+    ],
+    "3": [
+     {
+      "title": "Terminate service + reason",
+      "who": "Customer Admin",
+      "result": "Terminated",
+      "children": []
+     },
+     {
+      "title": "Request termination + reason",
+      "who": "Consultant",
+      "result": "In progress · waiting for the customer",
+      "children": [
+       {
+        "title": "Approve termination",
+        "who": "Customer Admin",
+        "result": "Terminated",
+        "children": []
+       },
+       {
+        "title": "Reject termination + reason",
+        "who": "Customer Admin",
+        "result": "In discussion",
+        "children": []
+       }
+      ]
+     },
+     {
+      "title": "Reassign consultant + reason",
+      "who": "SGS Admin",
+      "result": "In progress · new consultant",
+      "children": [
+       {
+        "title": "Request access (new consultant)",
+        "who": "Consultant",
+        "result": "In progress · waiting for the customer",
+        "children": [
+         {
+          "title": "Approve access",
+          "who": "Customer Admin",
+          "result": "In progress · new consultant sees the workspace",
+          "children": []
+         },
+         {
+          "title": "Refuse access",
+          "who": "Customer Admin",
+          "result": "In progress · no access yet",
+          "children": []
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "4": [
+     {
+      "title": "Decline completion + reason",
+      "who": "Customer Admin",
+      "result": "In progress · consultant can request completion again",
+      "children": []
+     }
+    ]
+   },
+   "next": [],
+   "needs": "asst"
+  },
+  {
+   "key": "cert",
+   "spec": "spec-cert.json",
+   "short": "Certifications, Marketplace & Training",
+   "shape": {
+    "chains": [
+     [
+      0,
+      1,
+      2,
+      3,
+      8
+     ],
+     [
+      4,
+      5,
+      6
+     ],
+     [
+      7
+     ]
+    ]
+   },
+   "planned": {
+    "0": [
+     {
+      "title": "Delete the certification record",
+      "who": "SGS Admin",
+      "result": "Record removed from Trust Centre",
+      "children": []
+     }
+    ]
+   },
+   "next": [],
+   "needs": "onb"
+  }
+ ]
+}

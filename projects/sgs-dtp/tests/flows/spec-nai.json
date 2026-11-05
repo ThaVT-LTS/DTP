@@ -1,0 +1,239 @@
+{
+ "title": "NirmatAI → DTP flow (Bulk audit)",
+ "out": "C:/Users/thavt/Documents/DTP/dts-agent-workspace/tests/reports/Flow report/04_Bulk_NirmatAI_Flow.docx",
+ "imgDir": "C:/Users/thavt/Documents/DTP/dts-agent-workspace/tests/evidence/nirmatai-flow-02-11",
+ "env": "Environment: dtp.ltsgroup.tech (web test) · Screenshots taken 02 Nov 2026 · Prepared by QA",
+ "intro": [
+  "Steps 1 and 2 happen in NirmatAI, which has no screen in DTP. Screenshots use existing test data. Red boxes and labels were added for this document."
+ ],
+ "steps": [
+  {
+   "id": "s1",
+   "who": "NirmatAI",
+   "where": "NirmatAI (no DTP screen)",
+   "what": "Create standard A in the NirmatAI org.",
+   "result": "Standard exists but is not ready: DTP does not see it.",
+   "body": [
+    "NirmatAI creates the standard and its work products. While it is not ready, Sync from NirmatAI in DTP skips it."
+   ],
+   "shots": []
+  },
+  {
+   "id": "s2",
+   "who": "NirmatAI (Usman)",
+   "where": "NirmatAI (no DTP screen)",
+   "what": "Turn the standard on (ready and active).",
+   "result": "Standard is ready: the next Sync in DTP picks it up.",
+   "body": [
+    "DTP reads only standards that are both active and ready. Nothing changes in DTP until an SGS Admin runs Sync.",
+    "On the DTP side, the NirmatAI integration must be on (SGS Portal > Integration > NirmatAI)."
+   ],
+   "shots": [
+    [
+     "01-nirmatai-integration.png",
+     "SGS Portal > Integration > NirmatAI: the integration is on, so DTP can sync from NirmatAI."
+    ]
+   ]
+  },
+  {
+   "id": "s3",
+   "who": "SGS Admin",
+   "where": "SGS Portal > Frameworks",
+   "what": "Click Sync from NirmatAI.",
+   "result": "New framework NAI-<standard id>, source NirmatAI, status Draft.",
+   "body": [
+    "The code is always NAI- followed by the NirmatAI standard ID (for example NAI-107), so two synced frameworks never share a code."
+   ],
+   "shots": [
+    [
+     "03-frameworks-sync.png",
+     "Frameworks list filtered by \"NAI\": Sync from NirmatAI button and the synced frameworks."
+    ]
+   ]
+  },
+  {
+   "id": "s4",
+   "who": "SGS Admin",
+   "where": "SGS Portal > Frameworks > NAI-xxx",
+   "what": "Check the name and work products, then Activate.",
+   "result": "Framework is Activated: customers can pick it for a Bulk workspace.",
+   "body": [
+    "Only Activated frameworks are offered to customers."
+   ],
+   "shots": [
+    [
+     "04a-framework-activated.png",
+     "NAI-107 detail: status Activated, 35 work products from NirmatAI."
+    ]
+   ]
+  },
+  {
+   "id": "s5",
+   "who": "Customer Admin",
+   "where": "Customer Portal > Workspaces",
+   "what": "Create workspace > Create Bulk workspace: scope, then the NAI-xxx standard, then details.",
+   "result": "Bulk workspace created (Not started).",
+   "body": [
+    "Step 2 lists only NirmatAI frameworks that SGS has activated. A scope can have only one active workspace per standard."
+   ],
+   "shots": [
+    [
+     "05a-create-menu.png",
+     "Create workspace menu: Create Bulk workspace."
+    ],
+    [
+     "05b-step1-scope.png",
+     "Step 1: choose the scope."
+    ],
+    [
+     "05c-step2-standard.png",
+     "Step 2: choose the standard (only activated NirmatAI frameworks)."
+    ],
+    [
+     "05d-step3-details.png",
+     "Step 3: workspace name (optional); the cycle starts today and runs three years."
+    ]
+   ]
+  },
+  {
+   "id": "s6",
+   "who": "Customer Admin",
+   "where": "Customer Portal > Bulk workspace > Open documents",
+   "what": "Upload files, map them to work products, Request audit.",
+   "result": "Request is Waiting for approval; documents are locked.",
+   "body": [
+    "Mapping to work products is optional. After Request audit, the customer can still upload new versions and add them to the request."
+   ],
+   "shots": [
+    [
+     "06a-bulk-workspace.png",
+     "Bulk workspace detail: Open documents."
+    ],
+    [
+     "06b-documents-mapped.png",
+     "Documents page after Request audit: banner \"Audit requested\", files mapped to work products."
+    ]
+   ]
+  },
+  {
+   "id": "s7",
+   "who": "SGS Admin",
+   "where": "SGS Portal > Requests > Bulk workspaces",
+   "what": "Open the request, link the NirmatAI client, Approve and send.",
+   "result": "DTP creates the audit in NirmatAI and sends the files.",
+   "body": [
+    "Approve and send stays disabled until a NirmatAI client is linked. The client can be changed until documents are sent."
+   ],
+   "shots": [
+    [
+     "07a-requests-bulk.png",
+     "Requests > Bulk workspaces: requests waiting for approval."
+    ],
+    [
+     "07b-request-detail.png",
+     "Request detail: NirmatAI client and Approve and send."
+    ],
+    [
+     "07d-approve-dialog.png",
+     "Approve and send to NirmatAI dialog."
+    ]
+   ]
+  },
+  {
+   "id": "s8",
+   "who": "NirmatAI",
+   "where": "SGS Portal > Bulk request; Customer Portal > Sent documents",
+   "what": "NirmatAI processes the files; DTP checks their status.",
+   "result": "Request Under review; each file Waiting to process, Processing, Ready or Failed.",
+   "body": [
+    "SGS Admin sees the status of each file from NirmatAI. The customer sees only whether each document was sent or failed."
+   ],
+   "shots": [
+    [
+     "08a-request-sent.png",
+     "Sent request: status Under review, NirmatAI audit code and the list of sends."
+    ],
+    [
+     "08b-processing-status.png",
+     "Documents of the request: status from NirmatAI (here all Ready)."
+    ],
+    [
+     "08c-customer-sent-documents.png",
+     "Customer Portal: Sent documents tab."
+    ]
+   ]
+  }
+ ],
+ "tables": [
+  {
+   "heading": "Document status from NirmatAI",
+   "cols": [
+    "Label in DTP",
+    "NirmatAI value",
+    "Meaning"
+   ],
+   "widths": [
+    2000,
+    2200,
+    5160
+   ],
+   "rows": [
+    [
+     "Waiting to process",
+     "new",
+     "NirmatAI received the file but has not started. If it stays more than 15 minutes, DTP triggers it again, up to 3 times."
+    ],
+    [
+     "Processing",
+     "pending / running",
+     "NirmatAI is processing the file."
+    ],
+    [
+     "Ready",
+     "success",
+     "Processing finished."
+    ],
+    [
+     "Failed",
+     "failure",
+     "Processing failed. The line under the label says what the customer sees: \"Processing failed\" or \"Conversion failed\"."
+    ]
+   ]
+  }
+ ],
+ "limitations": [
+  "The test environment uses a mock sign-in. On the SGS environment users sign in through Microsoft Entra.",
+  "On the test environment all email goes to Mailpit, not real inboxes."
+ ],
+ "blocked": [
+  [
+   "NirmatAI connection on the SGS environment",
+   "Sync from NirmatAI, Approve and send, status updates from NirmatAI.",
+   "The NirmatAI certificate is not yet installed on the SGS environment; the flow was run on the LTS test environment only.",
+   "After the certificate is installed: Sync, Approve and send, and file statuses reaching Ready."
+  ],
+  [
+   "NirmatAI side (steps 1 and 2)",
+   "Creating and enabling a standard in NirmatAI.",
+   "Done by NirmatAI (Usman); DTP has no screen for it.",
+   "NirmatAI confirms the standard is ready before SGS runs Sync."
+  ],
+  [
+   "Sign-in (Microsoft Entra)",
+   "Sign-in on the SGS environment with Microsoft Entra.",
+   "The test environment uses a mock sign-in; Entra is set up only on the SGS DEV/UAT environment.",
+   "Each role can sign in to its portal through Entra."
+  ],
+  [
+   "Email delivery (SGS SMTP)",
+   "Real emails reaching real inboxes.",
+   "On the test environment all mail goes to Mailpit; real delivery depends on the SGS SMTP set-up.",
+   "Emails arrive, links in them open the right page."
+  ]
+ ],
+ "seq": [
+  4,
+  6
+ ],
+ "related": "Before this: Flow 3: Assisted workspace  ·  Next: Flow 5: Service requests"
+}

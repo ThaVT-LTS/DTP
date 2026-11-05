@@ -1,0 +1,184 @@
+{
+ "title": "Certifications, Marketplace and Training flow",
+ "out": "C:/Users/thavt/Documents/DTP/dts-agent-workspace/tests/reports/Flow report/06_Certifications_Marketplace_Flow.docx",
+ "imgDir": "C:/Users/thavt/Documents/DTP/dts-agent-workspace/tests/evidence/certifications-flow-05-11",
+ "env": "Environment: dtp.ltsgroup.tech (web test) · Screenshots taken 05 Nov 2026 · Happy path only · Prepared by QA",
+ "intro": [
+  "Test data: customer Development organisation, scope [QA] W3 C Cert C, certificate QA-D05-SMOKE-001 created for this document. Red boxes and labels were added for this document. Times in DTP are Taiwan time (UTC+8)."
+ ],
+ "limitations": [
+  "Sign-in: the test environment uses mock sign-in with a password. On the SGS environment users sign in with Microsoft Entra.",
+  "Email: on the test environment all mail goes to Mailpit, not real inboxes. Real delivery depends on the SGS SMTP set-up.",
+  "Training: on-site training is not in Phase 1 (TR-BUG-02 closed as won't fix); Training lists SGS Academy courses only."
+ ],
+ "steps": [
+  {
+   "who": "SGS Admin",
+   "where": "SGS Portal > Trust Centre",
+   "what": "Add a certification for a customer scope.",
+   "result": "Certificate saved; the customer sees it at once.",
+   "body": [
+    "Choose the customer, the scope and the standard, enter the certificate number and dates, and attach the certificate PDF (one PDF, up to 10 MB, scanned for malware)."
+   ],
+   "shots": [
+    [
+     "01-sgs-trust-centre.png",
+     "SGS Portal > Trust Centre: list of certificates issued by SGS Taiwan, Add certification button."
+    ],
+    [
+     "02-add-certification-form.png",
+     "Add certification form filled in for QA-D05-SMOKE-001."
+    ]
+   ]
+  },
+  {
+   "who": "SGS Admin",
+   "where": "SGS Portal > Trust Centre",
+   "what": "Check the new certificate in the list.",
+   "result": "Certificate listed with status Valid and its validity dates.",
+   "body": [
+    "The status is calculated from the Valid to date."
+   ],
+   "shots": [
+    [
+     "03-sgs-certificate-added.png",
+     "Search by certificate number: the new certificate is listed as Valid."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Trust Centre",
+   "what": "Open the certificate and download its file.",
+   "result": "Customer sees the certificate details (read only) and can download the PDF.",
+   "body": [
+    "The Customer Portal Trust Centre is read only. The file can be downloaded after the malware scan marks it Clean."
+   ],
+   "shots": [
+    [
+     "04-customer-trust-centre.png",
+     "Customer Portal > Trust Centre: the certificate issued by SGS."
+    ],
+    [
+     "05-customer-certificate-detail.png",
+     "Certificate detail panel with the download button."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Scopes > scope detail",
+   "what": "Open the scope of the certificate.",
+   "result": "The Certifications card of the scope lists the certificate.",
+   "body": [],
+   "shots": [
+    [
+     "06-customer-scope-certificate.png",
+     "Scope [QA] W3 C Cert C: the Certifications card shows QA-D05-SMOKE-001."
+    ]
+   ]
+  },
+  {
+   "who": "SGS Admin",
+   "where": "SGS Portal > Marketplace",
+   "what": "Manage the consultant profiles shown in the Marketplace.",
+   "result": "Published profiles are visible to customers.",
+   "body": [
+    "Marketplace content has two tabs: Pentesting services and Consultant profiles. Only Published profiles appear in the Customer Portal."
+   ],
+   "shots": [
+    [
+     "07-sgs-marketplace-content.png",
+     "Marketplace content > Consultant profiles: the published profile of Chen Wei."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Marketplace",
+   "what": "Browse consultants and open a consultant profile.",
+   "result": "Customer sees the profile: standards, services and languages.",
+   "body": [],
+   "shots": [
+    [
+     "08-customer-marketplace.png",
+     "Customer Portal > Marketplace: Pentesting services and Consultants."
+    ],
+    [
+     "09-customer-consultants.png",
+     "Consultants list."
+    ],
+    [
+     "10-customer-consultant-profile.png",
+     "Consultant profile with the Start a request button."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Marketplace > consultant profile",
+   "what": "Click Start a request.",
+   "result": "New Service Request opens with the consultant chosen.",
+   "body": [
+    "From here the request continues as in the Service Requests flow document (Gap Analysis or Implementation Support)."
+   ],
+   "shots": [
+    [
+     "11-new-service-request.png",
+     "New Service Request, step 1 Request details, opened from the consultant profile."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Training",
+   "what": "Browse SGS Academy courses.",
+   "result": "Course list with format and category filters; each course opens on SGS Academy.",
+   "body": [],
+   "shots": [
+    [
+     "12-customer-training.png",
+     "Customer Portal > Training: 20 courses, Open in SGS Academy links."
+    ]
+   ]
+  },
+  {
+   "who": "SGS Admin, Customer Admin",
+   "where": "SGS Portal > Audit logs; Customer Portal > Activity log",
+   "what": "Check that the certificate creation is logged.",
+   "result": "Event \"Certificate added\" appears in both logs.",
+   "body": [
+    "SGS Admin sees events of every customer; the customer sees only events of its own organisation."
+   ],
+   "shots": [
+    [
+     "13-sgs-audit-log.png",
+     "SGS Portal > Audit logs: Certificate added · QA-D05-SMOKE-001 by Lin Mei."
+    ],
+    [
+     "14-customer-activity-log.png",
+     "Customer Portal > Activity log: the same event."
+    ]
+   ]
+  }
+ ],
+ "blocked": [
+  [
+   "Sign-in (Microsoft Entra)",
+   "Sign-in on the SGS environment with Microsoft Entra.",
+   "The test environment uses a mock sign-in; Entra is set up only on the SGS DEV/UAT environment.",
+   "Each role can sign in to its portal through Entra."
+  ],
+  [
+   "Email delivery (SGS SMTP)",
+   "Real emails reaching real inboxes.",
+   "On the test environment all mail goes to Mailpit; real delivery depends on the SGS SMTP set-up.",
+   "Emails arrive, links in them open the right page."
+  ]
+ ],
+ "seq": [
+  6,
+  6
+ ],
+ "related": "Before this: Flow 5: Service requests"
+}

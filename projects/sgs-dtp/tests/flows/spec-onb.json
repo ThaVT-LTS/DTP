@@ -1,0 +1,209 @@
+{
+ "title": "Customer onboarding and users (happy path)",
+ "out": "C:/Users/thavt/Documents/DTP/dts-agent-workspace/tests/reports/Flow report/01_Onboarding_Users_Flow.docx",
+ "imgDir": "C:/Users/thavt/Documents/DTP/dts-agent-workspace/tests/evidence/onboarding-flow-05-11",
+ "env": "Environment: dtp.ltsgroup.tech (web test) · Screenshots taken 05 Nov 2026 · Prepared by QA",
+ "intro": [
+  "This flow takes a new customer from account creation by SGS to a Customer User who can see a scope. Test data: customer \"[QA] D05 Smoke Onboarding 6p6k\", scope \"[QA] D05 Smoke Scope 6p6k\".",
+  "Red boxes and labels were added for this document. Dates on screen are in Taiwan time (UTC+8); the bar above each screenshot shows Vietnam time (GMT+7)."
+ ],
+ "steps": [
+  {
+   "who": "SGS Admin",
+   "where": "SGS Portal > Customers",
+   "what": "Create the customer account and invite its first Customer Admin.",
+   "result": "Customer account created; the Customer Admin is Invited.",
+   "body": [
+    "Step 1 of the dialog holds the company and contact details. Step 2 holds the first Customer Admin. SGS sends only this first invitation; the Customer Admin invites the rest of the team."
+   ],
+   "shots": [
+    [
+     "01a-customers.png",
+     "Customers list: Create customer account."
+    ],
+    [
+     "01b-customer-details.png",
+     "Step 1: company name (English and Traditional Chinese), contact and SGS affiliate."
+    ],
+    [
+     "01c-first-admin.png",
+     "Step 2: name and email of the first Customer Admin, then Create and send invitation."
+    ],
+    [
+     "01d-customer-created.png",
+     "Customer detail > Users: the Customer Admin is Invited."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Invitation email > Activate page",
+   "what": "Open the invitation email and activate the account.",
+   "result": "Account is ready; role Customer Admin.",
+   "body": [
+    "The link works once and expires after 7 days. On the test environment the email is read from Mailpit (the test mailbox)."
+   ],
+   "shots": [
+    [
+     "02-invitation-mail.png",
+     "Invitation email in the test mailbox, with the Activate your account button."
+    ],
+    [
+     "02-activate.png",
+     "Activate your account: full name, password that meets the rules, terms accepted."
+    ],
+    [
+     "02-activated.png",
+     "Your account is ready: organisation and role."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Sign in",
+   "what": "Sign in to the Customer Portal.",
+   "result": "Home page of the new customer, with the first steps to follow.",
+   "body": [
+    "Home shows the setup steps: create a scope, then create a workspace."
+   ],
+   "shots": [
+    [
+     "02c-sign-in.png",
+     "Customer Portal sign-in."
+    ],
+    [
+     "02d-customer-portal-home.png",
+     "Home: Welcome, QA Smoke Admin, with the setup steps."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Scopes",
+   "what": "Create a scope.",
+   "result": "Scope created and opened.",
+   "body": [
+    "Required: type, name, company name, address, employee count and scope of certification."
+   ],
+   "shots": [
+    [
+     "03a-scopes.png",
+     "Scopes list: Create scope."
+    ],
+    [
+     "03b-create-scope.png",
+     "Create scope dialog with the required fields filled."
+    ],
+    [
+     "03c-scope-created.png",
+     "Scope detail after creation."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Administration > Users",
+   "what": "Invite a Customer User.",
+   "result": "User is Invited, with 0 of 1 scopes.",
+   "body": [
+    "The dialog has two steps: details and role, then a check of the email address."
+   ],
+   "shots": [
+    [
+     "04a-users.png",
+     "Users list: Invite user."
+    ],
+    [
+     "04b-invite-user.png",
+     "Step 1: name, email and role User."
+    ],
+    [
+     "04c-confirm-invite.png",
+     "Step 2: confirm the address, then Send invitation."
+    ],
+    [
+     "04d-user-invited.png",
+     "Users list: the new user is Invited."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Scopes > scope detail",
+   "what": "Give the user access to the scope.",
+   "result": "The user is listed under People with access.",
+   "body": [
+    "Customer Admins and Viewers see every scope. A Customer User sees only the scopes they are added to. An invited user can be added before they activate."
+   ],
+   "shots": [
+    [
+     "04e-scope-people.png",
+     "Scope detail: People with access > Add users."
+    ],
+    [
+     "04f-add-user-to-scope.png",
+     "Add users to this scope: pick the user, then Add users."
+    ],
+    [
+     "04g-user-has-access.png",
+     "The user now has access to the scope."
+    ]
+   ]
+  },
+  {
+   "who": "Customer User",
+   "where": "Invitation email > Customer Portal > Scopes",
+   "what": "Activate the account, sign in and open Scopes.",
+   "result": "The Customer User sees only the scope they were given.",
+   "body": [],
+   "shots": [
+    [
+     "05-invitation-mail.png",
+     "Invitation email for the Customer User."
+    ],
+    [
+     "05-activate.png",
+     "Activate your account as Customer User."
+    ],
+    [
+     "05-activated.png",
+     "Your account is ready: role Customer User."
+    ],
+    [
+     "05d-user-sees-scope.png",
+     "Scopes list of the Customer User: only the scope they were added to."
+    ]
+   ]
+  }
+ ],
+ "limitations": [
+  "On the SGS environment, sign-in and activation go through Microsoft Entra: the user sets the password on the Entra page, and Forgot password is handled by Entra, not by DTP.",
+  "The web test environment uses mock sign-in in place of Entra: every account signs in with one shared test password, not the password set at activation.",
+  "Sending email on the SGS environment depends on the SGS SMTP set-up. On the test environment all email goes to Mailpit (the test mailbox), never to real inboxes."
+ ],
+ "blocked": [
+  [
+   "Activation and password (Entra)",
+   "Activation from the invitation, setting the password, Forgot password.",
+   "Done on the Microsoft Entra page on the SGS environment; the test environment uses a mock sign-in with one shared password.",
+   "Invited Customer Admin and Customer User can activate, set a password, reset it, and sign in."
+  ],
+  [
+   "Sign-in (Microsoft Entra)",
+   "Sign-in on the SGS environment with Microsoft Entra.",
+   "The test environment uses a mock sign-in; Entra is set up only on the SGS DEV/UAT environment.",
+   "Each role can sign in to its portal through Entra."
+  ],
+  [
+   "Invitation email (SGS SMTP)",
+   "Invitation emails reaching real inboxes.",
+   "On the test environment invitations go to Mailpit; real delivery depends on the SGS SMTP set-up.",
+   "Invitations arrive and the activation link works."
+  ]
+ ],
+ "seq": [
+  1,
+  6
+ ],
+ "related": "Next: Flow 2: Scope → Framework → Workspace"
+}

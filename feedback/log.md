@@ -1642,3 +1642,13 @@ Bản ghi `FB-001` là góp ý của người dùng. `FB-002` trở đi là **đ
 - Ngày: 05/11/2026 · Nguồn: QA lead ("đừng tự ý làm mà không hỏi")
 - Việc: QA lead hỏi "bug này expect là … phải không"; QA sửa luôn ticket BE-73 và ghi đè cả Expected AR_025 (mất 3 ý của luồng Reassign).
 - Áp dụng: rule 54 của `rules/automation.md`.
+
+## FB-127 · Bàn giao giữa các thread
+- Ngày: 05/11/2026 · Nguồn: QA lead ("t thường giao task cho thread khác … làm thế nào để b hiểu và làm tiếp", "t đồng ý")
+- Việc: việc làm dở / quyết định miệng ở thread này không sang được thread khác nếu không ghi vào file.
+- Áp dụng: rule 56 của `rules/automation.md`; `DTP/CLAUDE.md`; `dts-agent-workspace/tasks/handoff/README.md`.
+
+## FB-128 · Sửa màn Figma: nút / tag phải bao hết chữ
+- Ngày: 05/11/2026 · Nguồn: QA lead ("Btn phải bao phủ text chứ. lệch này", "cập nhật vào rule, skill nhé")
+- Việc: màn Home (frame 946:335, trang ◆ QA · UC v6.5 updates) gửi duyệt còn tag Submitted / In progress / Expires in 47 days tràn chữ khỏi nền (component gốc rộng cố định 80px).
+- Áp dụng: rule 57 của `rules/automation.md`; skill `.claude/skills/figma-ui-update`.

@@ -1,0 +1,264 @@
+{
+ "title": "Assisted workspace flow (happy path)",
+ "out": "C:/Users/thavt/Documents/DTP/dts-agent-workspace/tests/reports/Flow report/03_Assisted_Workspace_Flow.docx",
+ "imgDir": "C:/Users/thavt/Documents/DTP/dts-agent-workspace/tests/evidence/assisted-flow-05-11",
+ "env": "Environment: dtp.ltsgroup.tech (web test) · Screenshots taken 05 Nov 2026 · Prepared by QA",
+ "intro": [
+  "This document walks through the main success path of an Assisted workspace: SGS imports and activates a framework, the customer creates a scope and a workspace, uploads evidence against a requirement and keeps a new version of the document.",
+  "Test data created for this run is prefixed \"[QA] D05 Smoke\". Times shown in DTP are Taiwan time (UTC+8); the URL bar time is GMT+7. Red boxes and labels were added for this document."
+ ],
+ "tables": [
+  {
+   "heading": "Accounts used",
+   "cols": [
+    "Role",
+    "Portal",
+    "Account"
+   ],
+   "widths": [
+    2400,
+    2600,
+    4360
+   ],
+   "rows": [
+    [
+     "SGS Admin",
+     "SGS Portal (/ops)",
+     "lin.mei@example.com (Lin Mei)"
+    ],
+    [
+     "Customer Admin",
+     "Customer Portal",
+     "kevin.lin@example.com (Kevin Lin), Development organisation"
+    ]
+   ]
+  },
+  {
+   "heading": "Data created in this run",
+   "cols": [
+    "Item",
+    "Name"
+   ],
+   "widths": [
+    2400,
+    6960
+   ],
+   "rows": [
+    [
+     "Framework",
+     "[QA] D05 Smoke Assisted 0851 (code QA_D05_SMOKE_0851, from the Appendix 10 template: 113 requirements, 3 tiers, 79 expected evidence)"
+    ],
+    [
+     "Scope",
+     "[QA] D05 Smoke Assisted Org 0851 (Organization)"
+    ],
+    [
+     "Workspace",
+     "[QA] D05 Smoke Assisted WS 0851 (tier Medium, cycle 2026–2029)"
+    ],
+    [
+     "Document",
+     "Account_Management_Procedure (v1, v2) for requirement R.1.1.1"
+    ]
+   ]
+  }
+ ],
+ "limitations": [
+  "Malware scanning of uploads cannot be shown from the QA laptop: Symantec deletes the standard test file before it reaches DTP. Uploads in this run are clean PDFs.",
+  "The test environment uses a mock sign-in with a password. On the SGS environment users sign in through Microsoft Entra, so the login screen will look different.",
+  "Emails (for example invitations) go to the test mail catcher, not to real inboxes."
+ ],
+ "steps": [
+  {
+   "who": "SGS Admin",
+   "where": "SGS Portal > Frameworks > Import framework",
+   "what": "Import a framework from the Excel template.",
+   "result": "Framework imported as Draft.",
+   "body": [
+    "Upload the DTP framework import template (English and Traditional Chinese), let DTP check the file, review the content and import it. To update an existing framework, the same framework_code is uploaded with a higher content_version."
+   ],
+   "shots": [
+    [
+     "01a-frameworks-import.png",
+     "Frameworks list: Import framework button."
+    ],
+    [
+     "01b-import-upload.png",
+     "Step 1 Upload file: the template file is ready, then Check file."
+    ],
+    [
+     "01c-import-checks.png",
+     "Step 2 Check file: 0 errors, 0 warnings, the file passed all checks."
+    ],
+    [
+     "01d-import-review.png",
+     "Step 3 Review and import: framework name, code, version and content counts, then Import as Draft."
+    ]
+   ]
+  },
+  {
+   "who": "SGS Admin",
+   "where": "SGS Portal > Frameworks > framework detail",
+   "what": "Check the requirements and activate the framework.",
+   "result": "Framework Activated: customers of SGS Taiwan can create workspaces with it.",
+   "body": [
+    "A Draft framework is not offered to customers. Activate asks for confirmation."
+   ],
+   "shots": [
+    [
+     "02a-framework-draft.png",
+     "Imported framework in Draft, with its requirements tree."
+    ],
+    [
+     "02b-activate-dialog.png",
+     "Activate framework confirmation."
+    ],
+    [
+     "02c-framework-activated.png",
+     "Framework Activated; the message confirms it is available to customers of SGS Taiwan."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Scopes > Create scope",
+   "what": "Create the scope to certify.",
+   "result": "Scope created and opened.",
+   "body": [
+    "A scope is the part of the organisation that is certified: the organisation, a product or a system."
+   ],
+   "shots": [
+    [
+     "03a-create-scope.png",
+     "Create scope form with type, name, company, address, employee count and scope of certification."
+    ],
+    [
+     "03b-scope-detail.png",
+     "New scope detail: Create workspace starts a workspace for this scope."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Scope > Create workspace > Assisted workspace",
+   "what": "Create an Assisted workspace from the activated framework.",
+   "result": "Workspace created (Not started) with the requirements of the chosen tier.",
+   "body": [
+    "Step 1 lists the activated frameworks. Step 2 sets the workspace name, the certification cycle (three years by default) and the tier. Requirements above the tier are out of scope."
+   ],
+   "shots": [
+    [
+     "04a-link-framework-standard.png",
+     "Step 1 Standard: the framework imported in step 1."
+    ],
+    [
+     "04b-link-framework-details.png",
+     "Step 2 Workspace details: name, cycle and tier Medium."
+    ],
+    [
+     "05a-workspace-created.png",
+     "Workspace detail right after creation: 61 requirements in scope for tier Medium."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Workspace > Requirements",
+   "what": "Upload evidence for a requirement.",
+   "result": "Requirement Provided; workspace In progress.",
+   "body": [
+    "Each requirement lists its expected evidence. The uploaded file is scanned, then counts as that expected evidence."
+   ],
+   "shots": [
+    [
+     "05b-requirement-detail.png",
+     "Requirement R.1.1.1 with its mandatory expected evidence EE-001."
+    ],
+    [
+     "05c-upload-evidence.png",
+     "Upload evidence panel: file, expected evidence type and description."
+    ],
+    [
+     "05d-requirement-provided.png",
+     "After upload: R.1.1.1 Provided, 1 of 1 mandatory evidence, workspace progress 1 of 61."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Documents",
+   "what": "Find the evidence in the documents library.",
+   "result": "One row per document, with scope, version, usage and status.",
+   "body": [
+    "The Documents button of the workspace opens the documents library of the whole organisation."
+   ],
+   "shots": [
+    [
+     "06a-documents-library.png",
+     "Documents library filtered by the file name."
+    ],
+    [
+     "06b-document-detail.png",
+     "Document detail: versions, where the document is used, Upload new version."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Documents > document detail",
+   "what": "Upload a new version of the document.",
+   "result": "Version 2 is current; version 1 stays in the history.",
+   "body": [
+    "Requirements always use the current version. Versions cannot be changed after upload."
+   ],
+   "shots": [
+    [
+     "06c-upload-new-version.png",
+     "Upload new version: one file, it becomes version 2."
+    ],
+    [
+     "06d-version-history.png",
+     "Version history: v2 current, v1 kept."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Workspaces > workspace detail",
+   "what": "Check the workspace summary.",
+   "result": "Status In progress with the evidence progress.",
+   "body": [],
+   "shots": [
+    [
+     "07-workspace-summary.png",
+     "Workspace summary: status In progress, 1 of 61 requirements with mandatory evidence."
+    ]
+   ]
+  }
+ ],
+ "blocked": [
+  [
+   "Sign-in (Microsoft Entra)",
+   "Sign-in on the SGS environment with Microsoft Entra.",
+   "The test environment uses a mock sign-in; Entra is set up only on the SGS DEV/UAT environment.",
+   "Each role can sign in to its portal through Entra."
+  ],
+  [
+   "Email delivery (SGS SMTP)",
+   "Real emails reaching real inboxes.",
+   "On the test environment all mail goes to Mailpit; real delivery depends on the SGS SMTP set-up.",
+   "Emails arrive, links in them open the right page."
+  ],
+  [
+   "Malware scan on upload",
+   "Upload of an infected file is blocked.",
+   "The antivirus on the QA laptop (Symantec) deletes the standard test file before it reaches DTP.",
+   "Run from a machine without local antivirus, or with an excluded folder."
+  ]
+ ],
+ "seq": [
+  3,
+  6
+ ],
+ "related": "Before this: Flow 2: Scope → Framework → Workspace  ·  Next: Flow 4: Bulk → NirmatAI"
+}

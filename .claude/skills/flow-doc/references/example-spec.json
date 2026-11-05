@@ -1,0 +1,218 @@
+{
+ "title": "Scope → Framework → Workspace (Assisted and Bulk)",
+ "out": "C:/Users/thavt/Documents/DTP/dts-agent-workspace/tests/reports/Flow report/02_Scope_Framework_Workspace_Flow.docx",
+ "imgDir": "C:/Users/thavt/Documents/DTP/dts-agent-workspace/tests/evidence/scope-framework-workspace-05-11",
+ "env": "Environment: dtp.ltsgroup.tech (web test) · Screenshots taken 05 Nov 2026 · Prepared by QA",
+ "intro": [
+  "This flow shows how one scope gets its workspaces. SGS prepares two kinds of framework: an imported framework for Assisted workspaces and a NirmatAI framework for Bulk workspaces. The customer creates one scope and opens both kinds of workspace on it.",
+  "Test data: scope \"[QA] D05 Smoke Assisted Org 0851\", workspaces \"[QA] D05 Smoke Assisted WS 0851\" and \"[QA] D05 Smoke Bulk WS 0851\". Some screenshots are reused from Flow 3 and Flow 4. Red boxes and labels were added for this document."
+ ],
+ "steps": [
+  {
+   "who": "SGS Admin",
+   "where": "SGS Portal > Frameworks > Import framework",
+   "what": "Prepare a framework for Assisted workspaces: import it and activate it.",
+   "result": "Imported framework is Activated and offered for Assisted workspaces.",
+   "body": [
+    "The framework is imported from the Excel template as Draft. After checking its requirements, SGS activates it. Full detail in Flow 3."
+   ],
+   "shots": [
+    [
+     "A-01a-frameworks-import.png",
+     "Frameworks list: Import framework."
+    ],
+    [
+     "A-01d-import-review.png",
+     "Review and import: name, code, version and content counts, then Import as Draft."
+    ],
+    [
+     "A-02c-framework-activated.png",
+     "Framework Activated: available to customers of SGS Taiwan."
+    ]
+   ]
+  },
+  {
+   "who": "SGS Admin",
+   "where": "SGS Portal > Frameworks > Sync from NirmatAI",
+   "what": "Prepare a framework for Bulk workspaces: sync it from NirmatAI and activate it.",
+   "result": "NirmatAI framework (code NAI-<id>) is Activated and offered for Bulk workspaces.",
+   "body": [
+    "NirmatAI creates and enables the standard; SGS runs Sync, checks the work products and activates it. Full detail in Flow 4."
+   ],
+   "shots": [
+    [
+     "N-03-frameworks-sync.png",
+     "Sync from NirmatAI and the synced frameworks (source NirmatAI)."
+    ],
+    [
+     "N-04a-framework-activated.png",
+     "NAI-107 Activated with 35 work products from NirmatAI."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Scopes > Create scope",
+   "what": "Create the scope to certify.",
+   "result": "Scope created; its page has Create workspace.",
+   "body": [
+    "A scope is the part of the organisation that is certified: the organisation, a product or a system."
+   ],
+   "shots": [
+    [
+     "A-03a-create-scope.png",
+     "Create scope form."
+    ],
+    [
+     "A-03b-scope-detail.png",
+     "New scope detail."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Scope > Create workspace",
+   "what": "Choose the kind of workspace for the scope.",
+   "result": "Two choices: Assisted workspace and Bulk upload workspace.",
+   "body": [
+    "Both kinds start from the same scope page. One scope can have one active workspace per standard."
+   ],
+   "shots": [
+    [
+     "10a-scope-create-menu.png",
+     "Create workspace menu on the scope page: Assisted workspace or Bulk upload workspace."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Scope > Create workspace > Assisted workspace",
+   "what": "Create the Assisted workspace from the imported framework.",
+   "result": "Assisted workspace created with the requirements of the chosen tier.",
+   "shots": [
+    [
+     "A-04a-link-framework-standard.png",
+     "Step 1 Standard: the imported framework."
+    ],
+    [
+     "A-04b-link-framework-details.png",
+     "Step 2 Workspace details: name, cycle and tier."
+    ],
+    [
+     "A-05a-workspace-created.png",
+     "Assisted workspace created: 61 requirements in scope for tier Medium."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Scope > Create workspace > Bulk upload workspace",
+   "what": "Create the Bulk workspace on the same scope from the NirmatAI framework.",
+   "result": "Bulk workspace created (Draft, 0 documents).",
+   "body": [
+    "Only NirmatAI frameworks activated by SGS are listed. There is no tier for Bulk."
+   ],
+   "shots": [
+    [
+     "10b-bulk-standard.png",
+     "Step 1 Standard: only the activated NirmatAI framework."
+    ],
+    [
+     "10c-bulk-details.png",
+     "Step 2 Workspace details: same scope, name and cycle; no tier."
+    ],
+    [
+     "10d-bulk-created.png",
+     "Bulk workspace created: the documents page opens, ready for upload."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Scope detail; Workspaces",
+   "what": "Check the result: one scope with both workspaces.",
+   "result": "The scope lists the Bulk and the Assisted workspace; the Workspaces list shows their mode.",
+   "shots": [
+    [
+     "10e-scope-both-workspaces.png",
+     "Scope detail: Workspaces card lists both workspaces."
+    ],
+    [
+     "10f-workspaces-list.png",
+     "Workspaces list: Mode Bulk upload or Assisted; tier only for Assisted."
+    ]
+   ]
+  }
+ ],
+ "tables": [
+  {
+   "heading": "Assisted and Bulk at a glance",
+   "cols": [
+    "",
+    "Assisted workspace",
+    "Bulk upload workspace"
+   ],
+   "widths": [
+    2200,
+    3580,
+    3580
+   ],
+   "rows": [
+    [
+     "Framework",
+     "Imported by SGS from the Excel template",
+     "Synced from NirmatAI (code NAI-<standard id>)"
+    ],
+    [
+     "Who prepares it",
+     "SGS Admin: import, check, activate",
+     "NirmatAI creates and enables the standard; SGS Admin syncs and activates"
+    ],
+    [
+     "Tier",
+     "Required: Basic, Medium or High",
+     "None"
+    ],
+    [
+     "Customer work",
+     "Evidence per requirement, with versions",
+     "Upload documents in bulk, map to work products (optional), request the audit"
+    ],
+    [
+     "After the customer",
+     "SGS / consultant review in DTP",
+     "SGS approves; documents are sent to NirmatAI for the audit"
+    ],
+    [
+     "Rule",
+     "One active workspace per scope and standard; a new cycle archives the previous one",
+     "Same rule"
+    ],
+    [
+     "More detail",
+     "Flow 3: Assisted workspace",
+     "Flow 4: Bulk → NirmatAI"
+    ]
+   ]
+  }
+ ],
+ "blocked": [
+  [
+   "Sign-in (Microsoft Entra)",
+   "Sign-in on the SGS environment with Microsoft Entra.",
+   "The test environment uses a mock sign-in; Entra is set up only on the SGS DEV/UAT environment.",
+   "Customer Admin and SGS Admin can sign in to their portals through Entra."
+  ],
+  [
+   "NirmatAI connection on the SGS environment",
+   "Sync from NirmatAI for the Bulk framework.",
+   "The NirmatAI certificate is not yet installed on the SGS environment.",
+   "After the certificate is installed: Sync brings the NirmatAI standards."
+  ]
+ ],
+ "seq": [
+  2,
+  6
+ ],
+ "related": "Before this: Flow 1: Customer onboarding and users  ·  Next: Flow 3: Assisted workspace"
+}

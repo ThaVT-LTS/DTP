@@ -1,0 +1,289 @@
+{
+ "title": "Service requests flow (Gap Analysis and Implementation Support)",
+ "out": "C:/Users/thavt/Documents/DTP/dts-agent-workspace/tests/reports/Flow report/05_Service_Requests_Flow.docx",
+ "imgDir": "C:/Users/thavt/Documents/DTP/dts-agent-workspace/tests/evidence/service-requests-flow-05-11",
+ "env": "Environment: dtp.ltsgroup.tech (web test) · Screenshots taken 05 Nov 2026 · Happy path only · Prepared by QA",
+ "intro": [
+  "Requests used: SR-2026-125 (Gap Analysis) and SR-2026-126 (Implementation Support), workspace [QA] W9 R4 ISO 22301:2012 (Assisted), Customer Admin Kevin Lin, consultant Chen Wei from the Marketplace. Red boxes and labels were added for this document.",
+  "Roles: the Customer Admin (Customer Portal) creates the request and grants workspace access; the consultant (Operations Console, Assigned to me) accepts and does the work; the SGS Admin (SGS Portal) only follows the requests, read only."
+ ],
+ "steps": [
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Service Requests > New request",
+   "what": "Create a Gap Analysis request in three steps: details, consultant, review and submit.",
+   "result": "Request SR-xxxx created, status Submitted.",
+   "body": [
+    "Step 1: service, workspace and a message to the consultant. Step 2: consultant source Marketplace (the consultant accepts first) or My consultants (work starts at once). Step 3: review, then Submit request."
+   ],
+   "shots": [
+    [
+     "01a-service-requests.png",
+     "Service Requests list: New request."
+    ],
+    [
+     "01b-step1-details.png",
+     "Step 1: service, workspace and message."
+    ],
+    [
+     "01c-step2-consultant.png",
+     "Step 2: consultant chosen from the Marketplace."
+    ],
+    [
+     "01d-step3-review.png",
+     "Step 3: review and the next statuses."
+    ],
+    [
+     "01e-submitted.png",
+     "Request SR-2026-125 submitted."
+    ]
+   ]
+  },
+  {
+   "who": "SGS Admin",
+   "where": "SGS Portal > Requests > Service Requests",
+   "what": "Follow the new request.",
+   "result": "SGS Admin sees every consulting request, read only.",
+   "body": [
+    "The SGS Admin does not assign the consultant in this flow: the customer chose it. The SGS Admin page is read only."
+   ],
+   "shots": [
+    [
+     "02a-ops-requests.png",
+     "Requests > Service Requests: the new request."
+    ],
+    [
+     "02b-ops-request-detail.png",
+     "Request detail for the SGS Admin, read only."
+    ]
+   ]
+  },
+  {
+   "who": "Consultant",
+   "where": "Operations Console > Assigned to me",
+   "what": "Accept the request, agree the scope, then declare Ready to start.",
+   "result": "Status In discussion, then Ready to start.",
+   "body": [
+    "Scope and commercial terms are agreed with the customer outside DTP while the request is In discussion."
+   ],
+   "shots": [
+    [
+     "03a-assigned-to-me.png",
+     "Assigned to me: the request."
+    ],
+    [
+     "03b-consultant-accept.png",
+     "Request detail: Accept."
+    ],
+    [
+     "03c-in-discussion.png",
+     "In discussion: Ready to start."
+    ],
+    [
+     "03d-ready-to-start.png",
+     "Ready to start: waiting for the customer."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Service Requests > SR-xxxx",
+   "what": "Grant Workspace Access & Start.",
+   "result": "Status In progress; the consultant gets read-only access to the workspace.",
+   "shots": [
+    [
+     "04a-grant-and-start.png",
+     "Grant Workspace Access & Start."
+    ],
+    [
+     "04b-grant-dialog.png",
+     "Confirm Workspace access dialog: Confirm & Start Service."
+    ],
+    [
+     "04c-in-progress.png",
+     "Status In progress."
+    ]
+   ]
+  },
+  {
+   "who": "Consultant",
+   "where": "Operations Console > Assigned to me > SR-xxxx",
+   "what": "Add findings, upload the deliverable, then Request completion.",
+   "result": "Findings and report shared with the customer; completion requested.",
+   "body": [
+    "A Gap Analysis needs a deliverable (PDF or Word) before completion. Findings stay drafts until the deliverable is shared."
+   ],
+   "shots": [
+    [
+     "05a-add-finding.png",
+     "Add finding: requirement, finding, level and justification."
+    ],
+    [
+     "06a-request-completion.png",
+     "Request completion dialog."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Service Requests > SR-xxxx",
+   "what": "Read the findings and report, then Confirm completion.",
+   "result": "Status Completed; the consultant's access ends.",
+   "shots": [
+    [
+     "07a-customer-findings.png",
+     "The customer sees the deliverable and the findings."
+    ],
+    [
+     "07c-confirm-completion.png",
+     "Confirm completion."
+    ],
+    [
+     "07d-completed.png",
+     "Status Completed."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > SR-xxxx > Findings > Comments",
+   "what": "Comment on a finding.",
+   "result": "Comment saved; the consultant is told.",
+   "body": [
+    "Here the comment was posted after completion; posting while In progress works the same way."
+   ],
+   "shots": [
+    [
+     "07b-finding-comment.png",
+     "Comments on finding 10.1 Continual improvement."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Service Requests > New request",
+   "what": "Create an Implementation Support request (same three steps).",
+   "result": "Request SR-xxxx created, status Submitted.",
+   "shots": [
+    [
+     "is-01b-step1-details.png",
+     "Step 1: service Implementation Support."
+    ],
+    [
+     "is-01e-submitted.png",
+     "Request SR-2026-126 submitted."
+    ]
+   ]
+  },
+  {
+   "who": "Consultant, then Customer Admin",
+   "where": "Operations Console > Assigned to me; Customer Portal > SR-xxxx",
+   "what": "Accept, Ready to start, then the customer grants access and starts.",
+   "result": "Status In progress.",
+   "shots": [
+    [
+     "is-03d-ready-to-start.png",
+     "Consultant declared Ready to start."
+    ],
+    [
+     "is-04c-in-progress.png",
+     "After Grant Workspace Access & Start: In progress."
+    ]
+   ]
+  },
+  {
+   "who": "Consultant, then Customer Admin",
+   "where": "Operations Console > SR-xxxx > Comments; Customer Portal > SR-xxxx",
+   "what": "Discuss in the request comments, Request completion, customer confirms.",
+   "result": "Status Completed.",
+   "body": [
+    "Implementation Support has no findings or deliverable; the discussion is kept in the request comments. DTP asks to confirm before a comment is sent."
+   ],
+   "shots": [
+    [
+     "is-05a-comment.png",
+     "Request comments: confirmation before sending."
+    ],
+    [
+     "is-06a-request-completion.png",
+     "Request completion dialog."
+    ],
+    [
+     "is-07d-completed.png",
+     "Status Completed."
+    ]
+   ]
+  }
+ ],
+ "tables": [
+  {
+   "heading": "Request statuses",
+   "cols": [
+    "Status",
+    "Who moves it",
+    "Meaning"
+   ],
+   "widths": [
+    2000,
+    2400,
+    4960
+   ],
+   "rows": [
+    [
+     "Submitted",
+     "Customer (Submit request)",
+     "Waiting for the Marketplace consultant to accept or decline."
+    ],
+    [
+     "In discussion",
+     "Consultant (Accept)",
+     "Scope and terms are agreed outside DTP."
+    ],
+    [
+     "Ready to start",
+     "Consultant (Ready to start)",
+     "Waiting for the customer to grant workspace access."
+    ],
+    [
+     "In progress",
+     "Customer Admin (Grant Workspace Access & Start)",
+     "The consultant works with read-only access to the workspace."
+    ],
+    [
+     "Completion requested",
+     "Consultant (Request completion)",
+     "Shown in the timeline; the customer confirms."
+    ],
+    [
+     "Completed",
+     "Customer (Confirm completion)",
+     "Closed; the consultant's access ends."
+    ]
+   ]
+  }
+ ],
+ "limitations": [
+  "On the SGS environment, sign-in is through Microsoft Entra; the test environment uses a mock sign-in.",
+  "Email notifications depend on the SGS SMTP; on the test environment they go to Mailpit only.",
+  "Requests to 'My consultants' skip Accept and Ready to start: they start In progress when submitted. Not shown here."
+ ],
+ "blocked": [
+  [
+   "Sign-in (Microsoft Entra)",
+   "Sign-in on the SGS environment with Microsoft Entra.",
+   "The test environment uses a mock sign-in; Entra is set up only on the SGS DEV/UAT environment.",
+   "Each role can sign in to its portal through Entra."
+  ],
+  [
+   "Email notifications (SGS SMTP)",
+   "Emails for new request, accept, request completion, completed.",
+   "On the test environment mail goes to Mailpit; real delivery depends on the SGS SMTP set-up.",
+   "Customer and consultant receive the emails for each status change."
+  ]
+ ],
+ "seq": [
+  5,
+  6
+ ],
+ "related": "Before this: Flow 4: Bulk → NirmatAI  ·  Next: Flow 6: Certifications, Marketplace and Training"
+}
