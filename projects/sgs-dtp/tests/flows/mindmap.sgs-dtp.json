@@ -1,7 +1,7 @@
 {
  "out": "C:/Users/thavt/Documents/DTP/dts-agent-workspace/tests/reports/Flow report/00_DTP_Happy_Path_MindMap.html",
  "specDir": ".",
- "title": "DTP happy path",
+ "title": "DTP Phase 1 – all flows",
  "flows": [
   {
    "key": "onb",
@@ -38,34 +38,24 @@
   {
    "key": "sfw",
    "spec": "spec-sfw.json",
-   "short": "Scope → Framework → Workspace",
+   "short": "Scope → Framework → Workspace (Assisted)",
    "shape": {
     "chains": [
      [
       0,
-      1,
       2,
-      3
+      3,
+      4,
+      6
      ]
-    ],
-    "fork": {
-     "3": [
-      [
-       4
-      ],
-      [
-       5,
-       6
-      ]
-     ]
-    }
+    ]
    },
    "planned": {},
    "next": [
-    "asst",
-    "nai"
+    "asst"
    ],
-   "needs": "onb"
+   "needs": "onb",
+   "result": "5 steps in Wave 1 (steps 2 and 6 are Wave 2)"
   },
   {
    "key": "asst",
@@ -102,14 +92,14 @@
     ]
    },
    "next": [
-    "sr"
+    "w1chg"
    ],
    "needs": "sfw"
   },
   {
-   "key": "nai",
-   "spec": "spec-nai.json",
-   "short": "Bulk → NirmatAI",
+   "key": "w1chg",
+   "spec": "spec-w1chg.json",
+   "short": "Change and manage",
    "shape": {
     "chains": [
      [
@@ -117,191 +107,96 @@
       1,
       2,
       3,
-      4,
-      5,
-      6,
-      7
-     ]
-    ]
-   },
-   "planned": {
-    "5": [
-     {
-      "title": "Send additional documents",
-      "who": "Customer Admin",
-      "result": "New send added to the request after Under review",
-      "children": []
-     }
-    ],
-    "6": [
-     {
-      "title": "Change NirmatAI client",
-      "who": "SGS Admin",
-      "result": "Client unlinked; pick or create another before sending",
-      "children": []
-     }
-    ]
-   },
-   "next": [],
-   "needs": "sfw"
-  },
-  {
-   "key": "sr",
-   "spec": "spec-sr.json",
-   "short": "Service requests",
-   "shape": {
-    "chains": [
-     [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5,
-      6
+      4
      ],
      [
+      5,
+      6,
       7,
       8,
       9
+     ],
+     [
+      10,
+      11,
+      12
+     ],
+     [
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+     ],
+     [
+      19,
+      20,
+      21,
+      22
      ]
     ]
    },
-   "planned": {
-    "0": [
-     {
-      "title": "Decline + reason",
-      "who": "Consultant",
-      "result": "Closed",
-      "children": []
-     },
-     {
-      "title": "Cancel request + reason",
-      "who": "Customer Admin",
-      "result": "Cancelled",
-      "children": []
-     }
-    ],
-    "2": [
-     {
-      "title": "Close negotiation + reason",
-      "who": "Consultant",
-      "result": "Closed",
-      "children": []
-     },
-     {
-      "title": "Cancel request + reason",
-      "who": "Customer Admin",
-      "result": "Cancelled",
-      "children": []
-     },
-     {
-      "title": "Return to discussion + reason",
-      "who": "Customer Admin / Consultant",
-      "result": "In discussion",
-      "children": []
-     }
-    ],
-    "3": [
-     {
-      "title": "Terminate service + reason",
-      "who": "Customer Admin",
-      "result": "Terminated",
-      "children": []
-     },
-     {
-      "title": "Request termination + reason",
-      "who": "Consultant",
-      "result": "In progress · waiting for the customer",
-      "children": [
-       {
-        "title": "Approve termination",
-        "who": "Customer Admin",
-        "result": "Terminated",
-        "children": []
-       },
-       {
-        "title": "Reject termination + reason",
-        "who": "Customer Admin",
-        "result": "In discussion",
-        "children": []
-       }
-      ]
-     },
-     {
-      "title": "Reassign consultant + reason",
-      "who": "SGS Admin",
-      "result": "In progress · new consultant",
-      "children": [
-       {
-        "title": "Request access (new consultant)",
-        "who": "Consultant",
-        "result": "In progress · waiting for the customer",
-        "children": [
-         {
-          "title": "Approve access",
-          "who": "Customer Admin",
-          "result": "In progress · new consultant sees the workspace",
-          "children": []
-         },
-         {
-          "title": "Refuse access",
-          "who": "Customer Admin",
-          "result": "In progress · no access yet",
-          "children": []
-         }
-        ]
-       }
-      ]
-     }
-    ],
-    "4": [
-     {
-      "title": "Decline completion + reason",
-      "who": "Customer Admin",
-      "result": "In progress · consultant can request completion again",
-      "children": []
-     }
-    ]
-   },
+   "planned": [],
    "next": [],
    "needs": "asst"
+  }
+ ],
+ "rootResult": "Wave 1 open for testing · Waves 2 and 3 later",
+ "waves": [
+  {
+   "title": "Wave 1 · Onboarding, set-up and evidence",
+   "active": true,
+   "result": "Open for testing · 4 flows",
+   "flows": [
+    "onb",
+    "sfw",
+    "asst",
+    "w1chg"
+   ],
+   "note": "Open now. SGS smoke test 06–10 Nov 2026, SGS UAT 11–24 Nov 2026 (Detailed Plan v3.0). Use the Wave 1 checklist: 00_DTP_Wave1_Checklist.xlsx."
   },
   {
-   "key": "cert",
-   "spec": "spec-cert.json",
-   "short": "Certifications, Marketplace & Training",
-   "shape": {
-    "chains": [
-     [
-      0,
-      1,
-      2,
-      3,
-      8
-     ],
-     [
-      4,
-      5,
-      6
-     ],
-     [
-      7
-     ]
-    ]
-   },
-   "planned": {
-    "0": [
-     {
-      "title": "Delete the certification record",
-      "who": "SGS Admin",
-      "result": "Record removed from Trust Centre",
-      "children": []
-     }
-    ]
-   },
-   "next": [],
-   "needs": "onb"
+   "title": "Wave 2 · Bulk upload & NirmatAI, certifications, training",
+   "active": false,
+   "badge": "Wave 2",
+   "result": "Not open yet · 3 flows",
+   "note": "Planned: SIT 10–17 Nov, SGS smoke test 18–20 Nov, SGS UAT 25 Nov – 04 Dec 2026. Please do not test or comment on it yet.",
+   "locked": [
+    {
+     "title": "Flow 2 · Bulk workspace part",
+     "result": "Steps 2 and 6 of Flow 2"
+    },
+    {
+     "title": "Flow 5 · Bulk → NirmatAI",
+     "result": "8 steps"
+    },
+    {
+     "title": "Flow 7 · Certifications & Training",
+     "result": "Steps 1–4 and 8 of Flow 7"
+    }
+   ]
+  },
+  {
+   "title": "Wave 3 · Consulting & Gap Analysis, Marketplace, home pages, audit",
+   "active": false,
+   "badge": "Wave 3",
+   "result": "Not open yet · 2 flows",
+   "note": "Planned: SIT 19–26 Nov, SGS smoke test 27 Nov – 01 Dec, SGS UAT 07–17 Dec 2026. Please do not test or comment on it yet.",
+   "locked": [
+    {
+     "title": "Flow 6 · Service requests",
+     "result": "10 steps"
+    },
+    {
+     "title": "Flow 7 · Marketplace & Activity log",
+     "result": "Steps 5–7 and 9 of Flow 7"
+    }
+   ]
   }
+ ],
+ "logo": [
+  "assets/lts-logo.png",
+  "assets/sgs-logo.png"
  ]
 }

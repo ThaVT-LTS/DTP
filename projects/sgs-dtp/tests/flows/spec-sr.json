@@ -1,11 +1,11 @@
 {
  "title": "Service requests flow (Gap Analysis and Implementation Support)",
- "out": "C:/Users/thavt/Documents/DTP/dts-agent-workspace/tests/reports/Flow report/05_Service_Requests_Flow.docx",
+ "out": "C:/Users/thavt/Documents/DTP/dts-agent-workspace/tests/reports/Flow report/06_Service_Requests_Flow.docx",
  "imgDir": "C:/Users/thavt/Documents/DTP/dts-agent-workspace/tests/evidence/service-requests-flow-05-11",
  "env": "Environment: dtp.ltsgroup.tech (web test) · Screenshots taken 05 Nov 2026 · Happy path only · Prepared by QA",
  "intro": [
   "Requests used: SR-2026-125 (Gap Analysis) and SR-2026-126 (Implementation Support), workspace [QA] W9 R4 ISO 22301:2012 (Assisted), Customer Admin Kevin Lin, consultant Chen Wei from the Marketplace. Red boxes and labels were added for this document.",
-  "Roles: the Customer Admin (Customer Portal) creates the request and grants workspace access; the consultant (Operations Console, Assigned to me) accepts and does the work; the SGS Admin (SGS Portal) only follows the requests, read only."
+  "Roles: the Customer Admin (Customer Portal) creates the request and grants workspace access; the SGS Consultant (SGS Portal, Assigned to me) accepts and does the work; the SGS Admin (SGS Portal) only follows the requests, read only."
  ],
  "steps": [
   {
@@ -59,8 +59,8 @@
    ]
   },
   {
-   "who": "Consultant",
-   "where": "Operations Console > Assigned to me",
+   "who": "SGS Consultant",
+   "where": "SGS Portal > Assigned to me",
    "what": "Accept the request, agree the scope, then declare Ready to start.",
    "result": "Status In discussion, then Ready to start.",
    "body": [
@@ -69,7 +69,7 @@
    "shots": [
     [
      "03a-assigned-to-me.png",
-     "Assigned to me: the request."
+     "Assigned to me: the request. (The header then read \"Operations Console\"; it now reads \"SGS Portal\".)"
     ],
     [
      "03b-consultant-accept.png",
@@ -106,8 +106,8 @@
    ]
   },
   {
-   "who": "Consultant",
-   "where": "Operations Console > Assigned to me > SR-xxxx",
+   "who": "SGS Consultant",
+   "where": "SGS Portal > Assigned to me > SR-xxxx",
    "what": "Add findings, upload the deliverable, then Request completion.",
    "result": "Findings and report shared with the customer; completion requested.",
    "body": [
@@ -116,7 +116,7 @@
    "shots": [
     [
      "05a-add-finding.png",
-     "Add finding: requirement, finding, level and justification."
+     "Add finding: requirement, finding, level and justification. (The header then read \"Operations Console\"; it now reads \"SGS Portal\".)"
     ],
     [
      "06a-request-completion.png",
@@ -176,14 +176,14 @@
    ]
   },
   {
-   "who": "Consultant, then Customer Admin",
-   "where": "Operations Console > Assigned to me; Customer Portal > SR-xxxx",
+   "who": "SGS Consultant, then Customer Admin",
+   "where": "SGS Consultant: SGS Portal > Assigned to me · then Customer Admin: Customer Portal > SR-xxxx",
    "what": "Accept, Ready to start, then the customer grants access and starts.",
    "result": "Status In progress.",
    "shots": [
     [
      "is-03d-ready-to-start.png",
-     "Consultant declared Ready to start."
+     "Consultant declared Ready to start. (The header then read \"Operations Console\"; it now reads \"SGS Portal\".)"
     ],
     [
      "is-04c-in-progress.png",
@@ -192,8 +192,8 @@
    ]
   },
   {
-   "who": "Consultant, then Customer Admin",
-   "where": "Operations Console > SR-xxxx > Comments; Customer Portal > SR-xxxx",
+   "who": "SGS Consultant, then Customer Admin",
+   "where": "SGS Consultant: SGS Portal > SR-xxxx > Comments · then Customer Admin: Customer Portal > SR-xxxx",
    "what": "Discuss in the request comments, Request completion, customer confirms.",
    "result": "Status Completed.",
    "body": [
@@ -282,8 +282,12 @@
   ]
  ],
  "seq": [
-  5,
-  6
+  6,
+  7
  ],
- "related": "Before this: Flow 4: Bulk → NirmatAI  ·  Next: Flow 6: Certifications, Marketplace and Training"
+ "related": "Before this: Flow 5: Bulk → NirmatAI  ·  Next: Flow 7: Certifications, Marketplace and Training",
+ "logo": [
+  "assets/lts-logo.png",
+  "assets/sgs-logo.png"
+ ]
 }

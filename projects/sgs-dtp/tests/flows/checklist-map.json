@@ -1,0 +1,676 @@
+{
+ "_note": "Flow checklist map (flow-doc build_checklist.py). steps: UC IDs per flow step, in the order of spec steps; first UC sets the wave unless 'wave' overrides. bugs: open bug code -> UC IDs it affects.",
+ "round": 1,
+ "module_wave": {
+  "BAR": 2
+ },
+ "flows": [
+  {
+   "spec": "spec-onb.json",
+   "code": "F1",
+   "steps": [
+    {
+     "uc": [
+      "ACC-03",
+      "ACC-05",
+      "NTF-03"
+     ]
+    },
+    {
+     "uc": [
+      "AUTH-03",
+      "NTF-03"
+     ]
+    },
+    {
+     "uc": [
+      "AUTH-01"
+     ]
+    },
+    {
+     "uc": [
+      "SCP-03",
+      "SCP-02"
+     ]
+    },
+    {
+     "uc": [
+      "USR-03",
+      "USR-01"
+     ]
+    },
+    {
+     "uc": [
+      "USR-05",
+      "SCP-02"
+     ]
+    },
+    {
+     "uc": [
+      "AUTH-03",
+      "AUTH-01",
+      "SCP-01",
+      "ROL-01"
+     ]
+    }
+   ]
+  },
+  {
+   "spec": "spec-sfw.json",
+   "code": "F2",
+   "steps": [
+    {
+     "uc": [
+      "FWK-01",
+      "FWK-03",
+      "FWK-06",
+      "FWK-02"
+     ]
+    },
+    {
+     "uc": [
+      "INT-03",
+      "FWK-06"
+     ],
+     "wave": 2
+    },
+    {
+     "uc": [
+      "SCP-03"
+     ],
+     "same": "F1-S04"
+    },
+    {
+     "uc": [
+      "WSP-01"
+     ]
+    },
+    {
+     "uc": [
+      "WSP-01",
+      "WSP-03"
+     ]
+    },
+    {
+     "uc": [
+      "WSP-01",
+      "CFG-05"
+     ],
+     "wave": 2
+    },
+    {
+     "uc": [
+      "SCP-02",
+      "WSP-02"
+     ],
+     "what": "Check the result: the scope lists its Assisted workspace (the Bulk workspace of step 6 belongs to Wave 2).",
+     "result": "The scope detail and the Workspaces list show the Assisted workspace with its mode."
+    }
+   ]
+  },
+  {
+   "spec": "spec-asst.json",
+   "code": "F3",
+   "steps": [
+    {
+     "uc": [
+      "FWK-03"
+     ],
+     "same": "F2-S01"
+    },
+    {
+     "uc": [
+      "FWK-02",
+      "FWK-06"
+     ],
+     "same": "F2-S01"
+    },
+    {
+     "uc": [
+      "SCP-03"
+     ],
+     "same": "F1-S04"
+    },
+    {
+     "uc": [
+      "WSP-01"
+     ],
+     "same": "F2-S05"
+    },
+    {
+     "uc": [
+      "EVA-03",
+      "EVA-01",
+      "EVA-02",
+      "EVA-07",
+      "EVC-07"
+     ]
+    },
+    {
+     "uc": [
+      "EVC-01"
+     ]
+    },
+    {
+     "uc": [
+      "EVC-04",
+      "EVC-05",
+      "EVC-02"
+     ]
+    },
+    {
+     "uc": [
+      "WSP-03"
+     ]
+    }
+   ]
+  },
+  {
+   "spec": "spec-w1chg.json",
+   "code": "F4",
+   "steps": [
+    {
+     "uc": [
+      "USR-02",
+      "USR-01"
+     ]
+    },
+    {
+     "uc": [
+      "USR-04"
+     ]
+    },
+    {
+     "uc": [
+      "USR-06"
+     ]
+    },
+    {
+     "uc": [
+      "ROL-02"
+     ]
+    },
+    {
+     "uc": [
+      "PRF-01"
+     ]
+    },
+    {
+     "uc": [
+      "ACC-01",
+      "ACC-02"
+     ]
+    },
+    {
+     "uc": [
+      "ACC-04"
+     ]
+    },
+    {
+     "uc": [
+      "USR-06"
+     ]
+    },
+    {
+     "uc": [
+      "ROL-02"
+     ]
+    },
+    {
+     "uc": [
+      "FWK-05"
+     ]
+    },
+    {
+     "uc": [
+      "SCP-04"
+     ]
+    },
+    {
+     "uc": [
+      "WSP-06"
+     ]
+    },
+    {
+     "uc": [
+      "WSP-07"
+     ]
+    },
+    {
+     "uc": [
+      "EVA-06"
+     ]
+    },
+    {
+     "uc": [
+      "EVC-09"
+     ]
+    },
+    {
+     "uc": [
+      "EVC-03"
+     ]
+    },
+    {
+     "uc": [
+      "EVA-04"
+     ]
+    },
+    {
+     "uc": [
+      "EVA-05"
+     ]
+    },
+    {
+     "uc": [
+      "EVC-06"
+     ]
+    },
+    {
+     "uc": [
+      "WSP-04"
+     ]
+    },
+    {
+     "uc": [
+      "WSP-05"
+     ]
+    },
+    {
+     "uc": [
+      "FWK-07"
+     ]
+    },
+    {
+     "uc": [
+      "AUTH-02"
+     ]
+    }
+   ]
+  },
+  {
+   "spec": "spec-nai.json",
+   "code": "F5",
+   "steps": [
+    {
+     "uc": [
+      "INT-03"
+     ],
+     "who": "NirmatAI team (outside DTP)"
+    },
+    {
+     "uc": [
+      "INT-03"
+     ],
+     "who": "NirmatAI team (outside DTP)"
+    },
+    {
+     "uc": [
+      "INT-03",
+      "FWK-01"
+     ]
+    },
+    {
+     "uc": [
+      "FWK-02",
+      "FWK-06",
+      "BLK-04"
+     ],
+     "wave": 2
+    },
+    {
+     "uc": [
+      "WSP-01"
+     ],
+     "wave": 2
+    },
+    {
+     "uc": [
+      "BLK-01",
+      "BLK-02",
+      "BLK-03",
+      "BLK-06"
+     ]
+    },
+    {
+     "uc": [
+      "BAR-01",
+      "BAR-02",
+      "BAR-03",
+      "BAR-04",
+      "INT-07"
+     ]
+    },
+    {
+     "uc": [
+      "BAR-05",
+      "BLK-07",
+      "BLK-09"
+     ],
+     "who": "NirmatAI (automatic) · SGS Admin and Customer Admin check"
+    }
+   ]
+  },
+  {
+   "spec": "spec-sr.json",
+   "code": "F6",
+   "steps": [
+    {
+     "uc": [
+      "SRQ-01",
+      "SRQ-02"
+     ]
+    },
+    {
+     "uc": [
+      "SRQ-02",
+      "SRQ-03"
+     ]
+    },
+    {
+     "uc": [
+      "SRQ-08",
+      "SRQ-13"
+     ],
+     "who": "SGS Consultant"
+    },
+    {
+     "uc": [
+      "SRQ-10"
+     ]
+    },
+    {
+     "uc": [
+      "GAP-01",
+      "GAP-05",
+      "GAP-06",
+      "SRQ-07"
+     ],
+     "who": "SGS Consultant"
+    },
+    {
+     "uc": [
+      "GAP-07",
+      "SRQ-16"
+     ]
+    },
+    {
+     "uc": [
+      "GAP-08",
+      "NTF-01"
+     ]
+    },
+    {
+     "uc": [
+      "SRQ-01"
+     ]
+    },
+    {
+     "uc": [
+      "SRQ-08",
+      "SRQ-13",
+      "SRQ-10"
+     ],
+     "who": "SGS Consultant, then Customer Admin"
+    },
+    {
+     "uc": [
+      "SRQ-11",
+      "SRQ-07",
+      "SRQ-16"
+     ],
+     "who": "SGS Consultant, then Customer Admin"
+    }
+   ]
+  },
+  {
+   "spec": "spec-cert.json",
+   "code": "F7",
+   "steps": [
+    {
+     "uc": [
+      "CRT-01",
+      "CRT-05"
+     ]
+    },
+    {
+     "uc": [
+      "CRT-03",
+      "CRT-06"
+     ]
+    },
+    {
+     "uc": [
+      "CRT-02",
+      "CRT-05"
+     ]
+    },
+    {
+     "uc": [
+      "SCP-02",
+      "CRT-02"
+     ],
+     "wave": 2
+    },
+    {
+     "uc": [
+      "MKT-06"
+     ]
+    },
+    {
+     "uc": [
+      "MKT-04",
+      "MKT-05",
+      "MKT-01"
+     ]
+    },
+    {
+     "uc": [
+      "MKT-05",
+      "SRQ-01"
+     ]
+    },
+    {
+     "uc": [
+      "TRN-01",
+      "TRN-02"
+     ]
+    },
+    {
+     "uc": [
+      "AUD-01",
+      "AUD-02",
+      "AUD-03"
+     ],
+     "wave": 3
+    }
+   ]
+  }
+ ],
+ "bugs": {
+  "LG-BUG-06": [
+   "SRQ-08"
+  ],
+  "LG-BUG-08": [
+   "AUTH-01"
+  ],
+  "CU-BUG-29": [
+   "AUTH-03"
+  ],
+  "CU-BUG-28": [
+   "ACC-05"
+  ],
+  "US-BUG-23": [
+   "USR-01",
+   "ROL-02"
+  ],
+  "FW-BUG-18": [
+   "INT-03",
+   "FWK-06"
+  ],
+  "SC-BUG-09": [
+   "SCP-01",
+   "SCP-02"
+  ],
+  "WD-BUG-23": [
+   "EVA-01"
+  ],
+  "BU-BUG-25": [
+   "BLK-02"
+  ],
+  "BU-BUG-28": [
+   "BAR-04"
+  ],
+  "BU-BUG-10": [
+   "BLK-06"
+  ],
+  "ST-BUG-01": [
+   "INT-01"
+  ],
+  "ST-BUG-05": [
+   "BAR-05"
+  ],
+  "ST-BUG-09": [
+   "BAR-03"
+  ],
+  "ST-BUG-10": [
+   "BAR-05"
+  ],
+  "ST-BUG-11": [
+   "BAR-05"
+  ],
+  "ST-BUG-12": [
+   "INT-03"
+  ],
+  "ST-BUG-13": [
+   "INT-03"
+  ],
+  "ST-BUG-14": [
+   "INT-03"
+  ],
+  "ST-BUG-18": [
+   "INT-03"
+  ],
+  "ST-BUG-20": [
+   "BAR-03"
+  ],
+  "ST-BUG-21": [
+   "BAR-03"
+  ],
+  "ST-BUG-22": [
+   "BAR-03"
+  ],
+  "TR-BUG-02": [
+   "TRN-03",
+   "TRN-04"
+  ],
+  "IS-BUG-01": [
+   "SRQ-01"
+  ],
+  "IS-BUG-18": [
+   "SRQ-01"
+  ],
+  "IS-BUG-20": [
+   "SRQ-01"
+  ],
+  "IS-BUG-14": [
+   "SRQ-03"
+  ],
+  "IS-BUG-19": [
+   "SRQ-10"
+  ],
+  "IS-BUG-21": [
+   "SRQ-09"
+  ],
+  "IS-BUG-16": [
+   "SRQ-16",
+   "SRQ-14"
+  ],
+  "IS-BUG-17": [
+   "SRQ-15"
+  ],
+  "IS-BUG-09": [
+   "SRQ-15"
+  ],
+  "AL-BUG-02": [
+   "AUD-02",
+   "AUD-03"
+  ],
+  "AL-BUG-09": [
+   "AUD-04"
+  ],
+  "RT-BUG-01": [
+   "RET-04"
+  ],
+  "HM-BUG-03": [
+   "CKP-01"
+  ],
+  "HM-BUG-08": [
+   "CKP-03"
+  ],
+  "HM-BUG-09": [
+   "CKP-03"
+  ],
+  "HM-BUG-10": [
+   "CKP-05"
+  ],
+  "MK-BUG-08": [
+   "MKT-06"
+  ]
+ },
+ "where_rename": {
+  "Operations Console": "SGS Portal"
+ },
+ "who_rename": {
+  "Consultant": "SGS Consultant"
+ },
+ "only_round": true,
+ "mindmap": "00_DTP_Happy_Path_MindMap.html",
+ "portal_note": "Note: SGS Portal = the portal at /ops used by SGS Admins and SGS consultants. Screenshots taken before 06 Nov 2026 show its old header name \"Operations Console\"; the web now shows \"SGS Portal\". It is the same portal.",
+ "issue_text": {
+  "CU-BUG-28": "Inviting an email that belongs to an SGS user shows a general error instead of a message under the field.",
+  "CU-BUG-29": "A person already active in one customer account can also activate a second one (not allowed in Phase 1).",
+  "LG-BUG-08": "On screens 800–1279 px wide, the sign-in fields are narrower than the Sign in button.",
+  "SC-BUG-09": "In 繁體中文, a few labels on Scopes and Roles & permissions stay in English.",
+  "US-BUG-23": "Some screens still say \"Customer Admin / Customer User / Customer Viewer\" instead of \"Admin / User / Viewer\".",
+  "FW-BUG-18": "Two NirmatAI frameworks with the same name are not flagged on sync (fixed, being verified).",
+  "WD-BUG-23": "The requirement filter has no \"Clarification requested\" option yet."
+ },
+ "blocked_steps": {
+  "Activation and password (Entra)": [
+   "F1-S02",
+   "F1-S07"
+  ],
+  "Sign-in (Microsoft Entra)": [
+   "F1-S03",
+   "F1-S07"
+  ],
+  "Invitation email (SGS SMTP)": [
+   "F1-S01",
+   "F1-S02",
+   "F1-S05",
+   "F1-S07"
+  ],
+  "Email delivery (SGS SMTP)": [],
+  "Sign-out (Microsoft Entra)": [
+   "F4-S23"
+  ],
+  "Emails to users": [
+   "F4-S02"
+  ],
+  "NirmatAI connection on the SGS environment": [
+   "F2-S02",
+   "F5-S03"
+  ],
+  "Pending: malware scan (CrowdStrike)": [
+   "F3-S05",
+   "F3-S07",
+   "F4-S15",
+   "F4-S17"
+  ]
+ },
+ "logo": [
+  "assets/lts-logo.png",
+  "assets/sgs-logo.png"
+ ]
+}

@@ -1,0 +1,537 @@
+{
+ "title": "Change and manage (Wave 1)",
+ "out": "C:/Users/thavt/Documents/DTP/dts-agent-workspace/tests/reports/Flow report/04_Change_and_Manage_Flow.docx",
+ "imgDir": "C:/Users/thavt/Documents/DTP/dts-agent-workspace/tests/evidence/w1-change-manage-06-11",
+ "env": "Environment: dtp.ltsgroup.tech (web test) · Screenshots taken 06 Nov 2026 · Prepared by QA",
+ "intro": [
+  "Wave 1 use cases that Flows 1–3 do not cover: viewing and changing users, roles and consultants, the permission matrices, the display language, customer accounts (SGS Admin), editing and withdrawing a framework, editing a scope and a certification cycle, the effective scope of a workspace, requirement owners, evidence in the library (upload without mapping, link, unlink, edit, delete), archiving and deleting workspaces, and signing out.",
+  "It reuses the data of Flow 3 (framework, scope and workspace \"[QA] D05 Smoke Assisted … 0851\"). Steps go from the least to the most final action, so archiving the workspace and withdrawing the framework come last.",
+  "Red boxes and labels were added for this document. Dates on screen are in Taiwan time (UTC+8); the bar above each screenshot shows Vietnam time (GMT+7)."
+ ],
+ "tables": [
+  {
+   "heading": "Accounts used",
+   "cols": [
+    "Role",
+    "Portal",
+    "Account"
+   ],
+   "widths": [
+    2400,
+    2600,
+    4360
+   ],
+   "rows": [
+    [
+     "Customer Admin",
+     "Customer Portal",
+     "kevin.lin@example.com (Kevin Lin), Development organisation"
+    ],
+    [
+     "SGS Admin",
+     "SGS Portal (/ops)",
+     "lin.mei@example.com (Lin Mei)"
+    ]
+   ]
+  },
+  {
+   "heading": "Data used or created in this run",
+   "cols": [
+    "Item",
+    "Name"
+   ],
+   "widths": [
+    2400,
+    6960
+   ],
+   "rows": [
+    [
+     "Customer account",
+     "[QA] D05 Smoke Onboarding 6p6k (contact phone edited)"
+    ],
+    [
+     "User",
+     "[QA] D28 Audit User (role User → Viewer)"
+    ],
+    [
+     "Consultants",
+     "[QA] M22 M1 Ian Chang (Customer Consultant), [QA] PM2 Ken Lin 57340 (Freelancer): dialogs opened and cancelled"
+    ],
+    [
+     "Framework",
+     "[QA] D05 Smoke Assisted 0851 (description edited, then deactivated)"
+    ],
+    [
+     "Scope",
+     "[QA] D05 Smoke Assisted Org 0851 (Out of scope edited)"
+    ],
+    [
+     "Workspace",
+     "[QA] D05 Smoke Assisted WS 0851 (cycle end date edited, requirement owner set, then archived)"
+    ],
+    [
+     "Evidence",
+     "[QA] D06 W1 Expired account review record (created, edited, linked, unlinked, deleted)"
+    ],
+    [
+     "Empty workspace",
+     "[QA] D06 W1 Empty WS (created, then deleted)"
+    ]
+   ]
+  }
+ ],
+ "steps": [
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Administration > Users",
+   "what": "Open a user and check their details.",
+   "result": "Profile, status, role and the scopes the user can see.",
+   "body": [
+    "The list shows role, scope access, status and last sign-in for every user of the organisation."
+   ],
+   "shots": [
+    [
+     "01a-users-list.png",
+     "Users list: open a user."
+    ],
+    [
+     "01b-user-details.png",
+     "User details: profile, status, role and scope access."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Users > user detail",
+   "what": "Change the role of a user.",
+   "result": "The new role applies; the user is told.",
+   "body": [
+    "Roles on the Customer Portal: Admin, User, Viewer. At least one Customer Admin must remain."
+   ],
+   "shots": [
+    [
+     "02a-change-role.png",
+     "Change role: pick the new role and Save role."
+    ],
+    [
+     "02b-role-changed.png",
+     "The user is now Viewer."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Users > consultant detail",
+   "what": "Manage a Customer Consultant hired by the organisation.",
+   "result": "The Customer Admin can deactivate and later reactivate the consultant.",
+   "body": [
+    "A Customer Consultant works only through the requests assigned to them. The Deactivate dialog was opened and cancelled, so the consultant stays active."
+   ],
+   "shots": [
+    [
+     "03a-customer-consultant-deactivate.png",
+     "Customer Consultant details: Deactivate (opened and cancelled)."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Administration > Roles & permissions",
+   "what": "Check the permission matrix of the Customer Portal roles.",
+   "result": "Read-only matrix for Admin, User, Viewer and Consultant.",
+   "body": [],
+   "shots": [
+    [
+     "04a-roles-customer.png",
+     "Roles & permissions: read-only matrix of the Customer Portal."
+    ]
+   ]
+  },
+  {
+   "who": "Any user",
+   "where": "Header > Language",
+   "what": "Switch the display language.",
+   "result": "Screens show the chosen language; the choice is saved for the user.",
+   "body": [
+    "English and 繁體中文 (Traditional Chinese). The language was switched back to English after the screenshot."
+   ],
+   "shots": [
+    [
+     "05a-language-menu.png",
+     "Language menu in the header."
+    ],
+    [
+     "05b-language-zh.png",
+     "The same page in 繁體中文."
+    ]
+   ]
+  },
+  {
+   "who": "SGS Admin",
+   "where": "SGS Portal > Customers",
+   "what": "Find a customer account and open it.",
+   "result": "Account details with Overview, Users, Scopes and Certifications.",
+   "body": [
+    "The list shows users, scopes, workspaces and status for every customer of the SGS affiliate."
+   ],
+   "shots": [
+    [
+     "06a-customers-list.png",
+     "Customers list."
+    ],
+    [
+     "06b-customer-details.png",
+     "Customer account details."
+    ]
+   ]
+  },
+  {
+   "who": "SGS Admin",
+   "where": "SGS Portal > Customers > customer detail > Edit account",
+   "what": "Edit the name or contact of the customer account.",
+   "result": "The new contact is saved.",
+   "body": [
+    "The SGS affiliate is set at creation and cannot be changed. Phone numbers accept digits and + - ( ) only."
+   ],
+   "shots": [
+    [
+     "07a-edit-account.png",
+     "Edit customer account: contact phone."
+    ],
+    [
+     "07b-account-saved.png",
+     "The new phone number on the account."
+    ]
+   ]
+  },
+  {
+   "who": "SGS Admin",
+   "where": "SGS Portal > Administration > Users > Consultants",
+   "what": "Manage an SGS-side consultant (SGS employee or Freelancer).",
+   "result": "The SGS Admin can edit, deactivate and reactivate the consultant.",
+   "body": [
+    "The consultant details show the type, consulting firm and Marketplace visibility. No change was saved in this run."
+   ],
+   "shots": [
+    [
+     "08a-sgs-consultants.png",
+     "Consultants tab: SGS employees and Freelancers."
+    ],
+    [
+     "08b-consultant-details.png",
+     "Consultant details: Edit account, Deactivate."
+    ]
+   ]
+  },
+  {
+   "who": "SGS Admin",
+   "where": "SGS Portal > Administration > Roles & permissions",
+   "what": "Check the permission matrix of the SGS Portal roles.",
+   "result": "Read-only matrix for SGS Admin and Consultant.",
+   "body": [],
+   "shots": [
+    [
+     "09a-roles-sgs.png",
+     "Roles & permissions: read-only matrix of the SGS Portal."
+    ]
+   ]
+  },
+  {
+   "who": "SGS Admin",
+   "where": "SGS Portal > Frameworks > framework detail > Edit details",
+   "what": "Edit the framework details.",
+   "result": "Names, standard edition, issuing body and description are saved.",
+   "body": [
+    "Code and content version come from the import and cannot be edited."
+   ],
+   "shots": [
+    [
+     "10a-edit-framework.png",
+     "Edit details: description."
+    ],
+    [
+     "10b-framework-saved.png",
+     "Framework after saving."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Scopes > scope detail > Edit scope",
+   "what": "Edit the scope fields.",
+   "result": "The scope is saved with the new values.",
+   "body": [
+    "The scope type cannot be changed after the scope is created."
+   ],
+   "shots": [
+    [
+     "11a-edit-scope.png",
+     "Edit scope: Out of scope."
+    ],
+    [
+     "11b-scope-saved.png",
+     "The scope with the new Out of scope text."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Workspaces > workspace detail",
+   "what": "Check the effective scope of the workspace.",
+   "result": "Only requirements up to the tier count; requirements above the tier or retired are out of scope.",
+   "body": [
+    "The system works this out from the tier chosen when the workspace was created."
+   ],
+   "shots": [
+    [
+     "12a-effective-scope.png",
+     "Workspace summary: requirements in scope for tier Medium, and out of scope."
+    ],
+    [
+     "12b-out-of-scope.png",
+     "Requirements: rows above the tier are marked Out of scope."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Workspaces > workspace detail > Certification cycle > Edit",
+   "what": "Edit the certification cycle dates.",
+   "result": "The new dates are saved.",
+   "body": [
+    "Only while the workspace is active; the end date must be after the start date."
+   ],
+   "shots": [
+    [
+     "13a-edit-cycle.png",
+     "Edit the cycle: start and end dates."
+    ],
+    [
+     "13b-cycle-saved.png",
+     "The cycle with the new end date."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Workspace > Requirements > requirement",
+   "what": "Set the owner of a requirement.",
+   "result": "The requirement has an owner.",
+   "body": [
+    "The owner must have access to the scope."
+   ],
+   "shots": [
+    [
+     "14a-assign-owner.png",
+     "Owner list of the requirement."
+    ],
+    [
+     "14b-owner-set.png",
+     "Owner set."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Documents > Create evidence",
+   "what": "Upload evidence to the library without mapping it.",
+   "result": "The evidence is in the library, Not mapped, and can be linked later.",
+   "body": [
+    "The uploader chooses the owning scope. The file is scanned before it can be used."
+   ],
+   "shots": [
+    [
+     "15a-create-evidence.png",
+     "Create evidence: file, owning scope and title."
+    ],
+    [
+     "15b-evidence-not-mapped.png",
+     "The new evidence: Not mapped."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Documents > evidence detail > Edit details",
+   "what": "Edit the evidence details.",
+   "result": "Title, description and dates are saved.",
+   "body": [],
+   "shots": [
+    [
+     "16a-edit-evidence.png",
+     "Edit details: description."
+    ],
+    [
+     "16b-evidence-saved.png",
+     "Evidence after saving."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Workspace > Requirements > requirement > Link existing evidence",
+   "what": "Link the library evidence to a requirement.",
+   "result": "The requirement uses the evidence and becomes Provided.",
+   "body": [
+    "Only clean files can be linked."
+   ],
+   "shots": [
+    [
+     "17a-link-existing.png",
+     "Link existing evidence: pick the item."
+    ],
+    [
+     "17b-linked.png",
+     "The evidence is linked; the requirement is Provided."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Workspace > Requirements > requirement > Remove",
+   "what": "Remove the evidence from the requirement.",
+   "result": "The link is removed; the evidence stays in the library.",
+   "body": [],
+   "shots": [
+    [
+     "18a-unlink.png",
+     "Remove from this requirement."
+    ],
+    [
+     "18b-unlinked.png",
+     "The requirement after the link is removed."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Documents > evidence detail > Delete",
+   "what": "Delete the evidence.",
+   "result": "The evidence, all its versions and links are deleted.",
+   "body": [
+    "Bulk documents that are locked or sent cannot be deleted."
+   ],
+   "shots": [
+    [
+     "19a-delete-evidence.png",
+     "Delete this evidence?"
+    ],
+    [
+     "19b-evidence-deleted.png",
+     "Back on Documents after the deletion."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Workspaces > workspace detail > Archive",
+   "what": "Archive the workspace.",
+   "result": "The workspace is Archived and read-only.",
+   "body": [
+    "Not possible while a consulting request is open or documents are being sent."
+   ],
+   "shots": [
+    [
+     "20a-archive.png",
+     "Archive workspace?"
+    ],
+    [
+     "20b-archived.png",
+     "The workspace is Archived."
+    ]
+   ]
+  },
+  {
+   "who": "Customer Admin",
+   "where": "Customer Portal > Workspaces > workspace detail > Delete",
+   "what": "Delete an empty workspace.",
+   "result": "The workspace is deleted.",
+   "body": [
+    "Only a workspace with no evidence, no requests and no documents sent can be deleted. A new empty workspace was created for this step."
+   ],
+   "shots": [
+    [
+     "21a-empty-workspace.png",
+     "Empty workspace: Delete."
+    ],
+    [
+     "21b-delete-workspace.png",
+     "Delete confirmation."
+    ],
+    [
+     "21c-workspace-deleted.png",
+     "Workspaces list after the deletion."
+    ]
+   ]
+  },
+  {
+   "who": "SGS Admin",
+   "where": "SGS Portal > Frameworks > framework detail > Deactivate",
+   "what": "Withdraw the framework from new use.",
+   "result": "Customers can no longer create workspaces with it; existing workspaces keep it.",
+   "body": [],
+   "shots": [
+    [
+     "22a-deactivate-framework.png",
+     "Deactivate the framework."
+    ],
+    [
+     "22b-framework-deactivated.png",
+     "The framework is Inactivated."
+    ]
+   ]
+  },
+  {
+   "who": "Any user",
+   "where": "Header > account menu > Sign out",
+   "what": "Sign out.",
+   "result": "The session ends and the sign-in page opens.",
+   "body": [
+    "On the SGS environment this also signs out of the Microsoft Entra session."
+   ],
+   "shots": [
+    [
+     "23a-sign-out.png",
+     "Account menu: Sign out."
+    ],
+    [
+     "23b-signed-out.png",
+     "Signed out."
+    ]
+   ]
+  }
+ ],
+ "blocked": [
+  [
+   "Sign-out (Microsoft Entra)",
+   "Signing out of the Entra session together with DTP.",
+   "The test environment uses a mock sign-in; Entra is set up only on the SGS DEV/UAT environment.",
+   "After Sign out, opening DTP asks for the Entra sign-in again."
+  ],
+  [
+   "Pending: malware scan (CrowdStrike)",
+   "Blocking an infected file at upload. Normal uploads are tested.",
+   "Pending: the malware scanner CrowdStrike is not connected yet. SGS IT is connecting it on the SGS environment.",
+   "An infected file shows Blocked and cannot be linked, downloaded or used."
+  ],
+  [
+   "Emails to users",
+   "The email a user gets after a role change.",
+   "On the test environment email goes to Mailpit; real delivery depends on the SGS SMTP set-up.",
+   "The user receives the role-change email."
+  ]
+ ],
+ "limitations": [
+  "Deactivating consultants was opened and cancelled, so no consultant lost access during this run.",
+  "The workspace and framework of Flow 3 are archived and deactivated at the end of this flow; use a new framework and workspace to repeat Flow 3."
+ ],
+ "seq": [
+  4,
+  7
+ ],
+ "related": "Wave 1 = Flow 1, Flow 2 (without steps 2 and 6), Flow 3 and Flow 4  ·  Before this: Flow 3: Assisted workspace  ·  Next (Wave 2): Flow 5: Bulk → NirmatAI",
+ "logo": [
+  "assets/lts-logo.png",
+  "assets/sgs-logo.png"
+ ]
+}

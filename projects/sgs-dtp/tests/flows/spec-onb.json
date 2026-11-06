@@ -5,6 +5,7 @@
  "env": "Environment: dtp.ltsgroup.tech (web test) · Screenshots taken 05 Nov 2026 · Prepared by QA",
  "intro": [
   "This flow takes a new customer from account creation by SGS to a Customer User who can see a scope. Test data: customer \"[QA] D05 Smoke Onboarding 6p6k\", scope \"[QA] D05 Smoke Scope 6p6k\".",
+  "SGS Portal = the portal at /ops used by SGS Admins and SGS consultants. Screenshots taken before 06 Nov 2026 show its old header name \"Operations Console\"; the web now shows \"SGS Portal\". It is the same portal.",
   "Red boxes and labels were added for this document. Dates on screen are in Taiwan time (UTC+8); the bar above each screenshot shows Vietnam time (GMT+7)."
  ],
  "steps": [
@@ -203,7 +204,11 @@
  ],
  "seq": [
   1,
-  6
+  7
  ],
- "related": "Next: Flow 2: Scope → Framework → Workspace"
+ "related": "Next: Flow 2: Scope → Framework → Workspace",
+ "logo": [
+  "assets/lts-logo.png",
+  "assets/sgs-logo.png"
+ ]
 }

@@ -5,6 +5,9 @@ const fs = require('fs'), path = require('path');
 const { Document, Packer, Paragraph, TextRun, ImageRun, Table, TableRow, TableCell, WidthType, ShadingType, HeadingLevel,
   AlignmentType, BorderStyle, InternalHyperlink, Bookmark, LevelFormat, Footer, Header, PageNumber, VerticalAlign, TableLayoutType } = require('docx');
 const S = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
+// Optional logos (spec.logo: a path or a list, relative to the spec): cover top-left and every page header.
+const LOGOS = [].concat(S.logo || []).map(x => { const f = x.file || x; const d = fs.readFileSync(path.resolve(path.dirname(process.argv[2]), f)); return { d, r: d.readUInt32BE(16) / d.readUInt32BE(20), s: x.scale || 1, n: path.basename(f, '.png') }; });
+const logoRuns = h => LOGOS.flatMap((L, i) => [...(i ? [new TextRun({ text: '      ', size: 16 })] : []), new ImageRun({ type: 'png', data: L.d, transformation: { width: Math.round(h * L.s * L.r), height: Math.round(h * L.s) }, altText: { title: L.n, description: L.n, name: L.n } })]);
 const FONT = 'Calibri', HFONT = 'Calibri Light';
 const C = { orange: 'D2551E', dark: '263746', slate: '3E5566', soft: 'FCEBE1', zebra: 'F5F7F9', line: 'D5DCE2', grey: '6B7680', red: 'B4232A', redSoft: 'FCE8E8', blue: '1F5FA8', green: '2E7D4F', greenSoft: 'E6F3EC' };
 const TW = 9360;
@@ -44,7 +47,7 @@ const overview = tbl(W, [new TableRow({ tableHeader: true, children: ['Step', 'W
     cell([p([t(s.result, { size: 20, color: C.green })], { spacing: { after: 0 } })], W[4], { shading: bg }),
   ] }); })]);
 
-const children = [band, new Paragraph({ spacing: { after: 160 } }), meta, new Paragraph({ spacing: { after: 160 } })];
+const children = [...(LOGOS.length ? [new Paragraph({ spacing: { after: 120 }, children: logoRuns(40) })] : []), band, new Paragraph({ spacing: { after: 160 } }), meta, new Paragraph({ spacing: { after: 160 } })];
 if ((S.intro || []).length) children.push(callout(S.intro));
 if (S.related) children.push(new Paragraph({ spacing: { before: 120, after: 60 }, children: [t(S.related, { color: C.slate, size: 19, bold: true })] }));
 children.push(section('Flow overview'), p([t('Click a cell in the Where column to jump to the screenshots of that step.', { color: C.grey, italics: true, size: 19 })]), overview);
@@ -90,7 +93,7 @@ const doc = new Document({
     paragraphStyles: [{ id: 'Heading1', name: 'Heading 1', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: HFONT, size: 32, color: C.dark },
       paragraph: { spacing: { before: 320, after: 140 }, outlineLevel: 0, border: { bottom: { style: BorderStyle.SINGLE, size: 8, color: C.orange, space: 4 } } } }] },
   sections: [{ properties: { page: { size: { width: 12240, height: 15840 }, margin: { top: 1000, bottom: 1000, left: 1440, right: 1440 } } },
-    headers: { default: new Header({ children: [new Paragraph({ alignment: AlignmentType.RIGHT, children: [t((S.seq ? `Flow ${S.seq[0]} · ` : '') + S.title, { size: 16, color: C.grey })] })] }) },
+    headers: { default: new Header({ children: [new Paragraph({ alignment: AlignmentType.RIGHT, children: [...(LOGOS.length ? [...logoRuns(16), t('   ', { size: 16 })] : []), t((S.seq ? `Flow ${S.seq[0]} · ` : '') + S.title, { size: 16, color: C.grey })] })] }) },
     footers: { default: new Footer({ children: [new Paragraph({ alignment: AlignmentType.RIGHT, border: { top: { style: BorderStyle.SINGLE, size: 4, color: C.line, space: 4 } }, children: [t('SGS DTP · QA  ·  Page ', { size: 16, color: C.grey }), new TextRun({ children: [PageNumber.CURRENT], font: FONT, size: 16, color: C.grey })] })] }) },
     children }],
 });

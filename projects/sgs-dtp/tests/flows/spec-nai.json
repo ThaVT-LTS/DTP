@@ -1,6 +1,6 @@
 {
  "title": "NirmatAI → DTP flow (Bulk audit)",
- "out": "C:/Users/thavt/Documents/DTP/dts-agent-workspace/tests/reports/Flow report/04_Bulk_NirmatAI_Flow.docx",
+ "out": "C:/Users/thavt/Documents/DTP/dts-agent-workspace/tests/reports/Flow report/05_Bulk_NirmatAI_Flow.docx",
  "imgDir": "C:/Users/thavt/Documents/DTP/dts-agent-workspace/tests/evidence/nirmatai-flow-02-11",
  "env": "Environment: dtp.ltsgroup.tech (web test) · Screenshots taken 02 Nov 2026 · Prepared by QA",
  "intro": [
@@ -232,8 +232,12 @@
   ]
  ],
  "seq": [
-  4,
-  6
+  5,
+  7
  ],
- "related": "Before this: Flow 3: Assisted workspace  ·  Next: Flow 5: Service requests"
+ "related": "Before this: Flow 4: Change and manage  ·  Next: Flow 6: Service requests",
+ "logo": [
+  "assets/lts-logo.png",
+  "assets/sgs-logo.png"
+ ]
 }

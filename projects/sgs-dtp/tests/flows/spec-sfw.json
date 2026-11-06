@@ -5,7 +5,8 @@
  "env": "Environment: dtp.ltsgroup.tech (web test) · Screenshots taken 05 Nov 2026 · Prepared by QA",
  "intro": [
   "This flow shows how one scope gets its workspaces. SGS prepares two kinds of framework: an imported framework for Assisted workspaces and a NirmatAI framework for Bulk workspaces. The customer creates one scope and opens both kinds of workspace on it.",
-  "Test data: scope \"[QA] D05 Smoke Assisted Org 0851\", workspaces \"[QA] D05 Smoke Assisted WS 0851\" and \"[QA] D05 Smoke Bulk WS 0851\". Some screenshots are reused from Flow 3 and Flow 4. Red boxes and labels were added for this document."
+  "SGS Portal = the portal at /ops used by SGS Admins and SGS consultants. Screenshots taken before 06 Nov 2026 show its old header name \"Operations Console\"; the web now shows \"SGS Portal\". It is the same portal.",
+  "Test data: scope \"[QA] D05 Smoke Assisted Org 0851\", workspaces \"[QA] D05 Smoke Assisted WS 0851\" and \"[QA] D05 Smoke Bulk WS 0851\". Some screenshots are reused from Flow 3 and Flow 5. Red boxes and labels were added for this document."
  ],
  "steps": [
   {
@@ -37,7 +38,7 @@
    "what": "Prepare a framework for Bulk workspaces: sync it from NirmatAI and activate it.",
    "result": "NirmatAI framework (code NAI-<id>) is Activated and offered for Bulk workspaces.",
    "body": [
-    "NirmatAI creates and enables the standard; SGS runs Sync, checks the work products and activates it. Full detail in Flow 4."
+    "NirmatAI creates and enables the standard; SGS runs Sync, checks the work products and activates it. Full detail in Flow 5."
    ],
    "shots": [
     [
@@ -191,7 +192,7 @@
     [
      "More detail",
      "Flow 3: Assisted workspace",
-     "Flow 4: Bulk → NirmatAI"
+     "Flow 5: Bulk → NirmatAI"
     ]
    ]
   }
@@ -212,7 +213,11 @@
  ],
  "seq": [
   2,
-  6
+  7
  ],
- "related": "Before this: Flow 1: Customer onboarding and users  ·  Next: Flow 3: Assisted workspace"
+ "related": "Before this: Flow 1: Customer onboarding and users  ·  Next: Flow 3: Assisted workspace",
+ "logo": [
+  "assets/lts-logo.png",
+  "assets/sgs-logo.png"
+ ]
 }

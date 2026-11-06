@@ -1,6 +1,6 @@
 {
  "title": "Certifications, Marketplace and Training flow",
- "out": "C:/Users/thavt/Documents/DTP/dts-agent-workspace/tests/reports/Flow report/06_Certifications_Marketplace_Flow.docx",
+ "out": "C:/Users/thavt/Documents/DTP/dts-agent-workspace/tests/reports/Flow report/07_Certifications_Marketplace_Flow.docx",
  "imgDir": "C:/Users/thavt/Documents/DTP/dts-agent-workspace/tests/evidence/certifications-flow-05-11",
  "env": "Environment: dtp.ltsgroup.tech (web test) · Screenshots taken 05 Nov 2026 · Happy path only · Prepared by QA",
  "intro": [
@@ -177,8 +177,12 @@
   ]
  ],
  "seq": [
-  6,
-  6
+  7,
+  7
  ],
- "related": "Before this: Flow 5: Service requests"
+ "related": "Before this: Flow 6: Service requests",
+ "logo": [
+  "assets/lts-logo.png",
+  "assets/sgs-logo.png"
+ ]
 }

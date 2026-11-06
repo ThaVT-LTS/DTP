@@ -7,7 +7,8 @@ Tuân thủ `rules/common.md`, `rules/automation.md` (rule 22, 48, 52).
 
 ## Đầu ra (dự án SGS DTP)
 - Thư mục: `dts-agent-workspace/tests/reports/Flow report/`.
-- Word đánh số theo thứ tự đi luồng, tên **không** kèm "Review" / ngày: `01_Onboarding_Users_Flow.docx`, `02_Scope_Framework_Workspace_Flow.docx`, `03_Assisted_Workspace_Flow.docx`, `04_Bulk_NirmatAI_Flow.docx`, `05_Service_Requests_Flow.docx`, `06_Certifications_Marketplace_Flow.docx`.
+- Word đánh số theo thứ tự đi luồng, tên **không** kèm "Review" / ngày: `01_Onboarding_Users_Flow.docx`, `02_Scope_Framework_Workspace_Flow.docx`, `03_Assisted_Workspace_Flow.docx`, `04_Change_and_Manage_Flow.docx` (các UC Wave 1 còn lại), `05_Bulk_NirmatAI_Flow.docx`, `06_Service_Requests_Flow.docx`, `07_Certifications_Marketplace_Flow.docx`. Số flow = `seq` trong spec = số trên mind map (06/11).
+- Bộ theo wave (06/11, QA lead): Wave 1 = Flow 1–4 → `00_DTP_Wave1_Checklist.xlsx` (`scripts/build_checklist.py <checklist-map.json> <specs> <UC xlsx> <Plan xlsx> <bugs.md> <out>`; `only_round`; bước trùng ghi "Same as …") + `00_DTP_Wave1_MindMap.html` (`mindmap.sgs-dtp-w1.json`). Wave lấy từ Plan sheet "Plan by UC"; mỗi UC của wave phải có ≥ 1 bước.
 - Mind map: `00_DTP_Happy_Path_MindMap.html` (mở offline; ảnh lấy từ `tests/evidence/…`, nút mở Word nằm cùng thư mục → gửi đi thì gửi cả cấu trúc thư mục).
 - Ảnh: `dts-agent-workspace/tests/evidence/<luồng>-flow-<dd-mm>/`.
 - Spec mỗi luồng + cấu hình mind map: `projects/sgs-dtp/tests/flows/` (`spec-*.json`, `mindmap.sgs-dtp.json`).

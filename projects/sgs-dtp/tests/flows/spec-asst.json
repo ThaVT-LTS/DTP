@@ -5,6 +5,7 @@
  "env": "Environment: dtp.ltsgroup.tech (web test) · Screenshots taken 05 Nov 2026 · Prepared by QA",
  "intro": [
   "This document walks through the main success path of an Assisted workspace: SGS imports and activates a framework, the customer creates a scope and a workspace, uploads evidence against a requirement and keeps a new version of the document.",
+  "SGS Portal = the portal at /ops used by SGS Admins and SGS consultants. Screenshots taken before 06 Nov 2026 show its old header name \"Operations Console\"; the web now shows \"SGS Portal\". It is the same portal.",
   "Test data created for this run is prefixed \"[QA] D05 Smoke\". Times shown in DTP are Taiwan time (UTC+8); the URL bar time is GMT+7. Red boxes and labels were added for this document."
  ],
  "tables": [
@@ -250,15 +251,19 @@
    "Emails arrive, links in them open the right page."
   ],
   [
-   "Malware scan on upload",
-   "Upload of an infected file is blocked.",
-   "The antivirus on the QA laptop (Symantec) deletes the standard test file before it reaches DTP.",
-   "Run from a machine without local antivirus, or with an excluded folder."
+   "Pending: malware scan (CrowdStrike)",
+   "Blocking an infected file at upload. Normal uploads are tested.",
+   "Pending: the malware scanner CrowdStrike is not connected yet. SGS IT is connecting it on the SGS environment.",
+   "An infected file shows Blocked and cannot be linked, downloaded or used."
   ]
  ],
  "seq": [
   3,
-  6
+  7
  ],
- "related": "Before this: Flow 2: Scope → Framework → Workspace  ·  Next: Flow 4: Bulk → NirmatAI"
+ "related": "Before this: Flow 2: Scope → Framework → Workspace  ·  Next: Flow 4: Change and manage",
+ "logo": [
+  "assets/lts-logo.png",
+  "assets/sgs-logo.png"
+ ]
 }

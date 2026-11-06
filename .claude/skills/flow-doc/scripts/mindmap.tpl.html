@@ -15,6 +15,9 @@
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--ink); height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
 header { background: var(--dark); color: #fff; padding: 12px 20px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+header .lts { background: #fff; border-radius: 8px; padding: 4px 12px; display: flex; align-items: center; gap: 14px; }
+header .lts img + img { border-left: 1px solid #d5dce2; padding-left: 14px; }
+header .lts img { height: 30px; display: block; }
 header h1 { font-size: 18px; margin: 0; font-weight: 600; }
 header .kicker { color: #f4a57a; font-size: 11px; letter-spacing: .12em; font-weight: 700; }
 .tools { margin-left: auto; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
@@ -42,6 +45,11 @@ svg#edges { position: absolute; left: 0; top: 0; overflow: visible; pointer-even
 .node.root .w { color: #c9d3db; }
 .node.flow { background: var(--brand-soft); border-left-color: var(--brand); }
 .node.flow .t { color: var(--dark); font-size: 14px; }
+.node.wave { background: #fff; border-left-color: var(--brand); border-left-width: 7px; }
+.node.wave .t { font-size: 14.5px; }
+.node.wave.off, .node.flow.locked { opacity: .5; filter: grayscale(1); }
+.node.flow.locked { background: #f1f3f5; border-style: dashed; }
+aside .lockbox { background: #f1f3f5; border: 1px dashed #9aa5ae; padding: 12px 14px; border-radius: 8px; font-size: 13.5px; color: #4a545c; line-height: 1.5; }
 .node.planned { background: #f5f6f7; border: 1px dashed #aab4bc; border-left: 5px dashed #aab4bc; color: #59636b; box-shadow: none; }
 .node.planned .r { background: #eceff1; color: #59636b; border-color: #d0d6db; }
 aside { width: 440px; max-width: 46vw; background: var(--card); border-left: 1px solid var(--line); overflow-y: auto; padding: 20px 22px 40px; }
@@ -71,7 +79,7 @@ aside h3 { font-size: 14px; margin: 18px 0 6px; color: var(--dark); border-botto
 </head>
 <body>
 <header>
-  <div><div class="kicker">SGS DIGITAL TRUST PLATFORM · QA</div><h1>Happy path map</h1></div>
+  <!--LOGO--><div><div class="kicker">SGS DIGITAL TRUST PLATFORM · QA</div><h1>Happy path map</h1></div>
   <div class="legend">
     <span style="--c:var(--sgs)">SGS Admin</span><span style="--c:var(--cust)">Customer Admin</span><span style="--c:var(--user)">Customer User</span>
     <span style="--c:var(--cons)">Consultant</span><span style="--c:var(--nai)">NirmatAI</span>
@@ -90,7 +98,7 @@ aside h3 { font-size: 14px; margin: 18px 0 6px; color: var(--dark); border-botto
 <script>
 const DATA = /*__DATA__*/null;
 const N = DATA.nodes, ROOT = DATA.root;
-const open = new Set([ROOT]); let showPlanned = false, selected = null;
+const OPEN0 = DATA.open || [ROOT]; const open = new Set(OPEN0); let showPlanned = false, selected = null;
 const roleColor = w => /nirmat/i.test(w) ? 'var(--nai)' : /consultant/i.test(w) ? 'var(--cons)' : /sgs/i.test(w) ? 'var(--sgs)' : /customer user/i.test(w) ? 'var(--user)' : /customer/i.test(w) ? 'var(--cust)' : 'var(--other)';
 const tone = r => /completed|activated|ready\b|valid|created|saved|sent to|available/i.test(r) ? 'ok' : /cancel|closed|terminat|failed|refuse/i.test(r) ? 'bad' : /waiting|discussion|draft|submitted/i.test(r) ? 'warn' : '';
 const kids = id => N[id].children.filter(c => showPlanned || N[c].kind !== 'planned');
@@ -99,9 +107,9 @@ const canvas = document.getElementById('canvas'), svg = document.getElementById(
 const els = {};
 function card(id) {
   const n = N[id]; if (els[id]) return els[id];
-  const d = document.createElement('div'); d.className = 'node ' + n.kind; d.dataset.id = id;
+  const d = document.createElement('div'); d.className = 'node ' + n.kind + (n.kind === 'wave' && !n.active ? ' off' : '') + (n.locked ? ' locked' : ''); d.dataset.id = id;
   d.style.setProperty('--c', roleColor(n.who || ''));
-  const label = n.kind === 'step' ? `<span class="badge">F${n.seq} · ${n.step}</span>` : n.kind === 'planned' ? '<span class="badge">planned</span>' : '';
+  const label = n.locked ? `<span class="badge">${esc(n.badge)}</span>` : n.kind === 'step' ? `<span class="badge">F${n.seq} · ${n.step}</span>` : n.kind === 'planned' ? '<span class="badge">planned</span>' : '';
   const who = n.kind === 'step' || n.kind === 'planned' ? esc(n.who) + (n.where ? ' · ' + esc(n.where) : '') : esc(n.result);
   d.innerHTML = `${label}<div class="t">${esc(n.title)}</div><div class="w">${who}</div>` + (n.kind === 'step' || n.kind === 'planned' ? `<span class="r ${tone(n.result)}">→ ${esc(n.result)}</span>` : '') + '<span class="tog"></span>';
   d.addEventListener('click', e => { e.stopPropagation(); if (moved) return; select(id); if (e.target.classList.contains('tog') && open.has(id)) collapse(id); else open.add(id); render(); });
@@ -157,18 +165,25 @@ stage.addEventListener('wheel', e => { e.preventDefault(); const r = stage.getBo
 function fit() { const r = stage.getBoundingClientRect(), w = canvas.offsetWidth, h = canvas.offsetHeight; sc = Math.min(1, Math.max(.25, Math.min((r.width - 40) / w, (r.height - 40) / h))); tx = 20; ty = Math.max(20, (r.height - h * sc) / 2); apply(); }
 // panel
 const panel = document.getElementById('panel');
+const blockedTable = (rows, title) => rows && rows.length ? `<h3>${title || 'Not tested yet (blocked)'}</h3><table><tr><th>Area</th><th>Why</th></tr>${rows.map(b => `<tr><td>${esc(b[0])}</td><td>${esc(b[2])}</td></tr>`).join('')}</table>` : '';
 function select(id) {
   selected = id; const n = N[id]; let h = '';
   if (n.kind === 'root') h = `<div class="crumb">Overview</div><h2>${esc(n.title)}</h2><p class="note">${esc(n.result)}. Click a flow to open its steps. Flows follow the order of the numbered Word documents in this folder.</p>`;
-  if (n.kind === 'flow') {
+  if (n.kind === 'wave') {
+    h = `<div class="crumb">${n.active ? 'Open for testing' : 'Not open for testing yet'}</div><h2>${esc(n.title)}</h2><div class="${n.active ? 'note' : 'lockbox'}">${esc(n.note)}</div>`;
+    if (n.active) h += `<p class="note">Click a flow to open its steps.</p>` + blockedTable(n.blocked, 'Not tested yet (blocked) · all flows of this wave');
+  }
+  if (n.kind === 'flow' && n.locked) h = `<div class="crumb">${esc(n.wave)}</div><h2>${esc(n.title)}</h2><dl><dt>Steps</dt><dd>${esc(n.result)}</dd></dl><div class="lockbox">Not open for testing in this round. ${esc(n.note)}</div>`;
+  if (n.kind === 'flow' && !n.locked) {
     h = `<div class="crumb">Flow ${n.seq} of ${n.total}</div><h2>${esc(n.title.replace(/^Flow \d+ · /, ''))}</h2><a class="btn" href="${encodeURI(n.docx)}">Open the Word document</a>`;
     h += n.intro.map(x => `<div class="note">${esc(x)}</div>`).join('');
     h += `<dl>${n.needs ? `<dt>Needs</dt><dd>${esc(n.needs)}</dd>` : ''}${n.next.length ? `<dt>Next</dt><dd>${n.next.map(esc).join('<br>')}</dd>` : ''}<dt>Steps</dt><dd>${esc(n.result)}</dd></dl>`;
-    if (n.blocked.length) h += `<h3>Not tested yet (blocked)</h3><table><tr><th>Area</th><th>Why</th></tr>${n.blocked.map(b => `<tr><td>${esc(b[0])}</td><td>${esc(b[2])}</td></tr>`).join('')}</table>`;
+    h += blockedTable(n.blocked);
   }
   if (n.kind === 'step') {
     h = `<div class="crumb">Flow ${n.seq} · Step ${n.step}</div><h2>${esc(n.title)}</h2><dl><dt>Who</dt><dd>${esc(n.who)}</dd><dt>Where</dt><dd>${esc(n.where)}</dd><dt>Result</dt><dd><b style="color:var(--ok)">${esc(n.result)}</b></dd></dl>`;
     h += n.body.map(x => `<div class="note">${esc(x)}</div>`).join('');
+    if (n.fid && N[n.fid]) h += blockedTable(N[n.fid].blocked, 'Not tested yet in this flow (blocked)');
     h += n.shots.map(s => `<figure><img src="${encodeURI(s.src)}" alt="${esc(s.cap)}" loading="lazy"><figcaption>${esc(s.cap)}</figcaption></figure>`).join('');
     h += `<a class="btn" href="${encodeURI(n.docx)}">Open the Word document</a>`;
   }
@@ -178,7 +193,7 @@ function select(id) {
 }
 const lb = document.getElementById('lightbox'); lb.addEventListener('click', () => lb.style.display = 'none');
 document.getElementById('expand').onclick = () => { Object.keys(N).forEach(id => open.add(id)); render(); fit(); };
-document.getElementById('collapse').onclick = () => { open.clear(); open.add(ROOT); render(); tx = 30; ty = 30; sc = 1; apply(); };
+document.getElementById('collapse').onclick = () => { open.clear(); OPEN0.forEach(x => open.add(x)); render(); tx = 30; ty = 30; sc = 1; apply(); };
 document.getElementById('fit').onclick = fit;
 document.getElementById('planned').onchange = e => { showPlanned = e.target.checked; render(); };
 render(); apply(); select(ROOT);
