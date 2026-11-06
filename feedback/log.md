@@ -1652,3 +1652,19 @@ Bản ghi `FB-001` là góp ý của người dùng. `FB-002` trở đi là **đ
 - Ngày: 05/11/2026 · Nguồn: QA lead ("Btn phải bao phủ text chứ. lệch này", "cập nhật vào rule, skill nhé")
 - Việc: màn Home (frame 946:335, trang ◆ QA · UC v6.5 updates) gửi duyệt còn tag Submitted / In progress / Expires in 47 days tràn chữ khỏi nền (component gốc rộng cố định 80px).
 - Áp dụng: rule 57 của `rules/automation.md`; skill `.claude/skills/figma-ui-update`.
+
+## FB-129 · Tự kiểm điểm 06/11: nói sai rồi xin lỗi, không sửa cách làm
+- Ngày: 06/11/2026 · Nguồn: QA lead ("tự kiểm điểm đi đã xin lỗi biết bao nhiêu lần r, hãy lưu lại repo làm kinh nghiệm đi")
+- Loại: L2-rule · Địa chỉ: rules/automation.md rule 58
+- Việc (06/11, mỗi lỗi một dòng, kèm nguyên nhân gốc):
+  1. Bảng tóm tắt ghi CU-BUG-28 "vẫn mời được email SGS" — sai, ticket từ 02/11 là lỗi câu báo. Gốc: viết bảng từ trí nhớ, không mở ticket.
+  2. Trả lời "SGS Admin chỉ xem người dùng của khách" — sai, có Resend / Revoke lời mời Admin. Gốc: khẳng định trước khi xem màn / code.
+  3. Lọt CU-BUG-30/31/32 (khác nhau giữa 2 cổng) — QA lead tự phát hiện. Gốc: case chỉ kiểm từng cổng, dữ liệu [QA] quá sạch, thiếu điều kiện "ai tạo" (đã có tc-authoring 52, bug-pattern 27).
+  4. Đổi ngôn ngữ của tài khoản dùng chung Lin Mei / Kevin khi test zh-TW → màn hình QA lead lẫn 2 ngôn ngữ.
+  5. Gửi lệnh có chuỗi EICAR từ laptop vào máy ảo (vmrun) → Symantec SONAR cảnh báo.
+  6. Script ghi Excel báo "ops done" nhưng file không đổi (Excel chạy ẩn giữ khoá) → mất 13 case US_105–117 mà không biết; báo "đã ghi" khi chưa kiểm lại.
+  7. Gọi `bug_codes.py next` 3 lần lấy 3 mã → cùng một mã; trường `found` ghi "web 06/11 …" làm báo cáo đếm "Mới log" = 0.
+  8. Phát hiện dữ liệu web bị reset chỉ khi một lần đăng nhập hết giờ, không có bước kiểm dữ liệu sau mỗi deploy.
+  9. Mỗi lần sai chỉ xin lỗi, không ghi nguyên nhân và không sửa cách làm → lặp lại trong cùng ngày.
+- Áp dụng: rule 58 của rules/automation.md (8 điểm kiểm), memory `self-check-before-claiming`.
+- Tái phát: theo dõi từ 07/11.

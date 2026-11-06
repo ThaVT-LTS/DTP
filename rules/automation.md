@@ -171,6 +171,16 @@ Phiên bản: v0.4 · **[ĐỀ XUẤT] — chờ duyệt.** Nạp cùng `rules/c
 56. **Bàn giao giữa các thread (handoff)** (FB-127, 05/11). QA lead giao việc ở nhiều thread. Bắt đầu: đọc các file mới nhất trong `<workspace>/tasks/handoff/` (SGS DTP: `dts-agent-workspace/tasks/handoff/`, ≥ 3 ngày gần nhất hoặc theo chủ đề). Kết thúc / dừng giữa chừng / trước khi context bị tóm tắt: ghi hoặc cập nhật `<yyyy-mm-dd>-<chủ-đề>.md` theo `tasks/handoff/README.md` (Đã làm · Còn dở / chờ ai · Quyết định mới + nguồn · File liên quan). Handoff chỉ trỏ tới nguồn; trạng thái bug vẫn từ `bugs.md`, kết quả case vẫn từ file TC. Quy ước nạp sẵn qua `DTP/CLAUDE.md`.
 57. **Sửa màn trên Figma: từng màn, chờ duyệt, nút / tag phải bao hết chữ** (FB-128, 05/11). Làm theo skill `figma-ui-update`: vẽ trên trang QA riêng, không sửa trang designer; xong một màn báo link + đối chiếu UC rồi chờ "ok". Trước khi báo: mọi tag / nút / chip / badge để Hug theo chữ (nền bao hết chữ), chạy kiểm chữ tràn và phần tử đè nhau = 0, chụp lại tự xem. Bài học 05/11: Home gửi đi còn tag "Expires in 47 days", "In progress" tràn chữ khỏi nền, QA lead phải chỉ ra.
 
+58. **Tự kiểm trước khi khẳng định; sai thì sửa cách làm, không chỉ xin lỗi** (FB-129, 06/11).
+    - **Trích nguồn, không trích trí nhớ:** mọi bảng / tóm tắt có mã bug, case, UC → mở ticket / dòng TC / dòng UC ngay lúc viết; câu mô tả bug lấy từ tiêu đề + Expected của ticket.
+    - **Chưa xem thì nói "chưa kiểm":** câu "chỉ xem", "không có", "đã đủ" chỉ nói sau khi đã mở màn và đọc code / API; nếu chưa, ghi rõ "em chưa kiểm".
+    - **Ghi file xong phải đọc lại:** sau mỗi lần ghi workbook / ticket, đọc lại đúng ô vừa ghi (vd đếm case mới, đọc cột Result); chỉ báo "đã ghi" khi đọc lại khớp. Có file khoá `~$…` hoặc EXCEL.EXE chạy ẩn → dừng, báo QA lead.
+    - **Tài khoản dùng chung không đổi cài đặt:** ngôn ngữ, mật khẩu, trạng thái của Lin Mei / Kevin Lin và tài khoản QA lead đang dùng → không đổi; test zh-TW / tắt tài khoản bằng tài khoản [QA].
+    - **Không có chuỗi EICAR trong bất kỳ lệnh nào chạy từ laptop** (kể cả mã hoá, kể cả gửi vào máy ảo).
+    - **Mã bug lấy một lần một mã:** `bug_codes.py next` → ghi register ngay → gọi lại cho mã sau; `found` bắt đầu bằng ngày `dd/mm`.
+    - **Sau mỗi deploy kiểm dữ liệu trước khi test:** đếm khách, request, tài khoản [QA] chính; lệch lớn → báo QA lead ngay (vd 06/11 e15bd067: 89 → 1 khách).
+    - **Báo sai thì:** nói ngắn chỗ sai và chỗ đúng, sửa ngay, ghi một dòng vào FB của ngày; không xin lỗi lặp lại.
+
 ## Changelog
 
 | Version | Ngày | Thay đổi | Nguồn |
