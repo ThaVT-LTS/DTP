@@ -194,6 +194,8 @@ Ví dụ trên là file TC tiếng Anh. Mỗi ô ghi một thứ tiếng theo ng
     - **Dữ liệu chuẩn có đủ trường hợp**: chạy trên khách có đủ loại người và trạng thái (vd Development organisation), không chỉ khách [QA] vừa tạo.
     - **Nút thao tác trên dữ liệu bên kia: thêm điều kiện "ai tạo / ai gửi"** (mở rộng rule 41): vd lời mời do SGS gửi → SGS Resend / Revoke được; lời mời do khách gửi → SGS không có nút, API từ chối.
 
+53. **Failed hay Pending theo phụ thuộc** (FB-130, 06/11). Case tự đi tới lỗi (bước của chính nó cho kết quả sai) → **Failed** + mã bug. Case không chạy được vì điều kiện trước phụ thuộc một case / tính năng khác đang lỗi (vd "duyệt quyền consultant mới sau khi đổi consultant" trong khi chưa đổi được consultant) → **Pending**, Remark "chờ <mã bug> (phụ thuộc <TC>)", vẫn ghi mã bug; chạy lại khi bug đó sửa xong.
+
 ## Changelog
 
 | Version | Ngày | Thay đổi | Nguồn |

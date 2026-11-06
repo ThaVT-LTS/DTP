@@ -1668,3 +1668,8 @@ Bản ghi `FB-001` là góp ý của người dùng. `FB-002` trở đi là **đ
   9. Mỗi lần sai chỉ xin lỗi, không ghi nguyên nhân và không sửa cách làm → lặp lại trong cùng ngày.
 - Áp dụng: rule 58 của rules/automation.md (8 điểm kiểm), memory `self-check-before-claiming`.
 - Tái phát: theo dõi từ 07/11.
+
+## FB-130 · Failed hay Pending khi case phụ thuộc case khác
+- Ngày: 06/11/2026 · Nguồn: QA lead ("nếu là TC cụ thể có lỗi, tìm ra bug => case đó Fail; nếu là TC 1 fail (có bug) nhưng TC 2 phụ thuộc TC 1 => Pending")
+- Việc: BU_141 để Pending dù chính bước của nó gặp BU-BUG-28; ngược lại nhiều case phụ thuộc đang ghi Failed.
+- Áp dụng: rule 53 của rules/tc-authoring.md.
