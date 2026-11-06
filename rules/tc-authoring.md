@@ -188,6 +188,12 @@ Ví dụ trên là file TC tiếng Anh. Mỗi ô ghi một thứ tiếng theo ng
     - **Trạng thái theo điều kiện** (Publish, Active…): mỗi điều kiện thiếu một case, câu báo nêu đúng mục thiếu; một case đủ điều kiện → tick và Save một lần ra trạng thái mới, danh sách cập nhật không F5.
     Ô không bắt buộc (không có *) thì Save phải được khi để trống; điều kiện riêng của trạng thái (vd Publish) không biến ô thành bắt buộc khi Save. Nguồn: MK-BUG-04, MK-BUG-05, QA lead 03/11.
 
+52. **Danh sách hiện ở cả hai cổng: một case đối chiếu chéo, chạy lại sau mỗi thao tác đổi trạng thái** (FB-121, 06/11; CU-BUG-30/31/32). Mọi dữ liệu của khách mà SGS Portal cũng hiện (Customers › chi tiết › Users / Scopes / Workspaces / Certifications / Overview, Users › Customer users, Audit logs…) có ít nhất:
+    - **Cùng tập**: số lượng và danh sách người / đối tượng ở SGS Portal = ở Customer Portal của cùng khách (đủ mọi loại: Admin, User, Viewer, Consultant; đã tắt; đang mời), trừ khi UC nói rõ phía SGS ẩn bớt.
+    - **Cùng trạng thái**: sau mỗi thao tác ở một cổng (mời, thu hồi, tắt, bật, đổi vai trò, tạo / archive / xoá) mở cổng kia: trạng thái, số đếm và các nút phải đổi theo.
+    - **Dữ liệu chuẩn có đủ trường hợp**: chạy trên khách có đủ loại người và trạng thái (vd Development organisation), không chỉ khách [QA] vừa tạo.
+    - **Nút thao tác trên dữ liệu bên kia: thêm điều kiện "ai tạo / ai gửi"** (mở rộng rule 41): vd lời mời do SGS gửi → SGS Resend / Revoke được; lời mời do khách gửi → SGS không có nút, API từ chối.
+
 ## Changelog
 
 | Version | Ngày | Thay đổi | Nguồn |
